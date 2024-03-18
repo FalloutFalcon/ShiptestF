@@ -32,7 +32,11 @@
 	pull_force = MOVE_FORCE_WEAK
 	butcher_results = list(/obj/item/reagent_containers/food/snacks/meat/slab = 2, /obj/item/stack/sheet/sinew/wolf = 2, /obj/item/stack/sheet/bone = 2, /obj/item/mob_trophy/wolf_ear = 0.5)
 	loot = list()
+<<<<<<< HEAD
 	mob_trophy = /obj/item/mob_trophy/wolf_ear
+=======
+	mob_trophy = /obj/item/crusher_trophy/wolf_ear
+>>>>>>> b79f67e921 (throphy loot doesnt need to be a list tbh)
 	stat_attack = HARD_CRIT
 	knockdown_time = 1 SECONDS
 	robust_searching = TRUE
@@ -136,7 +140,11 @@
 	charge_frequency = 20 SECONDS
 	butcher_results = list(/obj/item/reagent_containers/food/snacks/meat/slab = 2, /obj/item/stack/sheet/sinew/wolf = 4, /obj/item/stack/sheet/sinew/wolf = 4, /obj/item/stack/sheet/bone = 5)
 	loot = list()
+<<<<<<< HEAD
 	mob_trophy = /obj/item/mob_trophy/fang
+=======
+	mob_trophy = /obj/item/crusher_trophy/fang
+>>>>>>> b79f67e921 (throphy loot doesnt need to be a list tbh)
 
 /mob/living/simple_animal/hostile/asteroid/wolf/alpha/gib()
 	move_force = MOVE_FORCE_DEFAULT

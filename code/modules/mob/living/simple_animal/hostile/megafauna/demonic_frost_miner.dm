@@ -28,7 +28,11 @@ Difficulty: Extremely Hard
 	speed = 20
 	move_to_delay = 20
 	ranged = TRUE
+<<<<<<< HEAD
 	mob_trophy = /obj/item/mob_trophy/ice_block_talisman
+=======
+	mob_trophy = /obj/item/crusher_trophy/ice_block_talisman
+>>>>>>> b79f67e921 (throphy loot doesnt need to be a list tbh)
 	loot = list(/obj/effect/decal/remains/plasma)
 	wander = FALSE
 	del_on_death = TRUE

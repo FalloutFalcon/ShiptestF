@@ -27,7 +27,11 @@
 	butcher_results = list(/obj/item/reagent_containers/food/snacks/meat/slab/bear = 3, /obj/item/stack/sheet/bone = 2)
 	guaranteed_butcher_results = list(/obj/item/stack/sheet/animalhide/goliath_hide/polar_bear_hide = 1)
 	loot = list()
+<<<<<<< HEAD
 	mob_trophy = /obj/item/mob_trophy/bear_paw
+=======
+	mob_trophy = /obj/item/crusher_trophy/bear_paw
+>>>>>>> b79f67e921 (throphy loot doesnt need to be a list tbh)
 	stat_attack = HARD_CRIT
 	robust_searching = TRUE
 	footstep_type = FOOTSTEP_MOB_CLAW
@@ -73,8 +77,13 @@
 	icon_state = "warbear"
 	icon_living = "warbear"
 	icon_dead = "warbear_dead"
+<<<<<<< HEAD
 	mob_trophy = /obj/item/mob_trophy/war_paw
 	trophy_drop_mod = 75
+=======
+	mob_trophy = /obj/item/crusher_trophy/war_paw
+	crusher_drop_mod = 75
+>>>>>>> b79f67e921 (throphy loot doesnt need to be a list tbh)
 	butcher_results = list(/obj/item/reagent_containers/food/snacks/meat/slab/bear = 3, /obj/item/stack/sheet/bone = 2, /obj/item/stack/sheet/animalhide/goliath_hide/polar_bear_hide = 3)
 	guaranteed_butcher_results = list(/obj/item/stack/sheet/animalhide/goliath_hide/polar_bear_hide = 3, /obj/item/bear_armor = 1)
 

@@ -41,7 +41,11 @@ Difficulty: Medium
 	ranged_cooldown_time = 16
 	pixel_x = -16
 	base_pixel_x = -16
+<<<<<<< HEAD
 	mob_trophy = /obj/item/mob_trophy/miner_eye
+=======
+	mob_trophy = /obj/item/crusher_trophy/miner_eye
+>>>>>>> b79f67e921 (throphy loot doesnt need to be a list tbh)
 	loot = list(/obj/item/melee/transforming/cleaving_saw, /obj/item/gun/energy/kinetic_accelerator)
 	wander = FALSE
 	del_on_death = TRUE

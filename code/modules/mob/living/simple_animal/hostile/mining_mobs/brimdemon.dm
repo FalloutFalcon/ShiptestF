@@ -37,7 +37,11 @@
 	light_color = LIGHT_COLOR_BLOOD_MAGIC
 	light_power = 5
 	light_range = 1.4
+<<<<<<< HEAD
 	mob_trophy = /obj/item/mob_trophy/brimdemon_fang
+=======
+	mob_trophy = /obj/item/crusher_trophy/brimdemon_fang
+>>>>>>> b79f67e921 (throphy loot doesnt need to be a list tbh)
 	/// Are we charging/firing? If yes stops our movement.
 	var/firing = FALSE
 	/// A list of all the beam parts.

@@ -54,7 +54,11 @@ Difficulty: Medium
 	ranged = TRUE
 	pixel_x = -32
 	base_pixel_x = -32
+<<<<<<< HEAD
 	mob_trophy = /obj/item/mob_trophy/ash_spike
+=======
+	mob_trophy = /obj/item/crusher_trophy/ash_spike
+>>>>>>> b79f67e921 (throphy loot doesnt need to be a list tbh)
 	loot = list(/obj/structure/closet/crate/necropolis/dragon)
 	butcher_results = list(/obj/item/gem/amber = 1, /obj/item/stack/ore/diamond = 5, /obj/item/stack/sheet/sinew = 5, /obj/item/stack/sheet/bone = 30)
 	guaranteed_butcher_results = list(/obj/item/stack/sheet/animalhide/ashdrake = 10, /obj/item/mob_trophy/ash_spike = 1)
@@ -583,7 +587,7 @@ Difficulty: Medium
 	mouse_opacity = MOUSE_OPACITY_ICON
 	damage_coeff = list(BRUTE = 1, BURN = 1, TOX = 1, CLONE = 1, STAMINA = 0, OXY = 1)
 	loot = list()
-	crusher_loot = list()
+	mob_trophy = list()
 	butcher_results = list(/obj/item/stack/ore/diamond = 5, /obj/item/stack/sheet/sinew = 5, /obj/item/stack/sheet/bone = 30)
 	attack_action_types = list()
 
