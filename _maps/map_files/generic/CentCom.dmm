@@ -3318,7 +3318,6 @@
 /area/tdome/tdomeobserve)
 "aHq" = (
 /obj/structure/closet/cardboard,
-/obj/item/banhammer,
 /obj/effect/turf_decal/industrial/warning,
 /turf/open/floor/plasteel,
 /area/wizard_station)
