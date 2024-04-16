@@ -32,3 +32,10 @@
 	caliber = "8x50mmR"
 	max_ammo = 8
 	instant_load = TRUE
+
+/obj/item/ammo_box/magazine/internal/boltaction/rebarxbow
+	name = "single round magazine"
+	max_ammo = 1
+	caliber = CALIBER_REBAR
+	ammo_type = /obj/item/ammo_casing/caseless/rebar
+	start_empty = TRUE

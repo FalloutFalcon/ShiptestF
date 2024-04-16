@@ -29,3 +29,5 @@
 #define BULLET_SPEED_HV_MOD -0.1
 #define BULLET_SPEED_SURPLUS_MOD 0.05
 
+/// The caliber used by the rebar crossbow.
+#define CALIBER_REBAR "sharpened iron rod"
