@@ -32,10 +32,6 @@
 	var/list/attack_verb_continuous_on
 	/// List of simple attack verbs used when the weapon is enabled
 	var/list/attack_verb_simple_on
-	/// Whether clumsy people need to succeed an RNG check to turn it on without hurting themselves
-	var/clumsy_check
-	/// Amount of damage to deal to clumsy people
-	var/clumsy_damage
 	/// If we get sharpened with a whetstone, save the bonus here for later use if we un/redeploy
 	var/sharpened_bonus = 0
 	/// Dictate whether we change inhands or not
@@ -52,8 +48,6 @@
 	sharpness_on = NONE,
 	hitsound_on = 'sound/weapons/blade1.ogg',
 	w_class_on = WEIGHT_CLASS_BULKY,
-	clumsy_check = TRUE,
-	clumsy_damage = 10,
 	list/attack_verb_continuous_on,
 	list/attack_verb_simple_on,
 	inhand_icon_change = TRUE,
@@ -71,8 +65,6 @@
 	src.sharpness_on = sharpness_on
 	src.hitsound_on = hitsound_on
 	src.w_class_on = w_class_on
-	src.clumsy_check = clumsy_check
-	src.clumsy_damage = clumsy_damage
 	src.inhand_icon_change = inhand_icon_change
 
 	if(attack_verb_continuous_on)
@@ -92,39 +84,15 @@
 	if(item_parent.sharpness || sharpness_on)
 		RegisterSignal(parent, COMSIG_ITEM_SHARPEN_ACT, PROC_REF(on_sharpen))
 
-	RegisterSignal(parent, COMSIG_DETECTIVE_SCANNED, PROC_REF(on_scan))
-	RegisterSignal(parent, COMSIG_ITEM_APPLY_FANTASY_BONUSES, PROC_REF(apply_fantasy_bonuses))
-	RegisterSignal(parent, COMSIG_ITEM_REMOVE_FANTASY_BONUSES, PROC_REF(remove_fantasy_bonuses))
-
-/datum/component/transforming/proc/apply_fantasy_bonuses(obj/item/source, bonus)
-	SIGNAL_HANDLER
-	active = FALSE
-	set_inactive(source)
-	force_on = source.modify_fantasy_variable("force_on", force_on, bonus)
-	throwforce_on = source.modify_fantasy_variable("throwforce_on", throwforce_on, bonus)
-
-/datum/component/transforming/proc/remove_fantasy_bonuses(obj/item/source, bonus)
-	SIGNAL_HANDLER
-	active = FALSE
-	set_inactive(source)
-	force_on = source.reset_fantasy_variable("force_on", force_on)
-	throwforce_on = source.reset_fantasy_variable("throwforce_on", throwforce_on)
-
 
 /datum/component/transforming/UnregisterFromParent()
-	UnregisterSignal(parent, list(COMSIG_ITEM_ATTACK_SELF, COMSIG_ITEM_SHARPEN_ACT, COMSIG_DETECTIVE_SCANNED))
-
-/datum/component/transforming/proc/on_scan(datum/source, mob/user, list/extra_data)
-	SIGNAL_HANDLER
-	LAZYADD(extra_data[DETSCAN_CATEGORY_NOTES], "Readings suggest some form of state changing.")
-
+	UnregisterSignal(parent, list(COMSIG_ITEM_ATTACK_SELF, COMSIG_ITEM_SHARPEN_ACT))
 
 /*
  * Called on [COMSIG_ITEM_ATTACK_SELF].
  *
  * Check if we can transform our weapon, and if so, call [do_transform].
  * Sends signal [COMSIG_TRANSFORMING_PRE_TRANSFORM], and stops the transform action if it returns [COMPONENT_BLOCK_TRANSFORM].
- * And, if [do_transform] was successful, do a clumsy effect from [clumsy_transform_effect].
  *
  * source - source of the signal, the item being transformed / parent
  * user - the mob transforming the weapon
@@ -140,7 +108,6 @@
 		return
 
 	if(do_transform(source, user))
-		clumsy_transform_effect(user)
 		return COMPONENT_CANCEL_ATTACK_CHAIN
 
 /*
@@ -247,45 +214,6 @@
 	if(ismob(source.loc))
 		var/mob/loc_mob = source.loc
 		loc_mob.update_held_items()
-
-/*
- * If [clumsy_check] is set to TRUE, attempt to cause a side effect for clumsy people activating this item.
- * Called after the transform is done, meaning [active] var has already updated.
- *
- * user - the clumsy mob, transforming our item (parent)
- *
- * Returns TRUE if side effects happened, FALSE otherwise
- */
-/datum/component/transforming/proc/clumsy_transform_effect(mob/living/user)
-	if(!clumsy_check)
-		return FALSE
-
-	if(!user || !HAS_TRAIT(user, TRAIT_CLUMSY))
-		return FALSE
-
-	if(active && prob(50))
-		var/hurt_self_verb_simple = LAZYLEN(attack_verb_simple_on) ? pick(attack_verb_simple_on) : "hit"
-		var/hurt_self_verb_continuous = LAZYLEN(attack_verb_continuous_on) ? pick(attack_verb_continuous_on) : "hits"
-		user.visible_message(
-			span_warning("[user] triggers [parent] while holding it backwards and [hurt_self_verb_continuous] themself, like a doofus!"),
-			span_warning("You trigger [parent] while holding it backwards and [hurt_self_verb_simple] yourself, like a doofus!"),
-		)
-		var/obj/item/item_parent = parent
-		switch(item_parent.damtype)
-			if(STAMINA)
-				user.adjustStaminaLoss(clumsy_damage)
-			if(OXY)
-				user.adjustOxyLoss(clumsy_damage)
-			if(TOX)
-				user.adjustToxLoss(clumsy_damage)
-			if(BRUTE)
-				user.take_bodypart_damage(brute=clumsy_damage)
-			if(BURN)
-				user.take_bodypart_damage(burn=clumsy_damage)
-
-		return TRUE
-
-	return FALSE
 
 /*
  * Called on [COMSIG_ITEM_SHARPEN_ACT].
