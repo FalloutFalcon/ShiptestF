@@ -120,7 +120,7 @@
 "gm" = (
 /obj/structure/closet/cabinet,
 /obj/item/clothing/suit/hooded/cloak/bone,
-/obj/item/claymore/bone,
+/obj/item/melee/sword/bone,
 /turf/open/floor/wood/waste,
 /area/ruin/wasteplanet)
 "gr" = (

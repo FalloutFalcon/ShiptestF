@@ -633,6 +633,8 @@
 	id_assignment = "Senior Peacekeeper"
 
 	uniform = /obj/item/clothing/under/syndicate/suns/pkuniform
+	suit = /obj/item/clothing/suit/armor/vest/bulletproof/suns/hos
+	belt = /obj/item/melee/sword/sabre/suns/telescopic
 	suit = /obj/item/clothing/suit/armor/vest/suns/hos
 	belt = /obj/item/melee/sabre/suns/telescopic
 	gloves = /obj/item/clothing/gloves/tackler/dolphin/suns
@@ -994,7 +996,7 @@
 	uniform = /obj/item/clothing/under/syndicate/suns/pkuniform
 	suit = /obj/item/clothing/suit/armor/vest/suns
 	alt_suit = /obj/item/clothing/suit/toggle/suns/pkcoat
-	belt = /obj/item/melee/sabre/suns/telescopic
+	belt = /obj/item/melee/sword/sabre/suns/telescopic
 	gloves = /obj/item/clothing/gloves/tackler/dolphin/suns
 	shoes = /obj/item/clothing/shoes/jackboots/suns/long
 	head = /obj/item/clothing/head/welding/suns

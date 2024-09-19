@@ -308,7 +308,7 @@
 	var/possible = list(/obj/item/ship_in_a_bottle,
 						/obj/item/gun/energy/pulse,
 						/obj/item/book/granter/martial/carp,
-						/obj/item/melee/supermatter_sword,
+						/obj/item/melee/sword/supermatter,
 						/obj/item/shield/changeling,
 						/obj/item/lava_staff,
 						/obj/item/energy_katana,
@@ -317,8 +317,7 @@
 						/obj/item/gun/ballistic/automatic/assault/hydra/lmg/extended,
 						/obj/item/stack/telecrystal/twenty,
 						/obj/item/nuke_core,
-						/obj/item/phylactery,
-						/obj/item/banhammer)
+						/obj/item/phylactery)
 
 /obj/item/fakeartefact/Initialize()
 	. = ..()
