@@ -69,7 +69,7 @@
 
 /mob/living/simple_animal/hostile/hivebot/death(gibbed)
 	do_sparks(3, TRUE, src)
-	new /obj/effect/spawner/lootdrop/waste/hivebot(loc)
+	new /obj/effect/spawner/random/waste/hivebot(loc)
 	..(TRUE)
 
 /mob/living/simple_animal/hostile/hivebot/range
@@ -120,7 +120,6 @@
 	maxHealth = 60
 	ranged = TRUE
 	rapid = 3
-	gold_core_spawnable = HOSTILE_SPAWN
 	var/datum/action/innate/hivebot/foamwall/foam
 
 /mob/living/simple_animal/hostile/hivebot/mechanic/Initialize(mapload)
