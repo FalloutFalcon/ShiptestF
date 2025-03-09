@@ -1765,6 +1765,7 @@
 /obj/effect/turf_decal/siding/thinplating/dark{
 	dir = 4
 	},
+/obj/effect/landmark/mission_poi/guard,
 /turf/open/floor/plasteel/dark,
 /area/ruin/wasteplanet/abandoned_mechbay/commandcontrol)
 "uD" = (
@@ -1923,6 +1924,7 @@
 /obj/effect/turf_decal/siding/thinplating/dark{
 	dir = 10
 	},
+/obj/effect/landmark/mission_poi/main,
 /turf/open/floor/plasteel/mono/dark,
 /area/ruin/wasteplanet/abandoned_mechbay/commandcontrol)
 "wc" = (
@@ -2763,6 +2765,7 @@
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer4{
 	dir = 8
 	},
+/obj/effect/landmark/mission_poi/guard,
 /turf/open/floor/plasteel/dark,
 /area/ruin/wasteplanet/abandoned_mechbay/commandcontrol)
 "Hm" = (
@@ -3060,6 +3063,7 @@
 	pixel_y = 29;
 	pixel_x = 28
 	},
+/obj/effect/landmark/mission_poi/guard,
 /turf/open/floor/plasteel/dark,
 /area/ruin/wasteplanet/abandoned_mechbay/commandcontrol)
 "Kj" = (
@@ -3093,14 +3097,8 @@
 /turf/closed/wall/concrete/reinforced,
 /area/ruin/wasteplanet/abandoned_mechbay/crewquarters)
 "KH" = (
-/obj/machinery/porta_turret/syndicate{
+/obj/machinery/porta_turret/ruin/ramzi/light{
 	dir = 9;
-	name = "rusting turret";
-	desc = "A ballistic machine gun auto-turret, it's woven into the hexacrete walls. Despite that, it's age is clear, decay has set in.";
-	max_integrity = 60;
-	armor = list("melee"=25,"bullet"=30,"laser"=30,"energy"=30,"bomb"=30,"bio"=0,"rad"=0,"fire"=90,"acid"=90);
-	lethal_projectile = /obj/projectile/bullet/lmg;
-	stun_projectile = /obj/projectile/bullet/lmg
 	},
 /turf/closed/wall/concrete/reinforced,
 /area/ruin/wasteplanet/abandoned_mechbay/commandcontrol)
