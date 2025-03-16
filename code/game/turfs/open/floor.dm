@@ -1,7 +1,4 @@
 /turf/open/floor
-	//NOTE: Floor code has been refactored, many procs were removed and refactored
-	//- you should use istype() if you want to find out whether a floor has a certain type
-	//- floor_tile is now a path, and not a tile obj
 	name = "floor"
 	icon = 'icons/turf/floors.dmi'
 	base_icon_state = "floor"
@@ -25,27 +22,26 @@
 	var/icon_plating = null
 	var/broken = FALSE
 	var/burnt = FALSE
-	var/floor_tile = null //tile that this floor drops
-	var/list/broken_states
-	var/list/burnt_states
-
+	/// tile that this floor drops
+	var/floor_tile = null
 
 /turf/open/floor/Initialize(mapload, inherited_virtual_z)
+	. = ..()
 	if(color)
 		add_atom_colour(color, FIXED_COLOUR_PRIORITY) //This should already be called in atoms.dm:150 but apparently it's not and I'm too lazy to find out why B)
-	if (!broken_states)
-		broken_states = string_list(list("damaged1", "damaged2", "damaged3", "damaged4", "damaged5"))
-	else
-		broken_states = string_list(broken_states)
-	if(burnt_states)
-		burnt_states = string_list(burnt_states)
-	if(!broken && broken_states && (icon_state in broken_states))
-		broken = TRUE
-	if(!burnt && burnt_states && (icon_state in burnt_states))
-		burnt = TRUE
-	. = ..()
+
 	if(mapload && prob(33))
 		MakeDirty()
+
+/// Returns a list of every turf state considered "broken".
+/// Will be randomly chosen if a turf breaks at runtime.
+/turf/open/floor/proc/broken_states()
+	return list("damaged1", "damaged2", "damaged3", "damaged4", "damaged5")
+
+/// Returns a list of every turf state considered "burnt".
+/// Will be randomly chosen if a turf is burnt at runtime.
+/turf/open/floor/proc/burnt_states()
+	return list()
 
 /turf/open/floor/ex_act(severity, target)
 	var/shielded = is_shielded()
