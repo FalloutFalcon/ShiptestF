@@ -360,19 +360,18 @@
 	message_admins("[key_name_admin(src)] has changed Central Command's name to [input]")
 	log_admin("[key_name(src)] has changed the Central Command name to: [input]")
 
-/client/proc/cmd_admin_distress_signal()
+/client/proc/cmd_admin_distress_signal(datum/overmap/overmap_location as anything in SSovermap.overmap_objects)
 	set category = "Event"
 	set name = "Create Distress Signal"
 
-	var/datum/overmap/ship/ship = SSshuttle.get_ship(usr)
-	if(!ship)
+	if(!istype(overmap_location)) // Sanity check
 		return
-	var/confirm = alert(src, "Do you want to create a distress signal for [ship.name]", "Distress Signal", "Yes", "Cancel")
+	var/confirm = alert(src, "Do you want to create a distress signal for [overmap_location.name]", "Distress Signal", "Yes", "No")
 
 	switch(confirm)
 		if("Yes")
-			create_distress_beacon(ship)
-		if("Cancel")
+			create_distress_beacon(overmap_location)
+		if("No")
 			return
 
 /client/proc/cmd_admin_delete(atom/A as obj|mob|turf in world)
@@ -832,7 +831,7 @@
 
 /client/proc/spawn_ruin()
 	set name = "Spawn Planet/Ruin"
-	set category = "Event.Spawning"
+	set category = "Event.Overmap"
 	if(!check_rights(R_ADMIN) || !check_rights(R_SPAWN))
 		return
 
@@ -882,27 +881,26 @@
 	else
 		position = selected_system.get_unused_overmap_square()
 
-	message_admins("Generating a new Planet with ruin: [ruin_target], this may take some time!")
+	var/admin_load_instant = FALSE
+	if(tgui_alert(usr, "Instant admin load?", "Spawn Planet/Ruin", list("Yes", "No"), 10 SECONDS) == "Yes")
+		admin_load_instant = TRUE
+
+	message_admins("Creating a new Planet with ruin: [ruin_target].")
 	if(!position && tgui_alert(usr, "Failed to spawn in an empty overmap space! Continue?", "Spawn Planet/Ruin", list("Yes","No"), 10 SECONDS) != "Yes")
 		return
 	var/datum/overmap/dynamic/encounter = new(position, selected_system, FALSE)
+	message_admins("Click here to jump to the overmap token: [ADMIN_JMP(encounter.token)], and here to go to the dock: [ADMIN_JMP(encounter.reserve_docks[1])]")
 	encounter.force_encounter = planet_type
 	encounter.template = ruin_target
 	encounter.choose_level_type(FALSE)
 	if(!ruin_target)
 		encounter.ruin_type = null
-	encounter.preserve_level = TRUE
-	encounter.load_level()
-
-	message_admins(span_big("Click here to jump to the overmap token: " + ADMIN_JMP(encounter.token)))
-	message_admins(span_big("Click here to jump to the overmap dock: " + ADMIN_JMP(encounter.reserve_docks[1])))
-	for(var/ruin in encounter.ruin_turfs)
-		var/turf/ruin_turf = encounter.ruin_turfs[ruin]
-		message_admins(span_big("Click here to jump to \"[ruin]\": " + ADMIN_JMP(ruin_turf)))
+	if(admin_load_instant)
+		encounter.admin_load()
 
 /client/proc/spawn_overmap()
 	set name = "Spawn Overmap"
-	set category = "Fun"
+	set category = "Event.Spawning"
 	if(!check_rights(R_ADMIN) || !check_rights(R_SPAWN))
 		return
 
@@ -920,6 +918,12 @@
 			QDEL_NULL(nova)
 			return
 		nova.size = inputed
+
+		inputed = input(usr, "Choose Maximum amount of Dynamic Events", "Spawn Overmap", nova.max_overmap_dynamic_events) as num
+		if(!inputed)
+			QDEL_NULL(nova)
+			return
+		nova.max_overmap_dynamic_events = inputed
 
 		inputed = tgui_input_list(usr, "Choose Map Generator", "Spawn Overmap", list(OVERMAP_GENERATOR_SOLAR, OVERMAP_GENERATOR_RANDOM, OVERMAP_GENERATOR_NONE))
 		if(!inputed)
@@ -943,9 +947,9 @@
 			return
 		switch(inputed)
 			if("Yes")
-				nova.has_outpost = TRUE
+				nova.can_jump_to = TRUE
 			if("No")
-				nova.has_outpost = FALSE
+				nova.can_jump_to = FALSE
 
 	if(tgui_alert(usr, "Edit Overmap Colors?", "Spawn Overmap", list("Yes", "No"), 10 SECONDS) == "Yes")
 		if(!nova)
@@ -998,6 +1002,38 @@
 		message_admins("Failed to generate Star System [overmap_type]!")
 		return
 	message_admins(span_big("Overmap [nova.name] successfully generated!"))
+
+/client/proc/spawn_jump_point()
+	set name = "Spawn Overmap Jump Point"
+	set category = "Event.Spawning"
+	if(!check_rights(R_ADMIN) || !check_rights(R_SPAWN))
+		return
+
+	var/datum/overmap_star_system/selected_system //the star system we are in
+	var/datum/overmap_star_system/selected_system_2 //the star system we are in
+	var/text_directions = list("NORTH", "NORTHEAST", "EAST", "SOUTHEAST", "SOUTH", "SOUTHWEST", "WEST", "NORTHWEST")
+	var/selected_dir
+	if(length(SSovermap.tracked_star_systems) > 1)
+		selected_system = tgui_input_list(usr, "Which star system should point A be in?", "Creating Jump Point", SSovermap.tracked_star_systems)
+	else
+		to_chat(usr, span_danger("There is only one overmap!"), confidential = TRUE)
+		return // if there's only one star system, ignore
+	if(!selected_system)
+		return //if selected_system didnt get selected, we nope out
+
+	selected_system_2 = tgui_input_list(usr, "Which star system should point B be in?", "Creating Jump Point", SSovermap.tracked_star_systems)
+	if(!selected_system_2)
+		return //if selected_system_2 didnt get selected, we nope out
+
+	selected_dir = tgui_input_list(usr, "Which direction should the jump point be (relative to point A)", "Creating Jump Point", text_directions)
+	if(!selected_dir)
+		return
+
+	var/datum/overmap/jump_point/point =selected_system.create_jump_point_link(selected_system_2, text2dir(selected_dir))
+	if(!point)
+		message_admins("Failed to generate jump point!")
+
+	message_admins(span_big("Click here to jump to the overmap Jump point: " + ADMIN_JMP(point.token)))
 
 /client/proc/smite(mob/living/target as mob)
 	set name = "Smite"
