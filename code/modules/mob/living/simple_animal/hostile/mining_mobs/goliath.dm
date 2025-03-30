@@ -323,11 +323,13 @@
 
 /obj/effect/temp_visual/goliath_tentacle/proc/trip()
 	var/latched = FALSE
-	for(var/mob/living/L in loc)
-		if((!QDELETED(spawner) && spawner.faction_check_mob(L)) || L.stat == DEAD)
+	for(var/mob/living/living_mob in loc)
+		if((!QDELETED(spawner) && spawner.faction_check_mob(living_mob)) || living_mob.stat == DEAD)
 			continue
-		visible_message("<span class='danger'>[src] wraps a mass of tentacles around [L]!</span>")
-		on_hit(L)
+		visible_message("<span class='danger'>[src] wraps a mass of tentacles around [living_mob]!</span>")
+		if(living_mob.client)
+			living_mob.client.give_award(/datum/award/achievement/misc/goliath_moment, living_mob)
+		on_hit(living_mob)
 		latched = TRUE
 	if(!latched)
 		retract()

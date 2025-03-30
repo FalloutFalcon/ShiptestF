@@ -111,3 +111,8 @@
 	name = "HA, GOTTEM"
 	desc = "Made you look!"
 	database_id = MEDAL_GOTTEM
+
+/datum/award/achievement/misc/goliath_moment
+	name = "Goliath moment"
+	desc = "The first of many"
+	database_id = MEDAL_GOLIATH_MOMENT

@@ -24,6 +24,7 @@
 #define MEDAL_SNAIL "KKKiiilll mmmeee"
 #define MEDAL_LOOKOUTSIR "Look Out, Sir!"
 #define MEDAL_GOTTEM "GOTTEM"
+#define MEDAL_GOLIATH_MOMENT "Goliath Moment"
 #define MEDAL_SPRINGLOCK "The Man Inside the Modsuit"
 
 //Skill medal hub IDs
