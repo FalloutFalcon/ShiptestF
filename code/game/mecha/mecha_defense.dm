@@ -120,7 +120,8 @@
 	var/facing_modifiers = get_armour_facing(abs(dir2angle(dir) - dir2angle(attack_dir)))
 	var/true_armor = clamp(round(armor.bullet*facing_modifiers[2]/100 - bullet_proj.armour_penetration ,0.01), 0, 1)
 	var/true_damage = round(bullet_proj.damage * (1 - true_armor))
-	var/minimum_damage_to_penetrate = round(armor.bullet/3*(1 - (bullet_proj.armour_penetration*facing_modifiers[3])), 0.01)
+	var/minimum_damage_to_penetrate = round(armor.bullet/3*(1 - (bullet_proj.armour_penetration)), 0.01)
+	var/ap_threshold = facing_modifiers[3]
 
 	if(prob(true_armor/2))
 		bullet_proj.setAngle(SIMPLIFY_DEGREES(bullet_proj.Angle + rand(40,150)))
@@ -133,6 +134,10 @@
 
 	if(occupant && prob(facing_modifiers[1]))
 		bullet_proj.damage = true_damage
+		if(bullet_proj.armour_penetration < ap_threshold)
+			return
+		else
+			bullet_proj.armour_penetration -= ap_threshold
 		if(true_damage < minimum_damage_to_penetrate)
 			return
 		occupant.bullet_act(bullet_proj, bullet_proj.def_zone, piercing_hit)
