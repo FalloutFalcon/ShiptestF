@@ -28,13 +28,12 @@
 	max_integrity = 300 //max_integrity is base health
 	var/deflect_chance = 10 //chance to deflect the incoming projectiles, hits, or lesser the effect of ex_act.
 	armor = list("melee" = 20, "bullet" = 10, "laser" = 0, "energy" = 0, "bomb" = 0, "bio" = 0, "rad" = 0, "fire" = 100, "acid" = 100)
-	var/list/facing_modifiers = list(MECHA_FRONT_ARMOUR = 1.5, MECHA_SIDE_ARMOUR = 1, MECHA_BACK_ARMOUR = 0.5)
 	/// List of internal components per direction , will cause increased mech damge incase of mech AP and block shots from hitting the driver
-	// internal list should be list[ref] = list(hitChance, hitMult, APthreshold)
-	var/list/directional_comps = list(
-		MECHA_FRONT_ARMOUR = list(5, 2, 30),
-		MECHA_SIDE_ARMOUR = list(30, 2, 30),
-		MECHA_BACK_ARMOUR = list(100, 2, 30)
+	// internal list should be list[ref] = list(occupant_hit_chance, hit_multi, ap_threshold_mult)
+	var/list/facing_modifiers = list(
+		MECHA_FRONT_ARMOUR = list(5, 0.5, 0.8),
+		MECHA_SIDE_ARMOUR = list(25, 1, 1),
+		MECHA_BACK_ARMOUR = list(50, 1.5, 1.2)
 	)
 
 	var/equipment_disabled = 0 //disabled due to EMP

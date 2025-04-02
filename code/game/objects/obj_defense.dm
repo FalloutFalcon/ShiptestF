@@ -1,3 +1,5 @@
+/obj
+	uses_integrity = TRUE
 
 ///the essential proc to call when an obj must receive damage of any kind.
 /obj/proc/take_damage(damage_amount, damage_type = BRUTE, damage_flag = "", sound_effect = TRUE, attack_dir, armour_penetration = 0)

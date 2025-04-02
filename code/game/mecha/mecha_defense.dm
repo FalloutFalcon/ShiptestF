@@ -1,20 +1,10 @@
 /obj/mecha/proc/get_armour_facing(relative_dir)
-	switch(relative_dir)
-		if(0) // BACKSTAB!
-			return facing_modifiers[MECHA_BACK_ARMOUR]
-		if(45, 90, 270, 315)
-			return facing_modifiers[MECHA_SIDE_ARMOUR]
-		if(225, 180, 135)
-			return facing_modifiers[MECHA_FRONT_ARMOUR]
-	return 1 //always return non-0
-
-/obj/mecha/proc/attack_dir_for_modules(relative_dir)
 	if(relative_dir  > -45 && relative_dir < 45)
-		return directional_comps[MECHA_BACK_ARMOUR]
-	else if((relative_dir < -45 && relative_dir > -135) || relative_dir > 45 && relative_dir < 135)
-		return directional_comps[MECHA_SIDE_ARMOUR]
+		return facing_modifiers[MECHA_FRONT_ARMOUR]
 	else if(relative_dir >= -180 && relative_dir <= 180)
-		return directional_comps[MECHA_FRONT_ARMOUR]
+		return facing_modifiers[MECHA_BACK_ARMOUR]
+	else
+		return facing_modifiers[MECHA_SIDE_ARMOUR]
 
 /obj/mecha/take_damage(damage_amount, damage_type = BRUTE, damage_flag = 0, sound_effect = 1, attack_dir)
 	. = ..()
@@ -52,8 +42,8 @@
 
 	if(attack_dir)
 		var/facing_modifier = get_armour_facing(abs(dir2angle(dir) - dir2angle(attack_dir)))
-		booster_damage_modifier /= facing_modifier
-		booster_deflection_modifier *= facing_modifier
+		booster_damage_modifier *= facing_modifier[2]
+		booster_deflection_modifier /= facing_modifier[2]
 	if(prob(deflect_chance * booster_deflection_modifier))
 		visible_message("<span class='danger'>[src]'s armour deflects the attack!</span>")
 		log_message("Armor saved.", LOG_MECHA)
@@ -125,7 +115,9 @@
 		return occupant.bullet_act(bullet_proj) //If the sides are open, the occupant can be hit
 
 	log_message("Hit by projectile. Type: [bullet_proj.name]([bullet_proj.flag]).", LOG_MECHA, color="red")
+	. = ..()
 
+	/*
 	//https://github.com/Foundation-19/Hail-Mary/pull/289
 	var/attack_dir = REVERSE_DIR(bullet_proj.dir)
 	var/facing_modifier = get_armour_facing(abs(dir2angle(dir) - dir2angle(attack_dir)))
@@ -166,6 +158,7 @@
 		. = true_target.bullet_act(bullet_proj, bullet_proj.def_zone)
 	else
 		. = ..()
+	*/
 
 /*
 /obj/mecha/run_atom_armor(damage_amount, damage_type, damage_flag = 0, attack_dir, armour_penetration)
