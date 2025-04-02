@@ -127,8 +127,8 @@
 	var/true_damage = round(bullet_proj.damage * (1 - true_armor))
 	var/minimum_damage_to_penetrate = round(1 - (bullet_proj.armour_penetration), 0.01)
 
-	if(prob(true_armor*10))
-		bullet_proj.setAngle(SIMPLIFY_DEGREES(bullet_proj.Angle + rand(40,150)))
+	if(prob(true_armor*50) && bullet_proj.check_ricochet(src))
+		handle_ricochet(bullet_proj)
 		return BULLET_ACT_FORCE_PIERCE
 
 	. = ..()
