@@ -118,10 +118,14 @@
 
 	var/attack_dir = REVERSE_DIR(bullet_proj.dir)
 	var/facing_modifiers = get_armour_facing(abs(dir2angle(dir) - dir2angle(attack_dir)))
-	var/true_armor = clamp(round(facing_modifiers[2]/100 - bullet_proj.armour_penetration ,0.01), 0, 1)
+
+	var/cabin_pierce_percent = facing_modifiers[1]
+	var/facing_multi = facing_modifiers[2]
+	var/ap_threshold = facing_modifiers[3]
+
+	var/true_armor = clamp(round(get_armor_rating(bullet_proj.flag)*facing_multi/100 - bullet_proj.armour_penetration ,0.01), 0, 1)
 	var/true_damage = round(bullet_proj.damage * (1 - true_armor))
 	var/minimum_damage_to_penetrate = round(1 - (bullet_proj.armour_penetration), 0.01)
-	var/ap_threshold = facing_modifiers[3]
 
 	if(prob(true_armor))
 		bullet_proj.setAngle(SIMPLIFY_DEGREES(bullet_proj.Angle + rand(40,150)))
@@ -132,7 +136,7 @@
 	if(. != BULLET_ACT_HIT)
 		return
 
-	if(occupant && prob(facing_modifiers[1]))
+	if(occupant && prob(cabin_pierce_percent))
 		bullet_proj.damage = true_damage
 		if(bullet_proj.armour_penetration < ap_threshold)
 			return
