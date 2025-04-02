@@ -31,7 +31,7 @@
 			occupant_message("<span class='userdanger'>Taking damage!</span>")
 		log_message("Took [damage_amount] points of damage. Damage type: [damage_type]", LOG_MECHA)
 
-/obj/mecha/run_obj_armor(damage_amount, damage_type, damage_flag = 0, attack_dir)
+/obj/mecha/run_atom_armor(damage_amount, damage_type, damage_flag = 0, attack_dir)
 	. = ..()
 	if(!damage_amount)
 		return 0
@@ -51,7 +51,7 @@
 				break
 
 	if(attack_dir)
-		var/facing_modifier = get_armour_facing(dir2angle(attack_dir) - dir2angle(src))
+		var/facing_modifier = get_armour_facing(abs(dir2angle(dir) - dir2angle(attack_dir)))
 		booster_damage_modifier /= facing_modifier
 		booster_deflection_modifier *= facing_modifier
 	if(prob(deflect_chance * booster_deflection_modifier))
@@ -127,8 +127,6 @@
 	log_message("Hit by projectile. Type: [bullet_proj.name]([bullet_proj.flag]).", LOG_MECHA, color="red")
 
 	//https://github.com/Foundation-19/Hail-Mary/pull/289
-	if(!(bullet_proj.damage_type in list(BRUTE, BURN)))
-		return BULLET_ACT_BLOCK
 	var/attack_dir = REVERSE_DIR(bullet_proj.dir)
 	var/facing_modifier = get_armour_facing(abs(dir2angle(dir) - dir2angle(attack_dir)))
 	var/true_armor = clamp(round(armor.bullet*facing_modifier/100 - bullet_proj.armour_penetration ,0.01), 0, 1)
@@ -141,13 +139,13 @@
 	take_damage(true_damage, bullet_proj.damage_type, null, null, attack_dir, bullet_proj.armour_penetration, bullet_proj)
 	if(true_damage < minimum_damage_to_penetrate)
 		return BULLET_ACT_BLOCK
-	var/list/directional_comp = attack_dir_for_modules(abs(dir2angle(attack_dir) - dir2angle(dir)))
 
+	var/list/directional_comp = attack_dir_for_modules(abs(dir2angle(attack_dir) - dir2angle(dir)))
 	if(prob(directional_comp[1]))
 		var/damage_mult = directional_comp[2]
 		var/ap_threshold = directional_comp[3]
 		var/armor_rating = directional_comp[4]
-		damage_mult = min(0.15,(bullet_proj.damage + bullet_proj.armour_penetration) / (bullet_proj.damage + armor_rating))
+		damage_mult = min(0 ,(bullet_proj.damage + bullet_proj.armour_penetration) / (bullet_proj.damage + armor_rating))
 		directional_comp[4] -= damage_mult * bullet_proj.damage
 		take_damage(true_damage * damage_mult, bullet_proj.damage_type, null, null, attack_dir, bullet_proj.armour_penetration, bullet_proj)
 		if(bullet_proj.armour_penetration < ap_threshold)
@@ -157,13 +155,11 @@
 
 	var/list/hittable_occupants = list()
 	if(occupant)
-		hittable_occupants[occupant] = 100
+		hittable_occupants[occupant] = 50
 
-	/* We dont have seats... Yet?
-	for(var/obj/item/mecha_parts/mecha_equipment/seat/other_occupant in src)
+	for(var/obj/item/mecha_parts/mecha_equipment/medical/sleeper/other_occupant in src)
 		if(other_occupant.patient && other_occupant.patient.stat != DEAD)
 			hittable_occupants[other_occupant.patient] = 70
-	*/
 
 	var/mob/living/true_target = pick_weight(hittable_occupants)
 	if(true_target)
@@ -171,12 +167,14 @@
 	else
 		. = ..()
 
+/*
 /obj/mecha/run_atom_armor(damage_amount, damage_type, damage_flag = 0, attack_dir, armour_penetration)
 	. = ..()
 	if(attack_dir)
 		var/facing_modifier = get_armour_facing(abs(dir2angle(dir) - dir2angle(attack_dir)))
 		if(.)
 			. *= facing_modifier
+*/
 
 /obj/mecha/ex_act(severity, target)
 	log_message("Affected by explosion of severity: [severity].", LOG_MECHA, color="red")
