@@ -123,11 +123,11 @@
 	var/facing_multi = facing_modifiers[2]
 	var/ap_threshold = facing_modifiers[3]
 
-	var/true_armor = clamp(round(get_armor_rating(bullet_proj.flag)*facing_multi/100 - bullet_proj.armour_penetration ,0.01), 0, 1)
+	var/true_armor = clamp(round(get_armor_rating(bullet_proj.flag)*facing_multi/100 - bullet_proj.armour_penetration, 0.01), 0, 1)
 	var/true_damage = round(bullet_proj.damage * (1 - true_armor))
 	var/minimum_damage_to_penetrate = round(1 - (bullet_proj.armour_penetration), 0.01)
 
-	if(prob(true_armor))
+	if(prob(true_armor*10))
 		bullet_proj.setAngle(SIMPLIFY_DEGREES(bullet_proj.Angle + rand(40,150)))
 		return BULLET_ACT_FORCE_PIERCE
 
