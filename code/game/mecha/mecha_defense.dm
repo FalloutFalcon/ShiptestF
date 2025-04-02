@@ -8,6 +8,14 @@
 			return facing_modifiers[MECHA_FRONT_ARMOUR]
 	return 1 //always return non-0
 
+/obj/mecha/proc/attack_dir_for_modules(relative_dir)
+	if(relative_dir  > -45 && relative_dir < 45)
+		return directional_comps[MECHA_BACK_ARMOUR]
+	else if((relative_dir < -45 && relative_dir > -135) || relative_dir > 45 && relative_dir < 135)
+		return directional_comps[MECHA_SIDE_ARMOUR]
+	else if(relative_dir >= -180 && relative_dir <= 180)
+		return directional_comps[MECHA_FRONT_ARMOUR]
+
 /obj/mecha/take_damage(damage_amount, damage_type = BRUTE, damage_flag = 0, sound_effect = 1, attack_dir)
 	. = ..()
 	if(. && obj_integrity > 0)
@@ -106,12 +114,69 @@
 	log_message("Hit by [AM].", LOG_MECHA, color="red")
 	. = ..()
 
-/obj/mecha/bullet_act(obj/projectile/Proj) //wrapper
-	if (!enclosed && occupant && !silicon_pilot && !Proj.force_hit && (Proj.def_zone == BODY_ZONE_HEAD || Proj.def_zone == BODY_ZONE_CHEST)) //allows bullets to hit the pilot of open-canopy mechs
-		occupant.bullet_act(Proj) //If the sides are open, the occupant can be hit
-		return BULLET_ACT_HIT
-	log_message("Hit by projectile. Type: [Proj.name]([Proj.flag]).", LOG_MECHA, color="red")
+/obj/mecha/bullet_act(obj/projectile/bullet_proj) //wrapper
+//allows bullets to hit the pilot of open-canopy mechs
+	if (!enclosed \
+		&& occupant \
+		&& !silicon_pilot \
+		&& !bullet_proj.force_hit \
+		&& (bullet_proj.def_zone == BODY_ZONE_HEAD || bullet_proj.def_zone == BODY_ZONE_CHEST \
+		))
+		return occupant.bullet_act(bullet_proj) //If the sides are open, the occupant can be hit
+
+	log_message("Hit by projectile. Type: [bullet_proj.name]([bullet_proj.flag]).", LOG_MECHA, color="red")
+
+	//https://github.com/Foundation-19/Hail-Mary/pull/289
+	if(!(bullet_proj.damage_type in list(BRUTE, BURN)))
+		return BULLET_ACT_BLOCK
+	var/attack_dir = get_dir(src, bullet_proj)
+	var/facing_modifier = get_armour_facing(abs(dir2angle(dir) - dir2angle(attack_dir)))
+	var/true_armor = clamp(round(armor.bullet*facing_modifier/100 - bullet_proj.armour_penetration ,0.01), 0, 1)
+	var/true_damage = round(bullet_proj.damage * (1 - true_armor))
+	var/minimum_damage_to_penetrate = round(armor.bullet/3*(1 - bullet_proj.armour_penetration), 0.01)
+	if(prob(true_armor/2))
+		bullet_proj.setAngle(SIMPLIFY_DEGREES(bullet_proj.Angle + rand(40,150)))
+		return BULLET_ACT_FORCE_PIERCE
+	bullet_proj.damage = true_damage
+	take_damage(true_damage, bullet_proj.damage_type, null, null, attack_dir, bullet_proj.armour_penetration, bullet_proj)
+	if(true_damage < minimum_damage_to_penetrate)
+		return BULLET_ACT_BLOCK
+	var/list/directional_comp = attack_dir_for_modules(abs(dir2angle(attack_dir) - dir2angle(dir)))
+
+	if(prob(directional_comp[1]))
+		var/damage_mult = directional_comp[2]
+		var/ap_threshold = directional_comp[3]
+		var/armor_rating = directional_comp[4]
+		damage_mult = min(0.15,(bullet_proj.damage + bullet_proj.armour_penetration) / (bullet_proj.damage + armor_rating))
+		directional_comp[4] -= damage_mult * bullet_proj.damage
+		take_damage(true_damage * damage_mult, bullet_proj.damage_type, null, null, attack_dir, bullet_proj.armour_penetration, bullet_proj)
+		if(bullet_proj.armour_penetration < ap_threshold)
+			return BULLET_ACT_BLOCK
+		else
+			bullet_proj.armour_penetration -= ap_threshold
+
+	var/list/hittable_occupants = list()
+	if(occupant)
+		hittable_occupants[occupant] = 100
+
+	/* We dont have seats... Yet?
+	for(var/obj/item/mecha_parts/mecha_equipment/seat/other_occupant in src)
+		if(other_occupant.patient && other_occupant.patient.stat != DEAD)
+			hittable_occupants[other_occupant.patient] = 70
+	*/
+
+	var/mob/living/true_target = pick_weight(hittable_occupants)
+	if(true_target)
+		. = true_target.bullet_act(bullet_proj, bullet_proj.def_zone)
+	else
+		. = ..()
+
+/obj/mecha/run_atom_armor(damage_amount, damage_type, damage_flag = 0, attack_dir, armour_penetration)
 	. = ..()
+	if(attack_dir)
+		var/facing_modifier = get_armour_facing(abs(dir2angle(dir) - dir2angle(attack_dir)))
+		if(.)
+			. *= facing_modifier
 
 /obj/mecha/ex_act(severity, target)
 	log_message("Affected by explosion of severity: [severity].", LOG_MECHA, color="red")
