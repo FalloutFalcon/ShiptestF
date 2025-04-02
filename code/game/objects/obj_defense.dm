@@ -22,21 +22,6 @@
 	if(obj_integrity <= 0)
 		obj_destruction(damage_flag)
 
-/*
-///returns the damage value of the attack after processing the obj's various armor protections
-/obj/proc/run_atom_armor(damage_amount, damage_type, damage_flag = 0, attack_dir, armour_penetration = 0)
-	if(damage_flag == "melee" && damage_amount < damage_deflection)
-		return 0
-	if(damage_type != BRUTE && damage_type != BURN)
-		return 0
-	var/armor_protection = 0
-	if(damage_flag)
-		armor_protection = armor.getRating(damage_flag)
-	if(armor_protection)		//Only apply weak-against-armor/hollowpoint effects if there actually IS armor.
-		armor_protection = clamp(armor_protection - armour_penetration, min(armor_protection, 0), 100)
-	return round(damage_amount * (100 - armor_protection)*0.01, DAMAGE_PRECISION)
-*/
-
 ///the sound played when the obj is damaged.
 /obj/proc/play_attack_sound(damage_amount, damage_type = BRUTE, damage_flag = 0)
 	switch(damage_type)
@@ -69,7 +54,7 @@
 		if(3)
 			take_damage(rand(10, 90), BRUTE, "bomb", 0)
 
-/obj/bullet_act(obj/projectile/hitting_projectile)
+/obj/bullet_act(obj/projectile/hitting_projectile, def_zone, piercing_hit = FALSE)
 	. = ..()
 	bullet_hit_sfx(hitting_projectile)
 	if(hitting_projectile.suppressed != SUPPRESSED_VERY)

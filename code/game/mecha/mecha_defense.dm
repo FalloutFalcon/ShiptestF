@@ -104,61 +104,38 @@
 	log_message("Hit by [AM].", LOG_MECHA, color="red")
 	. = ..()
 
-/obj/mecha/bullet_act(obj/projectile/bullet_proj) //wrapper
+/obj/mecha/bullet_act(obj/projectile/bullet_proj, def_zone, piercing_hit = FALSE)
 	//allows bullets to hit the pilot of open-canopy mechs
 	if (!enclosed \
 		&& occupant \
 		&& !silicon_pilot \
 		&& !bullet_proj.force_hit \
-		&& (bullet_proj.def_zone == BODY_ZONE_HEAD || bullet_proj.def_zone == BODY_ZONE_CHEST \
+		&& (def_zone == BODY_ZONE_HEAD || def_zone == BODY_ZONE_CHEST \
 		))
 		return occupant.bullet_act(bullet_proj) //If the sides are open, the occupant can be hit
 
 	log_message("Hit by projectile. Type: [bullet_proj.name]([bullet_proj.flag]).", LOG_MECHA, color="red")
-	. = ..()
 
-	/*
-	//https://github.com/Foundation-19/Hail-Mary/pull/289
 	var/attack_dir = REVERSE_DIR(bullet_proj.dir)
-	var/facing_modifier = get_armour_facing(abs(dir2angle(dir) - dir2angle(attack_dir)))
-	var/true_armor = clamp(round(armor.bullet*facing_modifier/100 - bullet_proj.armour_penetration ,0.01), 0, 1)
+	var/facing_modifiers = get_armour_facing(abs(dir2angle(dir) - dir2angle(attack_dir)))
+	var/true_armor = clamp(round(armor.bullet*facing_modifiers[2]/100 - bullet_proj.armour_penetration ,0.01), 0, 1)
 	var/true_damage = round(bullet_proj.damage * (1 - true_armor))
-	var/minimum_damage_to_penetrate = round(armor.bullet/3*(1 - bullet_proj.armour_penetration), 0.01)
+	var/minimum_damage_to_penetrate = round(armor.bullet/3*(1 - (bullet_proj.armour_penetration*facing_modifiers[3])), 0.01)
+
 	if(prob(true_armor/2))
 		bullet_proj.setAngle(SIMPLIFY_DEGREES(bullet_proj.Angle + rand(40,150)))
 		return BULLET_ACT_FORCE_PIERCE
-	bullet_proj.damage = true_damage
-	take_damage(true_damage, bullet_proj.damage_type, null, null, attack_dir, bullet_proj.armour_penetration, bullet_proj)
-	if(true_damage < minimum_damage_to_penetrate)
-		return BULLET_ACT_BLOCK
 
-	var/list/directional_comp = attack_dir_for_modules(abs(dir2angle(attack_dir) - dir2angle(dir)))
-	if(prob(directional_comp[1]))
-		var/damage_mult = directional_comp[2]
-		var/ap_threshold = directional_comp[3]
-		var/armor_rating = directional_comp[4]
-		damage_mult = min(0 ,(bullet_proj.damage + bullet_proj.armour_penetration) / (bullet_proj.damage + armor_rating))
-		directional_comp[4] -= damage_mult * bullet_proj.damage
-		take_damage(true_damage * damage_mult, bullet_proj.damage_type, null, null, attack_dir, bullet_proj.armour_penetration, bullet_proj)
-		if(bullet_proj.armour_penetration < ap_threshold)
-			return BULLET_ACT_BLOCK
-		else
-			bullet_proj.armour_penetration -= ap_threshold
+	. = ..()
 
-	var/list/hittable_occupants = list()
-	if(occupant)
-		hittable_occupants[occupant] = 50
+	if(. != BULLET_ACT_HIT)
+		return
 
-	for(var/obj/item/mecha_parts/mecha_equipment/medical/sleeper/other_occupant in src)
-		if(other_occupant.patient && other_occupant.patient.stat != DEAD)
-			hittable_occupants[other_occupant.patient] = 70
-
-	var/mob/living/true_target = pick_weight(hittable_occupants)
-	if(true_target)
-		. = true_target.bullet_act(bullet_proj, bullet_proj.def_zone)
-	else
-		. = ..()
-	*/
+	if(occupant && prob(facing_modifiers[1]))
+		bullet_proj.damage = true_damage
+		if(true_damage < minimum_damage_to_penetrate)
+			return
+		occupant.bullet_act(bullet_proj, bullet_proj.def_zone, piercing_hit)
 
 /*
 /obj/mecha/run_atom_armor(damage_amount, damage_type, damage_flag = 0, attack_dir, armour_penetration)
