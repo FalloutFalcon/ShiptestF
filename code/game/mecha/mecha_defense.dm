@@ -115,7 +115,7 @@
 	. = ..()
 
 /obj/mecha/bullet_act(obj/projectile/bullet_proj) //wrapper
-//allows bullets to hit the pilot of open-canopy mechs
+	//allows bullets to hit the pilot of open-canopy mechs
 	if (!enclosed \
 		&& occupant \
 		&& !silicon_pilot \
@@ -129,7 +129,7 @@
 	//https://github.com/Foundation-19/Hail-Mary/pull/289
 	if(!(bullet_proj.damage_type in list(BRUTE, BURN)))
 		return BULLET_ACT_BLOCK
-	var/attack_dir = get_dir(src, bullet_proj)
+	var/attack_dir = REVERSE_DIR(bullet_proj.dir)
 	var/facing_modifier = get_armour_facing(abs(dir2angle(dir) - dir2angle(attack_dir)))
 	var/true_armor = clamp(round(armor.bullet*facing_modifier/100 - bullet_proj.armour_penetration ,0.01), 0, 1)
 	var/true_damage = round(bullet_proj.damage * (1 - true_armor))

@@ -61,8 +61,6 @@
 	/// Current limb bleeding, increased when the limb takes brute damage over certain thresholds, decreased through bandages and cauterization
 	var/bleeding = 0
 
-	/// Whether this limb can decay, limiting its' ability to heal
-	var/uses_integrity = FALSE
 	/// How many hit points worth of integrity this limb has lost. 10 integrity = 10 HP
 	var/integrity_loss = 0
 	/// The amount of integrity_loss that this limb can have without any effects.

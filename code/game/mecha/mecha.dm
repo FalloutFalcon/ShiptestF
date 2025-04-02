@@ -37,7 +37,6 @@
 		MECHA_BACK_ARMOUR = list(100, 2, 30)
 	)
 
-
 	var/equipment_disabled = 0 //disabled due to EMP
 	var/obj/item/stock_parts/cell/cell ///Keeps track of the mech's cell
 	var/obj/item/stock_parts/scanning_module/scanmod ///Keeps track of the mech's scanning module
