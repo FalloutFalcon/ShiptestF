@@ -123,13 +123,15 @@
 	var/facing_multi = facing_modifiers[2]
 	var/ap_threshold = facing_modifiers[3]
 
-	var/true_armor = clamp(round(get_armor_rating(bullet_proj.flag)*facing_multi/100 - bullet_proj.armour_penetration, 0.01), 0, 1)
-	var/true_damage = round(bullet_proj.damage * (1 - true_armor))
-	var/minimum_damage_to_penetrate = round(1 - (bullet_proj.armour_penetration), 0.01)
+	var/true_armor = run_atom_armor(bullet_proj.damage, bullet_proj.damage_type, bullet_proj.flag, attack_dir, bullet_proj.armour_penetration)
+	var/pen_difference = get_armor_rating(bullet_proj.flag) - bullet_proj.armour_penetration
+	var/damage_left = round(bullet_proj.damage - true_armor)
 
-	if(prob(true_armor*50) && bullet_proj.check_ricochet(src))
+	/*
+	if(pen_difference && bullet_proj.check_ricochet(src))
 		handle_ricochet(bullet_proj)
 		return BULLET_ACT_FORCE_PIERCE
+	*/
 
 	. = ..()
 
@@ -137,12 +139,10 @@
 		return
 
 	if(occupant && prob(cabin_pierce_percent))
-		bullet_proj.damage = true_damage
-		if(bullet_proj.armour_penetration < ap_threshold)
+		bullet_proj.damage = damage_left
+		if(pen_difference < ap_threshold)
 			return
-		else
-			bullet_proj.armour_penetration -= ap_threshold
-		if(true_damage < minimum_damage_to_penetrate)
+		if(bullet_proj.damage <= 0)
 			return
 		occupant.bullet_act(bullet_proj, bullet_proj.def_zone, piercing_hit)
 
