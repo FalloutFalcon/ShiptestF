@@ -120,18 +120,19 @@
 	var/facing_modifiers = get_armour_facing(abs(dir2angle(dir) - dir2angle(attack_dir)))
 
 	var/cabin_pierce_percent = facing_modifiers[1]
-	var/facing_multi = facing_modifiers[2]
+	//Not super needed as this is already used as a mod in run_atom_armor
+	//var/facing_multi = facing_modifiers[2]
 	var/ap_threshold = facing_modifiers[3]
 
-	var/true_armor = run_atom_armor(bullet_proj.damage, bullet_proj.damage_type, bullet_proj.flag, attack_dir, bullet_proj.armour_penetration)
+	var/damage_taken = run_atom_armor(bullet_proj.damage, bullet_proj.damage_type, bullet_proj.flag, attack_dir, bullet_proj.armour_penetration)
 	var/pen_difference = get_armor_rating(bullet_proj.flag) - bullet_proj.armour_penetration
-	var/damage_left = round(bullet_proj.damage - true_armor)
+	var/damage_left = round(bullet_proj.damage - damage_taken/2)
 
-	/*
-	if(pen_difference && bullet_proj.check_ricochet(src))
-		handle_ricochet(bullet_proj)
+
+	if(pen_difference < ap_threshold && bullet_proj.check_ricochet(src))
+		//handle_ricochet(bullet_proj)
+		bullet_proj.setAngle(SIMPLIFY_DEGREES(bullet_proj.Angle + rand(40,150)))
 		return BULLET_ACT_FORCE_PIERCE
-	*/
 
 	. = ..()
 
@@ -140,7 +141,7 @@
 
 	if(occupant && prob(cabin_pierce_percent))
 		bullet_proj.damage = damage_left
-		if(pen_difference < ap_threshold)
+		if(pen_difference > ap_threshold)
 			return
 		if(bullet_proj.damage <= 0)
 			return
