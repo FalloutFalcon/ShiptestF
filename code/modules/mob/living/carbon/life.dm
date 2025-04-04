@@ -82,6 +82,9 @@
 		if(istype(loc, /obj/))
 			var/obj/location_as_object = loc
 			location_as_object.handle_internal_lifeform(src,0)
+		if(istype(loc, /mob/))
+			var/mob/location_as_mob = loc
+			location_as_mob.handle_internal_lifeform(src, 0)
 
 //Second link in a breath chain, calls check_breath()
 /mob/living/carbon/proc/breathe()
@@ -112,6 +115,9 @@
 		if(istype(loc, /obj/))
 			var/obj/loc_as_obj = loc
 			loc_as_obj.handle_internal_lifeform(src,0)
+		if(istype(loc, /mob/))
+			var/mob/location_as_mob = loc
+			location_as_mob.handle_internal_lifeform(src, 0)
 	else
 		//Breathe from internal
 		breath = get_breath_from_internal(BREATH_VOLUME)
@@ -121,6 +127,9 @@
 			if(isobj(loc)) //Breathe from loc as object
 				var/obj/loc_as_obj = loc
 				breath = loc_as_obj.handle_internal_lifeform(src, BREATH_VOLUME)
+			else if(istype(loc, /mob/))
+				var/mob/location_as_mob = loc
+				breath = location_as_mob.handle_internal_lifeform(src, BREATH_VOLUME)
 
 			else if(isturf(loc)) //Breathe from loc as turf
 				var/breath_ratio = 0
@@ -132,6 +141,9 @@
 			if(istype(loc, /obj/))
 				var/obj/loc_as_obj = loc
 				loc_as_obj.handle_internal_lifeform(src,0)
+			else if(istype(loc, /mob/))
+				var/mob/location_as_mob = loc
+				location_as_mob.handle_internal_lifeform(src, 0)
 
 	if(breath)
 		breath.set_volume(BREATH_VOLUME)

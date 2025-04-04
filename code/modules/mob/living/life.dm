@@ -5,6 +5,7 @@
 	set waitfor = FALSE
 	set invisibility = 0
 
+	handle_regular_hud_updates()
 	SEND_SIGNAL(src, COMSIG_LIVING_LIFE, seconds_per_tick, times_fired)
 
 	if((movement_type & FLYING) && !(movement_type & FLOATING))	//TODO: Better floating
@@ -28,6 +29,8 @@
 	if(!IS_IN_STASIS(src))
 
 		if(stat != DEAD)
+			if (!aura_check(AURA_TYPE_LIFE))
+				return TRUE
 			//Mutations and radiation
 			handle_mutations_and_radiation()
 

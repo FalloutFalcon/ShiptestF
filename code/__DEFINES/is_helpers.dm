@@ -234,3 +234,5 @@ GLOBAL_LIST_INIT(book_types, typecacheof(list(
 	/obj/item/book,
 	/obj/item/spellbook,
 	/obj/item/storage/book)))
+
+#define iscustmech(A) (istype(A, /mob/living/exosuit))

@@ -691,7 +691,7 @@
 			managed_overlays = new_overlays
 			add_overlay(new_overlays)
 		. |= UPDATE_OVERLAYS
-
+	during_update_icon()
 	. |= SEND_SIGNAL(src, COMSIG_ATOM_UPDATED_ICON, updates, .)
 
 /// Updates the icon state of the atom

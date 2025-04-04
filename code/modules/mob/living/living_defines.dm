@@ -183,5 +183,6 @@
 	///Default Y offset
 	var/body_pixel_y_offset = 0
 
+	var/list/obj/aura/auras = null
 	/// World time of the last time this mob heard a radio crackle, to reduce spamminess.
 	COOLDOWN_DECLARE(radio_crackle_cooldown)

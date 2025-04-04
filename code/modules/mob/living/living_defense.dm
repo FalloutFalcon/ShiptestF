@@ -81,7 +81,8 @@
 		if(nosell_hit)
 			skipcatch = TRUE
 			hitpush = FALSE
-
+		if (!aura_check(AURA_TYPE_THROWN, AM, throwingdatum))
+			return
 		dtype = I.damtype
 		if(!blocked)
 			visible_message("<span class='danger'>[src] is hit by [I]!</span>", \

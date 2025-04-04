@@ -95,6 +95,8 @@
  * * mob/living/user - The mob hitting with this item
  */
 /obj/item/proc/attack(mob/living/M, mob/living/user)
+	if (!M.aura_check(AURA_TYPE_WEAPON, src, user))
+		return TRUE
 	if(SEND_SIGNAL(src, COMSIG_ITEM_ATTACK, M, user) & COMPONENT_ITEM_NO_ATTACK)
 		return
 	SEND_SIGNAL(user, COMSIG_MOB_ITEM_ATTACK, M, user)

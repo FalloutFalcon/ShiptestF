@@ -425,6 +425,10 @@
 	if(mode == PROJECTILE_PIERCE_HIT)
 		++pierces
 	hit_something = TRUE
+	if(istype(target, /mob/living))
+		var/mob/living/moob = target
+		if(!moob.aura_check(AURA_TYPE_BULLET, src,def_zone))
+			return
 	var/result = target.bullet_act(src, def_zone, mode == PROJECTILE_PIERCE_HIT)
 	if((result == BULLET_ACT_FORCE_PIERCE) || (mode == PROJECTILE_PIERCE_HIT))
 		if(!(movement_type & PHASING))

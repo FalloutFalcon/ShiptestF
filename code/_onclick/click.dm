@@ -119,6 +119,10 @@
 		var/obj/mecha/M = loc
 		return M.click_action(A,src,params)
 
+	if(iscustmech(loc))
+		var/mob/living/exosuit/M = loc
+		return M.click_action(A,src,params)
+
 	if(HAS_TRAIT(src, TRAIT_HANDS_BLOCKED))
 		changeNext_move(CLICK_CD_HANDCUFFED)   //Doing shit in cuffs shall be vey slow
 		UnarmedAttack(A)
