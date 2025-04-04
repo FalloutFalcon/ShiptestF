@@ -125,7 +125,6 @@
 
 	var/damage_taken = run_atom_armor(bullet_proj.damage, bullet_proj.damage_type, bullet_proj.flag, attack_dir, bullet_proj.armour_penetration)
 	var/pen_difference = (get_armor_rating(bullet_proj.flag) / facing_multi) - bullet_proj.armour_penetration
-	var/damage_left = round(bullet_proj.damage - damage_taken)
 
 	if(pen_difference > ap_threshold && bullet_proj.check_ricochet(src))
 		//Does not seem to function very well as it does not have a way to force ricochet regardless of angle unfortunatly
@@ -139,11 +138,12 @@
 		return
 
 	if(occupant && prob(cabin_pierce_percent))
-		bullet_proj.damage = damage_left
+		bullet_proj.damage = damage_taken/2 // Take half the damage of whatever the mech was hit with.
 		if(pen_difference > ap_threshold)
 			return
 		if(bullet_proj.damage <= 0)
 			return
+		visible_message(span_danger("[src]'s cabin is pierced!"))
 		occupant.bullet_act(bullet_proj, bullet_proj.def_zone, piercing_hit)
 
 /*
