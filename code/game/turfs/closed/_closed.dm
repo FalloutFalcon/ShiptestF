@@ -19,7 +19,6 @@
 	// force, damage type, tool behavior, and sharpness. This is the minimum
 	// amount of force that a blunt, brute item must have to damage the wall.
 	var/min_dam = 0
-	var/max_integrity = 100
 	var/integrity
 	var/brute_mod = 1
 	var/burn_mod = 1
