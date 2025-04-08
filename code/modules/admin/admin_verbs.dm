@@ -209,6 +209,7 @@ GLOBAL_PROTECT(admin_verbs_debug)
 	#endif
 	/datum/admins/proc/create_or_modify_area,
 	/datum/admins/proc/open_shuttlepanel, /* Opens shuttle manipulator UI */
+	/datum/admins/proc/open_missionpanel,
 	/datum/admins/proc/open_borgopanel,
 	/datum/admins/proc/overmap_view, /* Opens HTML overmap viewer UI */
 	/client/proc/toggle_AI_interact, /*toggle admin ability to interact with machines as an AI*/

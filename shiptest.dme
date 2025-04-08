@@ -1720,6 +1720,7 @@
 #include "code\modules\admin\verbs\map_template_loadverb.dm"
 #include "code\modules\admin\verbs\mapping.dm"
 #include "code\modules\admin\verbs\mentors_edit.dm"
+#include "code\modules\admin\verbs\missionpanel.dm"
 #include "code\modules\admin\verbs\one_click_antag.dm"
 #include "code\modules\admin\verbs\outpost.dm"
 #include "code\modules\admin\verbs\overmap_token_manager.dm"

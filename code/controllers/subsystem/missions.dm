@@ -69,3 +69,30 @@ SUBSYSTEM_DEF(missions)
 		"A strange sarathi on the outpost"
 	))
 	return group
+
+/datum/controller/subsystem/missions/ui_state(mob/user)
+	return GLOB.admin_debug_state
+
+/datum/controller/subsystem/missions/ui_interact(mob/user, datum/tgui/ui)
+	ui = SStgui.try_update_ui(user, src, ui)
+	if(!ui)
+		ui = new(user, src, "MissionManipulator")
+		ui.open()
+
+/datum/controller/subsystem/missions/ui_data(mob/user)
+	var/list/data = list()
+	data["missions"] = list()
+
+	for(var/datum/mission/ruin/ruin_mission in SSmissions.active_ruin_missions)
+		var/list/mission_data = list()
+		mission_data["ref"] = WEAKREF(ruin_mission)
+		mission_data["name"] = ruin_mission.name
+		data["missions"] += list(mission_data)
+	return data
+
+/datum/controller/subsystem/missions/ui_act(action, params)
+	. = ..()
+	if(.)
+		return
+
+	var/mob/user = usr
