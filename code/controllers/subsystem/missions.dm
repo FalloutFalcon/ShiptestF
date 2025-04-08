@@ -81,13 +81,13 @@ SUBSYSTEM_DEF(missions)
 
 /datum/controller/subsystem/missions/ui_data(mob/user)
 	var/list/data = list()
-	data["missions"] = list()
+	data["active_missions"] = list()
+	data["inactive_missions"] = list()
 
 	for(var/datum/mission/ruin/ruin_mission in SSmissions.active_ruin_missions)
-		var/list/mission_data = list()
-		mission_data["ref"] = WEAKREF(ruin_mission)
-		mission_data["name"] = ruin_mission.name
-		data["missions"] += list(mission_data)
+		data["active_missions"] += list(ruin_mission.manip_ui_data(user))
+	for(var/datum/mission/ruin/ruin_mission in SSmissions.inactive_ruin_missions)
+		data["inactive_missions"] += list(ruin_mission.manip_ui_data(user))
 	return data
 
 /datum/controller/subsystem/missions/ui_act(action, params)
@@ -95,4 +95,21 @@ SUBSYSTEM_DEF(missions)
 	if(.)
 		return
 
-	var/mob/user = usr
+	var/datum/mission/mission = locate(params["ref"])
+	switch(action)
+		if("vv")
+			var/list/vvables = list()
+
+			if(mission)
+				vvables += mission
+
+			if(mission.mission_location)
+				vvables += mission.mission_location
+
+			for(var/atom/movable/bound in mission.bound_atoms)
+				vvables += mission.bound_atoms
+
+			var/choice = tgui_input_list(usr, "Choose a VV target", "VV target", vvables)
+			if(choice)
+				usr.client.debug_variables(choice)
+

@@ -125,6 +125,37 @@
 /datum/mission/ruin/proc/get_act_string()
 	return "Turn in"
 
+/datum/mission/ruin/manip_ui_data(mob/user)
+	. = ..()
+	var/time_remaining = max(dur_timer ? timeleft(dur_timer) : duration, 0)
+
+	var/location_x
+	var/location_y
+	var/location_name
+	if(mission_location)
+		location_x = mission_location.x
+		location_y = mission_location.y
+		location_name = mission_location.name
+
+	. += list(
+		"ref" = REF(src),
+		"name" = src.name,
+		"author" = src.author,
+		"desc" = src.desc,
+		"reward" = src.reward_flavortext(),
+		"faction" = SSfactions.faction_name(src.faction),
+		"location_ref" = REF(mission_location),
+		"location" = "X[location_x]/Y[location_y]: [location_name]",
+		"x" = location_x,
+		"y" = location_y,
+		"timeIssued" = time2text(station_time() - time_issued, "mm"),
+		"duration" = src.duration,
+		"remaining" = time_remaining,
+		"timeStr" = time2text(time_remaining, "mm:ss"),
+		"progressStr" = get_progress_string(),
+		"claim" = dibs_string
+	)
+
 /datum/mission/ruin/vv_edit_var(var_name, var_value)
 	if(var_name == NAMEOF(src, required_item))
 		remove_bound(required_item)

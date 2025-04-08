@@ -16,7 +16,13 @@ export const MissionManipulator = (props, context) => {
   const [tab, setTab] = useLocalState(context, 'tab', 1);
   const { act } = useBackend(context);
   return (
-    <Window title="Mission Manipulator" width={875} height={600} resizable>
+    <Window
+      title="Mission Manipulator"
+      width={875}
+      height={600}
+      resizable
+      theme="admin"
+    >
       <Window.Content scrollable>
         <Tabs>
           <Tabs.Tab selected={tab === 1} onClick={() => setTab(1)}>
@@ -35,11 +41,12 @@ export const MissionManipulator = (props, context) => {
 
 export const MissionManipulatorRuin = (props, context) => {
   const { act, data } = useBackend(context);
-  const missions = data.missions || [];
+  const active_missions = data.active_missions || [];
+  const inactive_missions = data.inactive_missions || [];
   return (
     <Section>
       <Table>
-        {missions.map((mission) => (
+        {active_missions.map((mission) => (
           <Table.Row key={mission.ref}>
             <Table.Cell>
               <Button
@@ -62,6 +69,35 @@ export const MissionManipulatorRuin = (props, context) => {
               />
             </Table.Cell>
             <Table.Cell>{mission.name}</Table.Cell>
+            <Table.Cell>{mission.location}</Table.Cell>
+          </Table.Row>
+        ))}
+      </Table>
+      <Table>
+        {inactive_missions.map((mission) => (
+          <Table.Row key={mission.ref}>
+            <Table.Cell>
+              <Button
+                content="JMP"
+                key={mission.ref}
+                onClick={() =>
+                  act('jump_to', {
+                    ref: mission.ref,
+                  })
+                }
+              />
+              <Button
+                content="VV"
+                key={mission.ref}
+                onClick={() =>
+                  act('vv', {
+                    ref: mission.ref,
+                  })
+                }
+              />
+            </Table.Cell>
+            <Table.Cell>{mission.name}</Table.Cell>
+            <Table.Cell>{mission.location}</Table.Cell>
           </Table.Row>
         ))}
       </Table>

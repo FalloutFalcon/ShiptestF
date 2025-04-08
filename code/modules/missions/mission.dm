@@ -273,4 +273,7 @@
 	return list()
 
 /datum/mission/proc/get_turn_in_info(list/items_on_pad = list())
-	return
+	return list()
+
+/datum/mission/proc/manip_ui_data(mob/user)
+	return list()
