@@ -1,3 +1,7 @@
+#define STATE_NONE 1
+#define STATE_WIRES 2
+#define STATE_CIRCUIT 3
+
 /obj/structure/frame
 	name = "frame"
 	icon = 'icons/obj/stock_parts.dmi'
@@ -82,8 +86,18 @@
 	return amt
 
 /obj/structure/frame/machine/attackby(obj/item/P, mob/user, params)
+	var/list/usable_qualities = list()
+	if(state == STATE_NONE)
+		usable_qualities.Add(QUALITY_BOLT_TURNING, QUALITY_SCREW_DRIVING)
+	if(state == STATE_WIRES)
+		usable_qualities.Add(QUALITY_BOLT_TURNING, QUALITY_WIRE_CUTTING)
+	if(state == STATE_CIRCUIT)
+		usable_qualities.Add(QUALITY_BOLT_TURNING, QUALITY_SCREW_DRIVING, QUALITY_PRYING)
+
+	var/tool_type = P.get_tool_type(user, usable_qualities, src)
+
 	switch(state)
-		if(1)
+		if(STATE_NONE)
 			if(istype(P, /obj/item/circuitboard/machine))
 				to_chat(user, span_warning("The frame needs wiring first!"))
 				return
@@ -101,7 +115,7 @@
 					icon_state = "box_1"
 
 				return
-			if((QUALITY_SCREW_DRIVING in P.tool_qualities) && !anchored)
+			if((QUALITY_SCREW_DRIVING == tool_type) && !anchored)
 				user.visible_message(span_warning("[user] disassembles the frame."), \
 									span_notice("You start to disassemble the frame..."), span_hear("You hear banging and clanking."))
 				if(P.use_tool(src, user, 40, volume=50))
@@ -111,7 +125,7 @@
 						M.add_fingerprint(user)
 						qdel(src)
 				return
-			if(QUALITY_BOLT_TURNING in P.tool_qualities)
+			if(QUALITY_BOLT_TURNING == tool_type)
 				to_chat(user, span_notice("You start [anchored ? "un" : ""]securing [src]..."))
 				if(P.use_tool(src, user, 40, volume=75))
 					if(state == 1)
@@ -119,8 +133,8 @@
 						set_anchored(!anchored)
 				return
 
-		if(2)
-			if(QUALITY_BOLT_TURNING in P.tool_qualities)
+		if(STATE_WIRES)
+			if(QUALITY_BOLT_TURNING == tool_type)
 				to_chat(user, span_notice("You start [anchored ? "un" : ""]securing [src]..."))
 				if(P.use_tool(src, user, 40, volume=75))
 					to_chat(user, span_notice("You [anchored ? "un" : ""]secure [src]."))
@@ -151,7 +165,7 @@
 				to_chat(user, span_warning("This frame does not accept circuit boards of this type!"))
 				return
 
-			if(QUALITY_WIRE_CUTTING in P.tool_qualities)
+			if(QUALITY_WIRE_CUTTING == tool_type)
 				P.play_tool_sound(src)
 				to_chat(user, span_notice("You remove the cables."))
 				state = 1
@@ -159,8 +173,8 @@
 				new /obj/item/stack/cable_coil(drop_location(), 5)
 				return
 
-		if(3)
-			if(QUALITY_PRYING in P.tool_qualities)
+		if(STATE_CIRCUIT)
+			if(QUALITY_PRYING == tool_type)
 				P.play_tool_sound(src)
 				state = 2
 				circuit.forceMove(drop_location())
@@ -178,14 +192,14 @@
 				icon_state = "box_1"
 				return
 
-			if((QUALITY_BOLT_TURNING in P.tool_qualities) && !circuit.needs_anchored)
+			if((QUALITY_BOLT_TURNING == tool_type) && !circuit.needs_anchored)
 				to_chat(user, span_notice("You start [anchored ? "un" : ""]securing [src]..."))
 				if(P.use_tool(src, user, 40, volume=75))
 					to_chat(user, span_notice("You [anchored ? "un" : ""]secure [src]."))
 					set_anchored(!anchored)
 				return
 
-			if(QUALITY_SCREW_DRIVING in P.tool_qualities)
+			if(QUALITY_SCREW_DRIVING == tool_type)
 				var/component_check = 1
 				for(var/R in req_components)
 					if(req_components[R] > 0)
@@ -289,3 +303,7 @@
 			var/obj/item/I = X
 			I.forceMove(loc)
 	..()
+
+#undef STATE_NONE
+#undef STATE_WIRES
+#undef STATE_CIRCUIT

@@ -1225,35 +1225,32 @@
 /atom/proc/tool_act(mob/living/user, obj/item/I, tool_qualities)
 	var/signal_result
 
-	var/tool_type = I.get_tool_type(user, tool_qualities, src)
-	if(!tool_type)
-		return
-
-	var/list/processing_recipes = list() //List of recipes that can be mutated by sending the signal
-	signal_result = SEND_SIGNAL(src, COMSIG_ATOM_TOOL_ACT(tool_type), user, I, processing_recipes)
-	if(processing_recipes.len)
-		process_recipes(user, I, processing_recipes)
-	if(QDELETED(I))
-		return TRUE
-	switch(tool_type)
-		if(QUALITY_PRYING)
-			. = crowbar_act(user, I)
-		if(QUALITY_PULSING)
-			. = multitool_act(user, I)
-		if(QUALITY_SCREW_DRIVING)
-			. = screwdriver_act(user, I)
-		if(QUALITY_BOLT_TURNING)
-			. = wrench_act(user, I)
-		if(QUALITY_WIRE_CUTTING)
-			. = wirecutter_act(user, I)
-		if(QUALITY_WELDING)
-			. = welder_act(user, I)
-		if(QUALITY_SCANNING)
-			. = analyzer_act(user, I)
-		if(QUALITY_DECONSTRUCT)
-			. |= deconstruct_act(user, I)
-	if(. || signal_result & COMPONENT_BLOCK_TOOL_ATTACK) //Either the proc or the signal handled the tool's events in some way.
-		return TRUE
+	for(var/tool_type in tool_qualities)
+		var/list/processing_recipes = list() //List of recipes that can be mutated by sending the signal
+		signal_result = SEND_SIGNAL(src, COMSIG_ATOM_TOOL_ACT(tool_type), user, I, processing_recipes)
+		if(processing_recipes.len)
+			process_recipes(user, I, processing_recipes)
+		if(QDELETED(I))
+			return TRUE
+		switch(tool_type)
+			if(QUALITY_PRYING)
+				. = crowbar_act(user, I)
+			if(QUALITY_PULSING)
+				. = multitool_act(user, I)
+			if(QUALITY_SCREW_DRIVING)
+				. = screwdriver_act(user, I)
+			if(QUALITY_BOLT_TURNING)
+				. = wrench_act(user, I)
+			if(QUALITY_WIRE_CUTTING)
+				. = wirecutter_act(user, I)
+			if(QUALITY_WELDING)
+				. = welder_act(user, I)
+			if(QUALITY_SCANNING)
+				. = analyzer_act(user, I)
+			if(QUALITY_DECONSTRUCT)
+				. |= deconstruct_act(user, I)
+		if(. || signal_result & COMPONENT_BLOCK_TOOL_ATTACK) //Either the proc or the signal handled the tool's events in some way.
+			return TRUE
 
 /atom/proc/process_recipes(mob/living/user, obj/item/I, list/processing_recipes)
 	//Only one recipe? use the first
