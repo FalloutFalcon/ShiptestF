@@ -96,7 +96,7 @@
 	open_flame()
 
 /obj/item/weldingtool/attackby(obj/item/I, mob/user, params)
-	if(I.tool_behaviour == TOOL_SCREWDRIVER)
+	if(TOOL_SCREWDRIVER in I.tool_qualities)
 		flamethrower_screwdriver(I, user)
 	else
 		. = ..()

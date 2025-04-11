@@ -116,7 +116,7 @@
 			else
 				to_chat(user, span_notice("You don't have enough plasteel to fix the plating."))
 				return
-		if(metal_attached == METAL_SECURED && tool.tool_behaviour == TOOL_WELDER)
+		if(metal_attached == METAL_SECURED && (TOOL_WELDER in tool.tool_qualities))
 			if(tool.use_tool(src, user, 30, volume=50))
 				to_chat(user, "<span class='notice'>You weld the new plating onto the [src], successfully repairing it.")
 				metal_attached = METAL_ABSENT
@@ -124,7 +124,7 @@
 				set_machine_stat(machine_stat & ~BROKEN)
 				update_icon_state()
 				return
-	if(tool.tool_behaviour == TOOL_WRENCH)
+	if(TOOL_WRENCH in tool.tool_qualities)
 		if(metal_attached && machine_stat & BROKEN)
 			if(tool.use_tool(src, user, 30, volume=50))
 				to_chat(user, span_notice("You bolt the plating the plating in place on [src]."))
@@ -176,14 +176,14 @@
 					to_chat(user, span_notice("You replace the broken part with [new_part]."))
 					break
 			return
-		if(tool.tool_behaviour == TOOL_MULTITOOL && malfunction == MALF_CALIBRATE)
+		if((TOOL_MULTITOOL in tool.tool_qualities) && malfunction == MALF_CALIBRATE)
 			user.visible_message(span_notice("[user] begins recalibrating [src]."), \
 				span_notice("You begin recalibrating [src]..."))
 			if(tool.use_tool(src, user, 100, volume=50))
 				malfunction = null
 				obj_integrity = max_integrity
 				return
-		if(tool.tool_behaviour == TOOL_WELDER && malfunction == MALF_STRUCTURAL)
+		if((TOOL_WELDER in tool.tool_qualities) && malfunction == MALF_STRUCTURAL)
 			if(!tool.tool_start_check(user, amount=0))
 				return
 			user.visible_message(span_notice("[user] begins repairing [src]."), \
@@ -207,7 +207,7 @@
 			cell = tool
 			to_chat(user, span_notice("You install a cell in [src]."))
 			return
-		if(tool.tool_behaviour == TOOL_CROWBAR)
+		if(TOOL_CROWBAR in tool.tool_qualities)
 			cell.update_appearance()
 			cell.forceMove(get_turf(src))
 			cell = null

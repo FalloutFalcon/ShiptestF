@@ -44,7 +44,7 @@
 
 /obj/machinery/jukebox/attackby(obj/item/O, mob/user, params)
 	if(!active && !(flags_1 & NODECONSTRUCT_1))
-		if(O.tool_behaviour == TOOL_WRENCH)
+		if(TOOL_WRENCH in O.tool_qualities)
 			if(!anchored && !isinspace())
 				to_chat(user,span_notice("You secure [src] to the floor."))
 				set_anchored(TRUE)

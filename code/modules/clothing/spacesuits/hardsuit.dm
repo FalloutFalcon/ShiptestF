@@ -149,7 +149,7 @@
 			jetpack = I
 			to_chat(user, span_notice("You successfully install the jetpack into [src]."))
 			return
-	else if(I.tool_behaviour == TOOL_SCREWDRIVER)
+	else if(TOOL_SCREWDRIVER in I.tool_qualities)
 		if(!jetpack)
 			to_chat(user, span_warning("[src] has no jetpack installed."))
 			return

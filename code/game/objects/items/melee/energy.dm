@@ -207,7 +207,7 @@
 	possible_colors = list("yellow" = COLOR_YELLOW)
 
 /obj/item/melee/energy/sword/saber/attackby(obj/item/W, mob/living/user, params)
-	if(W.tool_behaviour == TOOL_MULTITOOL)
+	if(TOOL_MULTITOOL in W.tool_qualities)
 		if(!hacked)
 			hacked = TRUE
 			sword_color = "rainbow"

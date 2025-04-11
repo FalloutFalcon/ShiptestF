@@ -87,7 +87,7 @@
 			flame_turf(target)
 
 /obj/item/flamethrower/attackby(obj/item/W, mob/user, params)
-	if(W.tool_behaviour == TOOL_SCREWDRIVER && igniter && !lit)
+	if((TOOL_SCREWDRIVER in W.tool_qualities) && igniter && !lit)
 		status = !status
 		to_chat(user, span_notice("[igniter] is now [status ? "secured" : "unsecured"]!"))
 		update_appearance()

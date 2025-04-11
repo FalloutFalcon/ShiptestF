@@ -82,7 +82,7 @@
 	change_towel_shape(user, lowertext(choice))
 
 /obj/item/towel/attackby(obj/item/I, mob/user, params)
-	if(I.tool_behaviour == TOOL_WIRECUTTER || I.get_sharpness())
+	if((TOOL_WIRECUTTER in I.tool_qualities) || I.get_sharpness())
 		var/obj/item/stack/sheet/cotton/cloth/shreds = new (get_turf(src), 3)
 		if(!QDELETED(shreds)) //stacks merged
 			transfer_fingerprints_to(shreds)

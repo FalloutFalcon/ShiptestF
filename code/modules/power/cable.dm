@@ -137,7 +137,7 @@ GLOBAL_LIST_INIT(cable_colors, list(
 	var/turf/T = get_turf(src)
 	if(T.intact)
 		return
-	if(W.tool_behaviour == TOOL_WIRECUTTER)
+	if(TOOL_WIRECUTTER in W.tool_qualities)
 		if (shock(user, 50))
 			return
 		user.visible_message("[user] cuts the cable.", span_notice("You cut the cable."))
@@ -159,7 +159,7 @@ GLOBAL_LIST_INIT(cable_colors, list(
 			R.loaded.cable_join(src, user)
 			R.is_empty(user)
 
-	else if(W.tool_behaviour == TOOL_MULTITOOL)
+	else if(TOOL_MULTITOOL in W.tool_qualities)
 		if(powernet && (powernet.avail > 0))		// is it powered?
 			to_chat(user, span_danger("Total power: [DisplayPower(powernet.avail)]\nLoad: [DisplayPower(powernet.load)]\nExcess power: [DisplayPower(surplus())]"))
 		else

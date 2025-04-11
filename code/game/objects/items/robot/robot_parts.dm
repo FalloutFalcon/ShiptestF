@@ -238,7 +238,7 @@
 		else
 			to_chat(user, span_warning("You need to attach a flash to it first!"))
 
-	else if (W.tool_behaviour == TOOL_MULTITOOL)
+	else if ((TOOL_MULTITOOL in W.tool_qualities))
 		if(check_completion())
 			ui_interact(user)
 		else

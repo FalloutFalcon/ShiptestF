@@ -156,7 +156,7 @@
 			to_chat(user, span_warning("There's no room for any more frames in the apiary!"))
 		return
 
-	if(I.tool_behaviour == TOOL_WRENCH)
+	if(TOOL_WRENCH in I.tool_qualities)
 		if(default_unfasten_wrench(user, I, time = 20))
 			return
 

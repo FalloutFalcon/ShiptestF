@@ -70,7 +70,7 @@
 /turf/open/floor/plating/asteroid/attackby(obj/item/W, mob/user, params)
 	. = ..()
 	if(!.)
-		if(W.tool_behaviour == TOOL_SHOVEL || W.tool_behaviour == TOOL_MINING)
+		if((TOOL_SHOVEL in W.tool_qualities) || (TOOL_MINING in W.tool_qualities))
 			if(!can_dig(user))
 				return TRUE
 

@@ -135,11 +135,11 @@
 			core = part
 			step = CORE_STEP
 		if(CORE_STEP)
-			if(part.tool_behaviour == TOOL_SCREWDRIVER) //Construct
+			if(TOOL_SCREWDRIVER in part.tool_qualities) //Construct
 				if(part.use_tool(src, user, 0, volume=30))
 					to_chat(user, span_notice("You secure the core."))
 				step = SCREWED_CORE_STEP
-			else if(part.tool_behaviour == TOOL_CROWBAR) //Deconstruct
+			else if(TOOL_CROWBAR in part.tool_qualities) //Deconstruct
 				if(part.use_tool(src, user, 0, volume=30))
 					core.forceMove(drop_location())
 					to_chat(user, span_notice("You remove the core."))
@@ -153,7 +153,7 @@
 				to_chat(user, span_notice("You add the helmet"))
 				helmet = part
 				step = HELMET_STEP
-			else if(part.tool_behaviour == TOOL_SCREWDRIVER) //Deconstruct
+			else if(TOOL_SCREWDRIVER in part.tool_qualities) //Deconstruct
 				if(part.use_tool(src, user, 0, volume=30))
 					to_chat(user, span_notice("You unscrew the core."))
 					step = CORE_STEP
@@ -166,7 +166,7 @@
 				to_chat(user, span_notice("You add the chestplate."))
 				chestplate = part
 				step = CHESTPLATE_STEP
-			else if(part.tool_behaviour == TOOL_CROWBAR) //Deconstruct
+			else if(TOOL_CROWBAR in part.tool_qualities) //Deconstruct
 				if(part.use_tool(src, user, 0, volume=30))
 					helmet.forceMove(drop_location())
 					to_chat(user, span_notice("You remove the helmet."))
@@ -181,7 +181,7 @@
 				to_chat(user, span_notice("You add the gauntlets."))
 				gauntlets = part
 				step = GAUNTLETS_STEP
-			else if(part.tool_behaviour == TOOL_CROWBAR) //Deconstruct
+			else if(TOOL_CROWBAR in part.tool_qualities) //Deconstruct
 				if(part.use_tool(src, user, 0, volume=30))
 					chestplate.forceMove(drop_location())
 					to_chat(user, span_notice("You remove the chestplate."))
@@ -196,29 +196,29 @@
 				to_chat(user, span_notice("You fit \the [part] onto [src]."))
 				boots = part
 				step = BOOTS_STEP
-			else if(part.tool_behaviour == TOOL_CROWBAR) //Deconstruct
+			else if(TOOL_CROWBAR in part.tool_qualities) //Deconstruct
 				if(part.use_tool(src, user, 0, volume=30))
 					gauntlets.forceMove(drop_location())
 					to_chat(user, span_notice("You remove the gauntlets."))
 					gauntlets = null
 					step = CHESTPLATE_STEP
 		if(BOOTS_STEP)
-			if(part.tool_behaviour == TOOL_WRENCH) //Construct
+			if(TOOL_WRENCH in part.tool_qualities) //Construct
 				if(part.use_tool(src, user, 0, volume=30))
 					to_chat(user, span_notice("You secure the assembly."))
 					step = WRENCHED_ASSEMBLY_STEP
-			else if(part.tool_behaviour == TOOL_CROWBAR) //Deconstruct
+			else if(TOOL_CROWBAR in part.tool_qualities) //Deconstruct
 				if(part.use_tool(src, user, 0, volume=30))
 					boots.forceMove(drop_location())
 					to_chat(user, span_notice("You remove the boots."))
 					boots = null
 					step = GAUNTLETS_STEP
 		if(WRENCHED_ASSEMBLY_STEP)
-			if(part.tool_behaviour == TOOL_SCREWDRIVER) //Construct
+			if(TOOL_SCREWDRIVER in part.tool_qualities) //Construct
 				if(part.use_tool(src, user, 0, volume=30))
 					to_chat(user, span_notice("You secure the assembly."))
 					step = SCREWED_ASSEMBLY_STEP
-			else if(part.tool_behaviour == TOOL_WRENCH) //Deconstruct
+			else if(TOOL_WRENCH in part.tool_qualities) //Deconstruct
 				if(part.use_tool(src, user, 0, volume=30))
 					to_chat(user, span_notice("You unsecure the assembly."))
 					step = BOOTS_STEP
@@ -233,7 +233,7 @@
 				core = null
 				qdel(src)
 				user.put_in_hands(mod)
-			else if(part.tool_behaviour == TOOL_SCREWDRIVER) //Construct
+			else if(TOOL_SCREWDRIVER in part.tool_qualities) //Construct
 				if(part.use_tool(src, user, 0, volume=30))
 					to_chat(user, span_notice("You unsecure the assembly."))
 					step = SCREWED_ASSEMBLY_STEP

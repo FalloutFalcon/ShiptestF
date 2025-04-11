@@ -30,7 +30,7 @@
 	var/list/dept_list = list("General","Security","Medical","Science","Engineering")
 
 /obj/item/circuitboard/computer/card/minor/attackby(obj/item/I, mob/user, params)
-	if(I.tool_behaviour == TOOL_SCREWDRIVER)
+	if(TOOL_SCREWDRIVER in I.tool_qualities)
 		target_dept = (target_dept == dept_list.len) ? 1 : (target_dept + 1)
 		to_chat(user, span_notice("You set the board to \"[dept_list[target_dept]]\"."))
 	else
@@ -185,7 +185,7 @@
 	build_path = /obj/machinery/computer/libraryconsole
 
 /obj/item/circuitboard/computer/libraryconsole/attackby(obj/item/I, mob/user, params)
-	if(I.tool_behaviour == TOOL_SCREWDRIVER)
+	if(TOOL_SCREWDRIVER in I.tool_qualities)
 		if(build_path == /obj/machinery/computer/bookmanagement)
 			name = "Library Visitor Console (Computer Board)"
 			build_path = /obj/machinery/computer/libraryconsole

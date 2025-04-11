@@ -3,7 +3,7 @@
 	if(!BP)
 		return ..()
 	var/painless = (HAS_TRAIT(user, TRAIT_ANALGESIA) || HAS_TRAIT(user, TRAIT_PAIN_RESIST))
-	if(W.tool_behaviour == TOOL_WELDER && IS_ROBOTIC_LIMB(BP) && BP.brute_dam) //prioritize healing if we're synthetic
+	if((TOOL_WELDER in W.tool_qualities) && IS_ROBOTIC_LIMB(BP) && BP.brute_dam) //prioritize healing if we're synthetic
 		return ..()
 	if(user.a_intent != INTENT_HELP || !W.get_temperature() || !BP.can_bandage()) //this will also catch low damage synthetic welding
 		return ..()

@@ -79,7 +79,7 @@
 
 /turf/closed/mineral/try_decon(obj/item/I, mob/user, turf/T)
 	var/act_duration = breakdown_duration
-	if(I.tool_behaviour == TOOL_MINING)
+	if(TOOL_MINING in I.tool_qualities)
 		if(!I.tool_start_check(user, amount=0))
 			return FALSE
 
@@ -161,7 +161,7 @@
 		return
 	else if(iscyborg(AM))
 		var/mob/living/silicon/robot/R = AM
-		if(R.module_active && R.module_active.tool_behaviour == TOOL_MINING)
+		if(R.module_active && (TOOL_MINING in R.module_active.tool_qualities))
 			attackby(R.module_active, R)
 			return
 	else

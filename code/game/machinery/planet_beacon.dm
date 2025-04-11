@@ -56,7 +56,7 @@
 			item.forceMove(src)
 			update_icon()
 			playsound(src, 'sound/machines/terminal_insert_disc.ogg', 50, FALSE)
-	else if(item.tool_behaviour == TOOL_WRENCH)
+	else if(TOOL_WRENCH in item.tool_qualities)
 		var/datum/overmap/dynamic/overmap_object = get_overmap_location()
 		if(!istype(overmap_object) || !overmap_object.planet || istype(loc, /area/ship)) // Quick check to make sure we're actually *on* a planet, and will stay there
 			to_chat(user, span_warning("The [src] can only be deployed on planets!")) // Technically, space ruins and asteroids are planets, not Pluto though

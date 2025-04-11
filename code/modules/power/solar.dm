@@ -263,7 +263,7 @@
 
 
 /obj/item/solar_assembly/attackby(obj/item/W, mob/user, params)
-	if(W.tool_behaviour == TOOL_WRENCH && isturf(loc))
+	if((TOOL_WRENCH in W.tool_qualities) && isturf(loc))
 		if(isinspace())
 			to_chat(user, span_warning("You can't secure [src] here."))
 			return
@@ -306,7 +306,7 @@
 			user.visible_message(span_notice("[user] inserts the electronics into the solar assembly."), span_notice("You insert the electronics into the solar assembly."))
 			return 1
 	else
-		if(W.tool_behaviour == TOOL_CROWBAR)
+		if(TOOL_CROWBAR in W.tool_qualities)
 			new /obj/item/electronics/tracker(src.loc)
 			tracker = 0
 			user.visible_message(span_notice("[user] takes out the electronics from the solar assembly."), span_notice("You take out the electronics from the solar assembly."))

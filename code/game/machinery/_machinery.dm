@@ -413,14 +413,14 @@ Class Procs:
 	return
 
 /obj/machinery/proc/default_pry_open(obj/item/I)
-	. = !(state_open || panel_open || is_operational || (flags_1 & NODECONSTRUCT_1)) && I.tool_behaviour == TOOL_CROWBAR
+	. = !(state_open || panel_open || is_operational || (flags_1 & NODECONSTRUCT_1)) && (TOOL_CROWBAR in I.tool_qualities)
 	if(.)
 		I.play_tool_sound(src, 50)
 		visible_message(span_notice("[usr] pries open \the [src]."), span_notice("You pry open \the [src]."))
 		open_machine()
 
 /obj/machinery/proc/default_deconstruction_crowbar(obj/item/I, ignore_panel = 0)
-	. = (panel_open || ignore_panel) && !(flags_1 & NODECONSTRUCT_1) && I.tool_behaviour == TOOL_CROWBAR
+	. = (panel_open || ignore_panel) && !(flags_1 & NODECONSTRUCT_1) && (TOOL_CROWBAR in I.tool_qualities)
 	if(.)
 		I.play_tool_sound(src, 50)
 		deconstruct(TRUE)
@@ -498,7 +498,7 @@ Class Procs:
 	return ..()
 
 /obj/machinery/proc/default_deconstruction_screwdriver(mob/user, icon_state_open, icon_state_closed, obj/item/I)
-	if(!(flags_1 & NODECONSTRUCT_1) && I.tool_behaviour == TOOL_SCREWDRIVER)
+	if(!(flags_1 & NODECONSTRUCT_1) && (TOOL_SCREWDRIVER in I.tool_qualities))
 		I.play_tool_sound(src, 50)
 		if(!panel_open)
 			panel_open = TRUE
@@ -512,7 +512,7 @@ Class Procs:
 	return FALSE
 
 /obj/machinery/proc/default_change_direction_wrench(mob/user, obj/item/I)
-	if(panel_open && I.tool_behaviour == TOOL_WRENCH)
+	if(panel_open && (TOOL_WRENCH in I.tool_qualities))
 		I.play_tool_sound(src, 50)
 		setDir(turn(dir,-90))
 		to_chat(user, span_notice("You rotate [src]."))
@@ -526,7 +526,7 @@ Class Procs:
 	return SUCCESSFUL_UNFASTEN
 
 /obj/proc/default_unfasten_wrench(mob/user, obj/item/I, time = 20) //try to unwrench an object in a WONDERFUL DYNAMIC WAY
-	if(!(flags_1 & NODECONSTRUCT_1) && I.tool_behaviour == TOOL_WRENCH)
+	if(!(flags_1 & NODECONSTRUCT_1) && (TOOL_WRENCH in I.tool_qualities))
 		var/turf/ground = get_turf(src)
 		if(!anchored && ground.is_blocked_turf(exclude_mobs = TRUE, source_atom = src))
 			to_chat(user, span_notice("You fail to secure [src]."))

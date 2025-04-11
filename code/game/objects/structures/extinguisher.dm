@@ -55,7 +55,7 @@ MAPPING_DIRECTIONAL_HELPERS(/obj/structure/extinguisher_cabinet, 28)
 		update_appearance()
 
 /obj/structure/extinguisher_cabinet/attackby(obj/item/I, mob/user, params)
-	if(I.tool_behaviour == TOOL_WRENCH && !stored_extinguisher)
+	if((TOOL_WRENCH in I.tool_qualities) && !stored_extinguisher)
 		to_chat(user, span_notice("You start unsecuring [name]..."))
 		I.play_tool_sound(src)
 		if(I.use_tool(src, user, 60))

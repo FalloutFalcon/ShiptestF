@@ -71,7 +71,7 @@
 	return attack_hand(user)
 
 /obj/structure/bed/attackby(obj/item/W, mob/user, params)
-	if((W.tool_behaviour == TOOL_WRENCH || W.tool_behaviour == TOOL_DECONSTRUCT) && !(flags_1&NODECONSTRUCT_1))
+	if(((TOOL_WRENCH in W.tool_qualities) || (TOOL_DECONSTRUCT in W.tool_qualities)) && !(flags_1&NODECONSTRUCT_1))
 		W.play_tool_sound(src)
 		deconstruct(TRUE)
 	else

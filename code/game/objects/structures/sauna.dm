@@ -62,7 +62,7 @@
 	icon_state = "[lit ? "sauna_on" : initial(icon_state)]"
 
 /obj/structure/sauna_oven/attackby(obj/item/T, mob/user)
-	if(T.tool_behaviour == TOOL_WRENCH)
+	if(TOOL_WRENCH in T.tool_qualities)
 		to_chat(user, span_notice("You begin to deconstruct [src]."))
 		if(T.use_tool(src, user, 60, volume=50))
 			to_chat(user, span_notice("You successfully deconstructed [src]."))

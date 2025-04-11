@@ -36,9 +36,9 @@
 		. += span_notice("[stored] is sitting inside, ripe for the taking.")
 
 /obj/structure/cabinet/attackby(obj/item/I, mob/user, params)
-	if(iscyborg(user) || I.tool_behaviour == TOOL_MULTITOOL)
+	if(iscyborg(user) || (TOOL_MULTITOOL in I.tool_qualities))
 		hack_lock(user)
-	else if(I.tool_behaviour == TOOL_WELDER && user.a_intent == INTENT_HELP && !broken)
+	else if((TOOL_WELDER in I.tool_qualities) && user.a_intent == INTENT_HELP && !broken)
 		if(obj_integrity < max_integrity)
 			if(!I.tool_start_check(user, amount=2))
 				return

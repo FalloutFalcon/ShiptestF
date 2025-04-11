@@ -66,7 +66,7 @@
 			return
 		update_appearance()
 		to_chat(user, span_notice("You add the cables to [src]. It now contains [loaded.amount]."))
-	else if(W.tool_behaviour == TOOL_SCREWDRIVER)
+	else if(TOOL_SCREWDRIVER in W.tool_qualities)
 		if(!loaded)
 			return
 		if(ghetto && prob(10)) //Is it a ghetto RCL? If so, give it a 10% chance to fall apart

@@ -44,7 +44,7 @@
 		storedcutter = P
 		update_appearance()
 		return
-	if(P.tool_behaviour == TOOL_SCREWDRIVER && storedcutter)
+	if((TOOL_SCREWDRIVER in P.tool_qualities) && storedcutter)
 		P.play_tool_sound(src)
 		to_chat(user, span_notice("[storedcutter] has been [cuttersecured ? "unsecured" : "secured"]."))
 		cuttersecured = !cuttersecured

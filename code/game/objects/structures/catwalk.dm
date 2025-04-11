@@ -57,11 +57,11 @@
 		. += span_notice("The supporting rods look like they could be <b>welded</b>.")
 
 /obj/structure/catwalk/attackby(obj/item/C, mob/user, params)
-	if((C.tool_behaviour == TOOL_WELDER || C.tool_behaviour == TOOL_DECONSTRUCT) && !(resistance_flags & INDESTRUCTIBLE))
+	if(((TOOL_WELDER in C.tool_qualities) || (TOOL_DECONSTRUCT in C.tool_qualities)) && !(resistance_flags & INDESTRUCTIBLE))
 		to_chat(user, span_notice("You slice off [src]"))
 		deconstruct()
 		return
-	if(C.tool_behaviour == TOOL_CROWBAR && plated_tile)
+	if((TOOL_CROWBAR in C.tool_qualities) && plated_tile)
 		hatch_open = !hatch_open
 		if(hatch_open)
 			C.play_tool_sound(src, 100)

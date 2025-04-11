@@ -235,7 +235,7 @@
 
 	add_fingerprint(user)
 	if(!(flags_1&NODECONSTRUCT_1))
-		if(I.tool_behaviour == TOOL_SCREWDRIVER)
+		if(TOOL_SCREWDRIVER in I.tool_qualities)
 			if(density || operating)
 				to_chat(user, span_warning("You need to open the door to access the maintenance panel!"))
 				return
@@ -244,7 +244,7 @@
 			to_chat(user, span_notice("You [panel_open ? "open":"close"] the maintenance panel of the [name]."))
 			return
 
-		if(I.tool_behaviour == TOOL_CROWBAR)
+		if(TOOL_CROWBAR in I.tool_qualities)
 			if(panel_open && !density && !operating)
 				user.visible_message(
 					span_notice("[user] removes the electronics from the [name]."),

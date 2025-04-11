@@ -36,14 +36,14 @@
 
 /obj/item/storage/secure/attackby(obj/item/W, mob/user, params)
 	if(SEND_SIGNAL(src, COMSIG_IS_STORAGE_LOCKED))
-		if (W.tool_behaviour == TOOL_SCREWDRIVER)
+		if ((TOOL_SCREWDRIVER in W.tool_qualities))
 			if (W.use_tool(src, user, 20))
 				open =! open
 				to_chat(user, span_notice("You [open ? "open" : "close"] the service panel."))
 			return
-		if (W.tool_behaviour == TOOL_WIRECUTTER)
+		if ((TOOL_WIRECUTTER in W.tool_qualities))
 			to_chat(user, span_danger("[src] is protected from this sort of tampering, yet it appears the internal memory wires can still be <b>pulsed</b>."))
-		if ((W.tool_behaviour == TOOL_MULTITOOL) && (!l_hacking))
+		if (((TOOL_MULTITOOL in W.tool_qualities)) && (!l_hacking))
 			if(open == 1)
 				to_chat(user, span_danger("Now attempting to reset internal memory, please hold."))
 				l_hacking = 1

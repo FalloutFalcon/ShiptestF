@@ -65,7 +65,7 @@
 
 /turf/open/floor/wood/pry_tile(obj/item/C, mob/user, silent = FALSE)
 	C.play_tool_sound(src, 80)
-	return remove_tile(user, silent, (C.tool_behaviour == TOOL_SCREWDRIVER))
+	return remove_tile(user, silent, ((TOOL_SCREWDRIVER in C.tool_qualities)))
 
 /turf/open/floor/wood/remove_tile(mob/user, silent = FALSE, make_tile = TRUE)
 	if(broken || burnt)
@@ -111,7 +111,7 @@
 	icon_state = "grass[rand(0,3)]"
 
 /turf/open/floor/grass/attackby(obj/item/C, mob/user, params)
-	if((C.tool_behaviour == TOOL_SHOVEL) && params)
+	if(((TOOL_SHOVEL in C.tool_qualities)) && params)
 		new ore_type(src, 2)
 		user.visible_message(span_notice("[user] digs up [src]."), span_notice("You [turfverb] [src]."))
 		playsound(src, 'sound/effects/shovel_dig.ogg', 50, TRUE)

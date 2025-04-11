@@ -12,14 +12,14 @@
 	add_fingerprint(user)
 	switch(state)
 		if(0)
-			if(P.tool_behaviour == TOOL_WRENCH)
+			if(TOOL_WRENCH in P.tool_qualities)
 				to_chat(user, span_notice("You start wrenching the frame into place..."))
 				if(P.use_tool(src, user, 20, volume=50))
 					to_chat(user, span_notice("You wrench the frame into place."))
 					set_anchored(TRUE)
 					state = 1
 				return
-			if(P.tool_behaviour == TOOL_WELDER)
+			if(TOOL_WELDER in P.tool_qualities)
 				if(!P.tool_start_check(user, amount=0))
 					return
 
@@ -32,7 +32,7 @@
 					qdel(src)
 				return
 		if(1)
-			if(P.tool_behaviour == TOOL_WRENCH)
+			if(TOOL_WRENCH in P.tool_qualities)
 				to_chat(user, span_notice("You start to unfasten the frame..."))
 				if(P.use_tool(src, user, 20, volume=50))
 					to_chat(user, span_notice("You unfasten the frame."))
@@ -52,13 +52,13 @@
 			else if(istype(P, /obj/item/circuitboard) && !circuit)
 				to_chat(user, span_warning("This frame does not accept circuit boards of this type!"))
 				return
-			if(P.tool_behaviour == TOOL_SCREWDRIVER && circuit)
+			if((TOOL_SCREWDRIVER in P.tool_qualities) && circuit)
 				P.play_tool_sound(src)
 				to_chat(user, span_notice("You screw [circuit] into place."))
 				state = 2
 				update_appearance()
 				return
-			if(P.tool_behaviour == TOOL_CROWBAR && circuit)
+			if((TOOL_CROWBAR in P.tool_qualities) && circuit)
 				P.play_tool_sound(src)
 				to_chat(user, span_notice("You remove [circuit]."))
 				state = 1
@@ -68,7 +68,7 @@
 				update_appearance()
 				return
 		if(2)
-			if(P.tool_behaviour == TOOL_SCREWDRIVER && circuit)
+			if((TOOL_SCREWDRIVER in P.tool_qualities) && circuit)
 				P.play_tool_sound(src)
 				to_chat(user, span_notice("You unfasten the circuit board."))
 				state = 1
@@ -86,7 +86,7 @@
 					update_appearance()
 				return
 		if(3)
-			if(P.tool_behaviour == TOOL_WIRECUTTER)
+			if(TOOL_WIRECUTTER in P.tool_qualities)
 				P.play_tool_sound(src)
 				to_chat(user, span_notice("You remove the cables."))
 				state = 2
@@ -108,7 +108,7 @@
 					update_appearance()
 				return
 		if(4)
-			if(P.tool_behaviour == TOOL_CROWBAR)
+			if(TOOL_CROWBAR in P.tool_qualities)
 				P.play_tool_sound(src)
 				to_chat(user, span_notice("You remove the glass panel."))
 				state = 3
@@ -116,7 +116,7 @@
 				var/obj/item/stack/sheet/glass/G = new(drop_location(), 2)
 				G.add_fingerprint(user)
 				return
-			if(P.tool_behaviour == TOOL_SCREWDRIVER)
+			if(TOOL_SCREWDRIVER in P.tool_qualities)
 				P.play_tool_sound(src)
 				to_chat(user, span_notice("You connect the monitor."))
 				var/obj/machinery/computer/built_comp = new circuit.build_path (loc, circuit)

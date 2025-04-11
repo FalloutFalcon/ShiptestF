@@ -18,7 +18,7 @@
 	return
 
 /obj/machinery/computer/launchpad/attackby(obj/item/W, mob/user, params)
-	if(W.tool_behaviour == TOOL_MULTITOOL)
+	if(TOOL_MULTITOOL in W.tool_qualities)
 		if(!multitool_check_buffer(user, W))
 			return
 		var/obj/item/multitool/M = W

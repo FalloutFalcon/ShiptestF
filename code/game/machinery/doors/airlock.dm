@@ -972,7 +972,7 @@
 						update_appearance()
 					return
 			if(AIRLOCK_SECURITY_METAL)
-				if(C.tool_behaviour == TOOL_WELDER)
+				if(TOOL_WELDER in C.tool_qualities)
 					if(!C.tool_start_check(user, amount=2))
 						return
 					to_chat(user, span_notice("You begin cutting the panel's shielding..."))
@@ -987,7 +987,7 @@
 						update_appearance()
 					return
 			if(AIRLOCK_SECURITY_PLASTEEL_I_S)
-				if(C.tool_behaviour == TOOL_CROWBAR)
+				if(TOOL_CROWBAR in C.tool_qualities)
 					var/obj/item/crowbar/W = C
 					to_chat(user, span_notice("You start removing the inner layer of shielding..."))
 					if(W.use_tool(src, user, 40, volume=100))
@@ -1004,7 +1004,7 @@
 						update_appearance()
 					return
 			if(AIRLOCK_SECURITY_PLASTEEL_I)
-				if(C.tool_behaviour == TOOL_WELDER)
+				if(TOOL_WELDER in C.tool_qualities)
 					if(!C.tool_start_check(user, amount=2))
 						return
 					to_chat(user, span_notice("You begin cutting the inner layer of shielding..."))
@@ -1017,7 +1017,7 @@
 						security_level = AIRLOCK_SECURITY_PLASTEEL_I_S
 					return
 			if(AIRLOCK_SECURITY_PLASTEEL_O_S)
-				if(C.tool_behaviour == TOOL_CROWBAR)
+				if(TOOL_CROWBAR in C.tool_qualities)
 					to_chat(user, span_notice("You start removing outer layer of shielding..."))
 					if(C.use_tool(src, user, 40, volume=100))
 						if(!panel_open)
@@ -1030,7 +1030,7 @@
 						spawn_atom_to_turf(/obj/item/stack/sheet/plasteel, user.loc, 1)
 					return
 			if(AIRLOCK_SECURITY_PLASTEEL_O)
-				if(C.tool_behaviour == TOOL_WELDER)
+				if(TOOL_WELDER in C.tool_qualities)
 					if(!C.tool_start_check(user, amount=2))
 						return
 					to_chat(user, span_notice("You begin cutting the outer layer of shielding..."))
@@ -1043,7 +1043,7 @@
 						security_level = AIRLOCK_SECURITY_PLASTEEL_O_S
 					return
 			if(AIRLOCK_SECURITY_PLASTEEL)
-				if(C.tool_behaviour == TOOL_WIRECUTTER)
+				if(TOOL_WIRECUTTER in C.tool_qualities)
 					if(hasPower() && shock(user, 60)) // Protective grille of wiring is electrified
 						return
 					to_chat(user, span_notice("You start cutting through the outer grille."))
@@ -1054,7 +1054,7 @@
 											span_notice("You cut through \the [src]'s outer grille."))
 						security_level = AIRLOCK_SECURITY_PLASTEEL_O
 					return
-	if(C.tool_behaviour == TOOL_SCREWDRIVER)
+	if(TOOL_SCREWDRIVER in C.tool_qualities)
 		if(panel_open && detonated)
 			to_chat(user, span_warning("[src] has no maintenance panel!"))
 			return
@@ -1062,7 +1062,7 @@
 		to_chat(user, span_notice("You [panel_open ? "open":"close"] the maintenance panel of the airlock."))
 		C.play_tool_sound(src)
 		update_appearance()
-	else if((C.tool_behaviour == TOOL_WIRECUTTER) && note)
+	else if(((TOOL_WIRECUTTER in C.tool_qualities)) && note)
 		user.visible_message(span_notice("[user] cuts down [note] from [src]."), span_notice("You remove [note] from [src]."))
 		C.play_tool_sound(src)
 		note.forceMove(get_turf(user))
@@ -1184,7 +1184,7 @@
 
 /obj/machinery/door/airlock/try_to_crowbar(obj/item/I, mob/living/user, forced = FALSE)
 	if(I)
-		var/beingcrowbarred = (I.tool_behaviour == TOOL_CROWBAR)
+		var/beingcrowbarred = ((TOOL_CROWBAR in I.tool_qualities))
 		if(!security_level && (beingcrowbarred && panel_open && ((obj_flags & EMAGGED) || (density && welded && !operating && !hasPower() && !locked))))
 			user.visible_message(
 				span_notice("[user] removes the electronics from the airlock assembly."),

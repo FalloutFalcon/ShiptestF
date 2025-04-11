@@ -75,7 +75,7 @@
 	pick_sign(user)
 
 /obj/structure/sign/barsign/attackby(obj/item/I, mob/user)
-	if(I.tool_behaviour == TOOL_SCREWDRIVER)
+	if(TOOL_SCREWDRIVER in I.tool_qualities)
 		if(!panel_open)
 			to_chat(user, span_notice("You open the maintenance panel."))
 			set_sign(new /datum/barsign/hiddensigns/signoff)

@@ -35,7 +35,7 @@
 				to_chat(user, span_warning("\The [IT] is too small for \the [src]."))
 				return
 			updateTank(W, 0, user)
-	else if(W.tool_behaviour == TOOL_WRENCH)
+	else if(TOOL_WRENCH in W.tool_qualities)
 		switch(fisto_setting)
 			if(1)
 				fisto_setting = 2
@@ -45,7 +45,7 @@
 				fisto_setting = 1
 		W.play_tool_sound(src)
 		to_chat(user, span_notice("You tweak \the [src]'s piston valve to [fisto_setting]."))
-	else if(W.tool_behaviour == TOOL_SCREWDRIVER)
+	else if(TOOL_SCREWDRIVER in W.tool_qualities)
 		if(tank)
 			updateTank(tank, 1, user)
 

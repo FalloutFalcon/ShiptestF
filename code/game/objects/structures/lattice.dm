@@ -33,7 +33,7 @@
 /obj/structure/lattice/attackby(obj/item/C, mob/user, params)
 	if(resistance_flags & INDESTRUCTIBLE)
 		return
-	if(C.tool_behaviour == TOOL_WIRECUTTER)
+	if(TOOL_WIRECUTTER in C.tool_qualities)
 		to_chat(user, span_notice("Slicing [name] joints ..."))
 		deconstruct()
 	else

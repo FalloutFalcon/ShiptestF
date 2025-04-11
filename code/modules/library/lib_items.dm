@@ -75,11 +75,11 @@
 /obj/structure/bookcase/attackby(obj/item/I, mob/user, params)
 	switch(state)
 		if(BOOKCASE_UNANCHORED)
-			if(I.tool_behaviour == TOOL_WRENCH)
+			if(TOOL_WRENCH in I.tool_qualities)
 				if(I.use_tool(src, user, 20, volume=50))
 					to_chat(user, span_notice("You wrench the frame into place."))
 					set_anchored(TRUE)
-			else if(I.tool_behaviour == TOOL_CROWBAR)
+			else if(TOOL_CROWBAR in I.tool_qualities)
 				if(I.use_tool(src, user, 20, volume=50))
 					to_chat(user, span_notice("You pry the frame apart."))
 					deconstruct(TRUE)
@@ -92,7 +92,7 @@
 					to_chat(user, span_notice("You add a shelf."))
 					state = BOOKCASE_FINISHED
 					update_appearance()
-			else if(I.tool_behaviour == TOOL_WRENCH)
+			else if(TOOL_WRENCH in I.tool_qualities)
 				I.play_tool_sound(src, 100)
 				to_chat(user, span_notice("You unwrench the frame."))
 				set_anchored(FALSE)
@@ -120,7 +120,7 @@
 					return
 				else
 					name = "bookcase ([sanitize(newname)])"
-			else if(I.tool_behaviour == TOOL_CROWBAR)
+			else if(TOOL_CROWBAR in I.tool_qualities)
 				if(contents.len)
 					to_chat(user, span_warning("You need to remove the books first!"))
 				else
@@ -319,7 +319,7 @@
 					scanner.computer.inventory.Add(src)
 					to_chat(user, span_notice("[I]'s screen flashes: 'Book stored in buffer. Title added to general inventory.'"))
 
-	else if(istype(I, /obj/item/melee/knife) || I.tool_behaviour == TOOL_WIRECUTTER)
+	else if(istype(I, /obj/item/melee/knife) || (TOOL_WIRECUTTER in I.tool_qualities))
 		to_chat(user, span_notice("You begin to carve out [title]..."))
 		if(do_after(user, 30, target = src))
 			to_chat(user, span_notice("You carve out the pages from [title]! You didn't want to read it anyway."))

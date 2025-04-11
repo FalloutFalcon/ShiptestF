@@ -188,7 +188,7 @@
 	if(!user.Adjacent(parent))
 		return
 
-	if(item.tool_behaviour == TOOL_CROWBAR && length(attachments))
+	if((TOOL_CROWBAR in item.tool_qualities) && length(attachments))
 		INVOKE_ASYNC(src, PROC_REF(handle_detach), parent, user, item)
 		return TRUE
 

@@ -94,7 +94,7 @@
 	if((user.a_intent != INTENT_HELP))
 		return FALSE
 
-	if(W.tool_behaviour == TOOL_WELDER)
+	if(TOOL_WELDER in W.tool_qualities)
 		if(!W.tool_start_check(user, amount=0) || (integrity >= max_integrity))
 			return FALSE
 

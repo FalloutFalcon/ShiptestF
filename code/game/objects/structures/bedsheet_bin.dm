@@ -47,7 +47,7 @@ LINEN BINS
 	return
 
 /obj/item/bedsheet/attackby(obj/item/I, mob/user, params)
-	if(I.tool_behaviour == TOOL_WIRECUTTER || I.get_sharpness())
+	if((TOOL_WIRECUTTER in I.tool_qualities) || I.get_sharpness())
 		var/obj/item/stack/sheet/cotton/cloth/shreds = new (get_turf(src), 3)
 		if(!QDELETED(shreds)) //stacks merged
 			transfer_fingerprints_to(shreds)
@@ -482,7 +482,7 @@ LINEN BINS
 	else if(default_unfasten_wrench(user, I, 5))
 		return
 
-	else if(I.tool_behaviour == TOOL_SCREWDRIVER)
+	else if(TOOL_SCREWDRIVER in I.tool_qualities)
 		if(flags_1 & NODECONSTRUCT_1)
 			return
 		if(amount)

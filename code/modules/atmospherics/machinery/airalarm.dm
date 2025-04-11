@@ -819,14 +819,14 @@ MAPPING_DIRECTIONAL_HELPERS(/obj/machinery/airalarm, 27)
 /obj/machinery/airalarm/attackby(obj/item/W, mob/user, params)
 	switch(buildstage)
 		if(2)
-			if(W.tool_behaviour == TOOL_WIRECUTTER && panel_open && wires.is_all_cut())
+			if((TOOL_WIRECUTTER in W.tool_qualities) && panel_open && wires.is_all_cut())
 				W.play_tool_sound(src)
 				to_chat(user, span_notice("You cut the final wires."))
 				new /obj/item/stack/cable_coil(loc, 5)
 				buildstage = 1
 				update_appearance()
 				return
-			else if(W.tool_behaviour == TOOL_SCREWDRIVER)  // Opening that Air Alarm up.
+			else if(TOOL_SCREWDRIVER in W.tool_qualities)  // Opening that Air Alarm up.
 				W.play_tool_sound(src)
 				panel_open = !panel_open
 				to_chat(user, span_notice("The wires have been [panel_open ? "exposed" : "unexposed"]."))
@@ -839,7 +839,7 @@ MAPPING_DIRECTIONAL_HELPERS(/obj/machinery/airalarm, 27)
 				wires.interact(user)
 				return
 		if(1)
-			if(W.tool_behaviour == TOOL_CROWBAR)
+			if(TOOL_CROWBAR in W.tool_qualities)
 				user.visible_message(span_notice("[user.name] removes the electronics from [src.name]."), \
 									span_notice("You start prying out the circuit..."))
 				W.play_tool_sound(src)
@@ -891,7 +891,7 @@ MAPPING_DIRECTIONAL_HELPERS(/obj/machinery/airalarm, 27)
 				update_appearance()
 				return
 
-			if(W.tool_behaviour == TOOL_WRENCH)
+			if(TOOL_WRENCH in W.tool_qualities)
 				to_chat(user, span_notice("You detach \the [src] from the wall."))
 				W.play_tool_sound(src)
 				new /obj/item/wallframe/airalarm(user.loc)

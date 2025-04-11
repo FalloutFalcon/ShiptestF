@@ -259,7 +259,7 @@
 		return ..()
 
 /obj/structure/closet/proc/try_deconstruct(obj/item/W, mob/user)
-	if(W.tool_behaviour == cutting_tool || W.tool_behaviour == TOOL_DECONSTRUCT)
+	if((cutting_tool in W.tool_qualities) || (TOOL_DECONSTRUCT in W.tool_qualities))
 		if(!W.tool_start_check(user, amount = 0))
 			return
 		to_chat(user, span_notice("You begin cutting \the [src] apart..."))
@@ -275,7 +275,7 @@
 /obj/structure/closet/proc/tool_interact(obj/item/W, mob/user)//returns TRUE if attackBy call shouldnt be continued (because tool was used/closet was of wrong type), FALSE if otherwise
 	. = TRUE
 	if(opened)
-		if(W.tool_behaviour == cutting_tool && user.a_intent != INTENT_HELP)
+		if((cutting_tool in W.tool_qualities) && user.a_intent != INTENT_HELP)
 			if(!W.tool_start_check(user, amount=0))
 				return
 
@@ -291,7 +291,7 @@
 		if(user.transferItemToLoc(W, drop_location())) // so we put in unlit welder too
 			return
 		return
-	else if(W.tool_behaviour == TOOL_WELDER && can_weld_shut)
+	else if((TOOL_WELDER in W.tool_qualities) && can_weld_shut)
 		if(!W.tool_start_check(user, amount=0))
 			return
 
@@ -305,7 +305,7 @@
 							span_notice("You [welded ? "weld" : "unwelded"] \the [src] with \the [W]."),
 							span_hear("You hear welding."))
 			update_appearance()
-	else if(W.tool_behaviour == TOOL_WRENCH && anchorable)
+	else if((TOOL_WRENCH in W.tool_qualities) && anchorable)
 		if(isinspace() && !anchored)
 			return
 		set_anchored(!anchored)
@@ -314,7 +314,7 @@
 						span_notice("You [anchored ? "anchored" : "unanchored"] \the [src] [anchored ? "to" : "from"] the ground."), \
 						span_hear("You hear a ratchet."))
 
-	else if(W.tool_behaviour == TOOL_DECONSTRUCT && locked)
+	else if((TOOL_DECONSTRUCT in W.tool_qualities) && locked)
 		user.visible_message(span_warning("[user] is cutting \the [src] open !"), span_notice("You begin to cut \the [src] open."))
 		if (W.use_tool(src, user, 10 SECONDS, volume=0))
 			bust_open()

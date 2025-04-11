@@ -632,14 +632,14 @@
 	causes the SSU to break due to state_open being set to TRUE at the end, and the panel becoming inaccessible.
 */
 /obj/machinery/suit_storage_unit/default_deconstruction_screwdriver(mob/user, icon_state_open, icon_state_closed, obj/item/I)
-	if(!(flags_1 & NODECONSTRUCT_1) && I.tool_behaviour == TOOL_SCREWDRIVER && uv)
+	if(!(flags_1 & NODECONSTRUCT_1) && (TOOL_SCREWDRIVER in I.tool_qualities) && uv)
 		to_chat(user, span_warning("It might not be wise to fiddle with [src] while it's running..."))
 		return TRUE
 	return ..()
 
 
 /obj/machinery/suit_storage_unit/default_pry_open(obj/item/I)//needs to check if the storage is locked.
-	. = !(state_open || panel_open || is_operational || locked || (flags_1 & NODECONSTRUCT_1)) && I.tool_behaviour == TOOL_CROWBAR
+	. = !(state_open || panel_open || is_operational || locked || (flags_1 & NODECONSTRUCT_1)) && (TOOL_CROWBAR in I.tool_qualities)
 	if(.)
 		I.play_tool_sound(src, 50)
 		visible_message(span_notice("[usr] pries open \the [src]."), span_notice("You pry open \the [src]."))

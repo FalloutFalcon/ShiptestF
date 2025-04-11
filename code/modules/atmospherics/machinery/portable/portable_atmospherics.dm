@@ -122,7 +122,7 @@
 			investigate_log("had its internal [holding] swapped with [T] by [key_name(user)].", INVESTIGATE_ATMOS)
 			replace_tank(user, FALSE, T)
 			update_appearance()
-	else if(W.tool_behaviour == TOOL_WRENCH)
+	else if(TOOL_WRENCH in W.tool_qualities)
 		if(!(machine_stat & BROKEN))
 			if(connected_port)
 				investigate_log("was disconnected from [connected_port] by [key_name(user)].", INVESTIGATE_ATMOS)

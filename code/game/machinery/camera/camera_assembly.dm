@@ -125,7 +125,7 @@
 /obj/structure/camera_assembly/attackby(obj/item/W, mob/living/user, params)
 	switch(state)
 		if(STATE_WRENCHED)
-			if(W.tool_behaviour == TOOL_WELDER)
+			if(TOOL_WELDER in W.tool_qualities)
 				if(weld(W, user))
 					to_chat(user, span_notice("You weld [src] securely into place."))
 					set_anchored(TRUE)
@@ -143,7 +143,7 @@
 					return
 				return
 
-			else if(W.tool_behaviour == TOOL_WELDER)
+			else if(TOOL_WELDER in W.tool_qualities)
 
 				if(weld(W, user))
 					to_chat(user, span_notice("You unweld [src] from its place."))

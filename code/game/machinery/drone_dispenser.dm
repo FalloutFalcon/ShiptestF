@@ -185,13 +185,13 @@
 //	icon_state = "["icon"]_[(mode == DRONE_RECHARGING) ? "recharging"]"
 
 /obj/machinery/droneDispenser/attackby(obj/item/I, mob/living/user)
-	if(I.tool_behaviour == TOOL_CROWBAR)
+	if(TOOL_CROWBAR in I.tool_qualities)
 		var/datum/component/material_container/materials = GetComponent(/datum/component/material_container)
 		materials.retrieve_all()
 		I.play_tool_sound(src)
 		to_chat(user, span_notice("You retrieve the materials from [src]."))
 
-	else if(I.tool_behaviour == TOOL_WELDER)
+	else if(TOOL_WELDER in I.tool_qualities)
 		if(!(machine_stat & BROKEN))
 			to_chat(user, span_warning("[src] doesn't need repairs."))
 			return

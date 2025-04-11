@@ -76,7 +76,7 @@
 	return ..()
 
 /obj/vehicle/ridden/wheelchair/motorized/attackby(obj/item/I, mob/user, params)
-	if(I.tool_behaviour == TOOL_SCREWDRIVER)
+	if(TOOL_SCREWDRIVER in I.tool_qualities)
 		I.play_tool_sound(src)
 		panel_open = !panel_open
 		user.visible_message(span_notice("[user] [panel_open ? "opens" : "closes"] the maintenance panel on [src]."), span_notice("You [panel_open ? "open" : "close"] the maintenance panel."))

@@ -242,7 +242,7 @@
 
 /turf/closed/proc/try_decon(obj/item/I, mob/user, turf/T)
 	var/act_duration = breakdown_duration
-	if(I.tool_behaviour == TOOL_WELDER)
+	if(TOOL_WELDER in I.tool_qualities)
 		if(!I.tool_start_check(user, amount=0))
 			return FALSE
 		to_chat(user, span_notice("You begin slicing through the outer plating..."))

@@ -106,7 +106,7 @@
 	var/best_quality = INFINITY
 
 	for(var/obj/item/I in held_items)
-		if(I.tool_behaviour == quality && I.toolspeed < best_quality)
+		if((quality in I.tool_qualities) && I.toolspeed < best_quality)
 			best_item = I
 			best_quality = I.toolspeed
 

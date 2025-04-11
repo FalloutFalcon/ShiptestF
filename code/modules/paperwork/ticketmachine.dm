@@ -76,7 +76,7 @@
 
 /obj/machinery/button/ticket_machine/multitool_act(mob/living/user, obj/item/I)
 	. = ..()
-	if(I.tool_behaviour == TOOL_MULTITOOL)
+	if(TOOL_MULTITOOL in I.tool_qualities)
 		var/obj/item/multitool/M = I
 		if(M.buffer && !istype(M.buffer, /obj/machinery/ticket_machine))
 			return

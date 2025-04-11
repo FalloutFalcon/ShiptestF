@@ -101,7 +101,7 @@
 					icon_state = "box_1"
 
 				return
-			if(P.tool_behaviour == TOOL_SCREWDRIVER && !anchored)
+			if((TOOL_SCREWDRIVER in P.tool_qualities) && !anchored)
 				user.visible_message(span_warning("[user] disassembles the frame."), \
 									span_notice("You start to disassemble the frame..."), span_hear("You hear banging and clanking."))
 				if(P.use_tool(src, user, 40, volume=50))
@@ -111,7 +111,7 @@
 						M.add_fingerprint(user)
 						qdel(src)
 				return
-			if(P.tool_behaviour == TOOL_WRENCH)
+			if(TOOL_WRENCH in P.tool_qualities)
 				to_chat(user, span_notice("You start [anchored ? "un" : ""]securing [src]..."))
 				if(P.use_tool(src, user, 40, volume=75))
 					if(state == 1)
@@ -120,7 +120,7 @@
 				return
 
 		if(2)
-			if(P.tool_behaviour == TOOL_WRENCH)
+			if(TOOL_WRENCH in P.tool_qualities)
 				to_chat(user, span_notice("You start [anchored ? "un" : ""]securing [src]..."))
 				if(P.use_tool(src, user, 40, volume=75))
 					to_chat(user, span_notice("You [anchored ? "un" : ""]secure [src]."))
@@ -151,7 +151,7 @@
 				to_chat(user, span_warning("This frame does not accept circuit boards of this type!"))
 				return
 
-			if(P.tool_behaviour == TOOL_WIRECUTTER)
+			if(TOOL_WIRECUTTER in P.tool_qualities)
 				P.play_tool_sound(src)
 				to_chat(user, span_notice("You remove the cables."))
 				state = 1
@@ -160,7 +160,7 @@
 				return
 
 		if(3)
-			if(P.tool_behaviour == TOOL_CROWBAR)
+			if(TOOL_CROWBAR in P.tool_qualities)
 				P.play_tool_sound(src)
 				state = 2
 				circuit.forceMove(drop_location())
@@ -178,14 +178,14 @@
 				icon_state = "box_1"
 				return
 
-			if(P.tool_behaviour == TOOL_WRENCH && !circuit.needs_anchored)
+			if((TOOL_WRENCH in P.tool_qualities) && !circuit.needs_anchored)
 				to_chat(user, span_notice("You start [anchored ? "un" : ""]securing [src]..."))
 				if(P.use_tool(src, user, 40, volume=75))
 					to_chat(user, span_notice("You [anchored ? "un" : ""]secure [src]."))
 					set_anchored(!anchored)
 				return
 
-			if(P.tool_behaviour == TOOL_SCREWDRIVER)
+			if(TOOL_SCREWDRIVER in P.tool_qualities)
 				var/component_check = 1
 				for(var/R in req_components)
 					if(req_components[R] > 0)

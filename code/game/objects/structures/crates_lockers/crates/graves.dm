@@ -36,7 +36,7 @@
 /obj/structure/closet/crate/grave/tool_interact(obj/item/S, mob/living/carbon/user)
 	if(user.a_intent == INTENT_HELP) //checks to attempt to dig the grave, must be done on help intent only.
 		if(!opened)
-			if(S.tool_behaviour == cutting_tool)
+			if(cutting_tool in S.tool_qualities)
 				to_chat(user, span_notice("You start start to dig open \the [src]  with \the [S]..."))
 				if (do_after(user,20, target = src))
 					opened = TRUE
@@ -54,7 +54,7 @@
 			return TRUE
 
 	else if((user.a_intent != INTENT_HELP) && opened) //checks to attempt to remove the grave entirely.
-		if(S.tool_behaviour == cutting_tool)
+		if(cutting_tool in S.tool_qualities)
 			to_chat(user, span_notice("You start to remove \the [src]  with \the [S]."))
 			if (do_after(user,15, target = src))
 				to_chat(user, span_notice("You remove \the [src]  completely."))

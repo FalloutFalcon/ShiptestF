@@ -40,7 +40,7 @@
 	qdel(src)
 
 /obj/item/assembly/signaler/anomaly/attackby(obj/item/I, mob/user, params)
-	if(I.tool_behaviour == TOOL_ANALYZER)
+	if(TOOL_ANALYZER in I.tool_qualities)
 		to_chat(user, span_notice("Analyzing... [src]'s stabilized field is fluctuating along frequency [format_frequency(frequency)], code [code]. An unstable frequency is present at code [code_b]."))
 	..()
 

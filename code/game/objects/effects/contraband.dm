@@ -129,7 +129,7 @@
 
 
 /obj/structure/sign/poster/attackby(obj/item/I, mob/user, params)
-	if(I.tool_behaviour == TOOL_WIRECUTTER)
+	if(TOOL_WIRECUTTER in I.tool_qualities)
 		I.play_tool_sound(src, 100)
 		if(ruined)
 			to_chat(user, span_notice("You remove the remnants of the poster."))

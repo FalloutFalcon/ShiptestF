@@ -295,11 +295,11 @@ GLOBAL_LIST_INIT(sand_recipes, list(\
 			wires.interact(user)
 			return
 
-	if(I.tool_behaviour == TOOL_MINING || istype(I, /obj/item/resonator) || I.force >= 10)
+	if((TOOL_MINING in I.tool_qualities) || istype(I, /obj/item/resonator) || I.force >= 10)
 		GibtoniteReaction(user)
 		return
 	if(primed)
-		if(istype(I, /obj/item/mining_scanner) || istype(I, /obj/item/t_scanner/adv_mining_scanner) || I.tool_behaviour == TOOL_MULTITOOL)
+		if(istype(I, /obj/item/mining_scanner) || istype(I, /obj/item/t_scanner/adv_mining_scanner) || (TOOL_MULTITOOL in I.tool_qualities))
 			primed = FALSE
 			if(det_timer)
 				deltimer(det_timer)

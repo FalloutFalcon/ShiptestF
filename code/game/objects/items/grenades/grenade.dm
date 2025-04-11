@@ -113,7 +113,7 @@
 
 /obj/item/grenade/attackby(obj/item/W, mob/user, params)
 	if(!active)
-		if(W.tool_behaviour == TOOL_MULTITOOL)
+		if(TOOL_MULTITOOL in W.tool_qualities)
 			var/newtime = text2num(stripped_input(user, "Please enter a new detonation time", name))
 			if (newtime != null && user.canUseTopic(src, BE_CLOSE))
 				if(change_det_time(newtime))
@@ -121,7 +121,7 @@
 					if (round(newtime * 10) != det_time)
 						to_chat(user, span_warning("The new value is out of bounds. The lowest possible time is 3 seconds and highest is 5 seconds. Instant detonations are also possible."))
 			return
-		else if(W.tool_behaviour == TOOL_SCREWDRIVER)
+		else if(TOOL_SCREWDRIVER in W.tool_qualities)
 			if(change_det_time())
 				to_chat(user, span_notice("You modify the time delay. It's set for [DisplayTimeText(det_time)]."))
 	else

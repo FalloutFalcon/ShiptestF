@@ -162,7 +162,7 @@
 		log_game("[src] has been deconstructed by [key_name(user)] at [AREACOORD(src)]")
 		investigate_log("SMES deconstructed by [key_name(user)] at [AREACOORD(src)]", INVESTIGATE_SINGULO)
 		return
-	else if(panel_open && I.tool_behaviour == TOOL_CROWBAR)
+	else if(panel_open && (TOOL_CROWBAR in I.tool_qualities))
 		return
 
 	return ..()

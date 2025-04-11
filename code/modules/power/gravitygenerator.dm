@@ -192,14 +192,14 @@
 /obj/machinery/gravity_generator/main/attackby(obj/item/I, mob/user, params)
 	switch(broken_state)
 		if(GRAV_NEEDS_SCREWDRIVER)
-			if(I.tool_behaviour == TOOL_SCREWDRIVER)
+			if(TOOL_SCREWDRIVER in I.tool_qualities)
 				to_chat(user, span_notice("You secure the screws of the framework."))
 				I.play_tool_sound(src)
 				broken_state++
 				update_appearance()
 				return
 		if(GRAV_NEEDS_WELDING)
-			if(I.tool_behaviour == TOOL_WELDER)
+			if(TOOL_WELDER in I.tool_qualities)
 				if(I.use_tool(src, user, 0, volume=50, amount=1))
 					to_chat(user, span_notice("You mend the damaged framework."))
 					broken_state++
@@ -218,7 +218,7 @@
 					to_chat(user, span_warning("You need 10 sheets of plasteel!"))
 				return
 		if(GRAV_NEEDS_WRENCH)
-			if(I.tool_behaviour == TOOL_WRENCH)
+			if(TOOL_WRENCH in I.tool_qualities)
 				to_chat(user, span_notice("You secure the plating to the framework."))
 				I.play_tool_sound(src)
 				set_fix()

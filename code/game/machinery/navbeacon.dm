@@ -106,7 +106,7 @@
 	if(T.intact)
 		return		// prevent intraction when T-scanner revealed
 
-	if(I.tool_behaviour == TOOL_SCREWDRIVER)
+	if(TOOL_SCREWDRIVER in I.tool_qualities)
 		open = !open
 
 		user.visible_message(span_notice("[user] [open ? "opens" : "closes"] the beacon's cover."), span_notice("You [open ? "open" : "close"] the beacon's cover."))

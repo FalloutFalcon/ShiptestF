@@ -162,13 +162,13 @@
 /obj/structure/table/attackby(obj/item/I, mob/user, params)
 	var/list/modifiers = params2list(params)
 	if(!(flags_1 & NODECONSTRUCT_1) && user.a_intent != INTENT_HELP)
-		if((I.tool_behaviour == TOOL_SCREWDRIVER) && deconstruction_ready)
+		if(((TOOL_SCREWDRIVER in I.tool_qualities)) && deconstruction_ready)
 			to_chat(user, span_notice("You start disassembling [src]..."))
 			if(I.use_tool(src, user, 20, volume=50))
 				deconstruct(TRUE)
 			return
 
-		if(I.tool_behaviour == TOOL_WRENCH && deconstruction_ready)
+		if((TOOL_WRENCH in I.tool_qualities) && deconstruction_ready)
 			to_chat(user, span_notice("You start deconstructing [src]..."))
 			if(I.use_tool(src, user, 40, volume=50))
 				playsound(src.loc, 'sound/items/deconstruct.ogg', 50, TRUE)
@@ -550,7 +550,7 @@
 		return span_notice("The top cover is firmly <b>welded</b> on.")
 
 /obj/structure/table/reinforced/attackby(obj/item/W, mob/user, params)
-	if(W.tool_behaviour == TOOL_WELDER && user.a_intent != INTENT_HELP)
+	if((TOOL_WELDER in W.tool_qualities) && user.a_intent != INTENT_HELP)
 		if(!W.tool_start_check(user, amount=0))
 			return
 
@@ -684,7 +684,7 @@
 
 /obj/structure/rack/attackby(obj/item/W, mob/user, params)
 	var/list/modifiers = params2list(params)
-	if (W.tool_behaviour == TOOL_WRENCH && !(flags_1&NODECONSTRUCT_1) && user.a_intent != INTENT_HELP)
+	if ((TOOL_WRENCH in W.tool_qualities) && !(flags_1&NODECONSTRUCT_1) && user.a_intent != INTENT_HELP)
 		W.play_tool_sound(src)
 		deconstruct(TRUE)
 		return
@@ -753,7 +753,7 @@
 	var/obj/construction_type = /obj/structure/rack
 
 /obj/item/rack_parts/attackby(obj/item/W, mob/user, params)
-	if (W.tool_behaviour == TOOL_WRENCH)
+	if ((TOOL_WRENCH in W.tool_qualities))
 		new /obj/item/stack/sheet/metal(user.loc)
 		qdel(src)
 	else
@@ -800,7 +800,7 @@
 		return span_notice("The top cover is firmly stuck on, but could be <i>pried</i> off with considerable effort.")
 
 /obj/structure/table/wood/reinforced/attackby(obj/item/W, mob/user, params)
-	if(W.tool_behaviour == TOOL_CROWBAR && user.a_intent != INTENT_HELP)
+	if((TOOL_CROWBAR in W.tool_qualities) && user.a_intent != INTENT_HELP)
 		if(!W.tool_start_check(user, amount=0))
 			return
 

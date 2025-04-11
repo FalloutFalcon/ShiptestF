@@ -71,7 +71,7 @@
 	if(machine_stat & BROKEN)
 		return
 
-	if(I.tool_behaviour == TOOL_MULTITOOL)
+	if(TOOL_MULTITOOL in I.tool_qualities)
 		if(!multitool_check_buffer(user, I))
 			return
 		var/obj/item/multitool/M = I

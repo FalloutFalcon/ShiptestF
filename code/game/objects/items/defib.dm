@@ -128,7 +128,7 @@
 			to_chat(user, span_notice("You install a cell in [src]."))
 			update_power()
 
-	else if(W.tool_behaviour == TOOL_SCREWDRIVER)
+	else if(TOOL_SCREWDRIVER in W.tool_qualities)
 		if(cell)
 			cell.update_appearance()
 			cell.forceMove(get_turf(src))

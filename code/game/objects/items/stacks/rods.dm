@@ -52,7 +52,7 @@ GLOBAL_LIST_INIT(rod_recipes, list ( \
 		icon_state = "rods"
 
 /obj/item/stack/rods/attackby(obj/item/W, mob/user, params)
-	if(W.tool_behaviour == TOOL_WELDER)
+	if(TOOL_WELDER in W.tool_qualities)
 		if(get_amount() < 2)
 			to_chat(user, span_warning("You need at least two rods to do this!"))
 			return

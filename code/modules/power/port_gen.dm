@@ -201,7 +201,7 @@
 		addstack.use(amount)
 		return
 	else if(!active)
-		if(O.tool_behaviour == TOOL_WRENCH)
+		if(TOOL_WRENCH in O.tool_qualities)
 			if(!anchored && !isinspace())
 				set_anchored(TRUE)
 				to_chat(user, span_notice("You secure the generator to the floor."))
@@ -211,7 +211,7 @@
 
 			playsound(src, 'sound/items/deconstruct.ogg', 50, TRUE)
 			return
-		else if(O.tool_behaviour == TOOL_SCREWDRIVER)
+		else if(TOOL_SCREWDRIVER in O.tool_qualities)
 			panel_open = !panel_open
 			O.play_tool_sound(src)
 			if(panel_open)

@@ -107,7 +107,7 @@
 			toggle_lock(user)
 		else
 			to_chat(user,  span_alert("Access denied."))
-	else if(W.tool_behaviour == TOOL_WELDER && user.a_intent == INTENT_HELP && !broken)
+	else if((TOOL_WELDER in W.tool_qualities) && user.a_intent == INTENT_HELP && !broken)
 		if(obj_integrity < max_integrity)
 			if(!W.tool_start_check(user, amount=5))
 				return
@@ -120,7 +120,7 @@
 		else
 			to_chat(user, span_warning("[src] is already in good condition!"))
 		return
-	else if(!alert && W.tool_behaviour == TOOL_CROWBAR && openable) //Only applies to the lab cage and player made display cases
+	else if(!alert && (TOOL_CROWBAR in W.tool_qualities) && openable) //Only applies to the lab cage and player made display cases
 		if(broken)
 			if(showpiece)
 				to_chat(user, span_warning("Remove the displayed object first!"))
@@ -201,7 +201,7 @@
 
 
 /obj/structure/displaycase_chassis/attackby(obj/item/I, mob/user, params)
-	if(I.tool_behaviour == TOOL_WRENCH) //The player can only deconstruct the wooden frame
+	if(TOOL_WRENCH in I.tool_qualities) //The player can only deconstruct the wooden frame
 		to_chat(user, span_notice("You start disassembling [src]..."))
 		I.play_tool_sound(src)
 		if(I.use_tool(src, user, 30))

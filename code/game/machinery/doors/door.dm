@@ -256,14 +256,14 @@
 	return max_moles - min_moles > 20
 
 /obj/machinery/door/attackby(obj/item/I, mob/user, params)
-	if(user.a_intent != INTENT_HARM && (I.tool_behaviour == TOOL_CROWBAR || istype(I, /obj/item/melee/axe/fire)))
+	if(user.a_intent != INTENT_HARM && ((TOOL_CROWBAR in I.tool_qualities) || istype(I, /obj/item/melee/axe/fire)))
 		var/forced_open = FALSE
 		if(istype(I, /obj/item/crowbar))
 			var/obj/item/crowbar/C = I
 			forced_open = C.force_opens
 		try_to_crowbar(I, user, forced_open)
 		return TRUE
-	else if(I.tool_behaviour == TOOL_WELDER)
+	else if(TOOL_WELDER in I.tool_qualities)
 		try_to_weld(I, user)
 		return TRUE
 	else if(!(I.item_flags & NOBLUDGEON) && user.a_intent != INTENT_HARM)

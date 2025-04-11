@@ -43,7 +43,7 @@
 		else
 			name = "body bag"
 		return
-	else if(I.tool_behaviour == TOOL_WIRECUTTER)
+	else if(TOOL_WIRECUTTER in I.tool_qualities)
 		to_chat(user, span_notice("You cut the tag off [src]."))
 		name = "body bag"
 		tagged = 0

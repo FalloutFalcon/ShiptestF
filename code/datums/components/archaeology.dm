@@ -35,7 +35,7 @@
 	if(!isturf(user.loc))
 		return
 
-	if(I.tool_behaviour == TOOL_SHOVEL || I.tool_behaviour == TOOL_MINING)
+	if((TOOL_SHOVEL in I.tool_qualities) || (TOOL_MINING in I.tool_qualities))
 		to_chat(user, span_notice("You start digging..."))
 
 		if(I.use_tool(parent, user, 40, volume=50))

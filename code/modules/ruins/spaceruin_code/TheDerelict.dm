@@ -145,7 +145,7 @@
 
 ///Overrides screwdriver attack to prevent all deconstruction and hacking.
 /obj/machinery/door/airlock/vault/derelict/attackby(obj/item/C, mob/user, params)
-	if(C.tool_behaviour == TOOL_SCREWDRIVER)
+	if(TOOL_SCREWDRIVER in C.tool_qualities)
 		return
 	..()
 

@@ -155,7 +155,7 @@
 /obj/machinery/firealarm/attackby(obj/item/W, mob/user, params)
 	add_fingerprint(user)
 
-	if(W.tool_behaviour == TOOL_SCREWDRIVER && buildstage == 2)
+	if((TOOL_SCREWDRIVER in W.tool_qualities) && buildstage == 2)
 		W.play_tool_sound(src)
 		panel_open = !panel_open
 		to_chat(user, span_notice("The wires have been [panel_open ? "exposed" : "unexposed"]."))
@@ -164,7 +164,7 @@
 
 	if(panel_open)
 
-		if(W.tool_behaviour == TOOL_WELDER && user.a_intent == INTENT_HELP)
+		if((TOOL_WELDER in W.tool_qualities) && user.a_intent == INTENT_HELP)
 			if(obj_integrity < max_integrity)
 				if(!W.tool_start_check(user, amount=0))
 					return
@@ -179,7 +179,7 @@
 
 		switch(buildstage)
 			if(2)
-				if(W.tool_behaviour == TOOL_MULTITOOL)
+				if(TOOL_MULTITOOL in W.tool_qualities)
 					detecting = !detecting
 					if (src.detecting)
 						user.visible_message(span_notice("[user] reconnects [src]'s detecting unit!"), span_notice("You reconnect [src]'s detecting unit."))
@@ -187,7 +187,7 @@
 						user.visible_message(span_notice("[user] disconnects [src]'s detecting unit!"), span_notice("You disconnect [src]'s detecting unit."))
 					return
 
-				else if(W.tool_behaviour == TOOL_WIRECUTTER)
+				else if(TOOL_WIRECUTTER in W.tool_qualities)
 					buildstage = 1
 					W.play_tool_sound(src)
 					new /obj/item/stack/cable_coil(user.loc, 5)
@@ -214,7 +214,7 @@
 						update_appearance()
 					return
 
-				else if(W.tool_behaviour == TOOL_CROWBAR)
+				else if(TOOL_CROWBAR in W.tool_qualities)
 					user.visible_message(span_notice("[user.name] removes the electronics from [src.name]."), \
 										span_notice("You start prying out the circuit..."))
 					if(W.use_tool(src, user, 20, volume=50))
@@ -248,7 +248,7 @@
 					update_appearance()
 					return
 
-				else if(W.tool_behaviour == TOOL_WRENCH)
+				else if(TOOL_WRENCH in W.tool_qualities)
 					user.visible_message(
 						span_notice("[user] removes the fire alarm assembly from the wall."),
 						span_notice("You remove the fire alarm assembly from the wall.")

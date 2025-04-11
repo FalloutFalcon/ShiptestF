@@ -24,11 +24,11 @@
 	. = ..()
 	if(resistance_flags & INDESTRUCTIBLE)
 		return FALSE
-	if((resistance_flags & INDESTRUCTIBLE) && W.tool_behaviour == TOOL_SCREWDRIVER) // This makes it so ERT members cannot cheese by opening their blast doors.
+	if((resistance_flags & INDESTRUCTIBLE) && (TOOL_SCREWDRIVER in W.tool_qualities)) // This makes it so ERT members cannot cheese by opening their blast doors.
 		to_chat(user, span_warning("You can't find the panel!"))
 		return
 
-	if(W.tool_behaviour == TOOL_SCREWDRIVER)
+	if(TOOL_SCREWDRIVER in W.tool_qualities)
 		if(density)
 			to_chat(user, span_warning("You need to open [src] to access the maintenance panel"))
 			return
@@ -37,7 +37,7 @@
 			return TRUE
 
 	if(panel_open && !density)
-		if(W.tool_behaviour == TOOL_MULTITOOL)
+		if(TOOL_MULTITOOL in W.tool_qualities)
 			var/obj/item/multitool/multi = W
 			if (istype(multi.buffer,/obj/item/assembly/control))
 				var/obj/item/assembly/control/controller = multi.buffer
@@ -49,7 +49,7 @@
 					id = clamp(round(change_id, 1), 1, 100)
 					to_chat(user, span_notice("You change the ID to [id]."))
 
-		if(W.tool_behaviour == TOOL_CROWBAR)
+		if(TOOL_CROWBAR in W.tool_qualities)
 			to_chat(user, span_notice("You start to remove the airlock electronics."))
 			if(!(machine_stat & NOPOWER))
 				do_sparks(5, TRUE, src)
@@ -58,7 +58,7 @@
 			else if(W.use_tool(src, user, 10 SECONDS, volume=50))
 				deconstruct(TRUE)
 
-	if(W.tool_behaviour == TOOL_DECONSTRUCT)
+	if(TOOL_DECONSTRUCT in W.tool_qualities)
 		if(!(machine_stat & NOPOWER))
 			do_sparks(5, TRUE, src)
 			electrocute_mob(user, get_area(src), src, 1, TRUE) //zorp

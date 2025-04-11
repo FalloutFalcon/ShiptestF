@@ -4,7 +4,7 @@
 	if(!I)
 		return
 
-	if(I.tool_behaviour == TOOL_WIRECUTTER || I.tool_behaviour == TOOL_MULTITOOL)
+	if((TOOL_WIRECUTTER in I.tool_qualities) || (TOOL_MULTITOOL in I.tool_qualities))
 		return TRUE
 	if(istype(I, /obj/item/assembly))
 		var/obj/item/assembly/A = I

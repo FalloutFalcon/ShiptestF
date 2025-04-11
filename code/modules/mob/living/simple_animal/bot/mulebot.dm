@@ -129,7 +129,7 @@
 	reached_target = FALSE
 
 /mob/living/simple_animal/bot/mulebot/attackby(obj/item/I, mob/user, params)
-	if(I.tool_behaviour == TOOL_SCREWDRIVER)
+	if(TOOL_SCREWDRIVER in I.tool_qualities)
 		. = ..()
 		if(open)
 			turn_off()
@@ -144,7 +144,7 @@
 		cell = I
 		visible_message(span_notice("[user] inserts \a [cell] into [src]."),
 						span_notice("You insert [cell] into [src]."))
-	else if(I.tool_behaviour == TOOL_CROWBAR && open && user.a_intent != INTENT_HARM)
+	else if((TOOL_CROWBAR in I.tool_qualities) && open && user.a_intent != INTENT_HARM)
 		if(!cell)
 			to_chat(user, span_warning("[src] doesn't have a power cell!"))
 			return

@@ -52,7 +52,7 @@
 
 			if(ispath(key) && istype(tool, key))
 				match = TRUE
-			else if(tool.tool_behaviour == key)
+			else if(key in tool.tool_qualities)
 				match = TRUE
 
 			if(match)

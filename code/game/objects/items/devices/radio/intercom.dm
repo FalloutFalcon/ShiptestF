@@ -38,7 +38,7 @@ MAPPING_DIRECTIONAL_HELPERS(/obj/item/radio/intercom, 31)
 	interact(user)
 
 /obj/item/radio/intercom/attackby(obj/item/I, mob/living/user, params)
-	if(I.tool_behaviour == TOOL_SCREWDRIVER)
+	if(TOOL_SCREWDRIVER in I.tool_qualities)
 		if(unscrewed)
 			user.visible_message(span_notice("[user] starts tightening [src]'s screws..."), span_notice("You start screwing in [src]..."))
 			if(I.use_tool(src, user, 30, volume=50))
@@ -50,7 +50,7 @@ MAPPING_DIRECTIONAL_HELPERS(/obj/item/radio/intercom, 31)
 				user.visible_message(span_notice("[user] loosens [src]'s screws!"), span_notice("You unscrew [src], loosening it from the wall."))
 				unscrewed = TRUE
 		return
-	else if(I.tool_behaviour == TOOL_WRENCH)
+	else if(TOOL_WRENCH in I.tool_qualities)
 		if(!unscrewed)
 			to_chat(user, span_warning("You need to unscrew [src] from the wall first!"))
 			return

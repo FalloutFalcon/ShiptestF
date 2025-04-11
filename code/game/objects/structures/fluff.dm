@@ -11,7 +11,7 @@
 	var/deconstructible = TRUE
 
 /obj/structure/fluff/attackby(obj/item/I, mob/living/user, params)
-	if(I.tool_behaviour == TOOL_WRENCH && deconstructible)
+	if((TOOL_WRENCH in I.tool_qualities) && deconstructible)
 		user.visible_message(span_notice("[user] starts disassembling [src]..."), span_notice("You start disassembling [src]..."))
 		I.play_tool_sound(src)
 		if(I.use_tool(src, user, 50))

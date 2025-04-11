@@ -75,7 +75,7 @@ FLOOR SAFES
 			attack_hand(user)
 			return
 
-		else if(I.tool_behaviour == TOOL_DECONSTRUCT)
+		else if(TOOL_DECONSTRUCT in I.tool_qualities)
 			user.visible_message(span_warning("[user] begin to cut through the lock of \the [src]."),span_notice("You start cutting trough the lock of [src]."))
 			if(I.use_tool(src, user, 45 SECONDS))
 				broken = TRUE

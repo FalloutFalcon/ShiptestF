@@ -62,7 +62,7 @@
 	if(ispath(key) && istype(I, key))
 		return TRUE
 
-	else if(I.tool_behaviour == key)
+	else if(key in I.tool_qualities)
 		return TRUE
 
 	return FALSE

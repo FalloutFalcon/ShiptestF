@@ -82,7 +82,7 @@
 			O.add_fingerprint(user)
 			update_appearance()
 
-	else if(O.tool_behaviour == TOOL_WELDER && user.a_intent != INTENT_HARM)
+	else if((TOOL_WELDER in O.tool_qualities) && user.a_intent != INTENT_HARM)
 		if(obj_integrity < max_integrity)
 			if(!O.tool_start_check(user, amount=0))
 				return

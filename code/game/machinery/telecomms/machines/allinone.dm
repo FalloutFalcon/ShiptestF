@@ -41,5 +41,5 @@
 	signal.broadcast()
 
 /obj/machinery/telecomms/allinone/attackby(obj/item/P, mob/user, params)
-	if(P.tool_behaviour == TOOL_MULTITOOL)
+	if(TOOL_MULTITOOL in P.tool_qualities)
 		return attack_hand(user)

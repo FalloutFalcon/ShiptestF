@@ -21,7 +21,7 @@
 	var/egged = 0
 
 /obj/structure/closet/cardboard/try_deconstruct(obj/item/W, mob/user)
-	if(W.tool_behaviour == cutting_tool)
+	if(cutting_tool in W.tool_qualities)
 		user.visible_message(span_notice("[user] cut apart \the [src]."), \
 							span_notice("You cut \the [src] apart with \the [W]."))
 		deconstruct(TRUE)

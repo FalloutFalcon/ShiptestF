@@ -90,7 +90,7 @@
 		to_chat(user, span_warning("You must wait until the door has stopped moving!"))
 		return
 
-	if(W.tool_behaviour == TOOL_SCREWDRIVER)
+	if(TOOL_SCREWDRIVER in W.tool_qualities)
 		if(density)
 			var/turf/T = get_turf(src)
 			if(T.density)
@@ -104,7 +104,7 @@
 		else
 			to_chat(user, span_warning("You can't reach, close it first!"))
 
-	else if(W.tool_behaviour == TOOL_WELDER)
+	else if(TOOL_WELDER in W.tool_qualities)
 		if(W.use_tool(src, user, 0, volume=50))
 			dismantle(user, TRUE)
 	else
@@ -154,7 +154,7 @@
 
 /obj/structure/falsewall/reinforced/attackby(obj/item/tool, mob/user)
 	..()
-	if(tool.tool_behaviour == TOOL_WIRECUTTER)
+	if(TOOL_WIRECUTTER in tool.tool_qualities)
 		dismantle(user, TRUE, tool)
 
 /*

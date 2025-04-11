@@ -439,7 +439,7 @@
 
 /obj/structure/flora/rock/attackby(obj/item/W, mob/user, params)
 	if(mineResult && (!(flags_1 & NODECONSTRUCT_1)))
-		if(W.tool_behaviour == TOOL_MINING)
+		if(TOOL_MINING in W.tool_qualities)
 			to_chat(user, span_notice("You start mining..."))
 			if(W.use_tool(src, user, 40, volume=50))
 				to_chat(user, span_notice("You finish mining the rock."))

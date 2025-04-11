@@ -60,7 +60,7 @@
 //Don't want to render prison breaks impossible
 /obj/machinery/flasher/attackby(obj/item/W, mob/user, params)
 	add_fingerprint(user)
-	if (W.tool_behaviour == TOOL_WIRECUTTER)
+	if ((TOOL_WIRECUTTER in W.tool_qualities))
 		if (bulb)
 			user.visible_message(span_notice("[user] begins to disconnect [src]'s flashbulb."), span_notice("You begin to disconnect [src]'s flashbulb..."))
 			if(W.use_tool(src, user, 30, volume=50) && bulb)
@@ -79,7 +79,7 @@
 		else
 			to_chat(user, span_warning("A flashbulb is already installed in [src]!"))
 
-	else if (W.tool_behaviour == TOOL_WRENCH)
+	else if ((TOOL_WRENCH in W.tool_qualities))
 		if(!bulb)
 			to_chat(user, span_notice("You start unsecuring the flasher frame..."))
 			if(W.use_tool(src, user, 40, volume=50))
@@ -175,7 +175,7 @@
 			flash()
 
 /obj/machinery/flasher/portable/attackby(obj/item/W, mob/user, params)
-	if (W.tool_behaviour == TOOL_WRENCH)
+	if ((TOOL_WRENCH in W.tool_qualities))
 		W.play_tool_sound(src, 100)
 
 		if (!anchored && !isinspace())

@@ -60,7 +60,7 @@
 	return food_stored >= STORAGE_CAPACITY
 
 /obj/machinery/food_cart/attackby(obj/item/O, mob/user, params)
-	if(O.tool_behaviour == TOOL_WRENCH)
+	if(TOOL_WRENCH in O.tool_qualities)
 		default_unfasten_wrench(user, O, 0)
 		return TRUE
 	if(istype(O, /obj/item/reagent_containers/food/drinks/drinkingglass))

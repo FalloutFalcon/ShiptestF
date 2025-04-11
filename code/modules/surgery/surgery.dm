@@ -105,7 +105,7 @@
 			if(requires_bodypart_type == BODYTYPE_ROBOTIC)
 				required_tool_type = TOOL_SCREWDRIVER
 
-			if(tool.tool_behaviour == required_tool_type)
+			if(required_tool_type in tool.tool_qualities)
 				// Cancel the surgery if a cautery is used AND it's not the tool used in the next step.
 				attempt_cancel_surgery(src, tool, target, user)
 				return TRUE

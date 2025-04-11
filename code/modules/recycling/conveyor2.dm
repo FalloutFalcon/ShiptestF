@@ -163,7 +163,7 @@ GLOBAL_LIST_EMPTY(conveyors_by_id)
 
 // attack with item, place item on conveyor
 /obj/machinery/conveyor/attackby(obj/item/I, mob/user, params)
-	if(I.tool_behaviour == TOOL_CROWBAR)
+	if(TOOL_CROWBAR in I.tool_qualities)
 		user.visible_message(span_notice("[user] struggles to pry up \the [src] with \the [I]."), \
 		span_notice("You struggle to pry up \the [src] with \the [I]."))
 		if(I.use_tool(src, user, 40, volume=40))
@@ -173,14 +173,14 @@ GLOBAL_LIST_EMPTY(conveyors_by_id)
 			to_chat(user, span_notice("You remove the conveyor belt."))
 			qdel(src)
 
-	else if(I.tool_behaviour == TOOL_WRENCH)
+	else if(TOOL_WRENCH in I.tool_qualities)
 		if(!(machine_stat & BROKEN))
 			I.play_tool_sound(src)
 			setDir(turn(dir,-45))
 			update_move_direction()
 			to_chat(user, span_notice("You rotate [src]."))
 
-	else if(I.tool_behaviour == TOOL_SCREWDRIVER)
+	else if(TOOL_SCREWDRIVER in I.tool_qualities)
 		if(!(machine_stat & BROKEN))
 			verted = verted * -1
 			update_move_direction()
@@ -330,7 +330,7 @@ GLOBAL_LIST_EMPTY(conveyors_by_id)
 
 
 /obj/machinery/conveyor_switch/attackby(obj/item/I, mob/user, params)
-	if(I.tool_behaviour == TOOL_CROWBAR)
+	if(TOOL_CROWBAR in I.tool_qualities)
 		var/obj/item/conveyor_switch_construct/C = new/obj/item/conveyor_switch_construct(src.loc)
 		C.id = id
 		transfer_fingerprints_to(C)
