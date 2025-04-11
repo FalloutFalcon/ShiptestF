@@ -121,7 +121,7 @@
 	return
 
 /obj/machinery/shieldgen/attackby(obj/item/W, mob/user, params)
-	if(TOOL_SCREWDRIVER in W.tool_qualities)
+	if(QUALITY_SCREW_DRIVING in W.tool_qualities)
 		W.play_tool_sound(src, 100)
 		panel_open = !panel_open
 		if(panel_open)
@@ -143,7 +143,7 @@
 			to_chat(user, span_notice("You repair \the [src]."))
 			update_appearance()
 
-	else if(TOOL_WRENCH in W.tool_qualities)
+	else if(QUALITY_BOLT_TURNING in W.tool_qualities)
 		if(locked)
 			to_chat(user, span_warning("The bolts are covered! Unlocking this would retract the covers."))
 			return
@@ -499,7 +499,7 @@
 	return TRUE
 
 /obj/machinery/power/shieldwallgen/atmos/attacked_by(obj/item/I, mob/living/user)
-	if(TOOL_MULTITOOL in I.tool_qualities)
+	if(QUALITY_PULSING in I.tool_qualities)
 		var/obj/item/multitool/multi = I
 		if(!panel_open && !locked)
 			if(istype(multi.buffer,/obj/item/assembly/control/shieldwallgen))

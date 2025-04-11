@@ -55,7 +55,7 @@
 /obj/item/grenade/chem_grenade/attackby(obj/item/I, mob/user, params)
 	if(istype(I,/obj/item/assembly) && stage == GRENADE_WIRED)
 		wires.interact(user)
-	if(TOOL_SCREWDRIVER in I.tool_qualities)
+	if(QUALITY_SCREW_DRIVING in I.tool_qualities)
 		if(stage == GRENADE_WIRED)
 			if(beakers.len)
 				stage_change(GRENADE_READY)
@@ -101,11 +101,11 @@
 			to_chat(user, span_warning("You need one length of coil to wire the assembly!"))
 			return
 
-	else if(stage == GRENADE_READY && (TOOL_WIRECUTTER in I.tool_qualities) && !active)
+	else if(stage == GRENADE_READY && (QUALITY_WIRE_CUTTING in I.tool_qualities) && !active)
 		stage_change(GRENADE_WIRED)
 		to_chat(user, span_notice("You unlock the [initial(name)] assembly."))
 
-	else if(stage == GRENADE_WIRED && (TOOL_WRENCH in I.tool_qualities))
+	else if(stage == GRENADE_WIRED && (QUALITY_BOLT_TURNING in I.tool_qualities))
 		if(beakers.len)
 			for(var/obj/O in beakers)
 				O.forceMove(drop_location())
@@ -242,7 +242,7 @@
 	var/unit_spread = 10 // Amount of units per repeat. Can be altered with a multitool.
 
 /obj/item/grenade/chem_grenade/adv_release/attackby(obj/item/I, mob/user, params)
-	if((TOOL_MULTITOOL in I.tool_qualities) && !active)
+	if((QUALITY_PULSING in I.tool_qualities) && !active)
 		var/newspread = text2num(stripped_input(user, "Please enter a new spread amount", name))
 		if (newspread != null && user.canUseTopic(src, BE_CLOSE))
 			newspread = round(newspread)

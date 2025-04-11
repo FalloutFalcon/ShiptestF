@@ -238,7 +238,7 @@
 		else
 			to_chat(user, span_warning("You need to attach a flash to it first!"))
 
-	else if ((TOOL_MULTITOOL in W.tool_qualities))
+	else if ((QUALITY_PULSING in W.tool_qualities))
 		if(check_completion())
 			ui_interact(user)
 		else
@@ -363,7 +363,7 @@
 	if(isobserver(user))
 		return ..()
 	var/obj/item/held_item = user.get_active_held_item()
-	if(held_item?.tool_behaviour == TOOL_MULTITOOL)
+	if(held_item?.tool_behaviour == QUALITY_PULSING)
 		return ..()
 	to_chat(user, span_warning("You need a multitool to access debug settings!"))
 	return UI_CLOSE

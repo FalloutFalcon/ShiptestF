@@ -29,7 +29,7 @@
 	return ..()
 
 /obj/vehicle/ridden/atv/attackby(obj/item/W as obj, mob/user as mob, params)
-	if((TOOL_WELDER in W.tool_qualities) && user.a_intent != INTENT_HARM)
+	if((QUALITY_WELDING in W.tool_qualities) && user.a_intent != INTENT_HARM)
 		if(obj_integrity < max_integrity)
 			if(W.use_tool(src, user, 0, volume=50, amount=1))
 				user.visible_message(span_notice("[user] repairs some damage to [name]."), span_notice("You repair some damage to \the [src]."))

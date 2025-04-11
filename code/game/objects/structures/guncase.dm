@@ -53,7 +53,7 @@
 
 /obj/structure/guncloset/tool_act(mob/living/user, obj/item/I)
 	. = TRUE
-	if ((TOOL_WRENCH in I.tool_qualities))
+	if ((QUALITY_BOLT_TURNING in I.tool_qualities))
 		if(isinspace() && !anchored)
 			return
 		set_anchored(!anchored)
@@ -63,7 +63,7 @@
 				span_hear("You hear a ratchet.")
 		)
 		return
-	else if ((TOOL_WELDER in I.tool_qualities) || (TOOL_DECONSTRUCT in I.tool_qualities))
+	else if ((QUALITY_WELDING in I.tool_qualities) || (QUALITY_DECONSTRUCT in I.tool_qualities))
 		if(contents.len)
 			to_chat(user, span_danger("\The [src] is not empty!"))
 			return

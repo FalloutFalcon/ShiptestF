@@ -18,7 +18,7 @@
 	var/obj/item/IC = null
 
 /datum/surgery_step/handle_cavity/tool_check(mob/user, obj/item/tool)
-	if((TOOL_CAUTERY in tool.tool_qualities) || istype(tool, /obj/item/gun/energy/laser))
+	if((QUALITY_CAUTERIZING in tool.tool_qualities) || istype(tool, /obj/item/gun/energy/laser))
 		return FALSE
 	return !tool.get_temperature()
 

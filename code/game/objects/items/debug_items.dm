@@ -69,32 +69,32 @@
 		return
 	switch(tool_result)
 		if("Crowbar")
-			tool_behaviour = TOOL_CROWBAR
+			tool_behaviour = QUALITY_PRYING
 		if("Multitool")
-			tool_behaviour = TOOL_MULTITOOL
+			tool_behaviour = QUALITY_PULSING
 		if("Screwdriver")
-			tool_behaviour = TOOL_SCREWDRIVER
+			tool_behaviour = QUALITY_SCREW_DRIVING
 		if("Wirecutters")
-			tool_behaviour = TOOL_WIRECUTTER
+			tool_behaviour = QUALITY_WIRE_CUTTING
 		if("Wrench")
-			tool_behaviour = TOOL_WRENCH
+			tool_behaviour = QUALITY_BOLT_TURNING
 		if("Welding Tool")
-			tool_behaviour = TOOL_WELDER
+			tool_behaviour = QUALITY_WELDING
 		if("Analyzer")
-			tool_behaviour = TOOL_ANALYZER
+			tool_behaviour = QUALITY_SCANNING
 		if("Mining Tool")
-			tool_behaviour = TOOL_MINING
+			tool_behaviour = QUALITY_DIGGING
 		if("Shovel")
-			tool_behaviour = TOOL_SHOVEL
+			tool_behaviour = QUALITY_SHOVELING
 		if("Retractor")
-			tool_behaviour = TOOL_RETRACTOR
+			tool_behaviour = QUALITY_RETRACTING
 		if("Hemostat")
-			tool_behaviour = TOOL_HEMOSTAT
+			tool_behaviour = QUALITY_CLAMPING
 		if("Cautery")
-			tool_behaviour = TOOL_CAUTERY
+			tool_behaviour = QUALITY_CAUTERIZING
 		if("Drill")
-			tool_behaviour = TOOL_DRILL
+			tool_behaviour = QUALITY_DRILLING
 		if("Scalpel")
-			tool_behaviour = TOOL_SCALPEL
+			tool_behaviour = QUALITY_CUTTING
 		if("Saw")
-			tool_behaviour = TOOL_SAW
+			tool_behaviour = QUALITY_SAWING

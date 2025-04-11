@@ -75,7 +75,7 @@
 		/obj/item/mmi = 100)
 	preop_sound = 'sound/surgery/organ2.ogg'
 	success_sound = 'sound/surgery/organ1.ogg'
-	var/implements_extract = list(TOOL_HEMOSTAT = 100, TOOL_CROWBAR = 55, /obj/item/kitchen/fork = 35)
+	var/implements_extract = list(QUALITY_CLAMPING = 100, QUALITY_PRYING = 55, /obj/item/kitchen/fork = 35)
 	var/current_type
 	var/obj/item/organ/manipulated_organ = null
 

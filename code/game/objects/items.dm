@@ -185,6 +185,7 @@ GLOBAL_VAR_INIT(embedpocalypse, FALSE) // if true, all items will be able to emb
 	var/toolspeed = 1
 	/// how much damage does this item do when tearing down walls during deconstruction steps?
 	var/wall_decon_damage = 0
+	var/list/tool_qualities// List of item qualities for tools system. See qualities.dm.
 
 	var/block_chance = 0
 	var/block_cooldown_time = 1 SECONDS
@@ -1036,7 +1037,7 @@ GLOBAL_VAR_INIT(embedpocalypse, FALSE) // if true, all items will be able to emb
 
 	var/skill_modifier = 1
 
-	if(tool_behaviour == TOOL_MINING && ishuman(user))
+	if(tool_behaviour == QUALITY_DIGGING && ishuman(user))
 		var/mob/living/carbon/human/H = user
 		skill_modifier = H.mind.get_skill_modifier(/datum/skill/mining, SKILL_SPEED_MODIFIER)
 

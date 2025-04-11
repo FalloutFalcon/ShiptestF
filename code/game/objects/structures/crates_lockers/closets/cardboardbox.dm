@@ -8,7 +8,7 @@
 	max_integrity = 70
 	integrity_failure = 0
 	can_weld_shut = 0
-	cutting_tool = TOOL_WIRECUTTER
+	cutting_tool = QUALITY_WIRE_CUTTING
 	material_drop = /obj/item/stack/sheet/cardboard
 	delivery_icon = "deliverybox"
 	anchorable = FALSE
@@ -77,7 +77,7 @@
 	mob_storage_capacity = 5
 	resistance_flags = NONE
 	move_speed_multiplier = 2
-	cutting_tool = TOOL_WELDER
+	cutting_tool = QUALITY_WELDING
 	open_sound = 'sound/machines/crate_open.ogg'
 	close_sound = 'sound/machines/crate_close.ogg'
 	open_sound_volume = 35

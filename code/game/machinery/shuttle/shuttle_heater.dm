@@ -399,7 +399,7 @@
 			return
 		return
 
-	if(damage_state == DAMAGE_MED && (TOOL_WRENCH in I.tool_qualities) && metal_repair == TRUE)
+	if(damage_state == DAMAGE_MED && (QUALITY_BOLT_TURNING in I.tool_qualities) && metal_repair == TRUE)
 		to_chat(user, span_notice("You start wrenching down the new plating."))
 		if(I.use_tool(src, user, 60, volume=75))
 			metal_repair = FALSE
@@ -409,7 +409,7 @@
 			return
 		return
 
-	if(damage_state == DAMAGE_LOW && (TOOL_CROWBAR in I.tool_qualities)) //fix low damage with screwdriver
+	if(damage_state == DAMAGE_LOW && (QUALITY_PRYING in I.tool_qualities)) //fix low damage with screwdriver
 		to_chat(user, span_notice("You start prying in the insulation layer."))
 		if(I.use_tool(src, user, 60, volume=75))
 			damage_state = DAMAGE_NONE
@@ -418,7 +418,7 @@
 			return
 		return
 
-	if(damage_state == DAMAGE_NONE && (TOOL_SCREWDRIVER in I.tool_qualities) && pressure_damage >= PRESSURE_DAMAGE_MAX / 2) //lets you fix pressure damage before it increases damage state
+	if(damage_state == DAMAGE_NONE && (QUALITY_SCREW_DRIVING in I.tool_qualities) && pressure_damage >= PRESSURE_DAMAGE_MAX / 2) //lets you fix pressure damage before it increases damage state
 		to_chat(user, span_notice("You start tightening loose screws."))
 		if(I.use_tool(src, user, 60, volume=75))
 			pressure_damage = 0

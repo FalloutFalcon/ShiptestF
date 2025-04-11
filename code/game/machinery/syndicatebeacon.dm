@@ -55,7 +55,7 @@
 		to_chat(user, span_warning("You need to screw \the [src] to the floor first!"))
 
 /obj/machinery/power/singularity_beacon/attackby(obj/item/W, mob/user, params)
-	if(TOOL_WRENCH in W.tool_qualities)
+	if(QUALITY_BOLT_TURNING in W.tool_qualities)
 		if(active)
 			to_chat(user, span_warning("You need to deactivate \the [src] first!"))
 			return
@@ -72,7 +72,7 @@
 			set_anchored(TRUE)
 			to_chat(user, span_notice("You bolt \the [src] to the floor and attach it to the cable."))
 			return
-	else if(TOOL_SCREWDRIVER in W.tool_qualities)
+	else if(QUALITY_SCREW_DRIVING in W.tool_qualities)
 		user.visible_message( \
 			"[user] messes with \the [src] for a bit.", \
 			span_notice("You can't fit the screwdriver into \the [src]'s bolts! Try using a wrench."))

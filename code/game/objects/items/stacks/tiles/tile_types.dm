@@ -50,7 +50,7 @@
 
 /obj/item/stack/tile/attackby(obj/item/W, mob/user, params)
 
-	if ((TOOL_WELDER in W.tool_qualities))
+	if ((QUALITY_WELDING in W.tool_qualities))
 		if(get_amount() < 4)
 			to_chat(user, span_warning("You need at least four tiles to do this!"))
 			return

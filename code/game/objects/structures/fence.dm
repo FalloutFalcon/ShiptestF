@@ -58,7 +58,7 @@
 	hole_size = LARGE_HOLE
 
 /obj/structure/fence/attackby(obj/item/W, mob/user)
-	if(TOOL_WIRECUTTER in W.tool_qualities)
+	if(QUALITY_WIRE_CUTTING in W.tool_qualities)
 		if(!cuttable)
 			to_chat(user, span_warning("This section of the fence can't be cut!"))
 			return

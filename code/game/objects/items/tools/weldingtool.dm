@@ -27,7 +27,7 @@
 	armor = list("melee" = 0, "bullet" = 0, "laser" = 0, "energy" = 0, "bomb" = 0, "bio" = 0, "rad" = 0, "fire" = 100, "acid" = 30)
 	resistance_flags = FIRE_PROOF
 	heat = 3800
-	tool_behaviour = TOOL_WELDER
+	tool_behaviour = QUALITY_WELDING
 	toolspeed = 1
 	custom_materials = list(/datum/material/iron=70, /datum/material/glass=30)
 	///Whether the welding tool is on or off.
@@ -96,7 +96,7 @@
 	open_flame()
 
 /obj/item/weldingtool/attackby(obj/item/I, mob/user, params)
-	if(TOOL_SCREWDRIVER in I.tool_qualities)
+	if(QUALITY_SCREW_DRIVING in I.tool_qualities)
 		flamethrower_screwdriver(I, user)
 	else
 		. = ..()

@@ -13,7 +13,7 @@
 	energy_drain = 10
 	force = 15
 	harmful = TRUE
-	tool_behaviour = TOOL_DRILL
+	tool_behaviour = QUALITY_DRILLING
 	toolspeed = 0.9
 	var/drill_delay = 7
 	var/drill_level = DRILL_BASIC

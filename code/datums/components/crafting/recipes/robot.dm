@@ -10,7 +10,7 @@
 				/obj/item/stack/cable_coil = 1,
 				/obj/item/gun/energy/disabler = 1,
 				/obj/item/assembly/prox_sensor = 1)
-	tools = list(TOOL_WELDER, TOOL_SCREWDRIVER)
+	tools = list(QUALITY_WELDING, QUALITY_SCREW_DRIVING)
 	time = 60
 	category = CAT_ROBOT
 
@@ -22,7 +22,7 @@
 				/obj/item/melee/baton = 1,
 				/obj/item/assembly/prox_sensor = 1,
 				/obj/item/bodypart/r_arm/robot = 1)
-	tools = list(TOOL_WELDER)
+	tools = list(QUALITY_WELDING)
 	time = 60
 	category = CAT_ROBOT
 

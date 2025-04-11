@@ -21,7 +21,7 @@
 	hitsound = "swing_hit"
 	sharpness = IS_SHARP
 	actions_types = list(/datum/action/item_action/startchainsaw)
-	tool_behaviour = TOOL_SAW
+	tool_behaviour = QUALITY_SAWING
 	toolspeed = 0.5
 	var/on = FALSE
 

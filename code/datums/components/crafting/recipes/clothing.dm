@@ -65,7 +65,7 @@
 	name = "Security HUDsunglasses"
 	result = /obj/item/clothing/glasses/hud/security/sunglasses
 	time = 20
-	tools = list(TOOL_SCREWDRIVER, TOOL_WIRECUTTER)
+	tools = list(QUALITY_SCREW_DRIVING, QUALITY_WIRE_CUTTING)
 	reqs = list(
 		/obj/item/clothing/glasses/hud/security = 1,
 		/obj/item/clothing/glasses/sunglasses = 1,
@@ -77,7 +77,7 @@
 	name = "Medical HUDsunglasses"
 	result = /obj/item/clothing/glasses/hud/health/sunglasses
 	time = 20
-	tools = list(TOOL_SCREWDRIVER, TOOL_WIRECUTTER)
+	tools = list(QUALITY_SCREW_DRIVING, QUALITY_WIRE_CUTTING)
 	reqs = list(
 		/obj/item/clothing/glasses/hud/health = 1,
 		/obj/item/clothing/glasses/sunglasses = 1,
@@ -89,7 +89,7 @@
 	name = "Diagnostic HUDsunglasses"
 	result = /obj/item/clothing/glasses/hud/diagnostic/sunglasses
 	time = 20
-	tools = list(TOOL_SCREWDRIVER, TOOL_WIRECUTTER)
+	tools = list(QUALITY_SCREW_DRIVING, QUALITY_WIRE_CUTTING)
 	reqs = list(
 		/obj/item/clothing/glasses/hud/diagnostic = 1,
 		/obj/item/clothing/glasses/sunglasses = 1,
@@ -101,7 +101,7 @@
 	name = "Science Sunglasses"
 	result = /obj/item/clothing/glasses/sunglasses/chemical
 	time = 20
-	tools = list(TOOL_SCREWDRIVER, TOOL_WIRECUTTER)
+	tools = list(QUALITY_SCREW_DRIVING, QUALITY_WIRE_CUTTING)
 	reqs = list(
 		/obj/item/clothing/glasses/science = 1,
 		/obj/item/clothing/glasses/sunglasses = 1,
@@ -113,7 +113,7 @@
 	name = "MedicalHUD Prescription Glasses"
 	result = /obj/item/clothing/glasses/hud/health/prescription
 	time = 20
-	tools = list(TOOL_SCREWDRIVER, TOOL_WIRECUTTER)
+	tools = list(QUALITY_SCREW_DRIVING, QUALITY_WIRE_CUTTING)
 	reqs = list(
 		/obj/item/clothing/glasses/hud/health = 1,
 		/obj/item/clothing/glasses/regular = 1,
@@ -125,7 +125,7 @@
 	name = "SecurityHUD Prescription Glasses"
 	result = /obj/item/clothing/glasses/hud/security/prescription
 	time = 20
-	tools = list(TOOL_SCREWDRIVER, TOOL_WIRECUTTER)
+	tools = list(QUALITY_SCREW_DRIVING, QUALITY_WIRE_CUTTING)
 	reqs = list(
 		/obj/item/clothing/glasses/hud/security = 1,
 		/obj/item/clothing/glasses/regular = 1,
@@ -137,7 +137,7 @@
 	name = "Meson Prescription Glasses"
 	result = /obj/item/clothing/glasses/meson/prescription
 	time = 20
-	tools = list(TOOL_SCREWDRIVER, TOOL_WIRECUTTER)
+	tools = list(QUALITY_SCREW_DRIVING, QUALITY_WIRE_CUTTING)
 	reqs = list(
 		/obj/item/clothing/glasses/meson = 1,
 		/obj/item/clothing/glasses/regular = 1,
@@ -149,7 +149,7 @@
 	name = "Science Prescription Glasses"
 	result = /obj/item/clothing/glasses/science/prescription
 	time = 20
-	tools = list(TOOL_SCREWDRIVER, TOOL_WIRECUTTER)
+	tools = list(QUALITY_SCREW_DRIVING, QUALITY_WIRE_CUTTING)
 	reqs = list(
 		/obj/item/clothing/glasses/science = 1,
 		/obj/item/clothing/glasses/regular = 1,
@@ -162,7 +162,7 @@
 	name = "Ghost Sheet"
 	result = /obj/item/clothing/suit/ghost_sheet
 	time = 5
-	tools = list(TOOL_WIRECUTTER)
+	tools = list(QUALITY_WIRE_CUTTING)
 	reqs = list(/obj/item/bedsheet = 1)
 	category = CAT_CLOTHING
 

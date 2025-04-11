@@ -147,7 +147,7 @@
 		to_chat(user, span_notice("[icon2html(src, user)] Target is free of radioactive contamination."))
 
 /obj/item/geiger_counter/attackby(obj/item/I, mob/user, params)
-	if((TOOL_SCREWDRIVER in I.tool_qualities) && (obj_flags & EMAGGED))
+	if((QUALITY_SCREW_DRIVING in I.tool_qualities) && (obj_flags & EMAGGED))
 		if(scanning)
 			to_chat(user, span_warning("Turn off [src] before you perform this action!"))
 			return 0

@@ -503,6 +503,6 @@
 	AddComponent(/datum/component/empprotection, EMP_PROTECT_SELF|EMP_PROTECT_WIRES)
 
 /obj/machinery/door/airlock/outpost/attackby(obj/item/C, mob/user, params) //maintenance panel cannot be opened
-	if(TOOL_SCREWDRIVER in C.tool_qualities)
+	if(QUALITY_SCREW_DRIVING in C.tool_qualities)
 		return
 	..()

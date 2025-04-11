@@ -63,7 +63,7 @@
 		heat = initial(heat)
 		STOP_PROCESSING(SSobj, src)
 
-	tool_behaviour = (active ? TOOL_SAW : NONE) //Lets energy weapons cut trees. Also lets them do bonecutting surgery, which is kinda metal!
+	tool_behaviour = (active ? QUALITY_SAWING : NONE) //Lets energy weapons cut trees. Also lets them do bonecutting surgery, which is kinda metal!
 	if(user)
 		balloon_alert(user, "[name] [active ? "enabled":"disabled"]")
 	playsound(src, active ? 'sound/weapons/saberon.ogg' : 'sound/weapons/saberoff.ogg', 35, TRUE)
@@ -168,7 +168,7 @@
 	w_class = WEIGHT_CLASS_NORMAL
 	sharpness = IS_SHARP
 	light_color = LIGHT_COLOR_LIGHT_CYAN
-	tool_behaviour = TOOL_SAW
+	tool_behaviour = QUALITY_SAWING
 	toolspeed = 0.7 //faster as a saw
 
 /obj/item/melee/energy/sword/cyborg/saw/hit_reaction(mob/living/carbon/human/owner, atom/movable/hitby, attack_text = "the attack", final_block_chance = 0, damage = 0, attack_type = MELEE_ATTACK)
@@ -207,7 +207,7 @@
 	possible_colors = list("yellow" = COLOR_YELLOW)
 
 /obj/item/melee/energy/sword/saber/attackby(obj/item/W, mob/living/user, params)
-	if(TOOL_MULTITOOL in W.tool_qualities)
+	if(QUALITY_PULSING in W.tool_qualities)
 		if(!hacked)
 			hacked = TRUE
 			sword_color = "rainbow"

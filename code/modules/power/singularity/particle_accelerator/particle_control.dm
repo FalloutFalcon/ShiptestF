@@ -213,7 +213,7 @@
 
 	switch(construction_state)
 		if(PA_CONSTRUCTION_UNSECURED)
-			if((TOOL_WRENCH in W.tool_qualities) && !isinspace())
+			if((QUALITY_BOLT_TURNING in W.tool_qualities) && !isinspace())
 				W.play_tool_sound(src, 75)
 				set_anchored(TRUE)
 				user.visible_message(span_notice("[user.name] secures the [name] to the floor."), \
@@ -221,7 +221,7 @@
 				user.changeNext_move(CLICK_CD_MELEE)
 				return //set_anchored handles the rest of the stuff we need to do.
 		if(PA_CONSTRUCTION_UNWIRED)
-			if(TOOL_WRENCH in W.tool_qualities)
+			if(QUALITY_BOLT_TURNING in W.tool_qualities)
 				W.play_tool_sound(src, 75)
 				set_anchored(FALSE)
 				user.visible_message(span_notice("[user.name] detaches the [name] from the floor."), \
@@ -236,18 +236,18 @@
 					construction_state = PA_CONSTRUCTION_PANEL_OPEN
 					did_something = TRUE
 		if(PA_CONSTRUCTION_PANEL_OPEN)
-			if(TOOL_WIRECUTTER in W.tool_qualities)//TODO:Shock user if its on?
+			if(QUALITY_WIRE_CUTTING in W.tool_qualities)//TODO:Shock user if its on?
 				user.visible_message(span_notice("[user.name] removes some wires from the [name]."), \
 					span_notice("You remove some wires."))
 				construction_state = PA_CONSTRUCTION_UNWIRED
 				did_something = TRUE
-			else if(TOOL_SCREWDRIVER in W.tool_qualities)
+			else if(QUALITY_SCREW_DRIVING in W.tool_qualities)
 				user.visible_message(span_notice("[user.name] closes the [name]'s access panel."), \
 					span_notice("You close the access panel."))
 				construction_state = PA_CONSTRUCTION_COMPLETE
 				did_something = TRUE
 		if(PA_CONSTRUCTION_COMPLETE)
-			if(TOOL_SCREWDRIVER in W.tool_qualities)
+			if(QUALITY_SCREW_DRIVING in W.tool_qualities)
 				user.visible_message(span_notice("[user.name] opens the [name]'s access panel."), \
 					span_notice("You open the access panel."))
 				construction_state = PA_CONSTRUCTION_PANEL_OPEN

@@ -128,7 +128,7 @@
 		return
 
 	if(welded)
-		if(TOOL_WRENCH in C.tool_qualities)
+		if(QUALITY_BOLT_TURNING in C.tool_qualities)
 			if(boltslocked)
 				to_chat(user, span_notice("There are screws locking the bolts in place!"))
 				return
@@ -144,7 +144,7 @@
 				span_notice("You undo [src]'s floor bolts."))
 			deconstruct(TRUE)
 			return
-		if(TOOL_SCREWDRIVER in C.tool_qualities)
+		if(QUALITY_SCREW_DRIVING in C.tool_qualities)
 			user.visible_message(
 				span_notice("[user] [boltslocked ? "unlocks" : "locks"] [src]'s bolts."), \
 				span_notice("You [boltslocked ? "unlock" : "lock"] [src]'s floor bolts."))
@@ -523,7 +523,7 @@
 /obj/structure/firelock_frame/attackby(obj/item/C, mob/user)
 	switch(constructionStep)
 		if(CONSTRUCTION_PANEL_OPEN)
-			if(TOOL_CROWBAR in C.tool_qualities)
+			if(QUALITY_PRYING in C.tool_qualities)
 				C.play_tool_sound(src)
 				user.visible_message(
 					span_notice("[user] starts prying something out from [src]..."), \
@@ -539,7 +539,7 @@
 				constructionStep = CONSTRUCTION_WIRES_EXPOSED
 				update_appearance()
 				return
-			if(TOOL_WRENCH in C.tool_qualities)
+			if(QUALITY_BOLT_TURNING in C.tool_qualities)
 				var/obj/machinery/door/firedoor/A = locate(/obj/machinery/door/firedoor) in get_turf(src)
 				if(A && A.dir == src.dir)
 					to_chat(user, span_warning("There's already a firelock there."))
@@ -589,7 +589,7 @@
 				return
 
 		if(CONSTRUCTION_WIRES_EXPOSED)
-			if(TOOL_WIRECUTTER in C.tool_qualities)
+			if(QUALITY_WIRE_CUTTING in C.tool_qualities)
 				C.play_tool_sound(src)
 				user.visible_message(
 					span_notice("[user] starts cutting the wires from [src]..."), \
@@ -605,7 +605,7 @@
 				constructionStep = CONSTRUCTION_GUTTED
 				update_appearance()
 				return
-			if(TOOL_CROWBAR in C.tool_qualities)
+			if(QUALITY_PRYING in C.tool_qualities)
 				C.play_tool_sound(src)
 				user.visible_message(
 					span_notice("[user] starts prying a metal plate into [src]..."), \
@@ -622,7 +622,7 @@
 				update_appearance()
 				return
 		if(CONSTRUCTION_GUTTED)
-			if(TOOL_CROWBAR in C.tool_qualities)
+			if(QUALITY_PRYING in C.tool_qualities)
 				user.visible_message(
 					span_notice("[user] begins removing the circuit board from [src]..."), \
 					span_notice("You begin prying out the circuit board from [src]..."))
@@ -658,7 +658,7 @@
 					update_appearance()
 				return
 		if(CONSTRUCTION_NOCIRCUIT)
-			if(TOOL_WELDER in C.tool_qualities)
+			if(QUALITY_WELDING in C.tool_qualities)
 				if(!C.tool_start_check(user, amount=1))
 					return
 				user.visible_message(

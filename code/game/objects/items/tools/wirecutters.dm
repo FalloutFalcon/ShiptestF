@@ -19,7 +19,7 @@
 	drop_sound = 'sound/items/handling/wirecutter_drop.ogg'
 	pickup_sound =  'sound/items/handling/wirecutter_pickup.ogg'
 
-	tool_behaviour = TOOL_WIRECUTTER
+	tool_behaviour = QUALITY_WIRE_CUTTING
 	toolspeed = 1
 	armor = list("melee" = 0, "bullet" = 0, "laser" = 0, "energy" = 0, "bomb" = 0, "bio" = 0, "rad" = 0, "fire" = 50, "acid" = 30)
 	var/random_color = TRUE

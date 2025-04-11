@@ -7,9 +7,9 @@
 /datum/surgery_step/reshape_face
 	name = "reshape face"
 	implements = list(
-		TOOL_SCALPEL = 100,
+		QUALITY_CUTTING = 100,
 		/obj/item/melee/knife = 40,
-		TOOL_WIRECUTTER = 33)
+		QUALITY_WIRE_CUTTING = 33)
 	time = 64
 	experience_given = MEDICAL_SKILL_MEDIUM
 

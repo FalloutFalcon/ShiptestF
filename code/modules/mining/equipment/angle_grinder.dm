@@ -26,7 +26,7 @@
 	attack_verb = list("lacerated", "ripped", "sliced", "sawed", "cut", "chopped", "diced")
 	hitsound = 'sound/weapons/anglegrinder.ogg'
 	usesound = 'sound/weapons/anglegrinder.ogg'
-	tool_behaviour = null // is set to TOOL_DECONSTRUCT once wielded
+	tool_behaviour = null // is set to QUALITY_DECONSTRUCT once wielded
 	toolspeed = 0.6
 	wall_decon_damage = 350
 	usecost = 2.5
@@ -76,7 +76,7 @@
 /obj/item/gear_handle/anglegrinder/proc/on_wield(obj/item/source, mob/user)
 	SIGNAL_HANDLER
 
-	tool_behaviour = TOOL_DECONSTRUCT
+	tool_behaviour = QUALITY_DECONSTRUCT
 	wielded = TRUE
 	sharpness = IS_SHARP
 	icon_state = "[initial(item_state)]-wield"

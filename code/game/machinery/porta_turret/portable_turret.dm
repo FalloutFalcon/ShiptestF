@@ -305,7 +305,7 @@
 	check_should_process()
 
 /obj/machinery/porta_turret/attackby(obj/item/I, mob/user, params)
-	if(machine_stat & BROKEN && (TOOL_CROWBAR in I.tool_qualities))
+	if(machine_stat & BROKEN && (QUALITY_PRYING in I.tool_qualities))
 		//If the turret is destroyed, you can remove it with a crowbar to
 		//try and salvage its components
 		to_chat(user, span_notice("You begin prying the metal coverings off..."))
@@ -324,7 +324,7 @@
 			qdel(src)
 		return
 
-	if((TOOL_WELDER in I.tool_qualities) && user.a_intent == INTENT_HELP)
+	if((QUALITY_WELDING in I.tool_qualities) && user.a_intent == INTENT_HELP)
 		if(obj_integrity >= max_integrity)
 			to_chat(user, span_warning("[src] is already in good condition!"))
 			return
@@ -345,7 +345,7 @@
 		return
 
 
-	if(((TOOL_WRENCH in I.tool_qualities)) && !on)
+	if(((QUALITY_BOLT_TURNING in I.tool_qualities)) && !on)
 		//This code handles moving the turret around. After all, it's a portable turret!
 		if(!anchored && !isinspace())
 			set_anchored(TRUE)
@@ -357,7 +357,7 @@
 			power_change()
 		return
 
-	if(TOOL_MULTITOOL in I.tool_qualities)
+	if(QUALITY_PULSING in I.tool_qualities)
 		if(locked)
 			to_chat(user, span_warning("The controls are locked."))
 			return

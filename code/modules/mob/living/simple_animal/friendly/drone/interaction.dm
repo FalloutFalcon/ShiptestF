@@ -90,7 +90,7 @@
 
 
 /mob/living/simple_animal/drone/attackby(obj/item/I, mob/user)
-	if(TOOL_SCREWDRIVER in I.tool_qualities)
+	if(QUALITY_SCREW_DRIVING in I.tool_qualities)
 		if(stat == DEAD)
 			try_reactivate(user)
 			return
@@ -104,7 +104,7 @@
 		else
 			to_chat(user, span_warning("[src]'s screws can't get any tighter!"))
 		return //This used to not exist and drones who repaired themselves also stabbed the shit out of themselves.
-	else if((TOOL_WRENCH in I.tool_qualities) && user != src) //They aren't required to be hacked, because laws can change in other ways (i.e. admins)
+	else if((QUALITY_BOLT_TURNING in I.tool_qualities) && user != src) //They aren't required to be hacked, because laws can change in other ways (i.e. admins)
 		user.visible_message(
 			span_notice("[user] starts resetting [src]..."),
 			span_notice("You press down on [src]'s factory reset control..."))

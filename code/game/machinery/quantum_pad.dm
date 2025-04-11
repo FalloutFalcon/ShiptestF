@@ -56,14 +56,14 @@
 		return
 
 	if(panel_open)
-		if(TOOL_MULTITOOL in I.tool_qualities)
+		if(QUALITY_PULSING in I.tool_qualities)
 			if(!multitool_check_buffer(user, I))
 				return
 			var/obj/item/multitool/M = I
 			M.buffer = src
 			to_chat(user, span_notice("You save the data in [I]'s buffer. It can now be saved to pads with closed panels."))
 			return TRUE
-	else if(TOOL_MULTITOOL in I.tool_qualities)
+	else if(QUALITY_PULSING in I.tool_qualities)
 		if(!multitool_check_buffer(user, I))
 			return
 		var/obj/item/multitool/M = I

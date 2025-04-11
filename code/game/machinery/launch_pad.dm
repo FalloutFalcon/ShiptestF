@@ -59,7 +59,7 @@
 			return
 
 		if(panel_open)
-			if(TOOL_MULTITOOL in I.tool_qualities)
+			if(QUALITY_PULSING in I.tool_qualities)
 				if(!multitool_check_buffer(user, I))
 					return
 				var/obj/item/multitool/M = I

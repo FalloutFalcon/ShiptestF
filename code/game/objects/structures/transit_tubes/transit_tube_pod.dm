@@ -25,7 +25,7 @@
 	return ..()
 
 /obj/structure/transit_tube_pod/attackby(obj/item/I, mob/user, params)
-	if(TOOL_CROWBAR in I.tool_qualities)
+	if(QUALITY_PRYING in I.tool_qualities)
 		if(!moving)
 			I.play_tool_sound(src)
 			if(contents.len)

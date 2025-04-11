@@ -34,7 +34,7 @@
 
 /obj/item/weldingtool/electric/switched_on(mob/user)
 	welding = TRUE
-	tool_behaviour = TOOL_WELDER
+	tool_behaviour = QUALITY_WELDING
 	light_on = TRUE
 	force = 15
 	damtype = BURN

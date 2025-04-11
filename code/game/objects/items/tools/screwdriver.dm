@@ -18,7 +18,7 @@
 	attack_verb = list("stabbed")
 	hitsound = 'sound/weapons/bladeslice.ogg'
 	usesound = list('sound/items/screwdriver.ogg', 'sound/items/screwdriver2.ogg')
-	tool_behaviour = TOOL_SCREWDRIVER
+	tool_behaviour = QUALITY_SCREW_DRIVING
 	toolspeed = 1
 	armor = list("melee" = 0, "bullet" = 0, "laser" = 0, "energy" = 0, "bomb" = 0, "bio" = 0, "rad" = 0, "fire" = 50, "acid" = 30)
 	drop_sound = 'sound/items/handling/screwdriver_drop.ogg'
@@ -103,17 +103,17 @@
 
 /obj/item/screwdriver/power/examine()
 	. = ..()
-	. += " It's fitted with a [tool_behaviour == TOOL_SCREWDRIVER ? "screw" : "bolt"] bit."
+	. += " It's fitted with a [tool_behaviour == QUALITY_SCREW_DRIVING ? "screw" : "bolt"] bit."
 
 /obj/item/screwdriver/power/attack_self(mob/user)
 	playsound(get_turf(user), 'sound/items/change_drill.ogg', 50, TRUE)
-	if(tool_behaviour == TOOL_SCREWDRIVER)
-		tool_behaviour = TOOL_WRENCH
+	if(tool_behaviour == QUALITY_SCREW_DRIVING)
+		tool_behaviour = QUALITY_BOLT_TURNING
 		to_chat(user, span_notice("You attach the bolt bit to [src]."))
 		icon_state = "drill_bolt"
 		update_appearance()
 	else
-		tool_behaviour = TOOL_SCREWDRIVER
+		tool_behaviour = QUALITY_SCREW_DRIVING
 		to_chat(user, span_notice("You attach the screw bit to [src]."))
 		icon_state = "drill_screw"
 		update_appearance()
@@ -135,9 +135,9 @@
 	if(ismob(loc))
 		var/mode_ovelay
 		switch(tool_behaviour)
-			if (TOOL_SCREWDRIVER)
+			if (QUALITY_SCREW_DRIVING)
 				mode_ovelay = "bit_screw"
-			if (TOOL_WRENCH)
+			if (QUALITY_BOLT_TURNING)
 				mode_ovelay = "bit_bolt"
 		. += mode_ovelay
 

@@ -101,9 +101,9 @@
 		if(S.try_op(user, target, user.zone_selected, tool, src, try_to_fail))
 			return TRUE
 		if(tool && tool.item_flags & SURGICAL_TOOL) //Just because you used the wrong tool it doesn't mean you meant to whack the patient with it
-			var/required_tool_type = TOOL_CAUTERY
+			var/required_tool_type = QUALITY_CAUTERIZING
 			if(requires_bodypart_type == BODYTYPE_ROBOTIC)
-				required_tool_type = TOOL_SCREWDRIVER
+				required_tool_type = QUALITY_SCREW_DRIVING
 
 			if(required_tool_type in tool.tool_qualities)
 				// Cancel the surgery if a cautery is used AND it's not the tool used in the next step.

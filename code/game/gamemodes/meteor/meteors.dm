@@ -159,7 +159,7 @@ GLOBAL_LIST_INIT(meteorsC, list(/obj/effect/meteor/dust)) //for space dust event
 		user.client.give_award(/datum/award/achievement/misc/meteor_examine, user)
 
 /obj/effect/meteor/attackby(obj/item/I, mob/user, params)
-	if(TOOL_MINING in I.tool_qualities)
+	if(QUALITY_DIGGING in I.tool_qualities)
 		make_debris()
 		qdel(src)
 	else

@@ -22,7 +22,7 @@
 	if(!(flags_1 & NODECONSTRUCT_1))
 		if(default_unfasten_wrench(user, W))
 			return
-		if(TOOL_WELDER in W.tool_qualities)
+		if(QUALITY_WELDING in W.tool_qualities)
 			if(!W.tool_start_check(user, amount=0))
 				return FALSE
 

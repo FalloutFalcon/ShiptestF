@@ -56,7 +56,7 @@
 /datum/crafting_recipe/improvised_pneumatic_cannon //Pretty easy to obtain but
 	name = "Pneumatic Cannon"
 	result = /obj/item/pneumatic_cannon/ghetto
-	tools = list(TOOL_WELDER, TOOL_WRENCH)
+	tools = list(QUALITY_WELDING, QUALITY_BOLT_TURNING)
 	reqs = list(/obj/item/stack/sheet/metal = 4,
 				/obj/item/stack/packageWrap = 8,
 				/obj/item/pipe = 2)
@@ -70,7 +70,7 @@
 	reqs = list(/obj/item/ammo_casing/shotgun/techshell = 1,
 				/obj/item/rcd_ammo = 1,
 				/obj/item/stock_parts/manipulator = 2)
-	tools = list(TOOL_SCREWDRIVER)
+	tools = list(QUALITY_SCREW_DRIVING)
 	time = 5
 	category = CAT_WEAPONRY
 	subcategory = CAT_AMMO
@@ -83,7 +83,7 @@
 				/obj/item/stock_parts/micro_laser = 1,
 				/obj/item/stock_parts/cell = 1,
 				/datum/reagent/lithium = 5)
-	tools = list(TOOL_SCREWDRIVER)
+	tools = list(QUALITY_SCREW_DRIVING)
 	time = 5
 	category = CAT_WEAPONRY
 	subcategory = CAT_AMMO
@@ -92,7 +92,7 @@
 	name = "Dragonsbreath Shell"
 	result = /obj/item/ammo_casing/shotgun/dragonsbreath
 	reqs = list(/obj/item/ammo_casing/shotgun/techshell = 1, /datum/reagent/phosphorus = 10)
-	tools = list(TOOL_SCREWDRIVER)
+	tools = list(QUALITY_SCREW_DRIVING)
 	time = 5
 	category = CAT_WEAPONRY
 	subcategory = CAT_AMMO
@@ -104,7 +104,7 @@
 				/datum/reagent/glycerol = 5,
 				/datum/reagent/toxin/acid = 5,
 				/datum/reagent/toxin/acid/fluacid = 5)
-	tools = list(TOOL_SCREWDRIVER)
+	tools = list(QUALITY_SCREW_DRIVING)
 	time = 5
 	category = CAT_WEAPONRY
 	subcategory = CAT_AMMO
@@ -118,7 +118,7 @@
 				/obj/item/stock_parts/scanning_module = 1,
 				/datum/reagent/iron = 5,
 				/datum/reagent/uranium = 5)
-	tools = list(TOOL_SCREWDRIVER)
+	tools = list(QUALITY_SCREW_DRIVING)
 	time = 5
 	category = CAT_WEAPONRY
 	subcategory = CAT_AMMO
@@ -129,7 +129,7 @@
 	reqs = list(/obj/item/stack/sheet/metal = 2,
 				/obj/item/stack/cable_coil = 1,
 				/datum/reagent/fuel = 10)
-	tools = list(TOOL_SCREWDRIVER)
+	tools = list(QUALITY_SCREW_DRIVING)
 	time = 12
 	category = CAT_WEAPONRY
 	subcategory = CAT_AMMO
@@ -142,7 +142,7 @@
 				/obj/item/stock_parts/micro_laser = 3,
 				/obj/item/stock_parts/cell = 1,
 				/datum/reagent/lithium = 5)
-	tools = list(TOOL_SCREWDRIVER)
+	tools = list(QUALITY_SCREW_DRIVING)
 	time = 5
 	category = CAT_WEAPONRY
 	subcategory = CAT_AMMO
@@ -154,7 +154,7 @@
 				/obj/item/pipe = 1,
 				/obj/item/weaponcrafting/stock = 1,
 				/obj/item/stack/packageWrap = 5)
-	tools = list(TOOL_SCREWDRIVER)
+	tools = list(QUALITY_SCREW_DRIVING)
 	time = 100
 	category = CAT_WEAPONRY
 	subcategory = CAT_WEAPON
@@ -229,7 +229,7 @@
 /datum/crafting_recipe/ashen_arrow
 	name = "Fire hardened arrow"
 	result = /obj/item/ammo_casing/caseless/arrow/ash
-	tools = list(TOOL_WELDER)
+	tools = list(QUALITY_WELDING)
 	time = 30
 	reqs = list(/obj/item/ammo_casing/caseless/arrow/wood = 1)
 	category = CAT_WEAPONRY
@@ -254,7 +254,7 @@
 			/obj/item/weaponcrafting/receiver = 1,
 			/obj/item/floor_painter = 1,
 			/obj/item/stack/packageWrap = 10)
-	tools = list(TOOL_SCREWDRIVER)
+	tools = list(QUALITY_SCREW_DRIVING)
 	time = 100
 	category = CAT_WEAPONRY
 	subcategory = CAT_WEAPON

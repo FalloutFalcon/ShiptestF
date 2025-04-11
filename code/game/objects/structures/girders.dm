@@ -367,7 +367,7 @@
 
 /obj/structure/girder/bronze/attackby(obj/item/W, mob/living/user, params)
 	add_fingerprint(user)
-	if(TOOL_WELDER in W.tool_qualities)
+	if(QUALITY_WELDING in W.tool_qualities)
 		if(!W.tool_start_check(user, amount = 0))
 			return
 		to_chat(user, span_notice("You start slicing apart [src]..."))

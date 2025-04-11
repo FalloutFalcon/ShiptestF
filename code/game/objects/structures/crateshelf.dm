@@ -80,7 +80,7 @@
 		overlays += image(icon = 'icons/obj/objects.dmi', icon_state = "shelf_stack", layer = stack_layer, pixel_y = stack_offset)
 
 /obj/structure/crate_shelf/attackby(obj/item/item, mob/living/user, params)
-	if ((TOOL_WRENCH in item.tool_qualities) && !(flags_1&NODECONSTRUCT_1))
+	if ((QUALITY_BOLT_TURNING in item.tool_qualities) && !(flags_1&NODECONSTRUCT_1))
 		item.play_tool_sound(src)
 		if(do_after(user, 3 SECONDS, src))
 			deconstruct(TRUE)

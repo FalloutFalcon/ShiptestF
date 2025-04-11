@@ -310,7 +310,7 @@
 				newSaber.sword_color = "rainbow"
 			qdel(W)
 			qdel(src)
-	else if(TOOL_MULTITOOL in W.tool_qualities)
+	else if(QUALITY_PULSING in W.tool_qualities)
 		if(!hacked)
 			hacked = TRUE
 			saber_color = "rainbow"

@@ -155,7 +155,7 @@
 		build_path = PATH_POWERCOIL
 
 /obj/item/circuitboard/machine/tesla_coil/attackby(obj/item/I, mob/user, params)
-	if(TOOL_SCREWDRIVER in I.tool_qualities)
+	if(QUALITY_SCREW_DRIVING in I.tool_qualities)
 		var/obj/item/circuitboard/new_type
 		var/new_setting
 		switch(build_path)
@@ -205,7 +205,7 @@
 	req_components = list()
 
 /obj/item/circuitboard/machine/circulator/attackby(obj/item/I, mob/user, params)
-	if(TOOL_MULTITOOL in I.tool_qualities)
+	if(QUALITY_PULSING in I.tool_qualities)
 		pipe_layer = (pipe_layer >= PIPING_LAYER_MAX) ? PIPING_LAYER_MIN : (pipe_layer + 1)
 		to_chat(user, span_notice("You change the circuitboard to layer [pipe_layer]."))
 		return
@@ -365,7 +365,7 @@
 			build_path = PATH_HEATER
 
 /obj/item/circuitboard/machine/thermomachine/attackby(obj/item/I, mob/user, params)
-	if(TOOL_SCREWDRIVER in I.tool_qualities)
+	if(QUALITY_SCREW_DRIVING in I.tool_qualities)
 		var/obj/item/circuitboard/new_type
 		var/new_setting
 		switch(build_path)
@@ -381,7 +381,7 @@
 		to_chat(user, span_notice("You change the circuitboard setting to \"[new_setting]\"."))
 		return
 
-	if(TOOL_MULTITOOL in I.tool_qualities)
+	if(QUALITY_PULSING in I.tool_qualities)
 		pipe_layer = (pipe_layer >= PIPING_LAYER_MAX) ? PIPING_LAYER_MIN : (pipe_layer + 1)
 		to_chat(user, span_notice("You change the circuitboard to layer [pipe_layer]."))
 		return
@@ -505,7 +505,7 @@
 	var/secure = FALSE
 
 /obj/item/circuitboard/machine/holopad/attackby(obj/item/P, mob/user, params)
-	if(TOOL_MULTITOOL in P.tool_qualities)
+	if(QUALITY_PULSING in P.tool_qualities)
 		if(secure)
 			build_path = /obj/machinery/holopad
 			secure = FALSE
@@ -583,7 +583,7 @@
 	return ..()
 
 /obj/item/circuitboard/machine/smartfridge/attackby(obj/item/I, mob/user, params)
-	if(TOOL_SCREWDRIVER in I.tool_qualities)
+	if(QUALITY_SCREW_DRIVING in I.tool_qualities)
 		var/position = fridges_name_paths.Find(build_path, fridges_name_paths)
 		position = (position == fridges_name_paths.len) ? 1 : (position + 1)
 		build_path = fridges_name_paths[position]
@@ -669,7 +669,7 @@
 		/obj/machinery/vending/custom = "Custom Vendor")
 
 /obj/item/circuitboard/machine/vendor/attackby(obj/item/I, mob/user, params)
-	if(TOOL_SCREWDRIVER in I.tool_qualities)
+	if(QUALITY_SCREW_DRIVING in I.tool_qualities)
 		var/static/list/display_vending_names_paths
 		if(!display_vending_names_paths)
 			display_vending_names_paths = list()
@@ -790,7 +790,7 @@
 	needs_anchored = FALSE
 
 /obj/item/circuitboard/machine/chem_master/attackby(obj/item/I, mob/user, params)
-	if(TOOL_SCREWDRIVER in I.tool_qualities)
+	if(QUALITY_SCREW_DRIVING in I.tool_qualities)
 		var/new_name = "ChemMaster"
 		var/new_path = /obj/machinery/chem_master
 
@@ -1439,7 +1439,7 @@
 		/obj/item/stock_parts/matter_bin = 1)
 
 /obj/item/circuitboard/machine/shuttle/heater/attackby(obj/item/I, mob/user, params)
-	if(TOOL_MULTITOOL in I.tool_qualities)
+	if(QUALITY_PULSING in I.tool_qualities)
 		pipe_layer = (pipe_layer >= PIPING_LAYER_MAX) ? PIPING_LAYER_MIN : (pipe_layer + 1)
 		to_chat(user, span_notice("You change the circuitboard to layer [pipe_layer]."))
 		return
@@ -1459,7 +1459,7 @@
 	)
 
 /obj/item/circuitboard/machine/shuttle/fire_heater/attackby(obj/item/I, mob/user, params)
-	if(TOOL_MULTITOOL in I.tool_qualities)
+	if(QUALITY_PULSING in I.tool_qualities)
 		pipe_layer = (pipe_layer >= PIPING_LAYER_MAX) ? PIPING_LAYER_MIN : (pipe_layer + 1)
 		to_chat(user, span_notice("You change the circuitboard to layer [pipe_layer]."))
 		return

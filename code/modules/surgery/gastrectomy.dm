@@ -23,7 +23,7 @@
 /datum/surgery_step/gastrectomy
 	name = "remove lower duodenum"
 	implements = list(
-		TOOL_SCALPEL = 95,
+		QUALITY_CUTTING = 95,
 		/obj/item/melee/energy/sword = 33,
 		/obj/item/melee/knife = 40,
 		/obj/item/shard = 10)

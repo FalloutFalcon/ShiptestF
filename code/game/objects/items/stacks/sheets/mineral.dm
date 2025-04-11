@@ -243,7 +243,7 @@ GLOBAL_LIST_INIT(gold_recipes, list ( \
 
 /obj/item/stack/sheet/mineral/gold/attackby(obj/item/item, mob/user, params)
 	. = ..()
-	if(item.tool_behaviour != TOOL_WIRECUTTER)
+	if(item.tool_behaviour != QUALITY_WIRE_CUTTING)
 		return
 	playsound(src, 'sound/weapons/slice.ogg', 50, TRUE, -1)
 	to_chat(user, span_notice("You start whittling away some of [src]..."))
@@ -293,7 +293,7 @@ GLOBAL_LIST_INIT(silver_recipes, list ( \
 
 /obj/item/stack/sheet/mineral/silver/attackby(obj/item/item, mob/user, params)
 	. = ..()
-	if(item.tool_behaviour != TOOL_WIRECUTTER)
+	if(item.tool_behaviour != QUALITY_WIRE_CUTTING)
 		return
 	playsound(src, 'sound/weapons/slice.ogg', 50, TRUE, -1)
 	to_chat(user, span_notice("You start whittling away some of [src]..."))

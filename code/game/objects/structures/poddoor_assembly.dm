@@ -56,7 +56,7 @@
 			return
 		created_name = new_name
 
-	else if(TOOL_DECONSTRUCT in item_used.tool_qualities)
+	else if(QUALITY_DECONSTRUCT in item_used.tool_qualities)
 		if(!item_used.tool_start_check(user, amount=0))
 			return
 		user.visible_message(span_notice("[user] cuts apart [src]."), span_notice("You start to slice apart [src]..."))
@@ -64,7 +64,7 @@
 			to_chat(user, span_notice("You disassemble [src]."))
 			deconstruct(TRUE)
 
-	else if(TOOL_WELDER in item_used.tool_qualities)
+	else if(QUALITY_WELDING in item_used.tool_qualities)
 		if(!item_used.tool_start_check(user, amount=0))
 			return
 
@@ -91,7 +91,7 @@
 				to_chat(user, span_notice("You weld [src] from the floor."))
 				welded = FALSE
 
-	else if(TOOL_WRENCH in item_used.tool_qualities)
+	else if(QUALITY_BOLT_TURNING in item_used.tool_qualities)
 		if(!anchored)
 			var/door_check = TRUE
 			if(locate(/obj/machinery/door/poddoor) in loc)
@@ -138,7 +138,7 @@
 			state = AIRLOCK_ASSEMBLY_NEEDS_ELECTRONICS
 			to_chat(user, span_notice("You wire [src]."))
 
-	else if((TOOL_WIRECUTTER in item_used.tool_qualities) && state == AIRLOCK_ASSEMBLY_NEEDS_ELECTRONICS)
+	else if((QUALITY_WIRE_CUTTING in item_used.tool_qualities) && state == AIRLOCK_ASSEMBLY_NEEDS_ELECTRONICS)
 		user.visible_message(span_notice("[user] cuts the wires from [src]."), \
 							span_notice("You start to cut the wires from [src]..."))
 
@@ -163,7 +163,7 @@
 			state = AIRLOCK_ASSEMBLY_NEEDS_SCREWDRIVER
 			electronics = item_used
 
-	else if(((TOOL_CROWBAR in item_used.tool_qualities)) && state == AIRLOCK_ASSEMBLY_NEEDS_SCREWDRIVER)
+	else if(((QUALITY_PRYING in item_used.tool_qualities)) && state == AIRLOCK_ASSEMBLY_NEEDS_SCREWDRIVER)
 		user.visible_message(span_notice("[user] removes the electronics from [src]."), \
 							span_notice("You start to remove electronics from [src]..."))
 
@@ -180,7 +180,7 @@
 				electronics = null
 				airlock_electronics.forceMove(loc)
 
-	else if(((TOOL_SCREWDRIVER in item_used.tool_qualities)) && state == AIRLOCK_ASSEMBLY_NEEDS_SCREWDRIVER && welded)
+	else if(((QUALITY_SCREW_DRIVING in item_used.tool_qualities)) && state == AIRLOCK_ASSEMBLY_NEEDS_SCREWDRIVER && welded)
 		user.visible_message(
 			span_notice("[user] finishes [src]."),
 			span_notice("You start finishing [src]...")

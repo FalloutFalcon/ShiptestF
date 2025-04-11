@@ -70,7 +70,7 @@
 	return TRUE
 
 /obj/structure/AIcore/latejoin_inactive/attackby(obj/item/P, mob/user, params)
-	if(TOOL_MULTITOOL in P.tool_qualities)
+	if(QUALITY_PULSING in P.tool_qualities)
 		active = !active
 		to_chat(user, span_notice("You [active? "activate" : "deactivate"] \the [src]'s transmitters."))
 		return
@@ -85,10 +85,10 @@
 	return ..()
 
 /obj/structure/AIcore/attackby(obj/item/P, mob/user, params)
-	if(TOOL_WRENCH in P.tool_qualities)
+	if(QUALITY_BOLT_TURNING in P.tool_qualities)
 		return default_unfasten_wrench(user, P, 20)
 	if(!anchored)
-		if((TOOL_WELDER in P.tool_qualities) && can_deconstruct)
+		if((QUALITY_WELDING in P.tool_qualities) && can_deconstruct)
 			if(state != EMPTY_CORE)
 				to_chat(user, span_warning("The core must be empty to deconstruct it!"))
 				return
@@ -114,13 +114,13 @@
 					circuit = P
 					return
 			if(CIRCUIT_CORE)
-				if(TOOL_SCREWDRIVER in P.tool_qualities)
+				if(QUALITY_SCREW_DRIVING in P.tool_qualities)
 					P.play_tool_sound(src)
 					to_chat(user, span_notice("You screw the circuit board into place."))
 					state = SCREWED_CORE
 					update_appearance()
 					return
-				if(TOOL_CROWBAR in P.tool_qualities)
+				if(QUALITY_PRYING in P.tool_qualities)
 					P.play_tool_sound(src)
 					to_chat(user, span_notice("You remove the circuit board."))
 					state = EMPTY_CORE
@@ -129,7 +129,7 @@
 					circuit = null
 					return
 			if(SCREWED_CORE)
-				if((TOOL_SCREWDRIVER in P.tool_qualities) && circuit)
+				if((QUALITY_SCREW_DRIVING in P.tool_qualities) && circuit)
 					P.play_tool_sound(src)
 					to_chat(user, span_notice("You unfasten the circuit board."))
 					state = CIRCUIT_CORE
@@ -148,7 +148,7 @@
 						to_chat(user, span_warning("You need five lengths of cable to wire the AI core!"))
 					return
 			if(CABLED_CORE)
-				if(TOOL_WIRECUTTER in P.tool_qualities)
+				if(QUALITY_WIRE_CUTTING in P.tool_qualities)
 					if(brain)
 						to_chat(user, span_warning("Get that [brain.name] out of there first!"))
 					else
@@ -198,7 +198,7 @@
 					update_appearance()
 					return
 
-				if((TOOL_CROWBAR in P.tool_qualities) && brain)
+				if((QUALITY_PRYING in P.tool_qualities) && brain)
 					P.play_tool_sound(src)
 					to_chat(user, span_notice("You remove the brain."))
 					brain.forceMove(loc)
@@ -207,7 +207,7 @@
 					return
 
 			if(GLASS_CORE)
-				if(TOOL_CROWBAR in P.tool_qualities)
+				if(QUALITY_PRYING in P.tool_qualities)
 					P.play_tool_sound(src)
 					to_chat(user, span_notice("You remove the glass panel."))
 					state = CABLED_CORE
@@ -215,7 +215,7 @@
 					new /obj/item/stack/sheet/rglass(loc, 2)
 					return
 
-				if(TOOL_SCREWDRIVER in P.tool_qualities)
+				if(QUALITY_SCREW_DRIVING in P.tool_qualities)
 					P.play_tool_sound(src)
 					to_chat(user, span_notice("You connect the monitor."))
 					if(brain)
@@ -243,7 +243,7 @@
 					P.transfer_ai("INACTIVE", "AICARD", src, user)
 					return
 
-				if(TOOL_SCREWDRIVER in P.tool_qualities)
+				if(QUALITY_SCREW_DRIVING in P.tool_qualities)
 					P.play_tool_sound(src)
 					to_chat(user, span_notice("You disconnect the monitor."))
 					state = GLASS_CORE

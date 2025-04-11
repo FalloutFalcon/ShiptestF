@@ -54,14 +54,14 @@ GLOBAL_LIST_EMPTY(announcement_systems)
 	return ..()
 
 /obj/machinery/announcement_system/attackby(obj/item/P, mob/user, params)
-	if(TOOL_SCREWDRIVER in P.tool_qualities)
+	if(QUALITY_SCREW_DRIVING in P.tool_qualities)
 		P.play_tool_sound(src)
 		panel_open = !panel_open
 		to_chat(user, span_notice("You [panel_open ? "open" : "close"] the maintenance hatch of [src]."))
 		update_appearance()
 	else if(default_deconstruction_crowbar(P))
 		return
-	else if((TOOL_MULTITOOL in P.tool_qualities) && panel_open && (machine_stat & BROKEN))
+	else if((QUALITY_PULSING in P.tool_qualities) && panel_open && (machine_stat & BROKEN))
 		to_chat(user, span_notice("You reset [src]'s firmware."))
 		set_machine_stat(machine_stat & ~BROKEN)
 		update_appearance()

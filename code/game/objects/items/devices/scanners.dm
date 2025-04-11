@@ -446,7 +446,7 @@ GENE SCANNER
 	throwforce = 0
 	throw_speed = 3
 	throw_range = 7
-	tool_behaviour = TOOL_ANALYZER
+	tool_behaviour = QUALITY_SCANNING
 	custom_materials = list(/datum/material/iron=30, /datum/material/glass=20)
 	grind_results = list(/datum/reagent/mercury = 5, /datum/reagent/iron = 5, /datum/reagent/silicon = 5)
 	var/cooldown = FALSE

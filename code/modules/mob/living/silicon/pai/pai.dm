@@ -293,7 +293,7 @@
 	..()
 	user.set_machine(src)
 	if(pai && pai.encryptmod == TRUE)
-		if(TOOL_SCREWDRIVER in W.tool_qualities)
+		if(QUALITY_SCREW_DRIVING in W.tool_qualities)
 			pai.radio.attackby(W, user, params)
 		else if(istype(W, /obj/item/encryptionkey))
 			pai.radio.attackby(W, user, params)

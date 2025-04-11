@@ -141,7 +141,7 @@
 			to_chat(user, span_notice("You insert [W]."))
 			playsound(src, 'sound/machines/terminal_insert_disc.ogg', 50, FALSE)
 			updateUsrDialog()
-	else if(TOOL_MULTITOOL in W.tool_qualities)
+	else if(QUALITY_PULSING in W.tool_qualities)
 		if(!multitool_check_buffer(user, W))
 			return
 		var/obj/item/multitool/P = W

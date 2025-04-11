@@ -20,7 +20,7 @@
 		to_chat(user, span_warning("You need a crowbar to pry this open!"))
 
 /obj/structure/closet/crate/large/attackby(obj/item/W, mob/user, params)
-	if(TOOL_CROWBAR in W.tool_qualities)
+	if(QUALITY_PRYING in W.tool_qualities)
 		if(manifest)
 			tear_manifest(user)
 

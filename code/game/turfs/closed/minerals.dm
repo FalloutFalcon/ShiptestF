@@ -79,7 +79,7 @@
 
 /turf/closed/mineral/try_decon(obj/item/I, mob/user, turf/T)
 	var/act_duration = breakdown_duration
-	if(TOOL_MINING in I.tool_qualities)
+	if(QUALITY_DIGGING in I.tool_qualities)
 		if(!I.tool_start_check(user, amount=0))
 			return FALSE
 
@@ -152,7 +152,7 @@
 	..()
 	if(ishuman(AM))
 		var/mob/living/carbon/human/H = AM
-		var/obj/item/I = H.is_holding_tool_quality(TOOL_MINING)
+		var/obj/item/I = H.is_holding_tool_quality(QUALITY_DIGGING)
 		if(I)
 			if(last_act + (40 * I.toolspeed) > world.time)//prevents message spam
 				return
@@ -161,7 +161,7 @@
 		return
 	else if(iscyborg(AM))
 		var/mob/living/silicon/robot/R = AM
-		if(R.module_active && (TOOL_MINING in R.module_active.tool_qualities))
+		if(R.module_active && (QUALITY_DIGGING in R.module_active.tool_qualities))
 			attackby(R.module_active, R)
 			return
 	else

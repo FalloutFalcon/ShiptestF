@@ -129,7 +129,7 @@
 			to_chat(user, span_notice("You install a cell in [src]."))
 			update_appearance()
 
-	else if(TOOL_SCREWDRIVER in W.tool_qualities)
+	else if(QUALITY_SCREW_DRIVING in W.tool_qualities)
 		tryremovecell(user)
 	else
 		return ..()

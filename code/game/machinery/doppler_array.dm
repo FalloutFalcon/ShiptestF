@@ -116,7 +116,7 @@
 		update_appearance()
 
 /obj/machinery/doppler_array/attackby(obj/item/I, mob/user, params)
-	if(TOOL_WRENCH in I.tool_qualities)
+	if(QUALITY_BOLT_TURNING in I.tool_qualities)
 		if(!anchored && !isinspace())
 			set_anchored(TRUE)
 			to_chat(user, span_notice("You fasten [src]."))

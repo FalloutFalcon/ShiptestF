@@ -21,15 +21,15 @@
 /datum/surgery_step/viral_bond
 	name = "viral bond"
 	implements = list(
-		TOOL_CAUTERY = 100,
-		TOOL_WELDER = 40,
+		QUALITY_CAUTERIZING = 100,
+		QUALITY_WELDING = 40,
 		/obj/item = 20) // 30% success with any hot item.
 	time = 100
 	chems_needed = list(/datum/reagent/medicine/spaceacillin,/datum/reagent/consumable/virus_food,/datum/reagent/toxin/formaldehyde)
 	experience_given = MEDICAL_SKILL_ADVANCED
 
 /datum/surgery_step/viral_bond/tool_check(mob/user, obj/item/tool)
-	if(implement_type == TOOL_WELDER || implement_type == /obj/item)
+	if(implement_type == QUALITY_WELDING || implement_type == /obj/item)
 		return tool.get_temperature()
 
 	return TRUE

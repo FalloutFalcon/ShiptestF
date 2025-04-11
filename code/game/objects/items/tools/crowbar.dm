@@ -16,7 +16,7 @@
 	pickup_sound =  'sound/items/handling/crowbar_pickup.ogg'
 
 	attack_verb = list("attacked", "bashed", "battered", "bludgeoned", "whacked")
-	tool_behaviour = TOOL_CROWBAR
+	tool_behaviour = QUALITY_PRYING
 	tool_qualities = list(QUALITY_PRYING = 25, QUALITY_DIGGING = 10, QUALITY_HAMMERING = 10)
 	toolspeed = 1
 	armor = list("melee" = 0, "bullet" = 0, "laser" = 0, "energy" = 0, "bomb" = 0, "bio" = 0, "rad" = 0, "fire" = 50, "acid" = 30)
@@ -61,18 +61,18 @@
 
 /obj/item/crowbar/power/examine()
 	. = ..()
-	. += " It's fitted with a [tool_behaviour == TOOL_CROWBAR ? "prying" : "cutting"] head."
+	. += " It's fitted with a [tool_behaviour == QUALITY_PRYING ? "prying" : "cutting"] head."
 
 /obj/item/crowbar/power/attack_self(mob/user)
 	playsound(get_turf(user), 'sound/items/change_jaws.ogg', 50, TRUE)
-	if(tool_behaviour == TOOL_CROWBAR)
-		tool_behaviour = TOOL_WIRECUTTER
+	if(tool_behaviour == QUALITY_PRYING)
+		tool_behaviour = QUALITY_WIRE_CUTTING
 		to_chat(user, span_notice("You attach the cutting jaws to [src]."))
 		usesound = 'sound/items/jaws_cut.ogg'
 		icon_state = "jaws_cutter"
 		update_appearance()
 	else
-		tool_behaviour = TOOL_CROWBAR
+		tool_behaviour = QUALITY_PRYING
 		to_chat(user, span_notice("You attach the prying jaws to [src]."))
 		usesound = 'sound/items/jaws_pry.ogg'
 		icon_state = "jaws_pry"
@@ -95,14 +95,14 @@
 	if(ismob(loc))
 		var/mode_ovelay
 		switch(tool_behaviour)
-			if (TOOL_CROWBAR)
+			if (QUALITY_PRYING)
 				mode_ovelay = "jaw_pry"
-			if (TOOL_WIRECUTTER)
+			if (QUALITY_WIRE_CUTTING)
 				mode_ovelay = "jaw_cut"
 		. += mode_ovelay
 
 /obj/item/crowbar/power/attack(mob/living/carbon/C, mob/user)
-	if(istype(C) && C.handcuffed && tool_behaviour == TOOL_WIRECUTTER)
+	if(istype(C) && C.handcuffed && tool_behaviour == QUALITY_WIRE_CUTTING)
 		user.visible_message(span_notice("[user] cuts [C]'s restraints with [src]!"))
 		qdel(C.handcuffed)
 		return

@@ -111,7 +111,7 @@
 		. = timer_set
 
 /obj/machinery/syndicatebomb/attackby(obj/item/I, mob/user, params)
-	if((TOOL_WRENCH in I.tool_qualities) && can_unanchor)
+	if((QUALITY_BOLT_TURNING in I.tool_qualities) && can_unanchor)
 		if(!anchored)
 			if(!isturf(loc) || isspaceturf(loc))
 				to_chat(user, span_notice("The bomb must be placed on solid ground to attach it."))
@@ -129,7 +129,7 @@
 			else
 				to_chat(user, span_warning("The bolts are locked down!"))
 
-	else if(TOOL_SCREWDRIVER in I.tool_qualities)
+	else if(QUALITY_SCREW_DRIVING in I.tool_qualities)
 		open_panel = !open_panel
 		update_appearance()
 		to_chat(user, span_notice("You [open_panel ? "open" : "close"] the wire panel."))
@@ -137,7 +137,7 @@
 	else if(is_wire_tool(I) && open_panel)
 		wires.interact(user)
 
-	else if(TOOL_CROWBAR in I.tool_qualities)
+	else if(QUALITY_PRYING in I.tool_qualities)
 		if(open_panel && wires.is_all_cut())
 			if(payload)
 				to_chat(user, span_notice("You carefully pry out [payload]."))
@@ -157,7 +157,7 @@
 			to_chat(user, span_notice("You place [payload] into [src]."))
 		else
 			to_chat(user, span_warning("[payload] is already loaded into [src]! You'll have to remove it first."))
-	else if(TOOL_WELDER in I.tool_qualities)
+	else if(QUALITY_WELDING in I.tool_qualities)
 		if(payload || !wires.is_all_cut() || !open_panel)
 			return
 
@@ -410,7 +410,7 @@
 	qdel(src)
 
 /obj/item/bombcore/chemical/attackby(obj/item/I, mob/user, params)
-	if((TOOL_CROWBAR in I.tool_qualities) && beakers.len > 0)
+	if((QUALITY_PRYING in I.tool_qualities) && beakers.len > 0)
 		I.play_tool_sound(src)
 		for (var/obj/item/B in beakers)
 			B.forceMove(drop_location())

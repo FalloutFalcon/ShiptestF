@@ -48,5 +48,5 @@
 	time = 5 SECONDS
 	reqs = list(/obj/item/stack/sheet/glass = 5,
 				/obj/item/stack/sheet/mineral/plasma = 1)
-	tools = list(TOOL_WELDER)
+	tools = list(QUALITY_WELDING)
 	category = CAT_DRINK

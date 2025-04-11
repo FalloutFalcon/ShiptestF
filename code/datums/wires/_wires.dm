@@ -4,7 +4,7 @@
 	if(!I)
 		return
 
-	if((TOOL_WIRECUTTER in I.tool_qualities) || (TOOL_MULTITOOL in I.tool_qualities))
+	if((QUALITY_WIRE_CUTTING in I.tool_qualities) || (QUALITY_PULSING in I.tool_qualities))
 		return TRUE
 	if(istype(I, /obj/item/assembly))
 		var/obj/item/assembly/A = I
@@ -279,7 +279,7 @@
 	var/obj/item/I
 	switch(action)
 		if("cut")
-			I = L.is_holding_tool_quality(TOOL_WIRECUTTER)
+			I = L.is_holding_tool_quality(QUALITY_WIRE_CUTTING)
 			if(I || isAdminGhostAI(usr))
 				if(I && holder)
 					I.play_tool_sound(holder, 20)
@@ -288,7 +288,7 @@
 			else
 				to_chat(L, span_warning("You need wirecutters!"))
 		if("pulse")
-			I = L.is_holding_tool_quality(TOOL_MULTITOOL)
+			I = L.is_holding_tool_quality(QUALITY_PULSING)
 			if(I || isAdminGhostAI(usr))
 				if(I && holder)
 					I.play_tool_sound(holder, 20)

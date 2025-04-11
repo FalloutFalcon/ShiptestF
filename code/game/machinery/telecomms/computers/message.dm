@@ -41,7 +41,7 @@
 
 
 /obj/machinery/computer/message_monitor/attackby(obj/item/O, mob/living/user, params)
-	if((TOOL_SCREWDRIVER in O.tool_qualities) && (obj_flags & EMAGGED))
+	if((QUALITY_SCREW_DRIVING in O.tool_qualities) && (obj_flags & EMAGGED))
 		//Stops people from just unscrewing the monitor and putting it back to get the console working again.
 		to_chat(user, span_warning("It is too hot to mess with!"))
 	else

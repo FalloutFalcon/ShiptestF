@@ -377,7 +377,7 @@
 	if(default_deconstruction_crowbar(W))
 		return
 
-	if(TOOL_MULTITOOL in W.tool_qualities)
+	if(QUALITY_PULSING in W.tool_qualities)
 		if(!multitool_check_buffer(user, W))
 			return
 		var/obj/item/multitool/P = W

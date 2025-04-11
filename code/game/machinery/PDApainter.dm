@@ -66,7 +66,7 @@
 
 /obj/machinery/pdapainter/attackby(obj/item/O, mob/user, params)
 	if(machine_stat & BROKEN)
-		if((TOOL_WELDER in O.tool_qualities) && user.a_intent != INTENT_HARM)
+		if((QUALITY_WELDING in O.tool_qualities) && user.a_intent != INTENT_HARM)
 			if(!O.tool_start_check(user, amount=0))
 				return
 			user.visible_message(span_notice("[user] is repairing [src]."), \

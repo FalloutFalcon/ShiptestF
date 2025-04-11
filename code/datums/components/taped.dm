@@ -50,7 +50,7 @@
 
 /datum/component/taped/proc/tape_rip(datum/source, obj/item/attacker, mob/user)
 	var/obj/item/I = attacker
-	if(!(TOOL_WIRECUTTER in I.tool_qualities) || !I.sharpness >= IS_SHARP)
+	if(!(QUALITY_WIRE_CUTTING in I.tool_qualities) || !I.sharpness >= IS_SHARP)
 		return
 	playsound(parent, 'sound/items/poster_ripped.ogg', 30, TRUE, -2)
 	user.visible_message(span_notice("[user] cuts and tears [taped_name] off \the [parent]."), span_notice("You finish peeling away all the [taped_name] from \the [parent]."))

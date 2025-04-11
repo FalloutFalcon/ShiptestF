@@ -5,7 +5,7 @@ GLOBAL_LIST_INIT(blacklisted_borg_hats, typecacheof(list( //Hats that don't real
 	)))
 
 /mob/living/silicon/robot/attackby(obj/item/W, mob/user, params)
-	if((TOOL_WELDER in W.tool_qualities) && (user.a_intent != INTENT_HARM || user == src))
+	if((QUALITY_WELDING in W.tool_qualities) && (user.a_intent != INTENT_HARM || user == src))
 		user.changeNext_move(CLICK_CD_MELEE)
 		if (!getBruteLoss())
 			to_chat(user, span_warning("[src] is already in good condition!"))
@@ -42,7 +42,7 @@ GLOBAL_LIST_INIT(blacklisted_borg_hats, typecacheof(list( //Hats that don't real
 			to_chat(user, span_warning("The wires seem fine, there's no need to fix them."))
 		return
 
-	if(TOOL_CROWBAR in W.tool_qualities)	// crowbar means open or close the cover
+	if(QUALITY_PRYING in W.tool_qualities)	// crowbar means open or close the cover
 		if(opened)
 			to_chat(user, span_notice("You close the cover."))
 			opened = 0
@@ -77,7 +77,7 @@ GLOBAL_LIST_INIT(blacklisted_borg_hats, typecacheof(list( //Hats that don't real
 			to_chat(user, span_warning("You can't reach the wiring!"))
 		return
 
-	if((TOOL_SCREWDRIVER in W.tool_qualities) && opened)	// wire hacking or radio management
+	if((QUALITY_SCREW_DRIVING in W.tool_qualities) && opened)	// wire hacking or radio management
 		if(!cell) //haxing
 			wiresexposed = !wiresexposed
 			to_chat(user, span_notice("The wires have been [wiresexposed ? "exposed" : "unexposed"]."))
@@ -91,7 +91,7 @@ GLOBAL_LIST_INIT(blacklisted_borg_hats, typecacheof(list( //Hats that don't real
 		update_icons()
 		return
 
-	if((TOOL_WRENCH in W.tool_qualities) && opened && !cell) //Deconstruction. The flashes break from the fall, to prevent this from being a ghetto reset module.
+	if((QUALITY_BOLT_TURNING in W.tool_qualities) && opened && !cell) //Deconstruction. The flashes break from the fall, to prevent this from being a ghetto reset module.
 		if(!lockcharge)
 			to_chat(user, span_warning("[src]'s bolts spark! Maybe you should lock them down first!"))
 			spark_system.start()

@@ -84,7 +84,7 @@
 
 	switch(d_state)
 		if(INTACT)
-			if(TOOL_WIRECUTTER in W.tool_qualities)
+			if(QUALITY_WIRE_CUTTING in W.tool_qualities)
 				if(W.use_tool(src, user, 40, volume=100))
 					W.play_tool_sound(src, 100)
 					d_state = SUPPORT_LINES
@@ -93,7 +93,7 @@
 					return 1
 
 		if(SUPPORT_LINES)
-			if(TOOL_SCREWDRIVER in W.tool_qualities)
+			if(QUALITY_SCREW_DRIVING in W.tool_qualities)
 				to_chat(user, span_notice("You begin unsecuring the support lines..."))
 				if(W.use_tool(src, user, 40, volume=100))
 					if(!istype(src, /turf/closed/wall/r_wall) || d_state != SUPPORT_LINES)
@@ -104,7 +104,7 @@
 					to_chat(user, span_notice("You unsecure the support lines."))
 				return 1
 
-			else if(TOOL_WIRECUTTER in W.tool_qualities)
+			else if(QUALITY_WIRE_CUTTING in W.tool_qualities)
 				if(W.use_tool(src, user, 40, volume=100))
 					W.play_tool_sound(src, 100)
 					d_state = INTACT
@@ -113,7 +113,7 @@
 					return 1
 
 		if(COVER)
-			if(TOOL_WELDER in W.tool_qualities)
+			if(QUALITY_WELDING in W.tool_qualities)
 				if(!W.tool_start_check(user, amount=0))
 					return
 				to_chat(user, span_notice("You begin slicing through the metal cover..."))
@@ -125,7 +125,7 @@
 					to_chat(user, span_notice("You press firmly on the cover, dislodging it."))
 				return 1
 
-			if(TOOL_SCREWDRIVER in W.tool_qualities)
+			if(QUALITY_SCREW_DRIVING in W.tool_qualities)
 				to_chat(user, span_notice("You begin securing the support lines..."))
 				if(W.use_tool(src, user, 40, volume=100))
 					if(!istype(src, /turf/closed/wall/r_wall) || d_state != COVER)
@@ -136,7 +136,7 @@
 				return 1
 
 		if(CUT_COVER)
-			if(TOOL_CROWBAR in W.tool_qualities)
+			if(QUALITY_PRYING in W.tool_qualities)
 				to_chat(user, span_notice("You struggle to pry off the cover..."))
 				if(W.use_tool(src, user, 100, volume=100))
 					if(!istype(src, /turf/closed/wall/r_wall) || d_state != CUT_COVER)
@@ -146,7 +146,7 @@
 					to_chat(user, span_notice("You pry off the cover."))
 				return 1
 
-			if(TOOL_WELDER in W.tool_qualities)
+			if(QUALITY_WELDING in W.tool_qualities)
 				if(!W.tool_start_check(user, amount=0))
 					return
 				to_chat(user, span_notice("You begin welding the metal cover back to the frame..."))
@@ -159,7 +159,7 @@
 				return 1
 
 		if(ANCHOR_BOLTS)
-			if(TOOL_WRENCH in W.tool_qualities)
+			if(QUALITY_BOLT_TURNING in W.tool_qualities)
 				to_chat(user, span_notice("You start loosening the anchoring bolts which secure the support rods to their frame..."))
 				if(W.use_tool(src, user, 40, volume=100))
 					if(!istype(src, /turf/closed/wall/r_wall) || d_state != ANCHOR_BOLTS)
@@ -169,7 +169,7 @@
 					to_chat(user, span_notice("You remove the bolts anchoring the support rods."))
 				return 1
 
-			if(TOOL_CROWBAR in W.tool_qualities)
+			if(QUALITY_PRYING in W.tool_qualities)
 				to_chat(user, span_notice("You start to pry the cover back into place..."))
 				if(W.use_tool(src, user, 20, volume=100))
 					if(!istype(src, /turf/closed/wall/r_wall) || d_state != ANCHOR_BOLTS)
@@ -180,7 +180,7 @@
 				return 1
 
 		if(SUPPORT_RODS)
-			if(TOOL_WELDER in W.tool_qualities)
+			if(QUALITY_WELDING in W.tool_qualities)
 				if(!W.tool_start_check(user, amount=0))
 					return
 				to_chat(user, span_notice("You begin slicing through the support rods..."))
@@ -192,7 +192,7 @@
 					to_chat(user, span_notice("You slice through the support rods."))
 				return 1
 
-			if(TOOL_WRENCH in W.tool_qualities)
+			if(QUALITY_BOLT_TURNING in W.tool_qualities)
 				to_chat(user, span_notice("You start tightening the bolts which secure the support rods to their frame..."))
 				W.play_tool_sound(src, 100)
 				if(W.use_tool(src, user, 40))
@@ -204,7 +204,7 @@
 				return 1
 
 		if(SHEATH)
-			if(TOOL_CROWBAR in W.tool_qualities)
+			if(QUALITY_PRYING in W.tool_qualities)
 				to_chat(user, span_notice("You struggle to pry off the outer sheath..."))
 				if(W.use_tool(src, user, 100, volume=100))
 					if(!istype(src, /turf/closed/wall/r_wall) || d_state != SHEATH)
@@ -213,7 +213,7 @@
 					dismantle_wall()
 				return 1
 
-			if(TOOL_WELDER in W.tool_qualities)
+			if(QUALITY_WELDING in W.tool_qualities)
 				if(!W.tool_start_check(user, amount=0))
 					return
 				to_chat(user, span_notice("You begin welding the support rods back together..."))

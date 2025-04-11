@@ -160,7 +160,7 @@
 		else
 			to_chat(user, span_warning("The hatch must be open to insert a power cell!"))
 			return
-	else if(TOOL_SCREWDRIVER in I.tool_qualities)
+	else if(QUALITY_SCREW_DRIVING in I.tool_qualities)
 		panel_open = !panel_open
 		user.visible_message(span_notice("\The [user] [panel_open ? "opens" : "closes"] the hatch on \the [src]."), span_notice("You [panel_open ? "open" : "close"] the hatch on \the [src]."))
 		update_appearance()

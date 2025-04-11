@@ -123,7 +123,7 @@
 	name = "Black Market LTRSBT Board"
 	result = /obj/item/circuitboard/machine/ltsrbt
 	time = 30
-	tools = list(TOOL_SCREWDRIVER, TOOL_WIRECUTTER, TOOL_MULTITOOL)
+	tools = list(QUALITY_SCREW_DRIVING, QUALITY_WIRE_CUTTING, QUALITY_PULSING)
 	reqs = list(
 		/obj/item/stack/ore/bluespace_crystal = 2,
 		/obj/item/stack/tape/industrial = 5,

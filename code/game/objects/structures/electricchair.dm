@@ -11,7 +11,7 @@
 	add_overlay(mutable_appearance('icons/obj/chairs.dmi', "echair_over", MOB_LAYER + 1))
 
 /obj/structure/chair/e_chair/attackby(obj/item/W, mob/user, params)
-	if(TOOL_WRENCH in W.tool_qualities)
+	if(QUALITY_BOLT_TURNING in W.tool_qualities)
 		var/obj/structure/chair/C = new /obj/structure/chair(loc)
 		W.play_tool_sound(src)
 		C.setDir(dir)

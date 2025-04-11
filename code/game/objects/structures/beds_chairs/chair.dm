@@ -60,7 +60,7 @@
 	qdel(src)
 
 /obj/structure/chair/attackby(obj/item/W, mob/user, params)
-	if(((TOOL_WRENCH in W.tool_qualities) || (TOOL_DECONSTRUCT in W.tool_qualities)) && !(flags_1&NODECONSTRUCT_1))
+	if(((QUALITY_BOLT_TURNING in W.tool_qualities) || (QUALITY_DECONSTRUCT in W.tool_qualities)) && !(flags_1&NODECONSTRUCT_1))
 		W.play_tool_sound(src)
 		deconstruct()
 	else if(istype(W, /obj/item/assembly/shock_kit))

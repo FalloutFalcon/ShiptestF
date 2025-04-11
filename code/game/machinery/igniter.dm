@@ -92,7 +92,7 @@
 	return ..()
 
 /obj/machinery/sparker/attackby(obj/item/W, mob/user, params)
-	if ((TOOL_SCREWDRIVER in W.tool_qualities))
+	if ((QUALITY_SCREW_DRIVING in W.tool_qualities))
 		add_fingerprint(user)
 		src.disable = !src.disable
 		if (src.disable)

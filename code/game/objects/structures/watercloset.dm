@@ -90,14 +90,14 @@
 
 /obj/structure/toilet/attackby(obj/item/I, mob/living/user, params)
 	add_fingerprint(user)
-	if(TOOL_CROWBAR in I.tool_qualities)
+	if(QUALITY_PRYING in I.tool_qualities)
 		to_chat(user, span_notice("You start to [cistern ? "replace the lid on the cistern" : "lift the lid off the cistern"]..."))
 		playsound(loc, 'sound/effects/stonedoor_openclose.ogg', 50, TRUE)
 		if(I.use_tool(src, user, 30))
 			user.visible_message(span_notice("[user] [cistern ? "replaces the lid on the cistern" : "lifts the lid off the cistern"]!"), span_notice("You [cistern ? "replace the lid on the cistern" : "lift the lid off the cistern"]!"), span_hear("You hear grinding porcelain."))
 			cistern = !cistern
 			update_appearance()
-	else if((TOOL_WRENCH in I.tool_qualities) && !(flags_1&NODECONSTRUCT_1))
+	else if((QUALITY_BOLT_TURNING in I.tool_qualities) && !(flags_1&NODECONSTRUCT_1))
 		I.play_tool_sound(src)
 		deconstruct()
 	else if(cistern)
@@ -326,7 +326,7 @@
 		playsound(loc, 'sound/effects/slosh.ogg', 25, TRUE)
 		return
 
-	if((TOOL_WRENCH in O.tool_qualities) && !(flags_1&NODECONSTRUCT_1))
+	if((QUALITY_BOLT_TURNING in O.tool_qualities) && !(flags_1&NODECONSTRUCT_1))
 		O.play_tool_sound(src)
 		deconstruct()
 		return
@@ -416,7 +416,7 @@
 
 /obj/structure/sink/oil_well/attackby(obj/item/O, mob/user, params)
 	flick("puddle-oil-splash",src)
-	if((TOOL_SHOVEL in O.tool_qualities) && !(flags_1&NODECONSTRUCT_1)) //attempt to deconstruct the puddle with a shovel
+	if((QUALITY_SHOVELING in O.tool_qualities) && !(flags_1&NODECONSTRUCT_1)) //attempt to deconstruct the puddle with a shovel
 		to_chat(user, "You fill in the oil well with soil.")
 		O.play_tool_sound(src)
 		deconstruct()

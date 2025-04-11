@@ -206,7 +206,7 @@
 	baseturfs = /turf/open/floor/plating
 
 /turf/open/floor/ship/dirt/attackby(obj/item/C, mob/user, params)
-	if(((TOOL_SHOVEL in C.tool_qualities)) && params)
+	if(((QUALITY_SHOVELING in C.tool_qualities)) && params)
 		new ore_type(src, 2)
 		user.visible_message(span_notice("[user] digs up [src]."), span_notice("You [turfverb] [src]."))
 		playsound(src, 'sound/effects/shovel_dig.ogg', 50, TRUE)

@@ -78,12 +78,12 @@
 /obj/machinery/disposal/attackby(obj/item/I, mob/user, params)
 	add_fingerprint(user)
 	if(!pressure_charging && !full_pressure && !flush)
-		if(TOOL_SCREWDRIVER in I.tool_qualities)
+		if(QUALITY_SCREW_DRIVING in I.tool_qualities)
 			panel_open = !panel_open
 			I.play_tool_sound(src)
 			to_chat(user, span_notice("You [panel_open ? "remove":"attach"] the screws around the power connection."))
 			return
-		else if((TOOL_WELDER in I.tool_qualities) && panel_open)
+		else if((QUALITY_WELDING in I.tool_qualities) && panel_open)
 			if(!I.tool_start_check(user, amount=0))
 				return
 

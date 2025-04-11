@@ -12,7 +12,7 @@
 	flags_1 = CONDUCT_1
 	item_flags = SURGICAL_TOOL
 	w_class = WEIGHT_CLASS_SMALL
-	tool_behaviour = TOOL_RETRACTOR
+	tool_behaviour = QUALITY_RETRACTING
 	toolspeed = 1
 
 /obj/item/retractor/augment
@@ -34,7 +34,7 @@
 	item_flags = SURGICAL_TOOL
 	w_class = WEIGHT_CLASS_SMALL
 	attack_verb = list("attacked", "pinched")
-	tool_behaviour = TOOL_HEMOSTAT
+	tool_behaviour = QUALITY_CLAMPING
 	toolspeed = 1
 
 /obj/item/hemostat/augment
@@ -56,7 +56,7 @@
 	item_flags = SURGICAL_TOOL
 	w_class = WEIGHT_CLASS_SMALL
 	attack_verb = list("burnt")
-	tool_behaviour = TOOL_CAUTERY
+	tool_behaviour = QUALITY_CAUTERIZING
 	toolspeed = 1
 
 /obj/item/cautery/augment
@@ -81,7 +81,7 @@
 	w_class = WEIGHT_CLASS_NORMAL
 	attack_verb = list("drilled")
 	sharpness = IS_SHARP		//WS Edit - Makes the Drill sharp
-	tool_behaviour = TOOL_DRILL
+	tool_behaviour = QUALITY_DRILLING
 	toolspeed = 1
 	demolition_mod = 0.5
 
@@ -117,7 +117,7 @@
 	attack_verb = list("attacked", "slashed", "stabbed", "sliced", "torn", "ripped", "diced", "cut")
 	hitsound = 'sound/weapons/bladeslice.ogg'
 	sharpness = IS_SHARP_ACCURATE
-	tool_behaviour = TOOL_SCALPEL
+	tool_behaviour = QUALITY_CUTTING
 	toolspeed = 1
 	demolition_mod = 0.25
 
@@ -151,7 +151,7 @@
 	custom_materials = list(/datum/material/iron=10000, /datum/material/glass=6000)
 	attack_verb = list("attacked", "slashed", "sawed", "cut")
 	sharpness = IS_SHARP
-	tool_behaviour = TOOL_SAW
+	tool_behaviour = QUALITY_SAWING
 	toolspeed = 1
 
 /obj/item/circular_saw/Initialize()
@@ -278,14 +278,14 @@
 
 /obj/item/scalpel/advanced/attack_self(mob/user)
 	playsound(get_turf(user), 'sound/machines/click.ogg', 50, TRUE)
-	if(tool_behaviour == TOOL_SCALPEL)
-		tool_behaviour = TOOL_SAW
+	if(tool_behaviour == QUALITY_CUTTING)
+		tool_behaviour = QUALITY_SAWING
 		balloon_alert(user, "saw mode")
 		set_light_range(2)
 		force += 1 //we don't want to ruin sharpened stuff
 		icon_state = "advsaw"
 	else
-		tool_behaviour = TOOL_SCALPEL
+		tool_behaviour = QUALITY_CUTTING
 		balloon_alert(user, "scalpel mode")
 		set_light_range(1)
 		force -= 1
@@ -293,7 +293,7 @@
 
 /obj/item/scalpel/advanced/examine()
 	. = ..()
-	. += " It's set to [tool_behaviour == TOOL_SCALPEL ? "scalpel" : "saw"] mode."
+	. += " It's set to [tool_behaviour == QUALITY_CUTTING ? "scalpel" : "saw"] mode."
 
 /obj/item/retractor/advanced
 	name = "mechanical pinches"
@@ -309,18 +309,18 @@
 
 /obj/item/retractor/advanced/attack_self(mob/user)
 	playsound(get_turf(user), 'sound/items/change_drill.ogg', 50, TRUE)
-	if(tool_behaviour == TOOL_RETRACTOR)
-		tool_behaviour = TOOL_HEMOSTAT
+	if(tool_behaviour == QUALITY_RETRACTING)
+		tool_behaviour = QUALITY_CLAMPING
 		balloon_alert(user, "hemostat mode")
 		icon_state = "advhemostat"
 	else
-		tool_behaviour = TOOL_RETRACTOR
+		tool_behaviour = QUALITY_RETRACTING
 		balloon_alert(user, "retractor mode")
 		icon_state = "advretractor"
 
 /obj/item/retractor/advanced/examine()
 	. = ..()
-	. += " It resembles a [tool_behaviour == TOOL_RETRACTOR ? "retractor" : "hemostat"]."
+	. += " It resembles a [tool_behaviour == QUALITY_RETRACTING ? "retractor" : "hemostat"]."
 
 /obj/item/surgicaldrill/advanced
 	name = "searing tool"
@@ -338,18 +338,18 @@
 
 /obj/item/surgicaldrill/advanced/attack_self(mob/user)
 	playsound(get_turf(user), 'sound/weapons/tap.ogg', 50, TRUE)
-	if(tool_behaviour == TOOL_DRILL)
-		tool_behaviour = TOOL_CAUTERY
+	if(tool_behaviour == QUALITY_DRILLING)
+		tool_behaviour = QUALITY_CAUTERIZING
 		balloon_alert(user, "cautery mode")
 		icon_state = "advcautery"
 	else
-		tool_behaviour = TOOL_DRILL
+		tool_behaviour = QUALITY_DRILLING
 		balloon_alert(user, "drill mode")
 		icon_state = "advdrill"
 
 /obj/item/surgicaldrill/advanced/examine()
 	. = ..()
-	. += " It's set to [tool_behaviour == TOOL_DRILL ? "drilling" : "mending"] mode."
+	. += " It's set to [tool_behaviour == QUALITY_DRILLING ? "drilling" : "mending"] mode."
 
 /obj/item/shears
 	name = "amputation shears"

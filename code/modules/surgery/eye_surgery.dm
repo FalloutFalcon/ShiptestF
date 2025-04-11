@@ -9,8 +9,8 @@
 /datum/surgery_step/fix_eyes
 	name = "fix eyes"
 	implements = list(
-		TOOL_HEMOSTAT = 100,
-		TOOL_SCREWDRIVER = 40) //ow! my eyes !
+		QUALITY_CLAMPING = 100,
+		QUALITY_SCREW_DRIVING = 40) //ow! my eyes !
 	time = 64
 	experience_given = (MEDICAL_SKILL_ORGAN_FIX*0.6) //repeatable and can be done at any damage
 

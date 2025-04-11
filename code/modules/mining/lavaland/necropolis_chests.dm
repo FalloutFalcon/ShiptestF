@@ -796,7 +796,7 @@
 /obj/item/clothing/gloves/gauntlets/equipped(mob/user, slot)
 	. = ..()
 	if(slot == ITEM_SLOT_GLOVES)
-		tool_behaviour = TOOL_MINING
+		tool_behaviour = QUALITY_DIGGING
 		RegisterSignal(user, COMSIG_HUMAN_EARLY_UNARMED_ATTACK, PROC_REF(rocksmash))
 		RegisterSignal(user, COMSIG_MOVABLE_BUMP, PROC_REF(rocksmash))
 	else

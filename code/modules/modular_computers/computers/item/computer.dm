@@ -401,7 +401,7 @@
 		if(install_component(W, user))
 			return
 
-	if(TOOL_WRENCH in W.tool_qualities)
+	if(QUALITY_BOLT_TURNING in W.tool_qualities)
 		if(all_components.len)
 			to_chat(user, span_warning("Remove all components from \the [src] before disassembling it."))
 			return
@@ -411,7 +411,7 @@
 		qdel(src)
 		return
 
-	if(TOOL_WELDER in W.tool_qualities)
+	if(QUALITY_WELDING in W.tool_qualities)
 		if(obj_integrity == max_integrity)
 			to_chat(user, span_warning("\The [src] does not require repairs."))
 			return

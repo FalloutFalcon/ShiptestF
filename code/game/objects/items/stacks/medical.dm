@@ -185,7 +185,7 @@
 			return TRUE
 
 /obj/item/stack/medical/gauze/attackby(obj/item/I, mob/user, params)
-	if((TOOL_WIRECUTTER in I.tool_qualities) || I.get_sharpness())
+	if((QUALITY_WIRE_CUTTING in I.tool_qualities) || I.get_sharpness())
 		if(get_amount() < 2)
 			to_chat(user, span_warning("You need at least two gauzes to do this!"))
 			return

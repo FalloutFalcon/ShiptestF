@@ -321,7 +321,7 @@ All the important duct code:
 		return
 	var/obj/machinery/duct/D = A
 	var/obj/item/I = user.get_active_held_item()
-	if(I?.tool_behaviour != TOOL_WRENCH)
+	if(I?.tool_behaviour != QUALITY_BOLT_TURNING)
 		to_chat(user, span_warning("You need to be holding a wrench in your active hand to do that!"))
 		return
 	if(get_dist(src, D) != 1)

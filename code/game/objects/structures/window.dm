@@ -183,7 +183,7 @@
 
 	add_fingerprint(user)
 
-	if((TOOL_WELDER in I.tool_qualities) && user.a_intent == INTENT_HELP)
+	if((QUALITY_WELDING in I.tool_qualities) && user.a_intent == INTENT_HELP)
 		if(obj_integrity < max_integrity)
 			if(!I.tool_start_check(user, amount=0))
 				return
@@ -198,13 +198,13 @@
 		return
 
 	if(!(flags_1&NODECONSTRUCT_1) && !(reinf && state >= RWINDOW_FRAME_BOLTED))
-		if(TOOL_SCREWDRIVER in I.tool_qualities)
+		if(QUALITY_SCREW_DRIVING in I.tool_qualities)
 			to_chat(user, span_notice("You begin to [anchored ? "unscrew the window from":"screw the window to"] the floor..."))
 			if(I.use_tool(src, user, decon_speed, volume = 75, extra_checks = CALLBACK(src, PROC_REF(check_anchored), anchored)))
 				set_anchored(!anchored)
 				to_chat(user, span_notice("You [anchored ? "fasten the window to":"unfasten the window from"] the floor."))
 			return
-		else if((TOOL_WRENCH in I.tool_qualities) && !anchored)
+		else if((QUALITY_BOLT_TURNING in I.tool_qualities) && !anchored)
 			to_chat(user, span_notice("You begin to disassemble [src]..."))
 			if(I.use_tool(src, user, decon_speed, volume = 75, extra_checks = CALLBACK(src, PROC_REF(check_state_and_anchored), state, anchored)))
 				var/obj/item/stack/sheet/G = new glass_type(user.loc, glass_amount)
@@ -213,7 +213,7 @@
 				to_chat(user, span_notice("You successfully disassemble [src]."))
 				qdel(src)
 			return
-		else if((TOOL_CROWBAR in I.tool_qualities) && reinf && (state == WINDOW_OUT_OF_FRAME) && anchored)
+		else if((QUALITY_PRYING in I.tool_qualities) && reinf && (state == WINDOW_OUT_OF_FRAME) && anchored)
 			to_chat(user, span_notice("You begin to lever the window into the frame..."))
 			if(I.use_tool(src, user, 100, volume = 75, extra_checks = CALLBACK(src, PROC_REF(check_state_and_anchored), state, anchored)))
 				state = RWINDOW_SECURE
@@ -425,7 +425,7 @@
 
 	switch(state)
 		if(RWINDOW_SECURE)
-			if(((TOOL_WELDER in I.tool_qualities)) && user.a_intent == INTENT_HARM)
+			if(((QUALITY_WELDING in I.tool_qualities)) && user.a_intent == INTENT_HARM)
 				user.visible_message(span_notice("[user] holds \the [I] to the security screws on \the [src]..."),
 										span_notice("You begin heating the security screws on \the [src]..."))
 				if(I.use_tool(src, user, 150, volume = 100))
@@ -434,7 +434,7 @@
 					addtimer(CALLBACK(src, PROC_REF(cool_bolts)), 300)
 				return
 		if(RWINDOW_BOLTS_HEATED)
-			if(TOOL_SCREWDRIVER in I.tool_qualities)
+			if(QUALITY_SCREW_DRIVING in I.tool_qualities)
 				user.visible_message(span_notice("[user] digs into the heated security screws and starts removing them..."),
 										span_notice("You dig into the heated screws hard and they start turning..."))
 				if(I.use_tool(src, user, 50, volume = 50))
@@ -442,7 +442,7 @@
 					to_chat(user, span_notice("The screws come out, and a gap forms around the edge of the pane."))
 				return
 		if(RWINDOW_BOLTS_OUT)
-			if(TOOL_CROWBAR in I.tool_qualities)
+			if(QUALITY_PRYING in I.tool_qualities)
 				user.visible_message(span_notice("[user] wedges \the [I] into the gap in the frame and starts prying..."),
 										span_notice("You wedge \the [I] into the gap in the frame and start prying..."))
 				if(I.use_tool(src, user, 40, volume = 50))
@@ -450,7 +450,7 @@
 					to_chat(user, span_notice("The panel pops out of the frame, exposing some thin metal bars that looks like they can be cut."))
 				return
 		if(RWINDOW_POPPED)
-			if(TOOL_WIRECUTTER in I.tool_qualities)
+			if(QUALITY_WIRE_CUTTING in I.tool_qualities)
 				user.visible_message(span_notice("[user] starts cutting the exposed bars on \the [src]..."),
 										span_notice("You start cutting the exposed bars on \the [src]"))
 				if(I.use_tool(src, user, 20, volume = 50))
@@ -458,7 +458,7 @@
 					to_chat(user, span_notice("The panels falls out of the way exposing the frame bolts."))
 				return
 		if(RWINDOW_BARS_CUT)
-			if(TOOL_WRENCH in I.tool_qualities)
+			if(QUALITY_BOLT_TURNING in I.tool_qualities)
 				user.visible_message(span_notice("[user] starts unfastening \the [src] from the frame..."),
 					span_notice("You start unfastening the bolts from the frame..."))
 				if(I.use_tool(src, user, 40, volume = 50))
@@ -555,7 +555,7 @@
 /obj/structure/window/plasma/reinforced/attackby(obj/item/I, mob/living/user, params)
 	switch(state)
 		if(RWINDOW_SECURE)
-			if((TOOL_WELDER in I.tool_qualities) && user.a_intent == INTENT_HARM)
+			if((QUALITY_WELDING in I.tool_qualities) && user.a_intent == INTENT_HARM)
 				user.visible_message(span_notice("[user] holds \the [I] to the security screws on \the [src]..."),
 										span_notice("You begin heating the security screws on \the [src]..."))
 				if(I.use_tool(src, user, 180, volume = 100))
@@ -564,7 +564,7 @@
 					addtimer(CALLBACK(src, PROC_REF(cool_bolts)), 300)
 				return
 		if(RWINDOW_BOLTS_HEATED)
-			if(TOOL_SCREWDRIVER in I.tool_qualities)
+			if(QUALITY_SCREW_DRIVING in I.tool_qualities)
 				user.visible_message(span_notice("[user] digs into the heated security screws and starts removing them..."),
 										span_notice("You dig into the heated screws hard and they start turning..."))
 				if(I.use_tool(src, user, 80, volume = 50))
@@ -572,7 +572,7 @@
 					to_chat(user, span_notice("The screws come out, and a gap forms around the edge of the pane."))
 				return
 		if(RWINDOW_BOLTS_OUT)
-			if(TOOL_CROWBAR in I.tool_qualities)
+			if(QUALITY_PRYING in I.tool_qualities)
 				user.visible_message(span_notice("[user] wedges \the [I] into the gap in the frame and starts prying..."),
 										span_notice("You wedge \the [I] into the gap in the frame and start prying..."))
 				if(I.use_tool(src, user, 50, volume = 50))
@@ -580,7 +580,7 @@
 					to_chat(user, span_notice("The panel pops out of the frame, exposing some thin metal bars that looks like they can be cut."))
 				return
 		if(RWINDOW_POPPED)
-			if(TOOL_WIRECUTTER in I.tool_qualities)
+			if(QUALITY_WIRE_CUTTING in I.tool_qualities)
 				user.visible_message(span_notice("[user] starts cutting the exposed bars on \the [src]..."),
 										span_notice("You start cutting the exposed bars on \the [src]"))
 				if(I.use_tool(src, user, 30, volume = 50))
@@ -588,7 +588,7 @@
 					to_chat(user, span_notice("The panels falls out of the way exposing the frame bolts."))
 				return
 		if(RWINDOW_BARS_CUT)
-			if(TOOL_WRENCH in I.tool_qualities)
+			if(QUALITY_BOLT_TURNING in I.tool_qualities)
 				user.visible_message(span_notice("[user] starts unfastening \the [src] from the frame..."),
 					span_notice("You start unfastening the bolts from the frame..."))
 				if(I.use_tool(src, user, 50, volume = 50))

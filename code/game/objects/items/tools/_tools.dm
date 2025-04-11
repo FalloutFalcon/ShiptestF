@@ -1,6 +1,3 @@
-/obj/item
-	var/list/tool_qualities// List of item qualities for tools system. See qualities.dm.
-
 /obj/item/tool
 	name = "tool"
 	icon = 'icons/obj/tools.dmi'
@@ -36,14 +33,14 @@
 
 /obj/item/tool/admin_debug
 	name = "Electric Boogaloo 3000"
-	icon_state = "omnitool"
-	item_state = "omnitool"
+	icon_state = "multitool"
+	item_state = "multitool"
 	tool_qualities = list(
 		QUALITY_BOLT_TURNING = 100,
 		QUALITY_PRYING = 100,
 		QUALITY_WELDING = 100,
 		QUALITY_SCREW_DRIVING = 100,
-		QUALITY_CLAMPING = 100,
+		QUALITY_RETRACTING = 100,
 		QUALITY_CAUTERIZING = 100,
 		QUALITY_WIRE_CUTTING = 100,
 		QUALITY_RETRACTING = 100,

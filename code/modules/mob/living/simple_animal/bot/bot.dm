@@ -328,7 +328,7 @@
 	return TRUE
 
 /mob/living/simple_animal/bot/attackby(obj/item/W, mob/user, params)
-	if(TOOL_SCREWDRIVER in W.tool_qualities)
+	if(QUALITY_SCREW_DRIVING in W.tool_qualities)
 		if(!locked)
 			open = !open
 			to_chat(user, span_notice("The maintenance panel is now [open ? "opened" : "closed"]."))
@@ -338,7 +338,7 @@
 		unlock_with_id(user)
 	else if(istype(W, /obj/item/paicard))
 		insertpai(user, W)
-	else if((TOOL_HEMOSTAT in W.tool_qualities) && paicard)
+	else if((QUALITY_CLAMPING in W.tool_qualities) && paicard)
 		if(open)
 			to_chat(user, span_warning("Close the access panel before manipulating the personality slot!"))
 		else
@@ -349,7 +349,7 @@
 					ejectpai(user)
 	else
 		user.changeNext_move(CLICK_CD_MELEE)
-		if((TOOL_WELDER in W.tool_qualities) && user.a_intent != INTENT_HARM)
+		if((QUALITY_WELDING in W.tool_qualities) && user.a_intent != INTENT_HARM)
 			if(health >= maxHealth)
 				to_chat(user, span_warning("[src] does not need a repair!"))
 				return

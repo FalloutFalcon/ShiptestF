@@ -58,7 +58,7 @@
 	qdel(src)
 
 /obj/structure/filingcabinet/attackby(obj/item/P, mob/user, params)
-	if((TOOL_WRENCH in P.tool_qualities) && user.a_intent != INTENT_HELP)
+	if((QUALITY_BOLT_TURNING in P.tool_qualities) && user.a_intent != INTENT_HELP)
 		to_chat(user, span_notice("You begin to [anchored ? "unwrench" : "wrench"] [src]."))
 		if(P.use_tool(src, user, 20, volume=50))
 			to_chat(user, span_notice("You successfully [anchored ? "unwrench" : "wrench"] [src]."))

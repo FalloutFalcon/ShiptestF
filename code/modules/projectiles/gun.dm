@@ -1166,7 +1166,7 @@ GLOBAL_LIST_INIT(gun_saw_types, typecacheof(list(
 
 ///Handles all the logic of sawing off guns,
 /obj/item/gun/proc/try_sawoff(mob/user, obj/item/saw)
-	if(!saw.get_sharpness() || !is_type_in_typecache(saw, GLOB.gun_saw_types) && saw.tool_behaviour != TOOL_SAW) //needs to be sharp. Otherwise turned off eswords can cut this.
+	if(!saw.get_sharpness() || !is_type_in_typecache(saw, GLOB.gun_saw_types) && saw.tool_behaviour != QUALITY_SAWING) //needs to be sharp. Otherwise turned off eswords can cut this.
 		return
 	if(sawn_off)
 		to_chat(user, span_warning("\The [src] is already shortened!"))

@@ -116,7 +116,7 @@
 		to_chat(user, span_info("You instruct [src] to drop any collected ore."))
 		DropOre()
 		return
-	if((TOOL_CROWBAR in I.tool_qualities) || istype(I, /obj/item/borg/upgrade/modkit))
+	if((QUALITY_PRYING in I.tool_qualities) || istype(I, /obj/item/borg/upgrade/modkit))
 		I.melee_attack_chain(user, stored_gun, params)
 		return
 	..()

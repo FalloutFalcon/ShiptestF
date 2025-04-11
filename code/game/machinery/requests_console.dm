@@ -398,7 +398,7 @@ GLOBAL_LIST_EMPTY(req_console_ckey_departments)
 		Radio.talk_into(src, "[alert]: <i>[message]</i>", radio_freq)
 
 /obj/machinery/requests_console/attackby(obj/item/O, mob/user, params)
-	if(TOOL_CROWBAR in O.tool_qualities)
+	if(QUALITY_PRYING in O.tool_qualities)
 		if(open)
 			to_chat(user, span_notice("You close the maintenance panel."))
 			open = FALSE
@@ -407,7 +407,7 @@ GLOBAL_LIST_EMPTY(req_console_ckey_departments)
 			open = TRUE
 		update_appearance()
 		return
-	if(TOOL_SCREWDRIVER in O.tool_qualities)
+	if(QUALITY_SCREW_DRIVING in O.tool_qualities)
 		if(open)
 			hackState = !hackState
 			if(hackState)

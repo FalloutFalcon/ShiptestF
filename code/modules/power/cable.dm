@@ -137,7 +137,7 @@ GLOBAL_LIST_INIT(cable_colors, list(
 	var/turf/T = get_turf(src)
 	if(T.intact)
 		return
-	if(TOOL_WIRECUTTER in W.tool_qualities)
+	if(QUALITY_WIRE_CUTTING in W.tool_qualities)
 		if (shock(user, 50))
 			return
 		user.visible_message("[user] cuts the cable.", span_notice("You cut the cable."))
@@ -159,7 +159,7 @@ GLOBAL_LIST_INIT(cable_colors, list(
 			R.loaded.cable_join(src, user)
 			R.is_empty(user)
 
-	else if(TOOL_MULTITOOL in W.tool_qualities)
+	else if(QUALITY_PULSING in W.tool_qualities)
 		if(powernet && (powernet.avail > 0))		// is it powered?
 			to_chat(user, span_danger("Total power: [DisplayPower(powernet.avail)]\nLoad: [DisplayPower(powernet.load)]\nExcess power: [DisplayPower(surplus())]"))
 		else
@@ -777,7 +777,7 @@ GLOBAL_LIST_INIT(cable_coil_recipes, list(new/datum/stack_recipe("cable restrain
 
 /obj/item/stack/cable_coil/attackby(obj/item/item, mob/user, params)
 	. = ..()
-	if(item.tool_behaviour != TOOL_WIRECUTTER)
+	if(item.tool_behaviour != QUALITY_WIRE_CUTTING)
 		return
 	playsound(src, 'sound/weapons/slice.ogg', 50, TRUE, -1)
 	to_chat(user, span_notice("You start cutting the insulation off of [src]..."))

@@ -854,7 +854,7 @@ CIGARETTE PACKETS ARE IN FANCY.DM
 	item_state = "[vapecolor]_vapeoff"
 
 /obj/item/clothing/mask/vape/attackby(obj/item/O, mob/user, params)
-	if(TOOL_SCREWDRIVER in O.tool_qualities)
+	if(QUALITY_SCREW_DRIVING in O.tool_qualities)
 		if(on)
 			to_chat(user, span_warning("You need to turn \the [src] off first!"))
 			return
@@ -874,7 +874,7 @@ CIGARETTE PACKETS ARE IN FANCY.DM
 			reagents.flags &= ~(OPENCONTAINER)
 			cut_overlays()
 
-	if(TOOL_MULTITOOL in O.tool_qualities)
+	if(QUALITY_PULSING in O.tool_qualities)
 		if(screw && !(obj_flags & EMAGGED))//also kinky
 			if(!super)
 				cut_overlays()

@@ -117,7 +117,7 @@
 		else
 			to_chat(user, span_warning("You need one rod to build a heatproof lattice."))
 		return
-	if((TOOL_MINING in attacking_item.tool_qualities) && (attacking_item.custom_materials[SSmaterials.GetMaterialRef(/datum/material/diamond)]))
+	if((QUALITY_DIGGING in attacking_item.tool_qualities) && (attacking_item.custom_materials[SSmaterials.GetMaterialRef(/datum/material/diamond)]))
 		if(is_mined)
 			to_chat(user, span_notice("This has already been cleared out of hellstone..."))
 			return FALSE

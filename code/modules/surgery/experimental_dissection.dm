@@ -33,7 +33,7 @@
 	implements = list(
 		/obj/item/scalpel/augment = 75,
 		/obj/item/scalpel/advanced = 60,
-		TOOL_SCALPEL = 45,
+		QUALITY_CUTTING = 45,
 		/obj/item/melee/knife = 30,
 		/obj/item/shard = 10)// special tools not only cut down time but also improve probability
 	time = 125

@@ -82,23 +82,23 @@
 /datum/component/construction/mecha/proc/get_frame_steps()
 	return list(
 		list(
-			"key" = TOOL_WRENCH,
+			"key" = QUALITY_BOLT_TURNING,
 			"desc" = "The hydraulic systems are disconnected."
 		),
 		list(
-			"key" = TOOL_SCREWDRIVER,
-			"back_key" = TOOL_WRENCH,
+			"key" = QUALITY_SCREW_DRIVING,
+			"back_key" = QUALITY_BOLT_TURNING,
 			"desc" = "The hydraulic systems are connected."
 		),
 		list(
 			"key" = /obj/item/stack/cable_coil,
 			"amount" = 5,
-			"back_key" = TOOL_SCREWDRIVER,
+			"back_key" = QUALITY_SCREW_DRIVING,
 			"desc" = "The hydraulic systems are active."
 		),
 		list(
-			"key" = TOOL_WIRECUTTER,
-			"back_key" = TOOL_SCREWDRIVER,
+			"key" = QUALITY_WIRE_CUTTING,
+			"back_key" = QUALITY_SCREW_DRIVING,
 			"desc" = "The wiring is added."
 		)
 	)
@@ -110,23 +110,23 @@
 		list(
 			"key" = circuit_control,
 			"action" = ITEM_DELETE,
-			"back_key" = TOOL_SCREWDRIVER,
+			"back_key" = QUALITY_SCREW_DRIVING,
 			"desc" = "The wiring is adjusted."
 		),
 		list(
-			"key" = TOOL_SCREWDRIVER,
-			"back_key" = TOOL_CROWBAR,
+			"key" = QUALITY_SCREW_DRIVING,
+			"back_key" = QUALITY_PRYING,
 			"desc" = "Central control module is installed."
 		),
 		list(
 			"key" = circuit_periph,
 			"action" = ITEM_DELETE,
-			"back_key" = TOOL_SCREWDRIVER,
+			"back_key" = QUALITY_SCREW_DRIVING,
 			"desc" = "Central control module is secured."
 		),
 		list(
-			"key" = TOOL_SCREWDRIVER,
-			"back_key" = TOOL_CROWBAR,
+			"key" = QUALITY_SCREW_DRIVING,
+			"back_key" = QUALITY_PRYING,
 			"desc" = "Peripherals control module is installed."
 		)
 	)
@@ -138,12 +138,12 @@
 		list(
 			"key" = circuit_weapon,
 			"action" = ITEM_DELETE,
-			"back_key" = TOOL_SCREWDRIVER,
+			"back_key" = QUALITY_SCREW_DRIVING,
 			"desc" = "Peripherals control module is secured."
 		),
 		list(
-			"key" = TOOL_SCREWDRIVER,
-			"back_key" = TOOL_CROWBAR,
+			"key" = QUALITY_SCREW_DRIVING,
+			"back_key" = QUALITY_PRYING,
 			"desc" = "Weapons control module is installed."
 		)
 	)
@@ -156,34 +156,34 @@
 		list(
 			"key" = /obj/item/stock_parts/scanning_module,
 			"action" = ITEM_MOVE_INSIDE,
-			"back_key" = TOOL_SCREWDRIVER,
+			"back_key" = QUALITY_SCREW_DRIVING,
 			"desc" = prevstep_text
 		),
 		list(
-			"key" = TOOL_SCREWDRIVER,
-			"back_key" = TOOL_CROWBAR,
+			"key" = QUALITY_SCREW_DRIVING,
+			"back_key" = QUALITY_PRYING,
 			"desc" = "Scanner module is installed."
 		),
 		list(
 			"key" = /obj/item/stock_parts/capacitor,
 			"action" = ITEM_MOVE_INSIDE,
-			"back_key" = TOOL_SCREWDRIVER,
+			"back_key" = QUALITY_SCREW_DRIVING,
 			"desc" = "Scanner module is secured."
 		),
 		list(
-			"key" = TOOL_SCREWDRIVER,
-			"back_key" = TOOL_CROWBAR,
+			"key" = QUALITY_SCREW_DRIVING,
+			"back_key" = QUALITY_PRYING,
 			"desc" = "Capacitor is installed."
 		),
 		list(
 			"key" = /obj/item/stock_parts/cell,
 			"action" = ITEM_MOVE_INSIDE,
-			"back_key" = TOOL_SCREWDRIVER,
+			"back_key" = QUALITY_SCREW_DRIVING,
 			"desc" = "Capacitor is secured."
 		),
 		list(
-			"key" = TOOL_SCREWDRIVER,
-			"back_key" = TOOL_CROWBAR,
+			"key" = QUALITY_SCREW_DRIVING,
+			"back_key" = QUALITY_PRYING,
 			"desc" = "The power cell is installed."
 		)
 	)
@@ -197,7 +197,7 @@
 			list(
 				"key" = inner_plating,
 				"amount" = inner_plating_amount,
-				"back_key" = TOOL_SCREWDRIVER,
+				"back_key" = QUALITY_SCREW_DRIVING,
 				"desc" = "The power cell is secured."
 			)
 		)
@@ -206,20 +206,20 @@
 			list(
 				"key" = inner_plating,
 				"action" = ITEM_DELETE,
-				"back_key" = TOOL_SCREWDRIVER,
+				"back_key" = QUALITY_SCREW_DRIVING,
 				"desc" = "The power cell is secured."
 			)
 		)
 
 	return first_step + list(
 		list(
-			"key" = TOOL_WRENCH,
-			"back_key" = TOOL_CROWBAR,
+			"key" = QUALITY_BOLT_TURNING,
+			"back_key" = QUALITY_PRYING,
 			"desc" = "Inner plating is installed."
 		),
 		list(
-			"key" = TOOL_WELDER,
-			"back_key" = TOOL_WRENCH,
+			"key" = QUALITY_WELDING,
+			"back_key" = QUALITY_BOLT_TURNING,
 			"desc" = "Inner Plating is wrenched."
 		)
 	)
@@ -233,7 +233,7 @@
 			list(
 				"key" = outer_plating,
 				"amount" = outer_plating_amount,
-				"back_key" = TOOL_WELDER,
+				"back_key" = QUALITY_WELDING,
 				"desc" = "Inner plating is welded."
 			)
 		)
@@ -242,20 +242,20 @@
 			list(
 				"key" = outer_plating,
 				"action" = ITEM_DELETE,
-				"back_key" = TOOL_WELDER,
+				"back_key" = QUALITY_WELDING,
 				"desc" = "Inner plating is welded."
 			)
 		)
 
 	return first_step + list(
 		list(
-			"key" = TOOL_WRENCH,
-			"back_key" = TOOL_CROWBAR,
+			"key" = QUALITY_BOLT_TURNING,
+			"back_key" = QUALITY_PRYING,
 			"desc" = "External armor is installed."
 		),
 		list(
-			"key" = TOOL_WELDER,
-			"back_key" = TOOL_WRENCH,
+			"key" = QUALITY_WELDING,
+			"back_key" = QUALITY_BOLT_TURNING,
 			"desc" = "External armor is wrenched."
 		)
 	)
@@ -289,12 +289,12 @@
 		list(
 			"key" = /obj/item/stack/rods,
 			"amount" = 10,
-			"back_key" = TOOL_WELDER,
+			"back_key" = QUALITY_WELDING,
 			"desc" = "Outer Plating is welded."
 		),
 		list(
-			"key" = TOOL_WELDER,
-			"back_key" = TOOL_WIRECUTTER,
+			"key" = QUALITY_WELDING,
+			"back_key" = QUALITY_WIRE_CUTTING,
 			"desc" = "Cockpit wire screen is installed."
 		),
 	)
@@ -589,23 +589,23 @@
 		list(
 			"key" = /obj/item/stack/sheet/plasteel,
 			"amount" = 5,
-			"back_key" = TOOL_WELDER,
+			"back_key" = QUALITY_WELDING,
 			"desc" = "Internal armor is welded."
 		),
 		list(
 			"key" = /obj/item/stack/sheet/plasteel,
 			"amount" = 5,
-			"back_key" = TOOL_CROWBAR,
+			"back_key" = QUALITY_PRYING,
 			"desc" = "External armor is being installed."
 		),
 		list(
-			"key" = TOOL_WRENCH,
-			"back_key" = TOOL_CROWBAR,
+			"key" = QUALITY_BOLT_TURNING,
+			"back_key" = QUALITY_PRYING,
 			"desc" = "External armor is installed."
 		),
 		list(
-			"key" = TOOL_WELDER,
-			"back_key" = TOOL_WRENCH,
+			"key" = QUALITY_WELDING,
+			"back_key" = QUALITY_BOLT_TURNING,
 			"desc" = "External armor is wrenched."
 		),
 	)
@@ -1002,51 +1002,51 @@
 		list(
 			"key" = /obj/item/stock_parts/scanning_module,
 			"action" = ITEM_MOVE_INSIDE,
-			"back_key" = TOOL_SCREWDRIVER,
+			"back_key" = QUALITY_SCREW_DRIVING,
 			"desc" = "Weapon control module is secured."
 		),
 		list(
-			"key" = TOOL_SCREWDRIVER,
-			"back_key" = TOOL_CROWBAR,
+			"key" = QUALITY_SCREW_DRIVING,
+			"back_key" = QUALITY_PRYING,
 			"desc" = "Scanner module is installed."
 		),
 		list(
 			"key" = /obj/item/stock_parts/capacitor,
 			"action" = ITEM_MOVE_INSIDE,
-			"back_key" = TOOL_SCREWDRIVER,
+			"back_key" = QUALITY_SCREW_DRIVING,
 			"desc" = "Scanner module is secured."
 		),
 		list(
-			"key" = TOOL_SCREWDRIVER,
-			"back_key" = TOOL_CROWBAR,
+			"key" = QUALITY_SCREW_DRIVING,
+			"back_key" = QUALITY_PRYING,
 			"desc" = "Capacitor is installed."
 		),
 		list(
 			"key" = /obj/item/stack/ore/bluespace_crystal,
 			"amount" = 1,
-			"back_key" = TOOL_SCREWDRIVER,
+			"back_key" = QUALITY_SCREW_DRIVING,
 			"desc" = "Capacitor is secured."
 		),
 		list(
 			"key" = /obj/item/stack/cable_coil,
 			"amount" = 5,
-			"back_key" = TOOL_CROWBAR,
+			"back_key" = QUALITY_PRYING,
 			"desc" = "The bluespace crystal is installed."
 		),
 		list(
-			"key" = TOOL_SCREWDRIVER,
-			"back_key" = TOOL_WIRECUTTER,
+			"key" = QUALITY_SCREW_DRIVING,
+			"back_key" = QUALITY_WIRE_CUTTING,
 			"desc" = "The bluespace crystal is connected."
 		),
 		list(
 			"key" = /obj/item/stock_parts/cell,
 			"action" = ITEM_MOVE_INSIDE,
-			"back_key" = TOOL_SCREWDRIVER,
+			"back_key" = QUALITY_SCREW_DRIVING,
 			"desc" = "The bluespace crystal is engaged."
 		),
 		list(
-			"key" = TOOL_SCREWDRIVER,
-			"back_key" = TOOL_CROWBAR,
+			"key" = QUALITY_SCREW_DRIVING,
+			"back_key" = QUALITY_PRYING,
 			"desc" = "The power cell is installed.",
 			"icon_state" = "phazon17"
 			// This is the point where a step icon is skipped, so "icon_state" had to be set manually starting from here.
@@ -1059,23 +1059,23 @@
 			"key" = outer_plating,
 			"amount" = 1,
 			"action" = ITEM_DELETE,
-			"back_key" = TOOL_WELDER,
+			"back_key" = QUALITY_WELDING,
 			"desc" = "Internal armor is welded."
 		),
 		list(
-			"key" = TOOL_WRENCH,
-			"back_key" = TOOL_CROWBAR,
+			"key" = QUALITY_BOLT_TURNING,
+			"back_key" = QUALITY_PRYING,
 			"desc" = "External armor is installed."
 		),
 		list(
-			"key" = TOOL_WELDER,
-			"back_key" = TOOL_WRENCH,
+			"key" = QUALITY_WELDING,
+			"back_key" = QUALITY_BOLT_TURNING,
 			"desc" = "External armor is wrenched."
 		),
 		list(
 			"key" = /obj/item/assembly/signaler/anomaly, //WS Edit - Any anomaly core for Phazons
 			"action" = ITEM_DELETE,
-			"back_key" = TOOL_WELDER,
+			"back_key" = QUALITY_WELDING,
 			"desc" = "Anomaly core socket is open.",
 			"icon_state" = "phazon24"
 		)

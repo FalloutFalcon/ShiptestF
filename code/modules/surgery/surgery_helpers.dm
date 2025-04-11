@@ -96,13 +96,13 @@
 		return
 
 	if(S.can_cancel)
-		var/required_tool_type = TOOL_CAUTERY
+		var/required_tool_type = QUALITY_CAUTERIZING
 		// Historically surgical drapes were used with the cautery in the inactive hand, but these drapes don't seem to exist here
 		var/obj/item/close_tool = user.get_active_held_item()
 		var/is_robotic = S.requires_bodypart_type == BODYTYPE_ROBOTIC
 
 		if(is_robotic)
-			required_tool_type = TOOL_SCREWDRIVER
+			required_tool_type = QUALITY_SCREW_DRIVING
 
 		if(iscyborg(user))
 			close_tool = locate(/obj/item/cautery) in user.held_items

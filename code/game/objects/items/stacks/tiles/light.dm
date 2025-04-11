@@ -20,7 +20,7 @@
 		state = 0 //fine
 
 /obj/item/stack/tile/light/attackby(obj/item/O, mob/user, params)
-	if(TOOL_CROWBAR in O.tool_qualities)
+	if(QUALITY_PRYING in O.tool_qualities)
 		new/obj/item/stack/sheet/metal(user.loc)
 		amount--
 		new/obj/item/stack/light_w(user.loc)

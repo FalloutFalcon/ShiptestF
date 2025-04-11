@@ -10,7 +10,7 @@
 	anchored = TRUE
 	locked = TRUE
 	breakout_time = 900
-	cutting_tool = TOOL_SHOVEL
+	cutting_tool = QUALITY_SHOVELING
 
 /obj/structure/closet/crate/grave/attackby(obj/item/W, mob/user, params)
 	.=..()

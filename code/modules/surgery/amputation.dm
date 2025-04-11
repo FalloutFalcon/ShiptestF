@@ -11,8 +11,8 @@
 	name = "sever limb"
 	implements = list(//this is fine, detaching limbs doesn't require precision - this is only more precise because zone targeting is randomized
 		/obj/item/shears = 300,
-		TOOL_SCALPEL = 100,
-		TOOL_SAW = 100,
+		QUALITY_CUTTING = 100,
+		QUALITY_SAWING = 100,
 		/obj/item/melee/arm_blade = 80,
 		/obj/item/melee/axe/fire = 50,
 		/obj/item/hatchet = 40,

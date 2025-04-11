@@ -33,7 +33,7 @@
 		deconstruct(FALSE)
 
 /obj/structure/transit_tube/attackby(obj/item/W, mob/user, params)
-	if(TOOL_WRENCH in W.tool_qualities)
+	if(QUALITY_BOLT_TURNING in W.tool_qualities)
 		if(tube_construction)
 			for(var/obj/structure/transit_tube_pod/pod in src.loc)
 				to_chat(user, span_warning("Remove the pod first!"))
@@ -46,7 +46,7 @@
 				transfer_fingerprints_to(R)
 				R.add_fingerprint(user)
 				qdel(src)
-	else if(TOOL_CROWBAR in W.tool_qualities)
+	else if(QUALITY_PRYING in W.tool_qualities)
 		for(var/obj/structure/transit_tube_pod/pod in src.loc)
 			pod.attackby(W, user)
 	else

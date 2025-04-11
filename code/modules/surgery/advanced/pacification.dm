@@ -21,8 +21,8 @@
 /datum/surgery_step/pacify
 	name = "rewire brain"
 	implements = list(
-		TOOL_HEMOSTAT = 100,
-		TOOL_SCREWDRIVER = 15, //brain surgery with a screwdriver. Ouch!
+		QUALITY_CLAMPING = 100,
+		QUALITY_SCREW_DRIVING = 15, //brain surgery with a screwdriver. Ouch!
 		/obj/item/pen = 5)
 	time = 4 SECONDS
 	preop_sound = 'sound/surgery/hemostat1.ogg'

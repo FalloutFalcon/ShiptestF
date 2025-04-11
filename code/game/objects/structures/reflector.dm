@@ -78,13 +78,13 @@
 	if(admin)
 		return
 
-	if(TOOL_SCREWDRIVER in W.tool_qualities)
+	if(QUALITY_SCREW_DRIVING in W.tool_qualities)
 		can_rotate = !can_rotate
 		to_chat(user, span_notice("You [can_rotate ? "unlock" : "lock"] [src]'s rotation."))
 		W.play_tool_sound(src)
 		return
 
-	if(TOOL_WRENCH in W.tool_qualities)
+	if(QUALITY_BOLT_TURNING in W.tool_qualities)
 		if(anchored)
 			to_chat(user, span_warning("Unweld [src] from the floor first!"))
 			return
@@ -95,7 +95,7 @@
 			if(buildstackamount)
 				new buildstacktype(drop_location(), buildstackamount)
 			qdel(src)
-	else if(TOOL_WELDER in W.tool_qualities)
+	else if(QUALITY_WELDING in W.tool_qualities)
 		if(obj_integrity < max_integrity)
 			if(!W.tool_start_check(user, amount=0))
 				return

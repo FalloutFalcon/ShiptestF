@@ -93,7 +93,7 @@
 				build_step++
 
 		if(ASSEMBLY_FOURTH_STEP)
-			if(TOOL_WELDER in W.tool_qualities)
+			if(QUALITY_WELDING in W.tool_qualities)
 				if(W.use_tool(src, user, 0, volume=40))
 					name = "shielded frame assembly"
 					to_chat(user, span_notice("You weld the vest to [src]."))
@@ -147,7 +147,7 @@
 				build_step++
 
 		if(8)
-			if(TOOL_SCREWDRIVER in W.tool_qualities)
+			if(QUALITY_SCREW_DRIVING in W.tool_qualities)
 				to_chat(user, span_notice("You start attaching the gun to the frame..."))
 				if(W.use_tool(src, user, 40, volume=100))
 					var/mob/living/simple_animal/bot/secbot/ed209/B = new(drop_location())
@@ -275,13 +275,13 @@
 	var/atom/Tsec = drop_location()
 	switch(build_step)
 		if(ASSEMBLY_FIRST_STEP)
-			if(TOOL_WELDER in I.tool_qualities)
+			if(QUALITY_WELDING in I.tool_qualities)
 				if(I.use_tool(src, user, 0, volume=40))
 					add_overlay("hs_hole")
 					to_chat(user, span_notice("You weld a hole in [src]!"))
 					build_step++
 
-			else if(TOOL_SCREWDRIVER in I.tool_qualities) //deconstruct
+			else if(QUALITY_SCREW_DRIVING in I.tool_qualities) //deconstruct
 				new /obj/item/assembly/signaler(Tsec)
 				new /obj/item/clothing/head/helmet/sec(Tsec)
 				to_chat(user, span_notice("You disconnect the signaler from the helmet."))
@@ -297,7 +297,7 @@
 				qdel(I)
 				build_step++
 
-			else if(TOOL_WELDER in I.tool_qualities) //deconstruct
+			else if(QUALITY_WELDING in I.tool_qualities) //deconstruct
 				if(I.use_tool(src, user, 0, volume=40))
 					cut_overlay("hs_hole")
 					to_chat(user, span_notice("You weld the hole in [src] shut!"))
@@ -314,7 +314,7 @@
 				qdel(I)
 				build_step++
 
-			else if(TOOL_SCREWDRIVER in I.tool_qualities) //deconstruct
+			else if(QUALITY_SCREW_DRIVING in I.tool_qualities) //deconstruct
 				cut_overlay("hs_eye")
 				new /obj/item/assembly/prox_sensor(Tsec)
 				to_chat(user, span_notice("You detach the proximity sensor from [src]."))
@@ -331,7 +331,7 @@
 				S.robot_arm = robot_arm
 				qdel(I)
 				qdel(src)
-			if(TOOL_WRENCH in I.tool_qualities)
+			if(QUALITY_BOLT_TURNING in I.tool_qualities)
 				to_chat(user, span_notice("You adjust [src]'s arm slots to mount extra weapons."))
 				build_step ++
 				return
@@ -355,7 +355,7 @@
 					qdel(I)
 					qdel(src)
 
-			else if(TOOL_SCREWDRIVER in I.tool_qualities) //deconstruct
+			else if(QUALITY_SCREW_DRIVING in I.tool_qualities) //deconstruct
 				cut_overlay("hs_arm")
 				var/obj/item/bodypart/dropped_arm = new robot_arm(Tsec)
 				robot_arm = null
@@ -388,7 +388,7 @@
 					S.robot_arm = robot_arm
 					qdel(I)
 					qdel(src)
-			else if(TOOL_SCREWDRIVER in I.tool_qualities) //deconstruct
+			else if(QUALITY_SCREW_DRIVING in I.tool_qualities) //deconstruct
 				build_step--
 				swordamt = 0
 				icon_state = initial(icon_state)
@@ -439,7 +439,7 @@
 	. = ..()
 	switch(build_step)
 		if(ASSEMBLY_FIRST_STEP)
-			if(TOOL_WELDER in I.tool_qualities)
+			if(QUALITY_WELDING in I.tool_qualities)
 				if(I.use_tool(src, user, 0, volume=40))
 					add_overlay("hs_hole")
 					to_chat(user, span_notice("You weld a water hole in [src]!"))

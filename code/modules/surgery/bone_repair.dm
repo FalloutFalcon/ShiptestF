@@ -16,8 +16,8 @@
 	name = "set bone"
 	time = 6.4 SECONDS
 	implements = list(
-		TOOL_HEMOSTAT = 100,
-		TOOL_WRENCH = 40)
+		QUALITY_CLAMPING = 100,
+		QUALITY_BOLT_TURNING = 40)
 	preop_sound = 'sound/surgery/bone1.ogg'
 	success_sound = 'sound/surgery/bone3.ogg'
 	fuckup_damage = 15

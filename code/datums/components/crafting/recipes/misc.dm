@@ -31,7 +31,7 @@
 		/obj/item/stock_parts/capacitor = 1)
 	parts = list(/obj/item/stock_parts/manipulator = 2,
 		/obj/item/stock_parts/capacitor = 1)
-	tools = list(TOOL_WELDER, TOOL_SCREWDRIVER, TOOL_WRENCH)
+	tools = list(QUALITY_WELDING, QUALITY_SCREW_DRIVING, QUALITY_BOLT_TURNING)
 	time = 200
 	category = CAT_MISC
 
@@ -91,7 +91,7 @@
 	name = "Makeshift Rapid Cable Layer"
 	result = /obj/item/rcl/ghetto
 	time = 40
-	tools = list(TOOL_WELDER, TOOL_SCREWDRIVER, TOOL_WRENCH)
+	tools = list(QUALITY_WELDING, QUALITY_SCREW_DRIVING, QUALITY_BOLT_TURNING)
 	reqs = list(/obj/item/stack/sheet/metal = 15)
 	category = CAT_MISC
 
@@ -101,7 +101,7 @@
 	time = 30
 	reqs = list(/obj/item/tank/internals/oxygen = 2, /obj/item/extinguisher = 1, /obj/item/pipe = 3, /obj/item/stack/cable_coil = MAXCOIL)
 	category = CAT_MISC
-	tools = list(TOOL_WRENCH, TOOL_WELDER, TOOL_WIRECUTTER)
+	tools = list(QUALITY_BOLT_TURNING, QUALITY_WELDING, QUALITY_WIRE_CUTTING)
 
 /datum/crafting_recipe/multiduct
 	name = "Multi-layer duct"
@@ -109,7 +109,7 @@
 	time = 5
 	reqs = list(/obj/item/stack/ducts = 5)
 	category = CAT_MISC
-	tools = list(TOOL_WELDER)
+	tools = list(QUALITY_WELDING)
 
 /datum/crafting_recipe/ipickaxe
 	name = "Improvised Pickaxe"
@@ -123,7 +123,7 @@
 /datum/crafting_recipe/chem_scanner
 	name = "Reagent Scanner"
 	time = 30
-	tools = list(TOOL_WIRECUTTER, TOOL_SCREWDRIVER)
+	tools = list(QUALITY_WIRE_CUTTING, QUALITY_SCREW_DRIVING)
 	reqs = list(
 		/obj/item/healthanalyzer = 1,
 		/obj/item/stack/cable_coil = 5,
@@ -134,7 +134,7 @@
 /datum/crafting_recipe/filter
 	name = "Seperatory Funnel"
 	time = 40
-	tools = list(TOOL_WELDER, TOOL_WIRECUTTER)
+	tools = list(QUALITY_WELDING, QUALITY_WIRE_CUTTING)
 	reqs = list(
 		/obj/item/stack/cable_coil = 1,
 		/obj/item/reagent_containers/glass/beaker = 3)
@@ -152,7 +152,7 @@
 
 /datum/crafting_recipe/replacement_structure
 	name = "Structure Repair Kit"
-	tools = list(TOOL_SCREWDRIVER, TOOL_WIRECUTTER) //hole punching and scissors
+	tools = list(QUALITY_SCREW_DRIVING, QUALITY_WIRE_CUTTING) //hole punching and scissors
 	reqs = list(
 			/obj/item/stack/rods = 3,
 			/obj/item/stack/sheet/mineral/titanium = 1,
@@ -169,7 +169,7 @@
 			/obj/item/stack/cable_coil = 2)
 	result = /obj/item/storage/bag/plants/portaseeder //this will probably mean that you can craft portable seed extractors into themselves, sending the other materials into the void, but we still don't have a solution for recipes involving radios stealing your headset, so this is officially not my problem. "no, Tills-The-Soil, adding more analyzers and micro-manipulators to your portable seed extractor does not make it make more seeds. in fact it does exactly nothing."
 	time = 20
-	tools = list(TOOL_SCREWDRIVER, TOOL_WIRECUTTER)
+	tools = list(QUALITY_SCREW_DRIVING, QUALITY_WIRE_CUTTING)
 	category = CAT_MISC
 
 /datum/crafting_recipe/freezer
@@ -232,6 +232,6 @@
 	reqs = list(/obj/item/circular_saw = 1,
 				/obj/item/stack/cable_coil = 3,
 				/obj/item/stack/sheet/plasteel = 5)
-	tools = list(TOOL_WELDER)
+	tools = list(QUALITY_WELDING)
 	time = 50
 	category = CAT_MISC

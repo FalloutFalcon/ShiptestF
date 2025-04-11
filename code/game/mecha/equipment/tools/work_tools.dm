@@ -8,7 +8,7 @@
 	icon_state = "mecha_clamp"
 	equip_cooldown = 15
 	energy_drain = 10
-	tool_behaviour = TOOL_RETRACTOR
+	tool_behaviour = QUALITY_RETRACTING
 	toolspeed = 0.8
 	var/dam_force = 20
 	var/obj/mecha/working/ripley/cargo_holder
@@ -500,7 +500,7 @@
 	force = 15
 	var/dam_force = 30
 	harmful = TRUE
-	tool_behaviour = TOOL_DECONSTRUCT
+	tool_behaviour = QUALITY_DECONSTRUCT
 	toolspeed = 0.3
 	wall_decon_damage = 400
 	var/datum/effect_system/spark_spread/spark_system

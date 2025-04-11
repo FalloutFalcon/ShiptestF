@@ -2,8 +2,8 @@
 /datum/surgery_step/mechanic_open
 	name = "unscrew shell"
 	implements = list(
-		TOOL_SCREWDRIVER		= 100,
-		TOOL_SCALPEL 			= 75, // med borgs could try to unscrew shell with scalpel
+		QUALITY_SCREW_DRIVING		= 100,
+		QUALITY_CUTTING 			= 75, // med borgs could try to unscrew shell with scalpel
 		/obj/item/melee/knife/kitchen	= 50,
 		/obj/item				= 10)
 	time = 2.4 SECONDS
@@ -26,8 +26,8 @@
 /datum/surgery_step/mechanic_close
 	name = "screw shell"
 	implements = list(
-		TOOL_SCREWDRIVER		= 100,
-		TOOL_SCALPEL 			= 75,
+		QUALITY_SCREW_DRIVING		= 100,
+		QUALITY_CUTTING 			= 75,
 		/obj/item/melee/knife/kitchen	= 50,
 		/obj/item				= 10)
 	time = 2.4 SECONDS
@@ -50,8 +50,8 @@
 /datum/surgery_step/prepare_electronics
 	name = "prepare electronics"
 	implements = list(
-		TOOL_MULTITOOL = 100,
-		TOOL_HEMOSTAT = 10) // try to reboot internal controllers via short circuit with some conductor
+		QUALITY_PULSING = 100,
+		QUALITY_CLAMPING = 10) // try to reboot internal controllers via short circuit with some conductor
 	time = 2.4 SECONDS
 	preop_sound = 'sound/items/tape_flip.ogg'
 	success_sound = 'sound/items/taperecorder_close.ogg'
@@ -66,8 +66,8 @@
 /datum/surgery_step/mechanic_unwrench
 	name = "unwrench bolts"
 	implements = list(
-		TOOL_WRENCH = 100,
-		TOOL_RETRACTOR = 10)
+		QUALITY_BOLT_TURNING = 100,
+		QUALITY_RETRACTING = 10)
 	time = 2.4 SECONDS
 	preop_sound = 'sound/items/ratchet.ogg'
 
@@ -85,8 +85,8 @@
 /datum/surgery_step/mechanic_wrench
 	name = "wrench bolts"
 	implements = list(
-		TOOL_WRENCH = 100,
-		TOOL_RETRACTOR = 10)
+		QUALITY_BOLT_TURNING = 100,
+		QUALITY_RETRACTING = 10)
 	time = 2.4 SECONDS
 	preop_sound = 'sound/items/ratchet.ogg'
 
@@ -133,8 +133,8 @@
 	preop_sound = 'sound/surgery/organ2.ogg'
 	success_sound = 'sound/surgery/organ1.ogg'
 	implements_extract = list(
-		TOOL_HEMOSTAT = 55,
-		TOOL_CROWBAR = 100,
+		QUALITY_CLAMPING = 55,
+		QUALITY_PRYING = 100,
 		/obj/item/kitchen/fork = 35)
 
 //prosthesis removal
@@ -142,8 +142,8 @@
 	name = "detach prosthesis"
 	accept_hand = TRUE //once a prosthesis is unseated, it should be a simple matter of removing it without tools
 	implements = list(
-		TOOL_WRENCH = 100,
-		TOOL_CROWBAR = 100) //exists just in case you want to reflavor your prosthesis as something a little more integrated
+		QUALITY_BOLT_TURNING = 100,
+		QUALITY_PRYING = 100) //exists just in case you want to reflavor your prosthesis as something a little more integrated
 	time = 2.8 SECONDS
 	preop_sound = 'sound/items/ratchet.ogg'
 	success_sound = 'sound/machines/doorclick.ogg'

@@ -40,7 +40,7 @@
 		to_chat(user, span_notice("You insert the vortex anomaly core, and the storage space inside [src] seems to grow much larger!"))
 		return
 	var/locked = SEND_SIGNAL(src, COMSIG_IS_STORAGE_LOCKED)
-	if ((TOOL_SCREWDRIVER in I.tool_qualities))
+	if ((QUALITY_SCREW_DRIVING in I.tool_qualities))
 		SEND_SIGNAL(src, COMSIG_TRY_STORAGE_SET_LOCKSTATE, !locked)
 		if (!locked)
 			update_contents()

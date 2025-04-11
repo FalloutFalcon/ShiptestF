@@ -663,7 +663,7 @@ Congratulations! You are now trained for invasive xenobiology research!"}
 	AddComponent(/datum/component/wearertargeting/earprotection, list(ITEM_SLOT_EARS))
 
 /obj/item/radio/headset/abductor/attackby(obj/item/W, mob/user, params)
-	if(TOOL_SCREWDRIVER in W.tool_qualities)
+	if(QUALITY_SCREW_DRIVING in W.tool_qualities)
 		return // Stops humans from disassembling abductor headsets.
 	return ..()
 
@@ -771,7 +771,7 @@ Congratulations! You are now trained for invasive xenobiology research!"}
 	framestackamount = 1
 
 /obj/structure/table_frame/abductor/attackby(obj/item/I, mob/user, params)
-	if(TOOL_WRENCH in I.tool_qualities)
+	if(QUALITY_BOLT_TURNING in I.tool_qualities)
 		to_chat(user, span_notice("You start disassembling [src]..."))
 		I.play_tool_sound(src)
 		if(I.use_tool(src, user, 30))

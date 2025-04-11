@@ -97,7 +97,7 @@
 	add_fingerprint(user)
 	switch(state)
 		if("01")
-			if((TOOL_WELDER in W.tool_qualities) && !anchored)
+			if((QUALITY_WELDING in W.tool_qualities) && !anchored)
 				if(!W.tool_start_check(user, amount=0))
 					return
 
@@ -115,7 +115,7 @@
 				return
 
 			//Wrenching an unsecure assembly anchors it in place. Step 4 complete
-			if((TOOL_WRENCH in W.tool_qualities) && !anchored)
+			if((QUALITY_BOLT_TURNING in W.tool_qualities) && !anchored)
 				for(var/obj/machinery/door/window/WD in loc)
 					if(WD.dir == dir)
 						to_chat(user, span_warning("There is already a windoor in that location!"))
@@ -138,7 +138,7 @@
 						name = "anchored windoor assembly"
 
 			//Unwrenching an unsecure assembly un-anchors it. Step 4 undone
-			else if((TOOL_WRENCH in W.tool_qualities) && anchored)
+			else if((QUALITY_BOLT_TURNING in W.tool_qualities) && anchored)
 				user.visible_message(span_notice("[user] unsecures the windoor assembly to the floor."),
 					span_notice("You start to unsecure the windoor assembly to the floor..."))
 
@@ -195,7 +195,7 @@
 		if("02")
 
 			//Removing wire from the assembly. Step 5 undone.
-			if(TOOL_WIRECUTTER in W.tool_qualities)
+			if(QUALITY_WIRE_CUTTING in W.tool_qualities)
 				user.visible_message(span_notice("[user] cuts the wires from the airlock assembly."), span_notice("You start to cut the wires from airlock assembly..."))
 
 				if(W.use_tool(src, user, 40, volume=100))
@@ -229,7 +229,7 @@
 					W.forceMove(drop_location())
 
 			//Screwdriver to remove airlock electronics. Step 6 undone.
-			else if(TOOL_SCREWDRIVER in W.tool_qualities)
+			else if(QUALITY_SCREW_DRIVING in W.tool_qualities)
 				if(!electronics)
 					return
 
@@ -256,7 +256,7 @@
 
 
 			//Crowbar to complete the assembly, Step 7 complete.
-			else if(TOOL_CROWBAR in W.tool_qualities)
+			else if(QUALITY_PRYING in W.tool_qualities)
 				if(!electronics)
 					to_chat(usr, span_warning("The assembly is missing electronics!"))
 					return

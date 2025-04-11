@@ -79,7 +79,7 @@
 		handle_container(user, item)
 		balloon_alert(user, "added [item] to output")
 		return TRUE
-	else if(TOOL_SCREWDRIVER in item.tool_qualities)
+	else if(QUALITY_SCREW_DRIVING in item.tool_qualities)
 		if(user.a_intent == INTENT_HELP)
 			var/i=0
 			for(var/A in possible_volumes)

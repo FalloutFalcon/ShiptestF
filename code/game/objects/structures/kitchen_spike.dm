@@ -22,7 +22,7 @@
 			var/obj/F = new /obj/structure/kitchenspike(src.loc)
 			transfer_fingerprints_to(F)
 			qdel(src)
-	else if(TOOL_WELDER in I.tool_qualities)
+	else if(QUALITY_WELDING in I.tool_qualities)
 		if(!I.tool_start_check(user, amount=0))
 			return
 		to_chat(user, span_notice("You begin cutting \the [src] apart..."))

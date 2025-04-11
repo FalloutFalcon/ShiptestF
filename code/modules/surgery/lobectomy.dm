@@ -21,7 +21,7 @@
 /datum/surgery_step/lobectomy
 	name = "excise damaged lung node"
 	implements = list(
-		TOOL_SCALPEL = 95,
+		QUALITY_CUTTING = 95,
 		/obj/item/melee/energy/sword = 33,
 		/obj/item/melee/knife = 40,
 		/obj/item/shard = 25)

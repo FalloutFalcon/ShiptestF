@@ -113,7 +113,7 @@
 				return
 
 		if(NUKESTATE_PANEL_REMOVED)
-			if(TOOL_WELDER in I.tool_qualities)
+			if(QUALITY_WELDING in I.tool_qualities)
 				if(!I.tool_start_check(user, amount=1))
 					return
 				to_chat(user, span_notice("You start cutting [src]'s inner plate..."))

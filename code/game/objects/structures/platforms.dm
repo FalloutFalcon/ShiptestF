@@ -113,7 +113,7 @@
 	..()
 	add_fingerprint(user)
 
-	if((TOOL_WELDER in I.tool_qualities) && user.a_intent == INTENT_HELP)
+	if((QUALITY_WELDING in I.tool_qualities) && user.a_intent == INTENT_HELP)
 		if(obj_integrity < max_integrity)
 			if(!I.tool_start_check(user, amount=0))
 				return

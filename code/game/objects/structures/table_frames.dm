@@ -22,7 +22,7 @@
 	var/framestackamount = 2
 
 /obj/structure/table_frame/attackby(obj/item/I, mob/user, params)
-	if(TOOL_WRENCH in I.tool_qualities)
+	if(QUALITY_BOLT_TURNING in I.tool_qualities)
 		to_chat(user, span_notice("You start disassembling [src]..."))
 		I.play_tool_sound(src)
 		if(I.use_tool(src, user, 30))

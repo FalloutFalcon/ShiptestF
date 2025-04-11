@@ -45,7 +45,7 @@
 /obj/item/melee/sledgehammer/gorlex/proc/on_wield(obj/item/source, mob/user)
 	SIGNAL_HANDLER
 
-	tool_behaviour = TOOL_MINING
+	tool_behaviour = QUALITY_DIGGING
 
 /obj/item/melee/sledgehammer/gorlex/proc/on_unwield(obj/item/source, mob/user)
 	SIGNAL_HANDLER

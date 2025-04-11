@@ -72,7 +72,7 @@
 	set_light_on(FALSE)
 
 /obj/item/melee/duelenergy/attackby(obj/item/W, mob/user, params)
-	if(TOOL_MULTITOOL in W.tool_qualities)
+	if(QUALITY_PULSING in W.tool_qualities)
 		if(!hacked)
 			hacked = TRUE
 			to_chat(user, span_warning("[hack_flavor_text]"))

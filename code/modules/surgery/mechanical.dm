@@ -16,9 +16,9 @@
 
 /datum/surgery_step/fix_brain/mechanic
 	implements = list(
-		TOOL_MULTITOOL = 85,
-		TOOL_HEMOSTAT = 85,
-		TOOL_SCREWDRIVER = 40,
+		QUALITY_PULSING = 85,
+		QUALITY_CLAMPING = 85,
+		QUALITY_SCREW_DRIVING = 40,
 		/obj/item/pen = 5
 	)
 
@@ -36,11 +36,11 @@
 
 /datum/surgery_step/heal/mechanic
 	name = "repair components"
-	implements = list(TOOL_WELDER = 100,
-				TOOL_WIRECUTTER = 100,
-				TOOL_CAUTERY = 60,
-				TOOL_HEMOSTAT = 60,
-				TOOL_RETRACTOR = 60,
+	implements = list(QUALITY_WELDING = 100,
+				QUALITY_WIRE_CUTTING = 100,
+				QUALITY_CAUTERIZING = 60,
+				QUALITY_CLAMPING = 60,
+				QUALITY_RETRACTING = 60,
 				/obj/item/melee/energy = 40,
 				/obj/item/gun/energy/laser = 20)
 	time = 2 SECONDS
@@ -48,13 +48,13 @@
 
 /datum/surgery_step/heal/mechanic/preop(mob/user, mob/living/carbon/target, target_zone, obj/item/tool, datum/surgery/surgery)
 	var/repairtype
-	if((TOOL_WELDER in tool.tool_qualities) || (TOOL_CAUTERY in tool.tool_qualities) || istype(tool, /obj/item/melee/energy) || istype(tool, /obj/item/gun/energy/laser))
+	if((QUALITY_WELDING in tool.tool_qualities) || (QUALITY_CAUTERIZING in tool.tool_qualities) || istype(tool, /obj/item/melee/energy) || istype(tool, /obj/item/gun/energy/laser))
 		brutehealing = 5
 		burnhealing = 0
 		repairtype = "dents"
 		preop_sound = 'sound/items/welder.ogg'
 		success_sound = 'sound/items/welder2.ogg'
-	if((TOOL_WIRECUTTER in tool.tool_qualities) || (TOOL_HEMOSTAT in tool.tool_qualities) || (TOOL_RETRACTOR in tool.tool_qualities))
+	if((QUALITY_WIRE_CUTTING in tool.tool_qualities) || (QUALITY_CLAMPING in tool.tool_qualities) || (QUALITY_RETRACTING in tool.tool_qualities))
 		burnhealing = 5
 		brutehealing = 0
 		repairtype = "wiring"
@@ -101,7 +101,7 @@
 	if(missinghpbonus)
 		urdamageamt_brute += round((target.getBruteLoss()/ (missinghpbonus*2)),0.1)
 		urdamageamt_burn += round((target.getFireLoss()/ (missinghpbonus*2)),0.1)
-	if((fail_prob > 50) && ((TOOL_WIRECUTTER in tool.tool_qualities) || (TOOL_HEMOSTAT in tool.tool_qualities) || (TOOL_RETRACTOR in tool.tool_qualities)))
+	if((fail_prob > 50) && ((QUALITY_WIRE_CUTTING in tool.tool_qualities) || (QUALITY_CLAMPING in tool.tool_qualities) || (QUALITY_RETRACTING in tool.tool_qualities)))
 		do_sparks(3, TRUE, target)
 		if(isliving(user))
 			var/mob/living/L = user

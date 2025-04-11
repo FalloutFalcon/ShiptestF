@@ -28,7 +28,7 @@
 	var/mob_storage_capacity = 3 // how many human sized mob/living can fit together inside a closet.
 	var/storage_capacity = 30 //This is so that someone can't pack hundreds of items in a locker/crate then open it in a populated area to crash clients.
 	// defaults to welder if null
-	var/cutting_tool = TOOL_WELDER
+	var/cutting_tool = QUALITY_WELDING
 	var/open_sound = 'sound/machines/closet_open.ogg'
 	var/close_sound = 'sound/machines/closet_close.ogg'
 	var/open_sound_volume = 35
@@ -259,7 +259,7 @@
 		return ..()
 
 /obj/structure/closet/proc/try_deconstruct(obj/item/W, mob/user)
-	if((cutting_tool in W.tool_qualities) || (TOOL_DECONSTRUCT in W.tool_qualities))
+	if((cutting_tool in W.tool_qualities) || (QUALITY_DECONSTRUCT in W.tool_qualities))
 		if(!W.tool_start_check(user, amount = 0))
 			return
 		to_chat(user, span_notice("You begin cutting \the [src] apart..."))
@@ -291,7 +291,7 @@
 		if(user.transferItemToLoc(W, drop_location())) // so we put in unlit welder too
 			return
 		return
-	else if((TOOL_WELDER in W.tool_qualities) && can_weld_shut)
+	else if((QUALITY_WELDING in W.tool_qualities) && can_weld_shut)
 		if(!W.tool_start_check(user, amount=0))
 			return
 
@@ -305,7 +305,7 @@
 							span_notice("You [welded ? "weld" : "unwelded"] \the [src] with \the [W]."),
 							span_hear("You hear welding."))
 			update_appearance()
-	else if((TOOL_WRENCH in W.tool_qualities) && anchorable)
+	else if((QUALITY_BOLT_TURNING in W.tool_qualities) && anchorable)
 		if(isinspace() && !anchored)
 			return
 		set_anchored(!anchored)
@@ -314,7 +314,7 @@
 						span_notice("You [anchored ? "anchored" : "unanchored"] \the [src] [anchored ? "to" : "from"] the ground."), \
 						span_hear("You hear a ratchet."))
 
-	else if((TOOL_DECONSTRUCT in W.tool_qualities) && locked)
+	else if((QUALITY_DECONSTRUCT in W.tool_qualities) && locked)
 		user.visible_message(span_warning("[user] is cutting \the [src] open !"), span_notice("You begin to cut \the [src] open."))
 		if (W.use_tool(src, user, 10 SECONDS, volume=0))
 			bust_open()

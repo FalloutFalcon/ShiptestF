@@ -28,9 +28,9 @@
 /datum/surgery_step/brainwash
 	name = "brainwash"
 	implements = list(
-		TOOL_HEMOSTAT = 85,
+		QUALITY_CLAMPING = 85,
 		/obj/item/soap = 60, //haha. brainwashing. get it?
-		TOOL_WIRECUTTER = 30,
+		QUALITY_WIRE_CUTTING = 30,
 		/obj/item/stack/packageWrap = 20,
 		/obj/item/stack/cable_coil = 10)
 	time = 20 SECONDS

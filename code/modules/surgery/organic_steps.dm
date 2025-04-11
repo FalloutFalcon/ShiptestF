@@ -3,7 +3,7 @@
 /datum/surgery_step/incise
 	name = "make incision"
 	implements = list(
-		TOOL_SCALPEL = 100,
+		QUALITY_CUTTING = 100,
 		/obj/item/melee/energy/sword = 40,
 		/obj/item/melee/knife = 40,
 		/obj/item/shard = 25,
@@ -60,8 +60,8 @@
 /datum/surgery_step/clamp_bleeders
 	name = "clamp bleeders"
 	implements = list(
-		TOOL_HEMOSTAT = 100,
-		TOOL_WIRECUTTER = 40,
+		QUALITY_CLAMPING = 100,
+		QUALITY_WIRE_CUTTING = 40,
 		/obj/item/stack/packageWrap = 20, //that would seriously hurt
 		/obj/item/stack/cable_coil = 20)
 	time = 2.4 SECONDS
@@ -94,8 +94,8 @@
 /datum/surgery_step/retract_skin
 	name = "retract skin"
 	implements = list(
-		TOOL_RETRACTOR = 100,
-		TOOL_SCREWDRIVER = 40,
+		QUALITY_RETRACTING = 100,
+		QUALITY_SCREW_DRIVING = 40,
 		/obj/item/stack/rods = 10)
 	time = 2.4 SECONDS
 	preop_sound = 'sound/surgery/retractor1.ogg'
@@ -118,8 +118,8 @@
 /datum/surgery_step/close
 	name = "mend incision"
 	implements = list(
-		TOOL_CAUTERY = 100,
-		TOOL_WELDER = 40,
+		QUALITY_CAUTERIZING = 100,
+		QUALITY_WELDING = 40,
 		/obj/item/gun/energy/laser = 60,
 		/obj/item = 30) // 30% success with any hot item. //this is fine, and decently reasonable
 	time = 2.4 SECONDS
@@ -133,7 +133,7 @@
 		span_notice("[user] begins to mend the incision in [target]'s [parse_zone(target_zone)]."))
 
 /datum/surgery_step/close/tool_check(mob/user, obj/item/tool)
-	if(implement_type == TOOL_WELDER || implement_type == /obj/item)
+	if(implement_type == QUALITY_WELDING || implement_type == /obj/item)
 		return tool.get_temperature()
 
 	return TRUE
@@ -152,7 +152,7 @@
 /datum/surgery_step/saw
 	name = "saw bone"
 	implements = list(
-		TOOL_SAW = 100,
+		QUALITY_SAWING = 100,
 		/obj/item/melee/axe/fire = 50,
 		/obj/item/gear_handle/anglegrinder = 50,
 		/obj/item/melee/arm_blade = 40,
@@ -205,9 +205,9 @@
 /datum/surgery_step/drill
 	name = "drill bone"
 	implements = list(
-		TOOL_DRILL = 100,
+		QUALITY_DRILLING = 100,
 		/obj/item/screwdriver/power = 45,
-		TOOL_SCREWDRIVER = 33,
+		QUALITY_SCREW_DRIVING = 33,
 		/obj/item/kitchen/spoon = 4.13) //i made this as awful as possible.
 	time = 30
 	fuckup_damage = 5

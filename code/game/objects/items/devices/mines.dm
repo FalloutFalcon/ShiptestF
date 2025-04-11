@@ -270,7 +270,7 @@
 
 ///handles disarming(and failing to disarm)
 /obj/item/mine/pressure/attackby(obj/item/I, mob/user)
-	if(TOOL_SCREWDRIVER in I.tool_qualities)
+	if(QUALITY_SCREW_DRIVING in I.tool_qualities)
 		if(sealed)
 			to_chat(user, span_notice("You can't see any way to access \the [src]'s wiring."))
 			return
@@ -652,7 +652,7 @@
 	AddElement(/datum/element/world_icon, null, icon, 'icons/obj/landmine.dmi')
 
 /obj/item/mine/directional/claymore/attackby(obj/item/I, mob/user)
-	if ((TOOL_SCREWDRIVER in I.tool_qualities) && armed)
+	if ((QUALITY_SCREW_DRIVING in I.tool_qualities) && armed)
 		to_chat(user, span_notice("You begin unscrewing \the [src]'s arming pin..."))
 		I.play_tool_sound(src, 50)
 		if(do_after(user, 10 SECONDS, target = src))

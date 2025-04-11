@@ -81,7 +81,7 @@
 			updateTank(W, 0, user)
 	else if(W.type == type)
 		to_chat(user, span_warning("You're fairly certain that putting a pneumatic cannon inside another pneumatic cannon would cause a spacetime disruption."))
-	else if(TOOL_WRENCH in W.tool_qualities)
+	else if(QUALITY_BOLT_TURNING in W.tool_qualities)
 		switch(pressureSetting)
 			if(1)
 				pressureSetting = 2
@@ -90,7 +90,7 @@
 			if(3)
 				pressureSetting = 1
 		to_chat(user, span_notice("You tweak \the [src]'s pressure output to [pressureSetting]."))
-	else if(TOOL_SCREWDRIVER in W.tool_qualities)
+	else if(QUALITY_SCREW_DRIVING in W.tool_qualities)
 		if(tank)
 			updateTank(tank, 1, user)
 	else if(loadedWeightClass >= maxWeightClass)

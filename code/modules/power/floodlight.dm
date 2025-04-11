@@ -26,7 +26,7 @@
 		else
 			to_chat(user, "You need 5 cables to wire [src].")
 			return
-	if((TOOL_SCREWDRIVER in O.tool_qualities) && state == FLOODLIGHT_NEEDS_SECURING)
+	if((QUALITY_SCREW_DRIVING in O.tool_qualities) && state == FLOODLIGHT_NEEDS_SECURING)
 		to_chat(user, span_notice("You fasten the wiring and electronics in [src]."))
 		name = "secured [name]"
 		desc = "A bare metal frame that looks like a floodlight. Requires a light tube to complete."
@@ -108,7 +108,7 @@
 		to_chat(user, span_notice("You set [src] to [setting_text]."))
 
 /obj/machinery/power/floodlight/attackby(obj/item/O, mob/user, params)
-	if(TOOL_WRENCH in O.tool_qualities)
+	if(QUALITY_BOLT_TURNING in O.tool_qualities)
 		default_unfasten_wrench(user, O, time = 20)
 		change_setting(1)
 		if(anchored)

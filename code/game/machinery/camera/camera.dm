@@ -300,7 +300,7 @@
 /obj/machinery/camera/attackby(obj/item/attacking_item, mob/living/user, params)
 	// UPGRADES
 	if(panel_open)
-		if(TOOL_ANALYZER in attacking_item.tool_qualities)
+		if(QUALITY_SCANNING in attacking_item.tool_qualities)
 			if(!isXRay(TRUE)) //don't reveal it was already upgraded if was done via MALF AI Upgrade Camera Network ability
 				if(!user.temporarilyRemoveItemFromInventory(attacking_item))
 					return

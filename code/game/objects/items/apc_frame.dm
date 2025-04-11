@@ -72,7 +72,7 @@
 
 /obj/item/wallframe/attackby(obj/item/W, mob/user, params)
 	..()
-	if(TOOL_SCREWDRIVER in W.tool_qualities)
+	if(QUALITY_SCREW_DRIVING in W.tool_qualities)
 		// For camera-building borgs
 		var/turf/T = get_step(get_turf(user), user.dir)
 		if(iswallturf(T))
@@ -81,7 +81,7 @@
 	var/metal_amt = round(custom_materials[SSmaterials.GetMaterialRef(/datum/material/iron)]/MINERAL_MATERIAL_AMOUNT) //Replace this shit later
 	var/glass_amt = round(custom_materials[SSmaterials.GetMaterialRef(/datum/material/glass)]/MINERAL_MATERIAL_AMOUNT) //Replace this shit later
 
-	if((TOOL_WRENCH in W.tool_qualities) && (metal_amt || glass_amt))
+	if((QUALITY_BOLT_TURNING in W.tool_qualities) && (metal_amt || glass_amt))
 		to_chat(user, span_notice("You dismantle [src]."))
 		if(metal_amt)
 			new /obj/item/stack/sheet/metal(get_turf(src), metal_amt)

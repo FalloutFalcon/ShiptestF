@@ -131,7 +131,7 @@ MAPPING_DIRECTIONAL_HELPERS(/obj/structure/light_construct, 32)
 
 	switch(stage)
 		if(1)
-			if(TOOL_WRENCH in W.tool_qualities)
+			if(QUALITY_BOLT_TURNING in W.tool_qualities)
 				if(cell)
 					to_chat(user, span_warning("You have to remove the cell first!"))
 					return
@@ -156,11 +156,11 @@ MAPPING_DIRECTIONAL_HELPERS(/obj/structure/light_construct, 32)
 					to_chat(user, span_warning("You need one length of cable to wire [src]!"))
 				return
 		if(2)
-			if(TOOL_WRENCH in W.tool_qualities)
+			if(QUALITY_BOLT_TURNING in W.tool_qualities)
 				to_chat(usr, span_warning("You have to remove the wires first!"))
 				return
 
-			if(TOOL_WIRECUTTER in W.tool_qualities)
+			if(QUALITY_WIRE_CUTTING in W.tool_qualities)
 				stage = 1
 				icon_state = "[fixture_type]-construct-stage1"
 				new /obj/item/stack/cable_coil(drop_location(), 1, "red")
@@ -169,7 +169,7 @@ MAPPING_DIRECTIONAL_HELPERS(/obj/structure/light_construct, 32)
 				W.play_tool_sound(src, 100)
 				return
 
-			if(TOOL_SCREWDRIVER in W.tool_qualities)
+			if(QUALITY_SCREW_DRIVING in W.tool_qualities)
 				user.visible_message(span_notice("[user.name] closes [src]'s casing."), \
 					span_notice("You close [src]'s casing."), span_hear("You hear screwing."))
 				W.play_tool_sound(src, 75)
@@ -531,7 +531,7 @@ MAPPING_DIRECTIONAL_HELPERS(/obj/machinery/light/small/built, 28)
 
 	// attempt to stick weapon into light socket
 	else if(status == LIGHT_EMPTY)
-		if(TOOL_SCREWDRIVER in W.tool_qualities) //If it's a screwdriver open it.
+		if(QUALITY_SCREW_DRIVING in W.tool_qualities) //If it's a screwdriver open it.
 			W.play_tool_sound(src, 75)
 			user.visible_message(span_notice("[user.name] opens [src]'s casing."), \
 				span_notice("You open [src]'s casing."), span_hear("You hear a noise."))

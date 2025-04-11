@@ -33,7 +33,7 @@
 	return ..()
 
 /obj/item/grenade/c4/attackby(obj/item/I, mob/user, params)
-	if(TOOL_SCREWDRIVER in I.tool_qualities)
+	if(QUALITY_SCREW_DRIVING in I.tool_qualities)
 		to_chat(user, span_notice("The wire panel can be accessed without a screwdriver."))
 	else if(is_wire_tool(I))
 		wires.interact(user)

@@ -133,7 +133,7 @@
 	slot_flags = ITEM_SLOT_BELT
 	attack_verb = list("sawed", "torn", "cut", "chopped", "diced")
 	hitsound = 'sound/weapons/chainsawhit.ogg'
-	tool_behaviour = TOOL_SAW
+	tool_behaviour = QUALITY_SAWING
 	toolspeed = 1.5 //slower than a real saw
 
 /obj/item/melee/sword/sabre

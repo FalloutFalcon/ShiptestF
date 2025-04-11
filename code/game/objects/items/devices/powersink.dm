@@ -63,7 +63,7 @@
 	set_light(0)
 
 /obj/item/powersink/attackby(obj/item/I, mob/user, params)
-	if(TOOL_WRENCH in I.tool_qualities)
+	if(QUALITY_BOLT_TURNING in I.tool_qualities)
 		if(mode == DISCONNECTED)
 			var/turf/T = loc
 			if(isturf(T) && !T.intact)
@@ -85,7 +85,7 @@
 				span_notice("You unbolt \the [src] from the floor and detach it from the cable."),
 				span_hear("You hear some wires being disconnected from something."))
 
-	else if(TOOL_SCREWDRIVER in I.tool_qualities)
+	else if(QUALITY_SCREW_DRIVING in I.tool_qualities)
 		user.visible_message( \
 			"[user] messes with \the [src] for a bit.", \
 			span_notice("You can't fit the screwdriver into \the [src]'s bolts! Try using a wrench."))

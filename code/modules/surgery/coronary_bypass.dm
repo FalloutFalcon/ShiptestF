@@ -21,7 +21,7 @@
 /datum/surgery_step/incise_heart
 	name = "incise heart"
 	implements = list(
-		TOOL_SCALPEL = 90,
+		QUALITY_CUTTING = 90,
 		/obj/item/melee/knife = 40,
 		/obj/item/shard = 33)
 	time = 1.6 SECONDS
@@ -62,8 +62,8 @@
 /datum/surgery_step/coronary_bypass
 	name = "graft coronary bypass"
 	implements = list(
-		TOOL_HEMOSTAT = 90,
-		TOOL_WIRECUTTER = 40,
+		QUALITY_CLAMPING = 90,
+		QUALITY_WIRE_CUTTING = 40,
 		/obj/item/stack/cable_coil = 5)
 	time = 9 SECONDS
 	preop_sound = 'sound/surgery/hemostat1.ogg'
