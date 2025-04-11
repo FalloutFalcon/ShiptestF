@@ -384,7 +384,7 @@ GLOBAL_VAR_INIT(embedpocalypse, FALSE) // if true, all items will be able to emb
 			. += "[src] is made of fire-retardant materials."
 
 	for(var/Q in tool_qualities)
-		. += "\nIt possesses [tool_qualities[Q]] tier of [Q] quality.<blue>"
+		. += "\nIt possesses [tool_qualities[Q]] tier of [Q] quality."
 
 	if(!user.research_scanner)
 		return
