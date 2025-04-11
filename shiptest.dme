@@ -1496,6 +1496,7 @@
 #include "code\game\objects\items\tanks\tank_types.dm"
 #include "code\game\objects\items\tanks\tanks.dm"
 #include "code\game\objects\items\tanks\watertank.dm"
+#include "code\game\objects\items\tools\_tools.dm"
 #include "code\game\objects\items\tools\chisel.dm"
 #include "code\game\objects\items\tools\crowbar.dm"
 #include "code\game\objects\items\tools\electric_weldingtool.dm"

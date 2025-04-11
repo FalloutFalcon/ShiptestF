@@ -383,6 +383,9 @@ GLOBAL_VAR_INIT(embedpocalypse, FALSE) // if true, all items will be able to emb
 		if(resistance_flags & FIRE_PROOF)
 			. += "[src] is made of fire-retardant materials."
 
+	for(var/Q in tool_qualities)
+		. += "\nIt possesses [tool_qualities[Q]] tier of [Q] quality.<blue>"
+
 	if(!user.research_scanner)
 		return
 
