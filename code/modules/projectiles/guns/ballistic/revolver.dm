@@ -309,13 +309,13 @@
 		return ..()
 
 	var/chamber_options = list(
-		REVOLVER_ROTATE_LEFT = image(icon = 'icons/mob/radial.dmi', icon_state = "radial_revolver_left"),
-		REVOLVER_ROTATE_RIGHT = image(icon = 'icons/mob/radial.dmi', icon_state = "radial_revolver_right"),
-		REVOLVER_AUTO_ROTATE_LEFT_LOADING = image(icon = 'icons/mob/radial.dmi', icon_state = "radial_revolver_auto_left"),
-		REVOLVER_EJECT_ALL = image(icon = 'icons/mob/radial.dmi', icon_state = "radial_revolver_eject_all"),
-		REVOLVER_EJECT_CURRENT = image(icon = 'icons/mob/radial.dmi', icon_state = "radial_revolver_eject_one"),
-		REVOLVER_AUTO_ROTATE_RIGHT_LOADING = image(icon = 'icons/mob/radial.dmi', icon_state = "radial_revolver_auto_right"),
-		REVOLVER_FLIP = image(icon = 'icons/mob/radial.dmi', icon_state = "radial_revolver_flip"),
+		REVOLVER_ROTATE_LEFT = image(icon = 'icons/hud/radial/menu.dmi', icon_state = "radial_revolver_left"),
+		REVOLVER_ROTATE_RIGHT = image(icon = 'icons/hud/radial/menu.dmi', icon_state = "radial_revolver_right"),
+		REVOLVER_AUTO_ROTATE_LEFT_LOADING = image(icon = 'icons/hud/radial/menu.dmi', icon_state = "radial_revolver_auto_left"),
+		REVOLVER_EJECT_ALL = image(icon = 'icons/hud/radial/menu.dmi', icon_state = "radial_revolver_eject_all"),
+		REVOLVER_EJECT_CURRENT = image(icon = 'icons/hud/radial/menu.dmi', icon_state = "radial_revolver_eject_one"),
+		REVOLVER_AUTO_ROTATE_RIGHT_LOADING = image(icon = 'icons/hud/radial/menu.dmi', icon_state = "radial_revolver_auto_right"),
+		REVOLVER_FLIP = image(icon = 'icons/hud/radial/menu.dmi', icon_state = "radial_revolver_flip"),
 		)
 
 	var/image/editing_image = chamber_options[gate_load_direction]

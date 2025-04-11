@@ -251,10 +251,10 @@ RLD
 	if(!user)
 		return
 	var/list/computer_dirs = list(
-		"NORTH" = image(icon = 'icons/mob/radial.dmi', icon_state = "cnorth"),
-		"EAST" = image(icon = 'icons/mob/radial.dmi', icon_state = "ceast"),
-		"SOUTH" = image(icon = 'icons/mob/radial.dmi', icon_state = "csouth"),
-		"WEST" = image(icon = 'icons/mob/radial.dmi', icon_state = "cwest")
+		"NORTH" = image(icon = 'icons/hud/radial/menu.dmi', icon_state = "cnorth"),
+		"EAST" = image(icon = 'icons/hud/radial/menu.dmi', icon_state = "ceast"),
+		"SOUTH" = image(icon = 'icons/hud/radial/menu.dmi', icon_state = "csouth"),
+		"WEST" = image(icon = 'icons/hud/radial/menu.dmi', icon_state = "cwest")
 		)
 	var/computerdirs = show_radial_menu(user, src, computer_dirs, custom_check = CALLBACK(src, PROC_REF(check_menu), user), require_near = TRUE, tooltips = TRUE)
 	if(!check_menu(user))
@@ -432,15 +432,15 @@ RLD
 /obj/item/construction/rcd/attack_self(mob/user)
 	..()
 	var/list/choices = list(
-		"Airlock" = image(icon = 'icons/mob/radial.dmi', icon_state = "airlock"),
-		"Deconstruct" = image(icon= 'icons/mob/radial.dmi', icon_state = "delete"),
-		"Grilles & Windows" = image(icon = 'icons/mob/radial.dmi', icon_state = "grillewindow"),
-		"Floors & Walls" = image(icon = 'icons/mob/radial.dmi', icon_state = "wallfloor")
+		"Airlock" = image(icon = 'icons/hud/radial/menu.dmi', icon_state = "airlock"),
+		"Deconstruct" = image(icon= 'icons/hud/radial/menu.dmi', icon_state = "delete"),
+		"Grilles & Windows" = image(icon = 'icons/hud/radial/menu.dmi', icon_state = "grillewindow"),
+		"Floors & Walls" = image(icon = 'icons/hud/radial/menu.dmi', icon_state = "wallfloor")
 	)
 	if(upgrade & RCD_UPGRADE_FRAMES)
 		choices += list(
-		"Machine Frames" = image(icon = 'icons/mob/radial.dmi', icon_state = "machine"),
-		"Computer Frames" = image(icon = 'icons/mob/radial.dmi', icon_state = "computer_dir"),
+		"Machine Frames" = image(icon = 'icons/hud/radial/menu.dmi', icon_state = "machine"),
+		"Computer Frames" = image(icon = 'icons/hud/radial/menu.dmi', icon_state = "computer_dir"),
 		)
 	if(upgrade & RCD_UPGRADE_SILO_LINK)
 		choices += list(
@@ -448,12 +448,12 @@ RLD
 		)
 	if(mode == RCD_AIRLOCK)
 		choices += list(
-		"Change Access" = image(icon = 'icons/mob/radial.dmi', icon_state = "access"),
-		"Change Airlock Type" = image(icon = 'icons/mob/radial.dmi', icon_state = "airlocktype")
+		"Change Access" = image(icon = 'icons/hud/radial/menu.dmi', icon_state = "access"),
+		"Change Airlock Type" = image(icon = 'icons/hud/radial/menu.dmi', icon_state = "airlocktype")
 		)
 	else if(mode == RCD_WINDOWGRILLE)
 		choices += list(
-			"Change Window Type" = image(icon = 'icons/mob/radial.dmi', icon_state = "windowtype")
+			"Change Window Type" = image(icon = 'icons/hud/radial/menu.dmi', icon_state = "windowtype")
 		)
 	var/choice = show_radial_menu(user, src, choices, custom_check = CALLBACK(src, PROC_REF(check_menu), user), require_near = TRUE, tooltips = TRUE)
 	if(!check_menu(user))

@@ -31,7 +31,7 @@
 			return L[1]
 		for(var/i in L)
 			#warn this is using eris tool sprites! FIX!!!!
-			L[i] = image(icon = 'icons/mob/radial/tools.dmi', icon_state = i)
+			L[i] = image(icon = 'icons/hud/radial/tools.dmi', icon_state = i)
 		return show_radial_menu(user, use_on ? use_on : user, L, tooltips = TRUE, require_near = TRUE, custom_check = CB)
 
 /obj/item/tool/admin_debug
