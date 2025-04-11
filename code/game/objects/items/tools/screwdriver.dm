@@ -103,11 +103,11 @@
 
 /obj/item/screwdriver/power/examine()
 	. = ..()
-	. += " It's fitted with a [tool_behaviour == QUALITY_SCREW_DRIVING ? "screw" : "bolt"] bit."
+	. += " It's fitted with a [QUALITY_SCREW_DRIVING in tool_qualities ? "screw" : "bolt"] bit."
 
 /obj/item/screwdriver/power/attack_self(mob/user)
 	playsound(get_turf(user), 'sound/items/change_drill.ogg', 50, TRUE)
-	if(tool_behaviour == QUALITY_SCREW_DRIVING)
+	if(QUALITY_SCREW_DRIVING in tool_qualities)
 		tool_behaviour = QUALITY_BOLT_TURNING
 		to_chat(user, span_notice("You attach the bolt bit to [src]."))
 		icon_state = "drill_bolt"

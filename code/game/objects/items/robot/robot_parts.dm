@@ -363,7 +363,7 @@
 	if(isobserver(user))
 		return ..()
 	var/obj/item/held_item = user.get_active_held_item()
-	if(held_item?.tool_behaviour == QUALITY_PULSING)
+	if(QUALITY_PULSING in held_item?.tool_qualities)
 		return ..()
 	to_chat(user, span_warning("You need a multitool to access debug settings!"))
 	return UI_CLOSE

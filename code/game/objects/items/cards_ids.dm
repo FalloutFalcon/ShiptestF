@@ -88,12 +88,12 @@
 
 /obj/item/card/emag/borg/attack_self(mob/user)
 	playsound(get_turf(user), 'sound/items/change_drill.ogg', 50, TRUE)
-	if(tool_behaviour == NONE)
+	if(NONE in tool_qualities)
 		tool_behaviour = QUALITY_SCREW_DRIVING
 		to_chat(user, span_notice("You extend the screwdriver within the [src]."))
 		icon_state = "inf_screwdriver"
 		emag_on = FALSE
-	else if(tool_behaviour == QUALITY_SCREW_DRIVING)
+	else if(QUALITY_SCREW_DRIVING in tool_qualities)
 		tool_behaviour = QUALITY_PULSING
 		to_chat(user, span_notice("You prime the multitool attachment of the [src]."))
 		icon_state = "inf_multi"

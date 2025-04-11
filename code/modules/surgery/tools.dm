@@ -278,7 +278,7 @@
 
 /obj/item/scalpel/advanced/attack_self(mob/user)
 	playsound(get_turf(user), 'sound/machines/click.ogg', 50, TRUE)
-	if(tool_behaviour == QUALITY_CUTTING)
+	if(QUALITY_CUTTING in tool_qualities)
 		tool_behaviour = QUALITY_SAWING
 		balloon_alert(user, "saw mode")
 		set_light_range(2)
@@ -293,7 +293,7 @@
 
 /obj/item/scalpel/advanced/examine()
 	. = ..()
-	. += " It's set to [tool_behaviour == QUALITY_CUTTING ? "scalpel" : "saw"] mode."
+	. += " It's set to [QUALITY_CUTTING in tool_qualities ? "scalpel" : "saw"] mode."
 
 /obj/item/retractor/advanced
 	name = "mechanical pinches"
@@ -309,7 +309,7 @@
 
 /obj/item/retractor/advanced/attack_self(mob/user)
 	playsound(get_turf(user), 'sound/items/change_drill.ogg', 50, TRUE)
-	if(tool_behaviour == QUALITY_RETRACTING)
+	if(QUALITY_RETRACTING in tool_qualities)
 		tool_behaviour = QUALITY_CLAMPING
 		balloon_alert(user, "hemostat mode")
 		icon_state = "advhemostat"
@@ -320,7 +320,7 @@
 
 /obj/item/retractor/advanced/examine()
 	. = ..()
-	. += " It resembles a [tool_behaviour == QUALITY_RETRACTING ? "retractor" : "hemostat"]."
+	. += " It resembles a [QUALITY_RETRACTING in tool_qualities ? "retractor" : "hemostat"]."
 
 /obj/item/surgicaldrill/advanced
 	name = "searing tool"
@@ -338,7 +338,7 @@
 
 /obj/item/surgicaldrill/advanced/attack_self(mob/user)
 	playsound(get_turf(user), 'sound/weapons/tap.ogg', 50, TRUE)
-	if(tool_behaviour == QUALITY_DRILLING)
+	if(QUALITY_DRILLING in tool_qualities)
 		tool_behaviour = QUALITY_CAUTERIZING
 		balloon_alert(user, "cautery mode")
 		icon_state = "advcautery"
@@ -349,7 +349,7 @@
 
 /obj/item/surgicaldrill/advanced/examine()
 	. = ..()
-	. += " It's set to [tool_behaviour == QUALITY_DRILLING ? "drilling" : "mending"] mode."
+	. += " It's set to [QUALITY_DRILLING in tool_qualities ? "drilling" : "mending"] mode."
 
 /obj/item/shears
 	name = "amputation shears"

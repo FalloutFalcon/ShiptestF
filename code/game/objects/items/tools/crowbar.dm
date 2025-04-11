@@ -61,11 +61,11 @@
 
 /obj/item/crowbar/power/examine()
 	. = ..()
-	. += " It's fitted with a [tool_behaviour == QUALITY_PRYING ? "prying" : "cutting"] head."
+	. += " It's fitted with a [QUALITY_PRYING in tool_qualities ? "prying" : "cutting"] head."
 
 /obj/item/crowbar/power/attack_self(mob/user)
 	playsound(get_turf(user), 'sound/items/change_jaws.ogg', 50, TRUE)
-	if(tool_behaviour == QUALITY_PRYING)
+	if(QUALITY_PRYING in tool_qualities)
 		tool_behaviour = QUALITY_WIRE_CUTTING
 		to_chat(user, span_notice("You attach the cutting jaws to [src]."))
 		usesound = 'sound/items/jaws_cut.ogg'
@@ -102,7 +102,7 @@
 		. += mode_ovelay
 
 /obj/item/crowbar/power/attack(mob/living/carbon/C, mob/user)
-	if(istype(C) && C.handcuffed && tool_behaviour == QUALITY_WIRE_CUTTING)
+	if(istype(C) && C.handcuffed && QUALITY_WIRE_CUTTING in tool_qualities)
 		user.visible_message(span_notice("[user] cuts [C]'s restraints with [src]!"))
 		qdel(C.handcuffed)
 		return

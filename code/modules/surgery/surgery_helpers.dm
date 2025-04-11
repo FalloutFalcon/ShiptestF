@@ -109,7 +109,7 @@
 			if(!close_tool)
 				to_chat(user, span_warning("You need to equip a cautery in an active slot to stop [M]'s surgery!"))
 				return
-		else if(!close_tool || close_tool.tool_behaviour != required_tool_type)
+		else if(!close_tool || !(required_tool_type in close_tool.tool_qualities))
 			to_chat(user, span_warning("You need to hold a [is_robotic ? "screwdriver" : "cautery"] in your active hand to stop [M]'s surgery!"))
 			return
 

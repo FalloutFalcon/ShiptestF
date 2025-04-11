@@ -148,7 +148,7 @@
 /obj/structure/mineral_door/proc/pickaxe_door(mob/living/user, obj/item/I) //override if the door isn't supposed to be a minable mineral.
 	if(!istype(user))
 		return
-	if(I.tool_behaviour != QUALITY_DIGGING)
+	if(!(QUALITY_DIGGING in I.tool_qualities))
 		return
 	. = TRUE
 	to_chat(user, span_notice("You start digging [src]..."))
