@@ -121,7 +121,9 @@ GLOBAL_LIST_INIT(outpost_exports, gen_outpost_exports())
 	var/total_payout = 0
 	for(var/atom/exp_atom as anything in cached_valid_exports[exp])
 		if(!exp.applies_to(exp_atom))
-			CRASH("tried to sell [exp_atom] with [exp] but it no longer applies to it")
+			stack_trace("tried to sell [exp_atom] with [exp] but it no longer applies to it")
+			cached_valid_exports[exp] -= exp_atom
+			continue
 		total_payout += exp.sell_object(exp_atom, dry_run = FALSE, apply_elastic = TRUE)
 
 		cached_valid_exports[exp] -= exp_atom
