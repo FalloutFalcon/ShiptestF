@@ -961,6 +961,8 @@ GLOBAL_VAR_INIT(embedpocalypse, FALSE) // if true, all items will be able to emb
 			force_string = "very robust"
 		if(25 to 30)
 			force_string = "exceptionally robust"
+		if(30 to 35) //Cool refrence to the fact that the SRM makes and uses powerful melee?
+			force_string = "romanian grade"
 		else
 			force_string = "unfair"
 

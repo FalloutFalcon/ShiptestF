@@ -80,15 +80,6 @@
 	active_throwforce = 15
 	bleed_stacks_per_hit = 1.5
 
-/obj/item/melee/trick/cleaving_saw/miner
-	force = 6
-	active_force = 10
-
-/obj/item/melee/trick/cleaving_saw/miner/attack(mob/living/target, mob/living/carbon/human/user)
-	target.add_stun_absorption("miner", 10, INFINITY)
-	..()
-	target.stun_absorption -= "miner"
-
 /obj/item/melee/trick/hunters_axe
 	name = "hunter\'s axe"
 	desc = "A one-handed axe weapon that is stronger than a hatchet can be transformed into a two-handed axe weapon that may have damage on-par with a bone axe. It's main advantage is portability. A must-have for any hunter."
