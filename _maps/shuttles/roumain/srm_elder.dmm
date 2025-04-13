@@ -1449,7 +1449,7 @@
 /obj/vehicle/ridden/wheelchair{
 	dir = 4
 	},
-/obj/item/melee/cleaving_saw/old,
+/obj/item/melee/trick/cleaving_saw/old,
 /turf/open/floor/ship/dirt/dark,
 /area/ship/bridge)
 "rj" = (
