@@ -320,4 +320,4 @@
 		</html>
 	"}
 
-	usr << browse(dat, "window=beakerpanel;size=1100x720")
+	user << browse(dat, "window=beakerpanel;size=1100x720")

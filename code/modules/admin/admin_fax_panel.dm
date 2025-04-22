@@ -129,7 +129,7 @@
 			if(stamp)
 				fax_paper.add_stamp(stamp_class, params["stampX"], params["stampY"], params["stampAngle"], stamp)
 
-			fax_paper.update_static_data(usr) // OK, it's work, and update UI.
+			fax_paper.update_static_data(ui.user) // OK, it's work, and update UI.
 
 		if("send")
 			//copy

@@ -228,7 +228,7 @@ GLOBAL_LIST_EMPTY(dirty_vars)
 	if(!isnum(num_level))
 		return
 
-	var/type_text = input("Which type path?","Path?") as text|null
+	var/type_text = input(user, "Which type path?","Path?") as text|null
 	if(!type_text)
 		return
 	var/type_path = text2path(type_text)

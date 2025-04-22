@@ -115,6 +115,7 @@
 #define INIT_ORDER_SOUND_CACHE 84
 #define INIT_ORDER_SOUNDS 83
 #define INIT_ORDER_INSTRUMENTS 82
+#define INIT_ORDER_ADMIN_VERBS 81 // needs to be pretty high, admins cant do much without it
 #define INIT_ORDER_VIS 80
 #define INIT_ORDER_ACHIEVEMENTS 77
 #define INIT_ORDER_RESEARCH 75

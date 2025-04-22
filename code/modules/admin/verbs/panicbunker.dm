@@ -1,8 +1,6 @@
-/client/proc/panicbunker()
-	set category = "Server"
-	set name = "Toggle Panic Bunker"
+ADMIN_VERB(panic_bunker, R_SERVER, "Toggle Panic Bunker", "Toggles the panic bunker for the server.", ADMIN_CATEGORY_SERVER)
 	if (!CONFIG_GET(flag/sql_enabled))
-		to_chat(usr, span_adminnotice("The Database is not enabled!"), confidential = TRUE)
+		to_chat(user, span_adminnotice("The Database is not enabled!"), confidential = TRUE)
 		return
 
 	var/new_pb = !CONFIG_GET(flag/panic_bunker)
