@@ -1,3 +1,8 @@
+#define ABORT_CHECK						-1
+#define TOOL_USE_FAIL					-1
+#define TOOL_USE_CANCEL					0
+#define TOOL_USE_SUCCESS				1
+
 #define QUALITY_BOLT_TURNING			"bolt turning"
 #define QUALITY_PULSING					"pulsing"
 #define QUALITY_PRYING					"prying"

@@ -1030,7 +1030,7 @@ GLOBAL_VAR_INIT(embedpocalypse, FALSE) // if true, all items will be able to emb
 	return SEND_SIGNAL(src, COMSIG_ITEM_POWER_USE, use_amount, user, check_only)
 
 /// Called when a mob tries to use the item as a tool.Handles most checks.
-/obj/item/proc/use_tool(atom/target, mob/living/user, delay, amount=0, volume=0, datum/callback/extra_checks)
+/obj/item/proc/use_tool(atom/target, mob/living/user, base_time, required_quality, amount=0, volume=0, datum/callback/extra_checks)
 	// we have no target, why are we even doing this?
 	if(isnull(target))
 		return
