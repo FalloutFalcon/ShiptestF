@@ -124,7 +124,7 @@
 
 	heat = 3800
 	usesound = list('sound/items/welder.ogg', 'sound/items/welder2.ogg')
-	tool_behaviour = QUALITY_DECONSTRUCT
+	tool_qualities = list(QUALITY_DECONSTRUCT = 30)
 	wall_decon_damage = 200
 	toolspeed = 1 //plasmacutters can be used like angle grinders
 	internal_magazine = TRUE //so you don't cheese through the need for plasma - WS EDIT

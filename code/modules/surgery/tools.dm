@@ -12,8 +12,7 @@
 	flags_1 = CONDUCT_1
 	item_flags = SURGICAL_TOOL
 	w_class = WEIGHT_CLASS_SMALL
-	tool_behaviour = QUALITY_RETRACTING
-	toolspeed = 1
+	tool_qualities = list(QUALITY_RETRACTING = 30)
 
 /obj/item/retractor/augment
 	desc = "Micro-mechanical manipulator for retracting stuff."
@@ -34,8 +33,7 @@
 	item_flags = SURGICAL_TOOL
 	w_class = WEIGHT_CLASS_SMALL
 	attack_verb = list("attacked", "pinched")
-	tool_behaviour = QUALITY_CLAMPING
-	toolspeed = 1
+	tool_qualities = list(QUALITY_CLAMPING = 30)
 
 /obj/item/hemostat/augment
 	desc = "Tiny servos power a pair of pincers to stop bleeding."
@@ -56,8 +54,7 @@
 	item_flags = SURGICAL_TOOL
 	w_class = WEIGHT_CLASS_SMALL
 	attack_verb = list("burnt")
-	tool_behaviour = QUALITY_CAUTERIZING
-	toolspeed = 1
+	tool_qualities = list(QUALITY_CAUTERIZING = 30)
 
 /obj/item/cautery/augment
 	desc = "A heated element that cauterizes wounds."
@@ -81,8 +78,7 @@
 	w_class = WEIGHT_CLASS_NORMAL
 	attack_verb = list("drilled")
 	sharpness = IS_SHARP		//WS Edit - Makes the Drill sharp
-	tool_behaviour = QUALITY_DRILLING
-	toolspeed = 1
+	tool_qualities = list(QUALITY_DRILLING = 30)
 	demolition_mod = 0.5
 
 /obj/item/surgicaldrill/Initialize()		//WS Edit Start - Trying to butcher with a drill is a bad idea
@@ -117,8 +113,7 @@
 	attack_verb = list("attacked", "slashed", "stabbed", "sliced", "torn", "ripped", "diced", "cut")
 	hitsound = 'sound/weapons/bladeslice.ogg'
 	sharpness = IS_SHARP_ACCURATE
-	tool_behaviour = QUALITY_CUTTING
-	toolspeed = 1
+	tool_qualities = list(QUALITY_CUTTING = 30, QUALITY_WIRE_CUTTING = 10)
 	demolition_mod = 0.25
 
 /obj/item/scalpel/Initialize()
@@ -151,7 +146,7 @@
 	custom_materials = list(/datum/material/iron=10000, /datum/material/glass=6000)
 	attack_verb = list("attacked", "slashed", "sawed", "cut")
 	sharpness = IS_SHARP
-	tool_behaviour = QUALITY_SAWING
+	tool_qualities = list(QUALITY_SAWING = 30, QUALITY_CUTTING = 20, QUALITY_WIRE_CUTTING = 20)
 	toolspeed = 1
 
 /obj/item/circular_saw/Initialize()
@@ -162,7 +157,7 @@
 	desc = "A small but very fast spinning saw. Edges dulled to prevent accidental cutting inside of the surgeon."
 	w_class = WEIGHT_CLASS_SMALL
 	force = 10
-	toolspeed = 0.5
+	tool_qualities = list(QUALITY_SAWING = 40, QUALITY_CUTTING = 30, QUALITY_WIRE_CUTTING = 30)
 
 //CODED BY CODY, AGE 7
 /obj/item/circular_saw/best//BESTESTWEPON
@@ -279,13 +274,13 @@
 /obj/item/scalpel/advanced/attack_self(mob/user)
 	playsound(get_turf(user), 'sound/machines/click.ogg', 50, TRUE)
 	if(QUALITY_CUTTING in tool_qualities)
-		tool_behaviour = QUALITY_SAWING
+		tool_qualities = list(QUALITY_SAWING = 50)
 		balloon_alert(user, "saw mode")
 		set_light_range(2)
 		force += 1 //we don't want to ruin sharpened stuff
 		icon_state = "advsaw"
 	else
-		tool_behaviour = QUALITY_CUTTING
+		tool_qualities = list(QUALITY_CUTTING = 50)
 		balloon_alert(user, "scalpel mode")
 		set_light_range(1)
 		force -= 1
@@ -310,11 +305,11 @@
 /obj/item/retractor/advanced/attack_self(mob/user)
 	playsound(get_turf(user), 'sound/items/change_drill.ogg', 50, TRUE)
 	if(QUALITY_RETRACTING in tool_qualities)
-		tool_behaviour = QUALITY_CLAMPING
+		tool_qualities = list(QUALITY_CLAMPING = 50)
 		balloon_alert(user, "hemostat mode")
 		icon_state = "advhemostat"
 	else
-		tool_behaviour = QUALITY_RETRACTING
+		tool_qualities = list(QUALITY_RETRACTING = 50)
 		balloon_alert(user, "retractor mode")
 		icon_state = "advretractor"
 
@@ -339,11 +334,11 @@
 /obj/item/surgicaldrill/advanced/attack_self(mob/user)
 	playsound(get_turf(user), 'sound/weapons/tap.ogg', 50, TRUE)
 	if(QUALITY_DRILLING in tool_qualities)
-		tool_behaviour = QUALITY_CAUTERIZING
+		tool_qualities = list(QUALITY_CAUTERIZING = 50)
 		balloon_alert(user, "cautery mode")
 		icon_state = "advcautery"
 	else
-		tool_behaviour = QUALITY_DRILLING
+		tool_qualities = list(QUALITY_DRILLING = 50)
 		balloon_alert(user, "drill mode")
 		icon_state = "advdrill"
 

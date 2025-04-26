@@ -18,7 +18,7 @@
 	attack_cooldown = LIGHT_WEAPON_CD
 	attack_verb = list("bashed", "battered", "bludgeoned", "whacked")
 	demolition_mod = 1.25
-	tool_behaviour = QUALITY_BOLT_TURNING
+	tool_qualities = list(QUALITY_BOLT_TURNING = 30)
 	toolspeed = 1
 	armor = list("melee" = 0, "bullet" = 0, "laser" = 0, "energy" = 0, "bomb" = 0, "bio" = 0, "rad" = 0, "fire" = 50, "acid" = 30)
 
@@ -55,7 +55,7 @@
 	desc = "It's like a normal wrench but edgier. Can be found on the battlefield."
 	icon_state = "wrench_combat"
 	item_state = "wrench_combat"
-	tool_behaviour = null
+	tool_qualities = list()
 	toolspeed = null
 	var/on = FALSE
 
@@ -69,7 +69,7 @@
 		force = initial(force)
 		w_class = initial(w_class)
 		throwforce = initial(throwforce)
-		tool_behaviour = initial(tool_behaviour)
+		tool_qualities = list()
 		attack_verb = list("bopped")
 		toolspeed = initial(toolspeed)
 		playsound(user, 'sound/weapons/saberoff.ogg', 5, TRUE)
@@ -79,7 +79,7 @@
 		force = 15
 		w_class = WEIGHT_CLASS_NORMAL
 		throwforce = 10
-		tool_behaviour = QUALITY_BOLT_TURNING
+		tool_qualities = list(QUALITY_BOLT_TURNING = 30)
 		attack_verb = list("devastated", "brutalized", "committed a war crime against", "obliterated", "humiliated")
 		toolspeed = 0.5
 		hitsound = 'sound/weapons/blade1.ogg'

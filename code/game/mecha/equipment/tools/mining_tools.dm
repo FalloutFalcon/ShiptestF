@@ -13,8 +13,7 @@
 	energy_drain = 10
 	force = 15
 	harmful = TRUE
-	tool_behaviour = QUALITY_DRILLING
-	toolspeed = 0.9
+	tool_qualities = list(QUALITY_DIGGING = 55, QUALITY_DRILLING = 10)
 	var/drill_delay = 7
 	var/drill_level = DRILL_BASIC
 	wall_decon_damage = 100

@@ -63,7 +63,7 @@
 		heat = initial(heat)
 		STOP_PROCESSING(SSobj, src)
 
-	tool_behaviour = (active ? QUALITY_SAWING : NONE) //Lets energy weapons cut trees. Also lets them do bonecutting surgery, which is kinda metal!
+	tool_qualities = (length(tool_qualities) ? list(QUALITY_SAWING = 20) : list()) //Lets energy weapons cut trees. Also lets them do bonecutting surgery, which is kinda metal!
 	if(user)
 		balloon_alert(user, "[name] [active ? "enabled":"disabled"]")
 	playsound(src, active ? 'sound/weapons/saberon.ogg' : 'sound/weapons/saberoff.ogg', 35, TRUE)
@@ -168,7 +168,7 @@
 	w_class = WEIGHT_CLASS_NORMAL
 	sharpness = IS_SHARP
 	light_color = LIGHT_COLOR_LIGHT_CYAN
-	tool_behaviour = QUALITY_SAWING
+	tool_qualities = list(QUALITY_SAWING = 30)
 	toolspeed = 0.7 //faster as a saw
 
 /obj/item/melee/energy/sword/cyborg/saw/hit_reaction(mob/living/carbon/human/owner, atom/movable/hitby, attack_text = "the attack", final_block_chance = 0, damage = 0, attack_type = MELEE_ATTACK)

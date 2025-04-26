@@ -290,7 +290,7 @@
 	sharpness = IS_SHARP
 	attack_verb = list("sawed", "torn", "cut", "chopped", "diced")
 	hitsound = 'sound/weapons/chainsawhit.ogg'
-	tool_behaviour = QUALITY_SAWING
+	tool_qualities = list(QUALITY_SAWING = 30)
 	toolspeed = 1
 
 /obj/item/mounted_chainsaw/Initialize()

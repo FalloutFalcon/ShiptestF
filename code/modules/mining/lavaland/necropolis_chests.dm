@@ -796,7 +796,7 @@
 /obj/item/clothing/gloves/gauntlets/equipped(mob/user, slot)
 	. = ..()
 	if(slot == ITEM_SLOT_GLOVES)
-		tool_behaviour = QUALITY_DIGGING
+		tool_qualities = list(QUALITY_DIGGING = 30)
 		RegisterSignal(user, COMSIG_HUMAN_EARLY_UNARMED_ATTACK, PROC_REF(rocksmash))
 		RegisterSignal(user, COMSIG_MOVABLE_BUMP, PROC_REF(rocksmash))
 	else
@@ -807,7 +807,7 @@
 	stopmining(user)
 
 /obj/item/clothing/gloves/gauntlets/proc/stopmining(mob/user)
-	tool_behaviour = initial(tool_behaviour)
+	tool_qualities = list()
 	UnregisterSignal(user, COMSIG_HUMAN_EARLY_UNARMED_ATTACK)
 	UnregisterSignal(user, COMSIG_MOVABLE_BUMP)
 

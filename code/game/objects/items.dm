@@ -179,13 +179,11 @@ GLOBAL_VAR_INIT(embedpocalypse, FALSE) // if true, all items will be able to emb
 	///All items with sharpness of IS_SHARP or higher will automatically get the butchering component.
 	var/sharpness = IS_BLUNT
 
-	///How a tool acts when you use it on something, such as wirecutters cutting wires while multitools measure power
-	var/tool_behaviour = NONE
+	var/list/tool_qualities = list()// List of item qualities for tools system. See qualities.dm.
 	///How fast does the tool work
 	var/toolspeed = 1
 	/// how much damage does this item do when tearing down walls during deconstruction steps?
 	var/wall_decon_damage = 0
-	var/list/tool_qualities = list()// List of item qualities for tools system. See qualities.dm.
 
 	var/block_chance = 0
 	var/block_cooldown_time = 1 SECONDS

@@ -130,8 +130,8 @@
 		if(istype(I, /obj/item/stack))
 			var/obj/item/stack/S = I
 			.["other"][I.type] += S.amount
-		else if(I.tool_behaviour)
-			.["tool_behaviour"] += I.tool_behaviour
+		else if(length(I.tool_qualities) && I.tool_qualities[1])
+			.["tool_behaviour"] += I.tool_qualities[1]
 			.["other"][I.type] += 1
 		else
 			if(istype(I, /obj/item/reagent_containers))
@@ -151,13 +151,13 @@
 		if(istype(I, /obj/item/storage))
 			for(var/obj/item/SI in I.contents)
 				possible_tools += SI.type
-				if(SI.tool_behaviour)
-					present_qualities.Add(SI.tool_behaviour)
+				if(length(SI.tool_qualities))
+					present_qualities.Add(SI.tool_qualities[1])
 
 		possible_tools += I.type
 
-		if(I.tool_behaviour)
-			present_qualities.Add(I.tool_behaviour)
+		if(length(I.tool_qualities))
+			present_qualities.Add(I.tool_qualities[1])
 
 	possible_tools |= contents["other"]
 

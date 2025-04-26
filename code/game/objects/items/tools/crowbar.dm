@@ -16,9 +16,7 @@
 	pickup_sound =  'sound/items/handling/crowbar_pickup.ogg'
 
 	attack_verb = list("attacked", "bashed", "battered", "bludgeoned", "whacked")
-	tool_behaviour = QUALITY_PRYING
 	tool_qualities = list(QUALITY_PRYING = 25, QUALITY_DIGGING = 10, QUALITY_HAMMERING = 10)
-	toolspeed = 1
 	armor = list("melee" = 0, "bullet" = 0, "laser" = 0, "energy" = 0, "bomb" = 0, "bio" = 0, "rad" = 0, "fire" = 50, "acid" = 30)
 	demolition_mod = 1.25
 	var/force_opens = FALSE
@@ -66,13 +64,13 @@
 /obj/item/crowbar/power/attack_self(mob/user)
 	playsound(get_turf(user), 'sound/items/change_jaws.ogg', 50, TRUE)
 	if(QUALITY_PRYING in tool_qualities)
-		tool_behaviour = QUALITY_WIRE_CUTTING
+		tool_qualities = list(QUALITY_WIRE_CUTTING = 30)
 		to_chat(user, span_notice("You attach the cutting jaws to [src]."))
 		usesound = 'sound/items/jaws_cut.ogg'
 		icon_state = "jaws_cutter"
 		update_appearance()
 	else
-		tool_behaviour = QUALITY_PRYING
+		tool_qualities = list(QUALITY_PRYING = 30)
 		to_chat(user, span_notice("You attach the prying jaws to [src]."))
 		usesound = 'sound/items/jaws_pry.ogg'
 		icon_state = "jaws_pry"
@@ -94,7 +92,7 @@
 	. = ..()
 	if(ismob(loc))
 		var/mode_ovelay
-		switch(tool_behaviour)
+		switch(tool_qualities[1])
 			if (QUALITY_PRYING)
 				mode_ovelay = "jaw_pry"
 			if (QUALITY_WIRE_CUTTING)

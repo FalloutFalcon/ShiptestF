@@ -13,8 +13,7 @@
 	w_class = WEIGHT_CLASS_BULKY
 	supports_variations = VOX_VARIATION
 	custom_materials = list(/datum/material/iron=2000) //one sheet, but where can you make them?
-	tool_behaviour = QUALITY_DIGGING
-	toolspeed = 0.5
+	tool_qualities = list(QUALITY_DIGGING = 45, QUALITY_PRYING = 20)
 	usesound = list('sound/effects/picaxe1.ogg', 'sound/effects/picaxe2.ogg', 'sound/effects/picaxe3.ogg')
 	attack_verb = list("hit", "pierced", "sliced", "attacked")
 	wall_decon_damage = MINERAL_WALL_INTEGRITY
@@ -156,7 +155,7 @@
 	flags_1 = CONDUCT_1
 	slot_flags = ITEM_SLOT_BELT
 	force = 8
-	tool_behaviour = QUALITY_SHOVELING
+	tool_qualities = list(QUALITY_SHOVELING = 30)
 	toolspeed = 0.6
 	usesound = 'sound/effects/shovel_dig.ogg'
 	throwforce = 4

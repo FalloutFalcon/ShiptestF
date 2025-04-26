@@ -45,12 +45,12 @@
 /obj/item/melee/sledgehammer/gorlex/proc/on_wield(obj/item/source, mob/user)
 	SIGNAL_HANDLER
 
-	tool_behaviour = QUALITY_DIGGING
+	tool_qualities = list(QUALITY_DIGGING = 30)
 
 /obj/item/melee/sledgehammer/gorlex/proc/on_unwield(obj/item/source, mob/user)
 	SIGNAL_HANDLER
 
-	tool_behaviour = null
+	tool_qualities = list()
 
 /obj/item/melee/sledgehammer/gorlex/attack(mob/living/target, mob/living/user)
 	. = ..()

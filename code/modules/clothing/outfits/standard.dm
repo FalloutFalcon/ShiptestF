@@ -107,7 +107,7 @@
 		/obj/item/melee/energy/axe=1,\
 		/obj/item/storage/part_replacer/bluespace/tier4=1,\
 		/obj/item/debug/human_spawner=1,\
-		/obj/item/debug/omnitool=1
+		/obj/item/tool/admin_debug=1
 		)
 
 /datum/outfit/debug/post_equip(mob/living/carbon/human/H, visualsOnly = FALSE)

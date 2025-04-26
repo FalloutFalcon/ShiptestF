@@ -29,7 +29,7 @@
 	var/max_creamer_packs = 10
 	var/coffeemaker_particle = /particles/smoke/steam/mild/coffeemaker
 
-	var/static/radial_examine = image(icon = 'icons/mob/radial.dmi', icon_state = "radial_examine")
+	var/static/radial_examine = image(icon = 'icons/hud/radial/menu.dmi', icon_state = "radial_examine")
 	var/static/radial_brew = image(icon = 'icons/effects/radial_coffee.dmi', icon_state = "radial_brew")
 	var/static/radial_eject_pot = image(icon = 'icons/effects/radial_coffee.dmi', icon_state = "radial_eject_pot")
 	var/static/radial_eject_cartridge = image(icon = 'icons/effects/radial_coffee.dmi', icon_state = "radial_eject_cartridge")

@@ -87,7 +87,7 @@
 			for(var/datum/plant_gene/trait/T in seed.genes)
 				T.on_attackby(src, O, user)
 //Ghetto Seed Extraction
-	switch(O.tool_behaviour)
+	switch(O.tool_qualities[1])
 		if(QUALITY_SCREW_DRIVING)
 			playsound(loc, 'sound/weapons/bite.ogg', 50, TRUE, -1)
 			user.visible_message(span_notice("[user] starts digging into \the [src]."), span_notice("You start digging into \the [src]..."), span_hear("You hear the sound of a sharp object penetrating some plant matter."))

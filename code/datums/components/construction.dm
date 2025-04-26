@@ -77,7 +77,7 @@
 
 	. = TRUE
 
-	if(I.tool_behaviour)
+	if(length(I.tool_qualities))
 		. = I.use_tool(parent, user, 0, volume=50)
 
 	else if(diff == FORWARD)

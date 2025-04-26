@@ -4,7 +4,7 @@
 	icon_state = "elwelder"
 	light_power = 1
 	light_color = LIGHT_COLOR_HALOGEN
-	tool_behaviour = NONE
+	tool_qualities = list(NONE = 30)
 	toolspeed = 0.5 //twice as fast, but doesn't require welding fuel
 	power_use_amount = POWER_CELL_USE_LOW
 	change_icons = FALSE //we don't use fuel
@@ -34,7 +34,7 @@
 
 /obj/item/weldingtool/electric/switched_on(mob/user)
 	welding = TRUE
-	tool_behaviour = QUALITY_WELDING
+	tool_qualities = list(QUALITY_WELDING = 30)
 	light_on = TRUE
 	force = 15
 	damtype = BURN
@@ -50,7 +50,7 @@
 	force = initial(force)
 	damtype = BRUTE
 	set_light_on(powered)
-	tool_behaviour = NONE
+	tool_qualities = list()
 	update_appearance()
 	STOP_PROCESSING(SSobj, src)
 
