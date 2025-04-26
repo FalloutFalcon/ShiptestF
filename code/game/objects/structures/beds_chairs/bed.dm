@@ -70,12 +70,19 @@
 /obj/structure/bed/attack_paw(mob/user)
 	return attack_hand(user)
 
-/obj/structure/bed/attackby(obj/item/W, mob/user, params)
-	if(((QUALITY_BOLT_TURNING in W.tool_qualities) || (QUALITY_DECONSTRUCT in W.tool_qualities)) && !(flags_1&NODECONSTRUCT_1))
-		W.play_tool_sound(src)
-		deconstruct(TRUE)
-	else
-		return ..()
+/obj/structure/bed/deconstruct_act(mob/living/user, obj/item/tool)
+	if(..())
+		return TRUE
+	tool.play_tool_sound(src)
+	deconstruct(TRUE)
+	return TRUE
+
+/obj/structure/bed/wrench_act(mob/living/user, obj/item/tool)
+	if(..() || (flags_1 & NODECONSTRUCT_1))
+		return TRUE
+	tool.play_tool_sound(src)
+	deconstruct(TRUE)
+	return TRUE
 
 /*
  * Roller beds

@@ -84,7 +84,7 @@
 
 	else if((QUALITY_WELDING in O.tool_qualities) && user.a_intent != INTENT_HARM)
 		if(obj_integrity < max_integrity)
-			if(!O.tool_start_check(user, amount=0))
+			if(!O.tool_start_check(user, src, amount=0))
 				return
 
 			user.visible_message(span_notice("[user] begins repairing [src]."), \

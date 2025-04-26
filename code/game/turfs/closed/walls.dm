@@ -95,7 +95,7 @@
 		return FALSE
 
 	if(QUALITY_WELDING in W.tool_qualities)
-		if(!W.tool_start_check(user, amount=0) || (integrity >= max_integrity))
+		if(!W.tool_start_check(user, src, amount=0) || (integrity >= max_integrity))
 			return FALSE
 
 		to_chat(user, span_notice("You begin fixing dents on the wall..."))
