@@ -5,7 +5,7 @@
 	mob_overlay_icon = 'icons/mob/clothing/back.dmi'
 	force = 5
 	throwforce = 15
-	demolition_mod = 1.25
+	demolition_mod = 1.5
 	w_class = WEIGHT_CLASS_BULKY
 	slot_flags = ITEM_SLOT_BACK
 	attack_cooldown = HEAVY_WEAPON_CD
@@ -21,21 +21,17 @@
 
 /obj/item/melee/axe/ComponentInitialize()
 	. = ..()
-	AddComponent(/datum/component/butchering, 100, 80, 0 , 'sound/weapons/bladeslice.ogg') //axes are not known for being precision butchering tools
+		AddComponent(/datum/component/butchering, \
+		speed = 10 SECONDS, \
+		effectiveness = 80, \
+		bonus_modifier = 0 , \
+		butcher_sound = 'sound/items/weapons/bladeslice.ogg', \
+	)
 	AddComponent(/datum/component/two_handed, force_unwielded = force, force_wielded = force_wielded, icon_wielded="[base_icon_state]_w")
 
 /obj/item/melee/axe/update_icon_state()
 	icon_state = "[base_icon_state]"
 	return ..()
-
-/obj/item/melee/axe/afterattack(atom/A, mob/user, proximity)
-	. = ..()
-	if(!proximity)
-		return
-	if(HAS_TRAIT(src, TRAIT_WIELDED)) //destroys windows and grilles in one hit
-		if(istype(A, /obj/structure/window) || istype(A, /obj/structure/grille))
-			var/obj/structure/W = A
-			W.obj_destruction("axe")
 
 /obj/item/melee/axe/fire
 	name = "fire axe"
