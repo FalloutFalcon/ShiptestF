@@ -108,6 +108,14 @@
 		/obj/effect/decal/cleanable/ash/large = 30,
 	)
 
+/obj/effect/spawner/random/trash/likely_oil
+	name = "oil decal spawner"
+	icon_state = "vomit"
+	loot = list(
+		/obj/effect/decal/cleanable/oil = 40,
+		/obj/effect/spawner/random/trash/decal = 60
+	)
+
 /obj/effect/spawner/random/trash/mess
 	name = "gross decal spawner"
 	icon_state = "vomit"
