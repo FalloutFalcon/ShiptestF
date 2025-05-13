@@ -60,15 +60,6 @@
 	if(!target.anchored)
 		target.throw_at(throw_target, rand(1,2), 2, user, gentle = TRUE)
 
-/obj/item/melee/sledgehammer/gorlex/afterattack(atom/A, mob/user, proximity)
-	. = ..()
-	if(!proximity)
-		return
-	if(HAS_TRAIT(src, TRAIT_WIELDED)) //destroys windows and grilles in one hit
-		if(istype(A, /obj/structure/window) || istype(A, /obj/structure/grille))
-			var/obj/structure/W = A
-			W.obj_destruction("axe")
-
 // its for dynamic gen mobs okay
 /obj/item/melee/sledgehammer/gorlex/pre_wielded
 	icon_state = "gorlex_sledgehammer_w"
