@@ -5050,7 +5050,7 @@
 /area/ship/hallway/aft)
 "GP" = (
 /obj/structure/table/reinforced,
-/obj/machinery/computer/secure_data/laptop{
+/obj/machinery/computer/records/sec/laptop{
 	dir = 1;
 	pixel_y = 6
 	},

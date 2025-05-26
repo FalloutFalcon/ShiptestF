@@ -12485,7 +12485,7 @@
 	dir = 1
 	},
 /obj/structure/table/chem,
-/obj/machinery/computer/med_data/laptop,
+/obj/machinery/computer/records/med/laptop,
 /turf/open/floor/plasteel/white,
 /area/ruin/wasteplanet/wasteplanet_icwbase/cybersun)
 "Yo" = (

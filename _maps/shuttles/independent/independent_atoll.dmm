@@ -3386,7 +3386,7 @@
 	dir = 2
 	},
 /obj/effect/decal/cleanable/dirt/dust,
-/obj/machinery/computer/med_data/laptop{
+/obj/machinery/computer/records/med/laptop{
 	dir = 4;
 	pixel_x = -3;
 	pixel_y = 9
@@ -4495,7 +4495,7 @@
 /area/ship/medical/surgery)
 "Pv" = (
 /obj/structure/table/chem,
-/obj/machinery/computer/med_data/laptop{
+/obj/machinery/computer/records/med/laptop{
 	pixel_x = -2;
 	pixel_y = 4
 	},
@@ -4528,7 +4528,7 @@
 	name = "Lobby Holofield";
 	pixel_y = 5
 	},
-/obj/machinery/computer/med_data{
+/obj/machinery/computer/records/med{
 	icon_state = "computer-right";
 	dir = 1
 	},

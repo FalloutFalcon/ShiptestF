@@ -3482,7 +3482,7 @@
 /area/ship/engineering)
 "yk" = (
 /obj/machinery/computer/helm/viewscreen/directional/south,
-/obj/machinery/computer/secure_data{
+/obj/machinery/computer/records/sec{
 	dir = 8
 	},
 /turf/open/floor/mineral/plastitanium/red/brig,

@@ -1,0 +1,7 @@
+/obj/machinery/computer/secure_data : /obj/machinery/computer/records/sec{@OLD}
+/obj/machinery/computer/secure_data/laptop : /obj/machinery/computer/records/sec/laptop{@OLD}
+/obj/machinery/computer/secure_data/syndie : /obj/machinery/computer/records/sec/syndie{@OLD}
+
+/obj/machinery/computer/med_data : /obj/machinery/computer/records/med{@OLD}
+/obj/machinery/computer/med_data/laptop : /obj/machinery/computer/records/med/laptop{@OLD}
+/obj/machinery/computer/med_data/syndie : /obj/machinery/computer/records/med/syndie{@OLD}

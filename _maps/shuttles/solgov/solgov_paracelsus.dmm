@@ -1936,7 +1936,7 @@
 /area/ship/cargo)
 "rE" = (
 /obj/structure/table/wood,
-/obj/machinery/computer/med_data/laptop,
+/obj/machinery/computer/records/med/laptop,
 /turf/open/floor/wood/ebony,
 /area/ship/crew/crewtwo)
 "rK" = (

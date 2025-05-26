@@ -734,7 +734,7 @@
 /area/ship/engineering)
 "ec" = (
 /obj/structure/table/reinforced,
-/obj/machinery/computer/secure_data/laptop{
+/obj/machinery/computer/records/sec/laptop{
 	dir = 4;
 	pixel_y = 6
 	},
@@ -4322,7 +4322,7 @@
 /obj/structure/window/reinforced{
 	dir = 1
 	},
-/obj/machinery/computer/med_data/laptop{
+/obj/machinery/computer/records/med/laptop{
 	dir = 4
 	},
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{

@@ -2642,7 +2642,7 @@
 /area/ruin/space/has_grav/powered/ramzi_station/hangar)
 "pd" = (
 /obj/structure/table/reinforced,
-/obj/machinery/computer/secure_data/laptop,
+/obj/machinery/computer/records/sec/laptop,
 /obj/machinery/light/broken/directional/north,
 /turf/open/floor/plasteel/tech/airless,
 /area/ruin/space/pgf_wreck/external)
@@ -3099,7 +3099,7 @@
 	dir = 8
 	},
 /obj/structure/window/reinforced,
-/obj/machinery/computer/secure_data/laptop{
+/obj/machinery/computer/records/sec/laptop{
 	dir = 1
 	},
 /obj/machinery/door/poddoor/shutters{

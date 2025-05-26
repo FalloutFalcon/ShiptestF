@@ -11358,7 +11358,7 @@
 /turf/open/floor/plasteel,
 /area/tdome/arena_source)
 "lWX" = (
-/obj/machinery/computer/secure_data,
+/obj/machinery/computer/records/sec,
 /turf/open/floor/plasteel/telecomms_floor,
 /area/centcom)
 "lXt" = (

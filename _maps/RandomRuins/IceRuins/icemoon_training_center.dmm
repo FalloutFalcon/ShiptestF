@@ -3067,7 +3067,7 @@
 	dir = 10
 	},
 /obj/structure/table/wood/reinforced,
-/obj/machinery/computer/secure_data/laptop{
+/obj/machinery/computer/records/sec/laptop{
 	dir = 4;
 	pixel_y = 7;
 	pixel_x = -2
@@ -6999,7 +6999,7 @@
 /area/ruin/icemoon/training_facility/demo_course)
 "IV" = (
 /obj/structure/table/wood/reinforced,
-/obj/machinery/computer/secure_data/laptop{
+/obj/machinery/computer/records/sec/laptop{
 	dir = 1;
 	pixel_y = 5
 	},

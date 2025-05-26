@@ -1674,7 +1674,7 @@
 /area/ship/external/dark)
 "tH" = (
 /obj/structure/table/reinforced,
-/obj/machinery/computer/secure_data/laptop{
+/obj/machinery/computer/records/sec/laptop{
 	pixel_y = 6
 	},
 /obj/effect/turf_decal/corner/opaque/lightgrey/diagonal{

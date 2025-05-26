@@ -3262,7 +3262,7 @@
 /turf/open/floor/plating/asteroid/rockplanet/cracked/safe,
 /area/outpost/maintenance/central)
 "ql" = (
-/obj/machinery/computer/secure_data{
+/obj/machinery/computer/records/sec{
 	dir = 1
 	},
 /obj/effect/turf_decal/corner/opaque/tan{
@@ -4024,7 +4024,7 @@
 /turf/open/floor/plating/rust,
 /area/outpost/maintenance/central)
 "ts" = (
-/obj/machinery/computer/secure_data{
+/obj/machinery/computer/records/sec{
 	icon_state = "computer-left"
 	},
 /obj/machinery/light/directional/north,
