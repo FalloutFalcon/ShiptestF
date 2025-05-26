@@ -8,12 +8,7 @@
 	var/datum/overmap/ship/controlled/linked_ship
 
 /obj/machinery/computer/records/connect_to_shuttle(obj/docking_port/mobile/port, obj/docking_port/stationary/dock)
-	. = ..()
 	linked_ship = port.current_ship
-
-/obj/machinery/computer/records/disconnect_from_shuttle(obj/docking_port/mobile/port)
-	. = ..()
-	linked_ship = null
 
 /*
 /obj/machinery/computer/records/attacked_by(obj/item/attacking_item, mob/living/user)

@@ -131,14 +131,9 @@
 	var/virgin = 1
 
 /obj/structure/filingcabinet/record/connect_to_shuttle(obj/docking_port/mobile/port, obj/docking_port/stationary/dock)
-	. = ..()
 	linked_ship = port.current_ship
 	if(linked_ship)
 		name = "[name] - [linked_ship.name]"
-
-/obj/structure/filingcabinet/record/disconnect_from_shuttle(obj/docking_port/mobile/port)
-	. = ..()
-	linked_ship = null
 
 /obj/structure/filingcabinet/record/proc/populate()
 	return
