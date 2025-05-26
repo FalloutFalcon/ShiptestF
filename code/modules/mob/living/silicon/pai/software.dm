@@ -291,7 +291,7 @@ GLOBAL_LIST_INIT(pai_faces_icons, list(
 					if(iscarbon(card.loc))
 						CheckDNA(card.loc, src) //you should only be able to check when directly in hand, muh immersions?
 					else
-						to_chat(src, "<span class='warning'>You are not being carried by anyone!</span>")
+						to_chat(src, span_warning("You are not being carried by anyone!"))
 						return 0 // FALSE ? If you return here you won't call paiinterface() below
 
 			if("pdamessage")
@@ -365,7 +365,7 @@ GLOBAL_LIST_INIT(pai_faces_icons, list(
 				if(href_list["cable"])
 					var/turf/T = get_turf(loc)
 					cable = new /obj/item/pai_cable(T)
-					T.visible_message("<span class='warning'>A port on [src] opens to reveal [cable], which promptly falls to the floor.</span>", "<span class='hear'>You hear the soft click of something light and hard falling to the ground.</span>")
+					T.visible_message(span_warning("A port on [src] opens to reveal [cable], which promptly falls to the floor."), span_hear("You hear the soft click of something light and hard falling to the ground."))
 
 			if("loudness")
 				if(subscreen == 1) // Open Instrument
@@ -483,9 +483,9 @@ GLOBAL_LIST_INIT(pai_faces_icons, list(
 		return
 	var/answer = input(M, "[P] is requesting a DNA sample from you. Will you allow it to confirm your identity?", "[P] Check DNA", "No") in list("Yes", "No")
 	if(answer == "Yes")
-		M.visible_message("<span class='notice'>[M] presses [M.p_their()] thumb against [P].</span>",\
-						"<span class='notice'>You press your thumb against [P].</span>",\
-						"<span class='notice'>[P] makes a sharp clicking sound as it extracts DNA material from [M].</span>")
+		M.visible_message(span_notice("[M] presses [M.p_their()] thumb against [P]."),\
+						span_notice("You press your thumb against [P]."),\
+						span_notice("[P] makes a sharp clicking sound as it extracts DNA material from [M]."))
 		if(!M.has_dna())
 			to_chat(P, "<b>No DNA detected</b>")
 			return
@@ -495,7 +495,7 @@ GLOBAL_LIST_INIT(pai_faces_icons, list(
 		else
 			to_chat(P, "<b>DNA does not match stored Master DNA.</b>")
 	else
-		to_chat(P, "<span class='warning'>[M] does not seem like [M.p_theyre()] going to provide a DNA sample willingly.</span>")
+		to_chat(P, span_warning("[M] does not seem like [M.p_theyre()] going to provide a DNA sample willingly."))
 
 // -=-=-=-= Software =-=-=-=-=- //
 
@@ -537,15 +537,15 @@ GLOBAL_LIST_INIT(pai_faces_icons, list(
 			. += "<h3>Medical Records</h3><HR>"
 			if(SSdatacore.get_records(DATACORE_RECORDS_OUTPOST))
 				for(var/datum/data/record/R in sortRecord(SSdatacore.get_records(DATACORE_RECORDS_OUTPOST)))
-					. += "<A href='?src=[REF(src)];med_rec=[R.fields[DATACORE_ID]];software=medicalrecord;sub=1'>[R.fields[DATACORE_ID]]: [R.fields[DATACORE_NAME]]<BR>"
+					. += "<A href='byond://?src=[REF(src)];med_rec=[R.fields[DATACORE_ID]];software=medicalrecord;sub=1'>[R.fields[DATACORE_ID]]: [R.fields[DATACORE_NAME]]<BR>"
 		if(1)
 			. += "<CENTER><B>Medical Record</B></CENTER><BR>"
 			if(active_record in SSdatacore.get_records(DATACORE_RECORDS_OUTPOST))
 				. += "Name: [active_record.fields[DATACORE_NAME]] ID: [active_record.fields[DATACORE_ID]]<BR>\nGender: [active_record.fields[DATACORE_GENDER]]<BR>\nAge: [active_record.fields[DATACORE_AGE]]<BR>\nFingerprint: [active_record.fields[DATACORE_FINGERPRINT]]<BR>\nPhysical Status: [active_record.fields[DATACORE_PHYSICAL_HEALTH]]<BR>\nMental Status: [active_record.fields[DATACORE_MENTAL_HEALTH]]<BR>"
-				. += "<BR>\n<CENTER><B>Medical Data</B></CENTER><BR>\nBlood Type: <A href='?src=[REF(src)];field=blood_type'>[active_record.fields[DATACORE_BLOOD_TYPE]]</A><BR>\nDNA (UE): <A href='?src=[REF(src)];field=b_dna'>[active_record.fields[DATACORE_BLOOD_DNA]]</A><BR>\n<BR>\nMinor Disabilities: <A href='?src=[REF(src)];field=mi_dis'>[active_record.fields["mi_dis"]]</A><BR>\nDetails: <A href='?src=[REF(src)];field=mi_dis_d'>[active_record.fields["mi_dis_d"]]</A><BR>\n<BR>\nMajor Disabilities: <A href='?src=[REF(src)];field=ma_dis'>[active_record.fields[DATACORE_DISABILITIES]]</A><BR>\nDetails: <A href='?src=[REF(src)];field=ma_dis_d'>[active_record.fields[DATACORE_DISABILITIES_DETAILS]]</A><BR>\n<BR>\nAllergies: <A href='?src=[REF(src)];field=alg'>[active_record.fields["alg"]]</A><BR>\nDetails: <A href='?src=[REF(src)];field=alg_d'>[active_record.fields["alg_d"]]</A><BR>\n<BR>\nCurrent Diseases: <A href='?src=[REF(src)];field=cdi'>[active_record.fields[DATACORE_DISEASES]]</A> (per disease info placed in log/comment section)<BR>\nDetails: <A href='?src=[REF(src)];field=cdi_d'>[active_record.fields[DATACORE_DISEASES_DETAILS]]</A><BR>\n<BR>\nImportant Notes:<BR>\n\t<A href='?src=[REF(src)];field=notes'>[active_record.fields[DATACORE_NOTES]]</A><BR>\n<BR>\n<CENTER><B>Comments/Log</B></CENTER><BR>"
+				. += "<BR>\n<CENTER><B>Medical Data</B></CENTER><BR>\nBlood Type: <A href='byond://?src=[REF(src)];field=blood_type'>[active_record.fields[DATACORE_BLOOD_TYPE]]</A><BR>\nDNA (UE): <A href='byond://?src=[REF(src)];field=b_dna'>[active_record.fields[DATACORE_BLOOD_DNA]]</A><BR>\n<BR>\nMinor Disabilities: <A href='byond://?src=[REF(src)];field=mi_dis'>[active_record.fields["mi_dis"]]</A><BR>\nDetails: <A href='byond://?src=[REF(src)];field=mi_dis_d'>[active_record.fields["mi_dis_d"]]</A><BR>\n<BR>\nMajor Disabilities: <A href='byond://?src=[REF(src)];field=ma_dis'>[active_record.fields[DATACORE_DISABILITIES]]</A><BR>\nDetails: <A href='byond://?src=[REF(src)];field=ma_dis_d'>[active_record.fields[DATACORE_DISABILITIES_DETAILS]]</A><BR>\n<BR>\nAllergies: <A href='byond://?src=[REF(src)];field=alg'>[active_record.fields["alg"]]</A><BR>\nDetails: <A href='byond://?src=[REF(src)];field=alg_d'>[active_record.fields["alg_d"]]</A><BR>\n<BR>\nCurrent Diseases: <A href='byond://?src=[REF(src)];field=cdi'>[active_record.fields[DATACORE_DISEASES]]</A> (per disease info placed in log/comment section)<BR>\nDetails: <A href='byond://?src=[REF(src)];field=cdi_d'>[active_record.fields[DATACORE_DISEASES_DETAILS]]</A><BR>\n<BR>\nImportant Notes:<BR>\n\t<A href='byond://?src=[REF(src)];field=notes'>[active_record.fields[DATACORE_NOTES]]</A><BR>\n<BR>\n<CENTER><B>Comments/Log</B></CENTER><BR>"
 			else
 				. += "<pre>Requested medical record not found.</pre><BR>"
-			. += "<BR>\n<A href='?src=[REF(src)];software=medicalrecord;sub=0'>Back</A><BR>"
+			. += "<BR>\n<A href='byond://?src=[REF(src)];software=medicalrecord;sub=0'>Back</A><BR>"
 	return .
 
 // Security Records
@@ -556,26 +556,12 @@ GLOBAL_LIST_INIT(pai_faces_icons, list(
 			. += "<h3>Security Records</h3><HR>"
 			if(SSdatacore.get_records(DATACORE_RECORDS_OUTPOST))
 				for(var/datum/data/record/R in sortRecord(SSdatacore.get_records(DATACORE_RECORDS_OUTPOST)))
-					. += "<A href='?src=[REF(src)];sec_rec=[R.fields[DATACORE_ID]];software=securityrecord;sub=1'>[R.fields[DATACORE_ID]]: [R.fields[DATACORE_NAME]]<BR>"
+					. += "<A href='byond://?src=[REF(src)];sec_rec=[R.fields[DATACORE_ID]];software=securityrecord;sub=1'>[R.fields[DATACORE_ID]]: [R.fields[DATACORE_NAME]]<BR>"
 		if(1)
 			. += "<h3>Security Record</h3>"
 			if(active_record in SSdatacore.get_records(DATACORE_RECORDS_OUTPOST))
-				. += "Name: <A href='?src=[REF(src)];field=name'>[active_record.fields[DATACORE_NAME]]</A> ID: <A href='?src=[REF(src)];field=id'>[active_record.fields[DATACORE_ID]]</A><BR>\nGender: <A href='?src=[REF(src)];field=gender'>[active_record.fields[DATACORE_GENDER]]</A><BR>\nAge: <A href='?src=[REF(src)];field=age'>[active_record.fields[DATACORE_AGE]]</A><BR>\nRank: <A href='?src=[REF(src)];field=rank'>[active_record.fields[DATACORE_RANK]]</A><BR>\nFingerprint: <A href='?src=[REF(src)];field=fingerprint'>[active_record.fields[DATACORE_FINGERPRINT]]</A><BR>\nPhysical Status: [active_record.fields[DATACORE_PHYSICAL_HEALTH]]<BR>\nMental Status: [active_record.fields[DATACORE_MENTAL_HEALTH]]<BR>"
-				. += "<BR>\nSecurity Data<BR>\nCriminal Status: [active_record.fields[DATACORE_CRIMINAL_STATUS]]<BR>\n<BR>\nCrimes: <A href='?src=[REF(src)];field=mcrim'>[active_record.fields[DATACORE_CRIMES]]</A><BR>\nDetails: <A href='?src=[REF(src)];field=crim_d'>[active_record.fields["crim_d"]]</A><BR>\n<BR>\nImportant Notes:<BR>\n\t<A href='?src=[REF(src)];field=notes'>[active_record.fields[DATACORE_NOTES]]</A><BR>\n<BR>\n<CENTER><B>Comments/Log</B></CENTER><BR>"
-			else
-				. += "<pre>Requested security record not found,</pre><BR>"
-			. += "<BR>\n<A href='?src=[REF(src)];software=securityrecord;sub=0'>Back</A><BR>"
-	return .
-
-// Encryption Keys
-/mob/living/silicon/pai/proc/softwareEncryptionKeys()
-	var/dat = {"<h3>Encryption Key Firmware</h3><br>
-				When enabled, this device will be able to use up to two (2) encryption keys for departmental channel access.<br><br>
-				The device is currently [encryptmod ? "<font color=#55FF55>en" : "<font color=#FF5555>dis" ]abled.</font><br>[encryptmod ? "" : "<a href='byond://?src=[REF(src)];software=encryptionkeys;sub=0;toggle=1'>Activate Encryption Key Ports</a><br>"]"}
-	return dat
-
-
-// Universal Translator
+				. += "Name: <A href='byond://?src=[REF(src)];field=name'>[active_record.fields[DATACORE_NAME]]</A> ID: <A href='byond://?src=[REF(src)];field=id'>[active_record.fields[DATACORE_ID]]</A><BR>\nGender: <A href='byond://?src=[REF(src)];field=gender'>[active_record.fields[DATACORE_GENDER]]</A><BR>\nAge: <A href='byond://?src=[REF(src)];field=age'>[active_record.fields[DATACORE_AGE]]</A><BR>\nRank: <A href='byond://?src=[REF(src)];field=rank'>[active_record.fields[DATACORE_RANK]]</A><BR>\nFingerprint: <A href='byond://?src=[REF(src)];field=fingerprint'>[active_record.fields[DATACORE_FINGERPRINT]]</A><BR>\nPhysical Status: [active_record.fields[DATACORE_PHYSICAL_HEALTH]]<BR>\nMental Status: [active_record.fields[DATACORE_MENTAL_HEALTH]]<BR>"
+				. += "<BR>\nSecurity Data<BR>\nCriminal Status: [active_record.fields[DATACORE_CRIMINAL_STATUS]]<BR>\n<BR>\nCrimes: <A href='byond://?src=[REF(src)];field=mcrim'>[active_record.fields[DATACORE_CRIMES]]</A><BR>\nDetails: <A href='byond://?src=[REF(src)];field=crim_d'>[active_record.fields["crim_d"]]</A><BR>\n<BR>\nImportant Notes:<BR>\n\t<A href='byond://?src=[REF(src)];field=notes'>[active_record.fields[DATACORE_NOTES]]</A><BR>\n<BR>\n<CENTER><B>Comments/Log</B></CENTER><BR>"
 /mob/living/silicon/pai/proc/softwareTranslator()
 	var/datum/language_holder/H = get_language_holder()
 	. = {"<h3>Universal Translator</h3><br>
