@@ -562,6 +562,14 @@ GLOBAL_LIST_INIT(pai_faces_icons, list(
 			if(active_record in SSdatacore.get_records(DATACORE_RECORDS_OUTPOST))
 				. += "Name: <A href='byond://?src=[REF(src)];field=name'>[active_record.fields[DATACORE_NAME]]</A> ID: <A href='byond://?src=[REF(src)];field=id'>[active_record.fields[DATACORE_ID]]</A><BR>\nGender: <A href='byond://?src=[REF(src)];field=gender'>[active_record.fields[DATACORE_GENDER]]</A><BR>\nAge: <A href='byond://?src=[REF(src)];field=age'>[active_record.fields[DATACORE_AGE]]</A><BR>\nRank: <A href='byond://?src=[REF(src)];field=rank'>[active_record.fields[DATACORE_RANK]]</A><BR>\nFingerprint: <A href='byond://?src=[REF(src)];field=fingerprint'>[active_record.fields[DATACORE_FINGERPRINT]]</A><BR>\nPhysical Status: [active_record.fields[DATACORE_PHYSICAL_HEALTH]]<BR>\nMental Status: [active_record.fields[DATACORE_MENTAL_HEALTH]]<BR>"
 				. += "<BR>\nSecurity Data<BR>\nCriminal Status: [active_record.fields[DATACORE_CRIMINAL_STATUS]]<BR>\n<BR>\nCrimes: <A href='byond://?src=[REF(src)];field=mcrim'>[active_record.fields[DATACORE_CRIMES]]</A><BR>\nDetails: <A href='byond://?src=[REF(src)];field=crim_d'>[active_record.fields["crim_d"]]</A><BR>\n<BR>\nImportant Notes:<BR>\n\t<A href='byond://?src=[REF(src)];field=notes'>[active_record.fields[DATACORE_NOTES]]</A><BR>\n<BR>\n<CENTER><B>Comments/Log</B></CENTER><BR>"
+
+// Encryption Keys
+/mob/living/silicon/pai/proc/softwareEncryptionKeys()
+	var/dat = {"<h3>Encryption Key Firmware</h3><br>
+				When enabled, this device will be able to use up to two (2) encryption keys for departmental channel access.<br><br>
+				The device is currently [encryptmod ? "<font color=#55FF55>en" : "<font color=#FF5555>dis" ]abled.</font><br>[encryptmod ? "" : "<a href='byond://?src=[REF(src)];software=encryptionkeys;sub=0;toggle=1'>Activate Encryption Key Ports</a><br>"]"}
+	return dat
+
 /mob/living/silicon/pai/proc/softwareTranslator()
 	var/datum/language_holder/H = get_language_holder()
 	. = {"<h3>Universal Translator</h3><br>
