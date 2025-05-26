@@ -1,5 +1,3 @@
-
-
 /obj/machinery/computer/records/med//TODO:SANITY
 	name = "medical records console"
 	desc = "This can be used to check medical records."
