@@ -90,7 +90,7 @@
 			if(!target)
 				return FALSE
 
-			playsound(src, "sound/machines/terminal_button0[rand(1, 8)].ogg", 50, TRUE)
+			playsound(src, "terminal_type", 50, TRUE)
 			return TRUE
 
 	return FALSE
