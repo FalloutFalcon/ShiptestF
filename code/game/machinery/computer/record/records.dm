@@ -91,7 +91,6 @@
 				return FALSE
 
 			playsound(src, "sound/machines/terminal_button0[rand(1, 8)].ogg", 50, TRUE)
-			balloon_alert(usr, "viewing record for [target.fields[DATACORE_NAME]]")
 			return TRUE
 
 	return FALSE
