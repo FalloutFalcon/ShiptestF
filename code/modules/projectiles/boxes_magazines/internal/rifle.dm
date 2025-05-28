@@ -37,5 +37,5 @@
 	name = "single round magazine"
 	max_ammo = 1
 	caliber = CALIBER_REBAR
-	ammo_type = /obj/item/ammo_casing/rebar
+	ammo_type = /obj/item/ammo_casing/caseless/rebar
 	start_empty = TRUE

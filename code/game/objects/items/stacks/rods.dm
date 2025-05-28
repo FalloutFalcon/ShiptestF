@@ -14,6 +14,7 @@ GLOBAL_LIST_INIT(rod_recipes, list ( \
 	new/datum/stack_recipe("thick railing corner", /obj/structure/railing/thick/corner, 1, time = 10, window_checks = TRUE), \
 	new/datum/stack_recipe("ladder", /obj/structure/ladder/crafted, 15, time = 150, one_per_turf = TRUE, on_floor = FALSE), \
 	new/datum/stack_recipe("handrail", /obj/structure/chair/handrail, 4, time = 15, one_per_turf = TRUE), \
+	new/datum/stack_recipe("sharpened iron rod", /obj/item/ammo_casing/caseless/rebar, 1, time = 0.2 SECONDS), \
 	))
 
 /obj/item/stack/rods

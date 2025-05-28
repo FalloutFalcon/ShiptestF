@@ -270,7 +270,7 @@
 	blacklist = list(
 		/obj/item/inducer/sci,
 	)
-	tool_behaviors = list(TOOL_WELDER)
+	tools = list(TOOL_WELDER)
 	time = 5 SECONDS
 	category = CAT_WEAPONRY
 	subcategory = CAT_WEAPON

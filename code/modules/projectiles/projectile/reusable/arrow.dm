@@ -43,4 +43,4 @@
 	//embedding = list(embed_chance=60, fall_chance=2, jostle_chance=2, ignore_throwspeed_threshold=TRUE, pain_stam_pct=0.4, pain_mult=3, jostle_pain_mult=2, rip_time=10)
 	//embed_falloff_tile = -5
 	//wound_falloff_tile = -2
-	shrapnel_type = /obj/item/ammo_casing/rebar
+	shrapnel_type = /obj/item/ammo_casing/caseless/rebar
