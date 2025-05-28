@@ -259,6 +259,22 @@
 	category = CAT_WEAPONRY
 	subcategory = CAT_WEAPON
 
+/datum/crafting_recipe/rebarxbow
+	name = "Heated Rebar Crossbow"
+	result = /obj/item/gun/ballistic/rifle/rebarxbow
+	reqs = list(
+		/obj/item/stack/rods = 6,
+		/obj/item/stack/cable_coil = 12,
+		/obj/item/inducer =  1,
+	)
+	blacklist = list(
+		/obj/item/inducer/sci,
+	)
+	tool_behaviors = list(TOOL_WELDER)
+	time = 5 SECONDS
+	category = CAT_WEAPONRY
+	subcategory = CAT_WEAPON
+
 /* Kept for SRM use */
 /datum/crafting_recipe/bonespear
 	name = "Bone Spear"
