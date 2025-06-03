@@ -20,7 +20,7 @@
 /datum/round_event/high_priority_mission/setup()
 	target_outpost = pick(SSovermap.outposts)
 	var/list/pickable_missions = list()
-	for(var/datum/mission/ruin/active_mission)
+	for(var/datum/mission/ruin/active_mission in SSmissions.active_ruin_missions)
 		if(active_mission.dibs_string)
 			continue
 		pickable_missions.Add(active_mission)
