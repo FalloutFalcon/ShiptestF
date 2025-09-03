@@ -87,3 +87,105 @@
 
 #define EQUIP_SOUND_LONG_GENERIC 'sound/items/equip/equipping_long_generic.ogg'
 #define UNEQUIP_SOUND_LONG_GENERIC 'sound/items/equip/unequipping_long_generic.ogg'
+
+#define COLOR_VARIANTS_HELPER(basepath, item_name) \
+/obj/item/clothing/##basepath/white { \
+	name = "white " + ##item_name; \
+	icon_state = "white"; \
+	current_skin = "white " + ##item_name; \
+} \
+/obj/item/clothing/##basepath/grey { \
+	name = "grey " + ##item_name; \
+	icon_state = "grey"; \
+	current_skin = "grey " + ##item_name; \
+} \
+/obj/item/clothing/##basepath/black { \
+	name = "black " + ##item_name; \
+	icon_state = "black"; \
+	current_skin = "black " + ##item_name; \
+} \
+/obj/item/clothing/##basepath/red { \
+	name = "red " + ##item_name; \
+	icon_state = "red"; \
+	current_skin = "red " + ##item_name; \
+} \
+/obj/item/clothing/##basepath/maroon { \
+	name = "maroon " + ##item_name; \
+	icon_state = "maroon"; \
+	current_skin = "maroon " + ##item_name; \
+} \
+/obj/item/clothing/##basepath/orange { \
+	name = "orange " + ##item_name; \
+	icon_state = "orange"; \
+	current_skin = "orange " + ##item_name; \
+} \
+/obj/item/clothing/##basepath/yellow { \
+	name = "yellow " + ##item_name; \
+	icon_state = "yellow"; \
+	current_skin = "yellow " + ##item_name; \
+} \
+/obj/item/clothing/##basepath/green { \
+	name = "green " + ##item_name; \
+	icon_state = "green"; \
+	current_skin = "green " + ##item_name; \
+} \
+/obj/item/clothing/##basepath/darkgreen { \
+	name = "dark green " + ##item_name; \
+	icon_state = "darkgreen"; \
+	current_skin = "dark green " + ##item_name; \
+} \
+/obj/item/clothing/##basepath/teal { \
+	name = "teal " + ##item_name; \
+	icon_state = "teal"; \
+	current_skin = "teal " + ##item_name; \
+} \
+/obj/item/clothing/##basepath/blue { \
+	name = "blue " + ##item_name; \
+	icon_state = "blue"; \
+	current_skin = "blue " + ##item_name; \
+} \
+/obj/item/clothing/##basepath/darkblue { \
+	name = "dark blue " + ##item_name; \
+	icon_state = "darkblue"; \
+	current_skin = "dark blue " + ##item_name; \
+} \
+/obj/item/clothing/##basepath/purple { \
+	name = "purple " + ##item_name; \
+	icon_state = "purple"; \
+	current_skin = "purple " + ##item_name; \
+} \
+/obj/item/clothing/##basepath/pink { \
+	name = "pink " + ##item_name; \
+	icon_state = "pink"; \
+	current_skin = "pink " + ##item_name; \
+} \
+/obj/item/clothing/##basepath/brown { \
+	name = "brown " + ##item_name; \
+	icon_state = "brown"; \
+	current_skin = "brown " + ##item_name; \
+} \
+/obj/item/clothing/##basepath/lightbrown { \
+	name = "light brown " + ##item_name; \
+	icon_state = "lightbrown"; \
+	current_skin = "light brown " + ##item_name; \
+}
+
+#define UNIQUE_RESKIN_HELPER(item_name) \
+unique_reskin = list( \
+	"white " + ##item_name = "white", \
+	"grey " + ##item_name = "grey", \
+	"black " + ##item_name = "black", \
+	"red " + ##item_name = "red", \
+	"maroon " + ##item_name = "maroon", \
+	"orange " + ##item_name = "orange", \
+	"yellow " + ##item_name = "yellow", \
+	"green " + ##item_name = "green", \
+	"dark green " + ##item_name = "darkgreen", \
+	"teal " + ##item_name = "teal", \
+	"blue " + ##item_name = "blue", \
+	"dark blue " + ##item_name = "darkblue", \
+	"purple " + ##item_name = "purple", \
+	"pink " + ##item_name = "pink", \
+	"brown " + ##item_name = "brown", \
+	"light brown " + ##item_name = "lightbrown" \
+)
