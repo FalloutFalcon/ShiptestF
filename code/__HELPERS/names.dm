@@ -7,9 +7,6 @@
 /proc/plasmaman_name()
 	return "[pick(GLOB.plasmaman_names)] \Roman[rand(1,99)]"
 
-/proc/squid_name()
-	return "[pick(GLOB.squid_names)][pick("-", "", " ")][capitalize(pick(GLOB.squid_names) + pick(GLOB.squid_names))]"
-
 /proc/kepori_name()
 	return "[pick(GLOB.kepori_names)] [pick(GLOB.kepori_names)]-[pick(GLOB.kepori_names)]"
 
