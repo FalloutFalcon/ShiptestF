@@ -63,6 +63,7 @@
 #include "code\__DEFINES\factions.dm"
 #include "code\__DEFINES\fantasy_affixes.dm"
 #include "code\__DEFINES\fastdmm2.dm"
+#include "code\__DEFINES\feature_keys.dm"
 #include "code\__DEFINES\fishing.dm"
 #include "code\__DEFINES\flags.dm"
 #include "code\__DEFINES\fonts.dm"

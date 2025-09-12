@@ -75,7 +75,7 @@ GLOBAL_LIST_EMPTY(roundstart_races)
 	///What languages this species can understand and say. Use a [language holder datum][/datum/language_holder] in this var.
 	var/species_language_holder = /datum/language_holder
 	/// Default mutant bodyparts for this species. Don't forget to set one for every mutant bodypart you allow this species to have.
-	var/list/default_features = list("body_size" = "Normal")
+	var/list/default_features = list(FEATURE_BODY_SIZE = "Normal")
 	/// Visible CURRENT bodyparts that are unique to a species. DO NOT USE THIS AS A LIST OF ALL POSSIBLE BODYPARTS AS IT WILL FUCK SHIT UP! Changes to this list for non-species specific bodyparts (ie cat ears and tails) should be assigned at organ level if possible. Layer hiding is handled by [datum/species/handle_mutant_bodyparts()] below.
 	var/list/mutant_bodyparts = list()
 	///Internal organs that are unique to this race, like a tail.
@@ -398,7 +398,7 @@ GLOBAL_LIST_EMPTY(roundstart_races)
 		I.Insert(C)
 
 /datum/species/proc/is_digitigrade(mob/living/carbon/leg_haver)
-	return (digitigrade_customization == DIGITIGRADE_OPTIONAL && leg_haver.dna.features["legs"] == "Digitigrade Legs") || digitigrade_customization == DIGITIGRADE_FORCED
+	return (digitigrade_customization == DIGITIGRADE_OPTIONAL && leg_haver.dna.features[FEATURE_LEGS_TYPE] == "Digitigrade Legs") || digitigrade_customization == DIGITIGRADE_FORCED
 
 /datum/species/proc/replace_body(mob/living/carbon/C, datum/species/new_species, robotic = FALSE)
 	new_species ||= C.dna.species //If no new species is provided, assume its src.
@@ -592,7 +592,7 @@ GLOBAL_LIST_EMPTY(roundstart_races)
 			if(!forced_colour)
 				if(hair_color)
 					if(hair_color == "mutcolor")
-						facial_overlay.color = "#" + H.dna.features["mcolor"]
+						facial_overlay.color = "#" + H.dna.features[FEATURE_MUTANT_COLOR]
 					else if(hair_color == "fixedmutcolor")
 						facial_overlay.color = "#[fixed_mut_color]"
 					else
@@ -637,7 +637,7 @@ GLOBAL_LIST_EMPTY(roundstart_races)
 				if(!forced_colour)
 					if(hair_color)
 						if(hair_color == "mutcolor")
-							hair_overlay.color = "#" + H.dna.features["mcolor"]
+							hair_overlay.color = "#" + H.dna.features[FEATURE_MUTANT_COLOR]
 						else if(hair_color == "fixedmutcolor")
 							hair_overlay.color = "#[fixed_mut_color]"
 						else
@@ -858,10 +858,6 @@ GLOBAL_LIST_EMPTY(roundstart_races)
 		if(!H.dna.features["spider_mandibles"] || H.dna.features["spider_mandibles"] == "None" || H.head && (H.head.flags_inv & HIDEFACE) || (H.wear_mask && (H.wear_mask.flags_inv & HIDEFACE)) || !HD) //|| HD.status == BODYTYPE_ROBOTIC removed from here
 			bodyparts_to_add -= "spider_mandibles"
 
-	if("squid_face" in mutant_bodyparts)
-		if(!H.dna.features["squid_face"] || H.dna.features["squid_face"] == "None" || H.head && (H.head.flags_inv & HIDEFACE) || (H.wear_mask && (H.wear_mask.flags_inv & HIDEFACE)) || !HD) // || HD.status == BODYTYPE_ROBOTIC
-			bodyparts_to_add -= "squid_face"
-
 	if("kepori_tail_feathers" in mutant_bodyparts)
 		if(!H.dna.features["kepori_tail_feathers"] || H.dna.features["kepori_tail_feathers"] == "None")
 			bodyparts_to_add -= "kepori_tail_feathers"
@@ -938,26 +934,24 @@ GLOBAL_LIST_EMPTY(roundstart_races)
 					S = GLOB.wings_list[H.dna.features["wings"]]
 				if("wingsopen")
 					S = GLOB.wings_open_list[H.dna.features["wings"]]
-				if("legs")
-					S = GLOB.legs_list[H.dna.features["legs"]]
+				if(FEATURE_LEGS_TYPE)
+					S = GLOB.legs_list[H.dna.features[FEATURE_LEGS_TYPE]]
 				if("moth_wings")
 					S = GLOB.moth_wings_list[H.dna.features["moth_wings"]]
 				if("moth_fluff")
 					S = GLOB.moth_fluff_list[H.dna.features["moth_fluff"]]
 				if("moth_markings")
 					S = GLOB.moth_markings_list[H.dna.features["moth_markings"]]
-				if("squid_face")
-					S = GLOB.squid_face_list[H.dna.features["squid_face"]]
 				if("ipc_screen")
 					S = GLOB.ipc_screens_list[H.dna.features["ipc_screen"]]
 				if("ipc_antenna")
 					S = GLOB.ipc_antennas_list[H.dna.features["ipc_antenna"]]
 				if("ipc_tail")
 					S = GLOB.ipc_tail_list[H.dna.features["ipc_tail"]]
-				if("ipc_chassis")
-					S = GLOB.ipc_chassis_list[H.dna.features["ipc_chassis"]]
-				if("ipc_brain")
-					S = GLOB.ipc_brain_list[H.dna.features["ipc_brain"]]
+				if(FEATURE_IPC_CHASSIS)
+					S = GLOB.ipc_chassis_list[H.dna.features[FEATURE_IPC_CHASSIS]]
+				if(FEATURE_IPC_BRAIN)
+					S = GLOB.ipc_brain_list[H.dna.features[FEATURE_IPC_BRAIN]]
 				if("spider_legs")
 					S = GLOB.spider_legs_list[H.dna.features["spider_legs"]]
 				if("spider_spinneret")
@@ -1017,15 +1011,15 @@ GLOBAL_LIST_EMPTY(roundstart_races)
 							if(fixed_mut_color)
 								accessory_overlay.color = "#[fixed_mut_color]"
 							else
-								accessory_overlay.color = "#[H.dna.features["mcolor"]]"
+								accessory_overlay.color = "#[H.dna.features[FEATURE_MUTANT_COLOR]]"
 						if(MUTCOLORS_SECONDARY)
-							accessory_overlay.color = "#[H.dna.features["mcolor2"]]"
+							accessory_overlay.color = "#[H.dna.features[FEATURE_MUTANT_COLOR2]]"
 						if(SKINCOLORS)
 							accessory_overlay.color = "#[(skintone2hex(H.skin_tone))]"
 
 						if(HAIR)
 							if(hair_color == "mutcolor")
-								accessory_overlay.color = "#[H.dna.features["mcolor"]]"
+								accessory_overlay.color = "#[H.dna.features[FEATURE_MUTANT_COLOR]]"
 							else if(hair_color == "fixedmutcolor")
 								accessory_overlay.color = "#[fixed_mut_color]"
 							else
@@ -1047,7 +1041,7 @@ GLOBAL_LIST_EMPTY(roundstart_races)
 
 				if(S.center)
 					secondary_color_overlay = center_image(secondary_color_overlay, S.dimension_x, S.dimension_y)
-				secondary_color_overlay.color = "#[H.dna.features["mcolor2"]]"
+				secondary_color_overlay.color = "#[H.dna.features[FEATURE_MUTANT_COLOR2]]"
 				standing += secondary_color_overlay
 
 		H.overlays_standing[layer] = standing.Copy()

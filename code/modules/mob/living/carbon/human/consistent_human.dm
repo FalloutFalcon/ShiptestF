@@ -15,8 +15,8 @@
 	facial_hair_color = hair_color
 	eye_color = color_from_seed(copytext(seed, 3, 9))
 
-	dna.features["mcolor"] = color_from_seed(copytext(seed, 1, 9))
-	dna.features["mcolor2"] = color_from_seed(copytext(seed, 2, 10))
+	dna.features[FEATURE_MUTANT_COLOR] = color_from_seed(copytext(seed, 1, 9))
+	dna.features[FEATURE_MUTANT_COLOR2] = color_from_seed(copytext(seed, 2, 10))
 	dna.features["ethcolor"] = color_from_seed(copytext(seed, 3, 11))
 
 	dna.features["tail_lizard"] = GLOB.tails_list_lizard[hex2num(copytext(seed, 2, 3)) % length(GLOB.tails_list_lizard) + 1]
@@ -36,7 +36,7 @@
 	dna.features["vox_neck_quills"] = GLOB.vox_neck_quills_list[hex2num(copytext(seed, 15, 16)) % length(GLOB.vox_neck_quills_list) + 1]
 	dna.features["elzu_horns"] = GLOB.elzu_horns_list[hex2num(copytext(seed, 16, 17)) % length(GLOB.elzu_horns_list) + 1]
 	dna.features["tail_elzu"] = GLOB.tails_list_elzu[hex2num(copytext(seed, 17, 18)) % length(GLOB.tails_list_elzu) + 1]
-	dna.features["ipc_chassis"] = GLOB.ipc_chassis_list[hex2num(copytext(seed, 18, 19)) % length(GLOB.ipc_chassis_list) + 1]
+	dna.features[FEATURE_IPC_CHASSIS] = GLOB.ipc_chassis_list[hex2num(copytext(seed, 18, 19)) % length(GLOB.ipc_chassis_list) + 1]
 	dna.features["ipc_screen"] = GLOB.ipc_screens_list[hex2num(copytext(seed, 19, 20)) % length(GLOB.ipc_screens_list) + 1]
 
 	if(!species_list)

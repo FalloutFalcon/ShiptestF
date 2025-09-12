@@ -17,8 +17,8 @@
 	mutantlungs = null //no more collecting change for you
 	mutantappendix = null
 	mutant_organs = list(/obj/item/organ/cyberimp/arm/power_cord)
-	mutant_bodyparts = list("ipc_screen", "ipc_antenna", "ipc_chassis", "ipc_tail", "ipc_brain")
-	default_features = list("mcolor" = "#7D7D7D", "ipc_screen" = "Static", "ipc_antenna" = "None", "ipc_chassis" = "Morpheus Cyberkinetics (Custom)", "ipc_tail" = "None", "ipc_brain" = "Posibrain", "body_size" = "Normal")
+	mutant_bodyparts = list("ipc_screen", "ipc_antenna", FEATURE_IPC_CHASSIS, "ipc_tail", FEATURE_IPC_BRAIN)
+	default_features = list(FEATURE_MUTANT_COLOR = "#7D7D7D", "ipc_screen" = "Static", "ipc_antenna" = "None", FEATURE_IPC_CHASSIS = "Morpheus Cyberkinetics (Custom)", "ipc_tail" = "None", FEATURE_IPC_BRAIN = "Posibrain", FEATURE_BODY_SIZE = "Normal")
 	meat = /obj/item/stack/sheet/plasteel{amount = 5}
 	skinned_type = /obj/item/stack/sheet/metal{amount = 10}
 	exotic_bloodtype = "Coolant"
@@ -63,7 +63,7 @@
 	)
 
 /datum/species/ipc/on_species_gain(mob/living/carbon/C, datum/species/old_species, pref_load) // Let's make that IPC actually robotic.
-	if(C.dna?.features["ipc_brain"] == "Man-Machine Interface")
+	if(C.dna?.features[FEATURE_IPC_BRAIN] == "Man-Machine Interface")
 		mutantbrain = /obj/item/organ/brain/mmi_holder
 	. = ..()
 	if(ishuman(C))
@@ -240,7 +240,7 @@
 /datum/species/ipc/replace_body(mob/living/carbon/C, datum/species/new_species, robotic = FALSE)
 	..()
 
-	var/datum/sprite_accessory/ipc_chassis/chassis_of_choice = GLOB.ipc_chassis_list[C.dna.features["ipc_chassis"]]
+	var/datum/sprite_accessory/ipc_chassis/chassis_of_choice = GLOB.ipc_chassis_list[C.dna.features[FEATURE_IPC_CHASSIS]]
 
 	if(chassis_of_choice.use_eyes)
 		LAZYREMOVE(species_traits, NOEYESPRITES)
@@ -277,8 +277,8 @@
 
 			if(BP.uses_mutcolor)
 				BP.should_draw_greyscale = TRUE
-				BP.species_color = C.dna?.features["mcolor"]
-				BP.species_secondary_color = C.dna?.features["mcolor2"]
+				BP.species_color = C.dna?.features[FEATURE_MUTANT_COLOR]
+				BP.species_secondary_color = C.dna?.features[FEATURE_MUTANT_COLOR2]
 
 			BP.limb_id = chassis_of_choice.limbs_id
 			BP.name = "\improper[chassis_of_choice.name] [parse_zone(BP.body_zone)]"

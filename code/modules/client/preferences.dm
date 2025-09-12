@@ -87,8 +87,8 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 	var/datum/species/pref_species = new /datum/species/human()	//Mutant race
 	var/species_looking_at = "human"	 //used as a helper to keep track of in the species select thingy
 	var/list/features = list(
-							"mcolor" = "FFF",
-							"mcolor2" = "FFF",
+							FEATURE_MUTANT_COLOR = "FFF",
+							FEATURE_MUTANT_COLOR2 = "FFF",
 							"grad_style" = "None",
 							"grad_color" = "FFF",
 							"ethcolor" = "9c3030",
@@ -101,19 +101,18 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 							"frills" = "None",
 							"spines" = "None",
 							"body_markings" = "None",
-							"legs" = "Normal Legs",
+							FEATURE_LEGS_TYPE = "Normal Legs",
 							"moth_wings" = "Plain",
 							"moth_fluff" = "Plain",
 							"moth_markings" = "None",
 							"spider_legs" = "Plain",
 							"spider_spinneret" = "Plain",
 							"spider_mandibles" = "Plain",
-							"squid_face" = "Squidward",
 							"ipc_screen" = "Blue",
 							"ipc_antenna" = "None",
 							"ipc_tail" = "None",
-							"ipc_chassis" = "Morpheus Cyberkinetics (Custom)",
-							"ipc_brain" = "Posibrain",
+							FEATURE_IPC_CHASSIS = "Morpheus Cyberkinetics (Custom)",
+							FEATURE_IPC_BRAIN = "Posibrain",
 							"kepori_feathers" = "None",
 							"kepori_body_feathers" = "None",
 							"kepori_head_feathers" = "None",
@@ -122,8 +121,8 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 							"vox_neck_quills" = "Plain",
 							"elzu_horns" = "None",
 							"elzu_tail" = "None",
-							"flavor_text" = "",
-							"body_size" = "Normal"
+							FEATURE_FLAVOR_TEXT = "",
+							FEATURE_BODY_SIZE = "Normal"
 						)
 	var/list/randomise = list(
 							RANDOM_UNDERWEAR = TRUE,
@@ -340,13 +339,13 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 				dat += "<a href='byond://?_src_=prefs;preference=toggle_random;random_type=[RANDOM_AGE_ANTAG]'>When Antagonist: [(randomise[RANDOM_AGE_ANTAG]) ? "Yes" : "No"]</A>"
 
 			dat += "<br><a href='byond://?_src_=prefs;preference=flavor_text;task=input'><b>Set Flavor Text</b></a>"
-			if(length(features["flavor_text"]) <= 40)
-				if(!length(features["flavor_text"]))
+			if(length(features[FEATURE_FLAVOR_TEXT]) <= 40)
+				if(!length(features[FEATURE_FLAVOR_TEXT]))
 					dat += "\[...\]"
 				else
-					dat += "[features["flavor_text"]]"
+					dat += "[features[FEATURE_FLAVOR_TEXT]]"
 			else
-				dat += "[copytext_char(features["flavor_text"], 1, 37)]...<BR>"
+				dat += "[copytext_char(features[FEATURE_FLAVOR_TEXT], 1, 37)]...<BR>"
 
 			dat += "<br><br><b>Special Names:</b><BR>"
 			var/old_group
@@ -438,8 +437,8 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 			// Everyone gets mutant colors now.
 			dat += "<h3>Mutant Colors</h3>"
 
-			dat += "<span style='border: 1px solid #161616; background-color: #[features["mcolor"]];'>&nbsp;&nbsp;&nbsp;</span> <a href='byond://?_src_=prefs;preference=mutant_color;task=input'>Change</a><BR>"
-			dat += "<span style='border: 1px solid #161616; background-color: #[features["mcolor2"]];'>&nbsp;&nbsp;&nbsp;</span> <a href='byond://?_src_=prefs;preference=mutant_color_2;task=input'>Change</a><BR>"
+			dat += "<span style='border: 1px solid #161616; background-color: #[features[FEATURE_MUTANT_COLOR]];'>&nbsp;&nbsp;&nbsp;</span> <a href='byond://?_src_=prefs;preference=mutant_color;task=input'>Change</a><BR>"
+			dat += "<span style='border: 1px solid #161616; background-color: #[features[FEATURE_MUTANT_COLOR2]];'>&nbsp;&nbsp;&nbsp;</span> <a href='byond://?_src_=prefs;preference=mutant_color_2;task=input'>Change</a><BR>"
 
 			if(istype(pref_species, /datum/species/elzuose)) //not the best thing to do tbf but I dont know whats better.
 
@@ -574,13 +573,13 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 					dat += "</td>"
 					mutant_category = 0
 
-			if("legs" in pref_species.default_features)
+			if(FEATURE_LEGS_TYPE in pref_species.default_features)
 				if(!mutant_category)
 					dat += APPEARANCE_CATEGORY_COLUMN
 
 				dat += "<h3>Legs</h3>"
 
-				dat += "<a href='byond://?_src_=prefs;preference=legs;task=input'>[features["legs"]]</a><BR>"
+				dat += "<a href='byond://?_src_=prefs;preference=legs;task=input'>[features[FEATURE_LEGS_TYPE]]</a><BR>"
 
 				mutant_category++
 				if(mutant_category >= MAX_MUTANT_ROWS)
@@ -650,19 +649,6 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 					dat += "</td>"
 					mutant_category = 0
 
-			if("squid_face" in pref_species.default_features)
-				if(!mutant_category)
-					dat += APPEARANCE_CATEGORY_COLUMN
-
-				dat += "<h3>Face Type</h3>"
-
-				dat += "<a href='byond://?_src_=prefs;preference=squid_face;task=input'>[features["squid_face"]]</a><BR>"
-
-				mutant_category++
-				if(mutant_category >= MAX_MUTANT_ROWS)
-					dat += "</td>"
-					mutant_category = 0
-
 			if("ipc_screen" in pref_species.default_features)
 				if(!mutant_category)
 					dat += APPEARANCE_CATEGORY_COLUMN
@@ -706,25 +692,25 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 					dat += "</td>"
 					mutant_category = 0
 
-			if("ipc_chassis" in pref_species.default_features)
+			if(FEATURE_IPC_CHASSIS in pref_species.default_features)
 				if(!mutant_category)
 					dat += APPEARANCE_CATEGORY_COLUMN
 
 				dat += "<h3>Chassis Style</h3>"
 
-				dat += "<a href='byond://?_src_=prefs;preference=ipc_chassis;task=input'>[features["ipc_chassis"]]</a><BR>"
+				dat += "<a href='byond://?_src_=prefs;preference=ipc_chassis;task=input'>[features[FEATURE_IPC_CHASSIS]]</a><BR>"
 
 				mutant_category++
 				if(mutant_category >= MAX_MUTANT_ROWS)
 					dat += "</td>"
 					mutant_category = 0
 
-			if("ipc_brain" in pref_species.default_features)
+			if(FEATURE_IPC_BRAIN in pref_species.default_features)
 				if(!mutant_category)
 					dat += APPEARANCE_CATEGORY_COLUMN
 
 				dat += "<h3>Brain Type</h3>"
-				dat += "<a href='byond://?_src_=prefs;preference=ipc_brain;task=input'>[features["ipc_brain"]]</a><BR>"
+				dat += "<a href='byond://?_src_=prefs;preference=ipc_brain;task=input'>[features[FEATURE_IPC_BRAIN]]</a><BR>"
 
 				mutant_category++
 				if(mutant_category >= MAX_MUTANT_ROWS)
@@ -751,7 +737,7 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 
 				dat += "<h3>Head Feathers</h3>"
 				dat += "<a href='byond://?_src_=prefs;preference=kepori_head_feathers;task=input'>[features["kepori_head_feathers"]]</a><BR>"
-				dat += "<span style='border:1px solid #161616; background-color: #[features["mcolor2"]];'>&nbsp;&nbsp;&nbsp;</span> <a href='byond://?_src_=prefs;preference=mutant_color_2;task=input'>Change</a><BR>"
+				dat += "<span style='border:1px solid #161616; background-color: #[features[FEATURE_MUTANT_COLOR2]];'>&nbsp;&nbsp;&nbsp;</span> <a href='byond://?_src_=prefs;preference=mutant_color_2;task=input'>Change</a><BR>"
 
 				mutant_category++
 				if(mutant_category >= MAX_MUTANT_ROWS)
@@ -764,7 +750,7 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 
 				dat += "<h3>Body Feathers</h3>"
 				dat += "<a href='byond://?_src_=prefs;preference=kepori_body_feathers;task=input'>[features["kepori_body_feathers"]]</a><BR>"
-				dat += "<span style='border:1px solid #161616; background-color: #[features["mcolor2"]];'>&nbsp;&nbsp;&nbsp;</span> <a href='byond://?_src_=prefs;preference=mutant_color_2;task=input'>Change</a><BR>"
+				dat += "<span style='border:1px solid #161616; background-color: #[features[FEATURE_MUTANT_COLOR2]];'>&nbsp;&nbsp;&nbsp;</span> <a href='byond://?_src_=prefs;preference=mutant_color_2;task=input'>Change</a><BR>"
 
 				mutant_category++
 				if(mutant_category >= MAX_MUTANT_ROWS)
@@ -777,7 +763,7 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 
 				dat += "<h3>Tail Feathers</h3>"
 				dat += "<a href='byond://?_src_=prefs;preference=kepori_tail_feathers;task=input'>[features["kepori_tail_feathers"]]</a><BR>"
-				dat += "<span style='border:1px solid #161616; background-color: #[features["mcolor2"]];'>&nbsp;&nbsp;&nbsp;</span> <a href='byond://?_src_=prefs;preference=mutant_color_2;task=input'>Change</a><BR>"
+				dat += "<span style='border:1px solid #161616; background-color: #[features[FEATURE_MUTANT_COLOR2]];'>&nbsp;&nbsp;&nbsp;</span> <a href='byond://?_src_=prefs;preference=mutant_color_2;task=input'>Change</a><BR>"
 
 				mutant_category++
 				if(mutant_category >= MAX_MUTANT_ROWS)
@@ -877,13 +863,13 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 					dat += "</td>"
 					mutant_category = 0
 
-			if("body_size" in pref_species.default_features)
+			if(FEATURE_BODY_SIZE in pref_species.default_features)
 				if(!mutant_category)
 					dat += APPEARANCE_CATEGORY_COLUMN
 
 				dat += "<h3>Size</h3>"
 
-				dat += "<a href='byond://?_src_=prefs;preference=body_size;task=input'>[features["body_size"]]</a><BR>"
+				dat += "<a href='byond://?_src_=prefs;preference=body_size;task=input'>[features[FEATURE_BODY_SIZE]]</a><BR>"
 
 				mutant_category++
 				if(mutant_category >= MAX_MUTANT_ROWS)
@@ -1550,9 +1536,9 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 				var/newtype = GLOB.species_list[sid]
 				pref_species = new newtype()
 				//Now that we changed our species, we must verify that the mutant colour is still allowed.
-				var/temp_hsv = RGBtoHSV(features["mcolor"])
-				if(text2num(features["mcolor"], 16) == 0  || (!(MUTCOLORS_PARTSONLY in pref_species.species_traits) && ReadHSV(temp_hsv)[3] < ReadHSV("#191919")[3]))
-					features["mcolor"] = pref_species.default_color
+				var/temp_hsv = RGBtoHSV(features[FEATURE_MUTANT_COLOR])
+				if(text2num(features[FEATURE_MUTANT_COLOR], 16) == 0  || (!(MUTCOLORS_PARTSONLY in pref_species.species_traits) && ReadHSV(temp_hsv)[3] < ReadHSV("#191919")[3]))
+					features[FEATURE_MUTANT_COLOR] = pref_species.default_color
 				user << browse(null, "window=speciespick")
 				ShowChoices(user)
 				age = rand(pref_species.species_age_min, pref_species.species_age_max)
@@ -1721,10 +1707,10 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 					if(new_age)
 						age = clamp(round(text2num(new_age)), pref_species.species_age_min, pref_species.species_age_max)
 
-				if("flavor_text")
-					var/msg = stripped_multiline_input(usr, "A snippet of text shown when others examine you, describing what you may look like. This can also be used for OOC notes.", "Flavor Text", html_decode(features["flavor_text"]), MAX_FLAVOR_LEN, TRUE)
+				if(FEATURE_FLAVOR_TEXT)
+					var/msg = stripped_multiline_input(usr, "A snippet of text shown when others examine you, describing what you may look like. This can also be used for OOC notes.", "Flavor Text", html_decode(features[FEATURE_FLAVOR_TEXT]), MAX_FLAVOR_LEN, TRUE)
 					if(msg) //WS edit - "Cancel" does not clear flavor text
-						features["flavor_text"] = msg
+						features[FEATURE_FLAVOR_TEXT] = msg
 
 				if("hair")
 					var/new_hair = input(user, "Choose your character's hair colour:", "Character Preference","#"+hair_color) as color|null
@@ -1845,30 +1831,30 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 					if(new_eyes)
 						eye_color = sanitize_hexcolor(new_eyes)
 
-				if("body_size")
+				if(FEATURE_BODY_SIZE)
 					var/new_size = input(user, "Choose your character's height:", "Character Preference") as null|anything in GLOB.body_sizes
 					if(new_size)
-						features["body_size"] = new_size
+						features[FEATURE_BODY_SIZE] = new_size
 
 				if("mutant_color")
-					var/new_mutantcolor = input(user, "Choose your character's primary alien/mutant color:", "Character Preference","#" + features["mcolor"]) as color|null
+					var/new_mutantcolor = input(user, "Choose your character's primary alien/mutant color:", "Character Preference","#" + features[FEATURE_MUTANT_COLOR]) as color|null
 					if(new_mutantcolor)
 						var/temp_hsv = RGBtoHSV(new_mutantcolor)
 						if(new_mutantcolor == "#000000")
-							features["mcolor"] = pref_species.default_color
+							features[FEATURE_MUTANT_COLOR] = pref_species.default_color
 						else if((MUTCOLORS_PARTSONLY in pref_species.species_traits) || ReadHSV(temp_hsv)[3] >= ReadHSV("#191919")[3]) // mutantcolors must be bright, but only if they affect the skin
-							features["mcolor"] = sanitize_hexcolor(new_mutantcolor)
+							features[FEATURE_MUTANT_COLOR] = sanitize_hexcolor(new_mutantcolor)
 						else
 							to_chat(user, span_danger("Invalid color. Your color is not bright enough."))
 
 				if("mutant_color_2")
-					var/new_mutantcolor = input(user, "Choose your character's secondary alien/mutant color:", "Character Preference","#" + features["mcolor2"]) as color|null
+					var/new_mutantcolor = input(user, "Choose your character's secondary alien/mutant color:", "Character Preference","#" + features[FEATURE_MUTANT_COLOR2]) as color|null
 					if(new_mutantcolor)
 						var/temp_hsv = RGBtoHSV(new_mutantcolor)
 						if(new_mutantcolor == "#000000")
-							features["mcolor2"] = pref_species.default_color
+							features[FEATURE_MUTANT_COLOR2] = pref_species.default_color
 						else if((MUTCOLORS_PARTSONLY in pref_species.species_traits) || ReadHSV(temp_hsv)[3] >= ReadHSV("#191919")[3]) // mutantcolors must be bright, but only if they affect the skin
-							features["mcolor2"] = sanitize_hexcolor(new_mutantcolor)
+							features[FEATURE_MUTANT_COLOR2] = sanitize_hexcolor(new_mutantcolor)
 						else
 							to_chat(user, span_danger("Invalid color. Your color is not bright enough."))
 
@@ -1936,11 +1922,11 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 					if(new_body_markings)
 						features["body_markings"] = new_body_markings
 
-				if("legs")
+				if(FEATURE_LEGS_TYPE)
 					var/new_legs
 					new_legs = input(user, "Choose your character's legs:", "Character Preference") as null|anything in GLOB.legs_list
 					if(new_legs)
-						features["legs"] = new_legs
+						features[FEATURE_LEGS_TYPE] = new_legs
 
 				if("moth_wings")
 					var/new_moth_wings
@@ -1996,19 +1982,19 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 					if(new_ipc_tail)
 						features["ipc_tail"] = new_ipc_tail
 
-				if("ipc_chassis")
+				if(FEATURE_IPC_CHASSIS)
 					var/new_ipc_chassis
 
 					new_ipc_chassis = input(user, "Choose your character's chassis:", "Character Preference") as null|anything in GLOB.ipc_chassis_list
 
 					if(new_ipc_chassis)
-						features["ipc_chassis"] = new_ipc_chassis
+						features[FEATURE_IPC_CHASSIS] = new_ipc_chassis
 
-				if("ipc_brain")
+				if(FEATURE_IPC_BRAIN)
 					var/new_ipc_brain
 					new_ipc_brain = input(user, "Choose your character's brain type:", "Character Preference") as null|anything in GLOB.ipc_brain_list
 					if(new_ipc_brain)
-						features["ipc_brain"] = new_ipc_brain
+						features[FEATURE_IPC_BRAIN] = new_ipc_brain
 
 				if("kepori_feathers")
 					var/new_kepori_feathers
@@ -2514,7 +2500,7 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 
 	character.fbp = fbp
 
-	character.flavor_text = features["flavor_text"] //Let's update their flavor_text at least initially
+	character.flavor_text = features[FEATURE_FLAVOR_TEXT] //Let's update their flavor_text at least initially
 
 	if(loadout) //I have been told not to do this because it's too taxing on performance, but hey, I did it anyways! //I hate you old me //don't be mean
 		for(var/gear in equipped_gear)

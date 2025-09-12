@@ -66,8 +66,6 @@
 		init_sprite_accessory_subtypes(/datum/sprite_accessory/moth_fluff, GLOB.moth_fluff_list)
 	if(!GLOB.moth_markings_list.len)
 		init_sprite_accessory_subtypes(/datum/sprite_accessory/moth_markings, GLOB.moth_markings_list)
-	if(!GLOB.squid_face_list.len)
-		init_sprite_accessory_subtypes(/datum/sprite_accessory/squid_face, GLOB.squid_face_list)
 	if(!GLOB.ipc_screens_list.len)
 		init_sprite_accessory_subtypes(/datum/sprite_accessory/ipc_screens, GLOB.ipc_screens_list)
 	if(!GLOB.ipc_antennas_list.len)
@@ -96,24 +94,24 @@
 	//if you don't keep this alphabetised I'm going to personally steal your shins and sell them online
 	return list(
 		"body_markings" = pick(GLOB.body_markings_list),
-		"body_size" = pick(GLOB.body_sizes),
+		FEATURE_BODY_SIZE = pick(GLOB.body_sizes),
 		"ears" = "None",
 		"elzu_horns" = pick(GLOB.elzu_horns_list),
 		"ethcolor" = GLOB.color_list_ethereal[pick(GLOB.color_list_ethereal)],
-		"flavor_text" = "",
+		FEATURE_FLAVOR_TEXT = "",
 		"frills" = pick(GLOB.frills_list),
 		"horns" = pick(GLOB.horns_list),
 		"ipc_antenna" = pick(GLOB.ipc_antennas_list),
-		"ipc_brain" = pick(GLOB.ipc_brain_list),
-		"ipc_chassis" = pick(GLOB.ipc_chassis_list),
+		FEATURE_IPC_BRAIN = pick(GLOB.ipc_brain_list),
+		FEATURE_IPC_CHASSIS = pick(GLOB.ipc_chassis_list),
 		"ipc_screen" = pick(GLOB.ipc_screens_list),
 		"kepori_body_feathers" = pick(GLOB.kepori_body_feathers_list),
 		"kepori_head_feathers" = pick(GLOB.kepori_head_feathers_list),
 		"kepori_feathers" = pick(GLOB.kepori_feathers_list),
 		"kepori_tail_feathers" = pick(GLOB.kepori_tail_feathers_list),
-		"legs" = "Normal Legs",
-		"mcolor" = pick("FFFFFF","7F7F7F", "7FFF7F", "7F7FFF", "FF7F7F", "7FFFFF", "FF7FFF", "FFFF7F"),
-		"mcolor2" = pick("FFFFFF","7F7F7F", "7FFF7F", "7F7FFF", "FF7F7F", "7FFFFF", "FF7FFF", "FFFF7F"),
+		FEATURE_LEGS_TYPE = "Normal Legs",
+		FEATURE_MUTANT_COLOR = pick("FFFFFF","7F7F7F", "7FFF7F", "7F7FFF", "FF7F7F", "7FFFFF", "FF7FFF", "FFFF7F"),
+		FEATURE_MUTANT_COLOR2 = pick("FFFFFF","7F7F7F", "7FFF7F", "7F7FFF", "FF7F7F", "7FFFFF", "FF7FFF", "FFFF7F"),
 		"moth_fluff" = pick(GLOB.moth_fluff_list),
 		"moth_markings" = pick(GLOB.moth_markings_list),
 		"moth_wings" = pick(GLOB.moth_wings_list),
@@ -121,7 +119,6 @@
 		"spider_legs" = pick(GLOB.spider_legs_list),
 		"spider_spinneret" = pick(GLOB.spider_spinneret_list),
 		"spines" = pick(GLOB.spines_list),
-		"squid_face" = pick(GLOB.squid_face_list),
 		"tail_human" = "None",
 		"tail_lizard" = pick(GLOB.tails_list_lizard),
 		"tail_elzu" = pick(GLOB.tails_list_elzu),

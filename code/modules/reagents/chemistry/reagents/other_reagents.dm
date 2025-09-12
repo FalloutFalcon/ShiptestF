@@ -343,7 +343,7 @@
 
 			if(MUTCOLORS in N.dna.species.species_traits) //take current alien color and darken it slightly
 				var/newcolor = ""
-				var/string = N.dna.features["mcolor"]
+				var/string = N.dna.features[FEATURE_MUTANT_COLOR]
 				var/len = length(string)
 				var/char = ""
 				var/ascii = 0
@@ -366,7 +366,7 @@
 						else
 							break
 				if(ReadHSV(newcolor)[3] >= ReadHSV("#191919")[3])
-					N.dna.features["mcolor"] = newcolor
+					N.dna.features[FEATURE_MUTANT_COLOR] = newcolor
 			N.regenerate_icons()
 
 		if(method == INGEST)

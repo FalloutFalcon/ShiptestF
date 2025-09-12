@@ -11,7 +11,7 @@
 
 	if(usr != src)
 		to_chat(usr, span_warning("You can't set someone else's flavour text!"))
-	var/msg = input(usr, "A snippet of text shown when others examine you, describing what you may look like. This can also be used for OOC notes.", "Flavor Text", html_decode("flavor_text")) as message|null
+	var/msg = input(usr, "A snippet of text shown when others examine you, describing what you may look like. This can also be used for OOC notes.", "Flavor Text", html_decode(FEATURE_FLAVOR_TEXT)) as message|null
 
 	if(msg)
 		msg = copytext(msg, 1, MAX_MESSAGE_LEN)
