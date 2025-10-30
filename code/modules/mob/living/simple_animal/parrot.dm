@@ -369,7 +369,7 @@
 /*
  * AI - Not really intelligent, but I'm calling it AI anyway.
  */
-/mob/living/simple_animal/parrot/Life()
+/mob/living/simple_animal/parrot/Life(seconds_per_tick = SSMOBS_DT, times_fired)
 	..()
 
 	//Sprite update for when a parrot gets pulled
@@ -930,7 +930,7 @@
 
 	. = ..()
 
-/mob/living/simple_animal/parrot/Polly/Life()
+/mob/living/simple_animal/parrot/Polly/Life(seconds_per_tick = SSMOBS_DT, times_fired)
 	if(!stat && SSticker.current_state == GAME_STATE_FINISHED && !memory_saved)
 		Write_Memory(FALSE)
 		memory_saved = TRUE

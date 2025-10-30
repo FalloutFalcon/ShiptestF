@@ -1,4 +1,4 @@
-/mob/living/carbon/Life()
+/mob/living/carbon/Life(seconds_per_tick = SSMOBS_DT, times_fired)
 	set invisibility = 0
 
 	if(notransform)

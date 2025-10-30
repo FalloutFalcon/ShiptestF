@@ -28,7 +28,7 @@
 	/// How much health we regen per Life() when burrowed
 	var/heal_amount = 10
 
-/mob/living/simple_animal/hostile/asteroid/antlion/Life()
+/mob/living/simple_animal/hostile/asteroid/antlion/Life(seconds_per_tick = SSMOBS_DT, times_fired)
 	. = ..()
 	if(burrowed)
 		health = min(maxHealth, health+heal_amount)

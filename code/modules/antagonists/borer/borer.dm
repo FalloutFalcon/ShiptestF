@@ -316,7 +316,7 @@ GLOBAL_VAR_INIT(total_borer_hosts_needed, 3)
 			to_chat(M, "[link] [rendered]")
 	to_chat(src, span_borer("<i>[B.truename] says:</i> [input]"))
 
-/mob/living/simple_animal/borer/Life()
+/mob/living/simple_animal/borer/Life(seconds_per_tick = SSMOBS_DT, times_fired)
 
 	..()
 

@@ -112,7 +112,7 @@
 		adjustBruteLoss(5)
 		qdel(tasty_plastic)
 
-/mob/living/simple_animal/hostile/carp/Life()
+/mob/living/simple_animal/hostile/carp/Life(seconds_per_tick = SSMOBS_DT, times_fired)
 	. = ..()
 	if(stat == CONSCIOUS)
 		chomp_plastic()
@@ -204,7 +204,7 @@
 	if(.)
 		regen_cooldown = world.time + REGENERATION_DELAY
 
-/mob/living/simple_animal/hostile/carp/megacarp/Life()
+/mob/living/simple_animal/hostile/carp/megacarp/Life(seconds_per_tick = SSMOBS_DT, times_fired)
 	. = ..()
 	if(regen_cooldown < world.time)
 		heal_overall_damage(4)

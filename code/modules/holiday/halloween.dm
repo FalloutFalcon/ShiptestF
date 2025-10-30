@@ -127,7 +127,7 @@
 	status_flags |= GODMODE
 	timer = rand(1,15)
 
-/mob/living/simple_animal/shade/howling_ghost/Life()
+/mob/living/simple_animal/shade/howling_ghost/Life(seconds_per_tick = SSMOBS_DT, times_fired)
 	..()
 	timer--
 	if(prob(20))

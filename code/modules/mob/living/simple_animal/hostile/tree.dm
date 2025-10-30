@@ -45,7 +45,7 @@
 
 	var/is_tree = TRUE
 
-/mob/living/simple_animal/hostile/tree/Life()
+/mob/living/simple_animal/hostile/tree/Life(seconds_per_tick = SSMOBS_DT, times_fired)
 	..()
 	if(is_tree && isopenturf(loc))
 		var/turf/open/T = src.loc

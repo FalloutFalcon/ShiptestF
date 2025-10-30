@@ -105,7 +105,7 @@
 	Read_Memory()
 	. = ..()
 
-/mob/living/simple_animal/pet/cat/Runtime/Life()
+/mob/living/simple_animal/pet/cat/Runtime/Life(seconds_per_tick = SSMOBS_DT, times_fired)
 	if(!cats_deployed && SSticker.current_state >= GAME_STATE_SETTING_UP)
 		Deploy_The_Cats()
 	if(!stat && SSticker.current_state == GAME_STATE_FINISHED && !memory_saved)
@@ -207,7 +207,7 @@
 	if(glow_strength <= 1)
 		src.remove_filter("ray_cat_glow")
 
-/mob/living/simple_animal/pet/cat/Life()
+/mob/living/simple_animal/pet/cat/Life(seconds_per_tick = SSMOBS_DT, times_fired)
 	radiation_count -= radiation_count/RAD_MEASURE_SMOOTHING
 	radiation_count += current_tick_amount/RAD_MEASURE_SMOOTHING
 
@@ -341,7 +341,7 @@
 		to_chat(src, span_notice("Your name is now <b>\"new_name\"</b>!"))
 		name = new_name
 
-/mob/living/simple_animal/pet/cat/cak/Life()
+/mob/living/simple_animal/pet/cat/cak/Life(seconds_per_tick = SSMOBS_DT, times_fired)
 	..()
 	if(stat)
 		return

@@ -39,7 +39,7 @@
 	AddComponent(/datum/component/udder)
 	. = ..()
 
-/mob/living/simple_animal/hostile/retaliate/goat/Life()
+/mob/living/simple_animal/hostile/retaliate/goat/Life(seconds_per_tick = SSMOBS_DT, times_fired)
 	. = ..()
 	if(.)
 		//chance to go crazy and start wacking stuff
@@ -132,7 +132,7 @@
 	pixel_x = base_pixel_x + rand(-6, 6)
 	pixel_y = base_pixel_y + rand(0, 10)
 
-/mob/living/simple_animal/chick/Life()
+/mob/living/simple_animal/chick/Life(seconds_per_tick = SSMOBS_DT, times_fired)
 	. =..()
 	if(!.)
 		return
@@ -142,7 +142,7 @@
 			new /mob/living/simple_animal/chicken(src.loc)
 			qdel(src)
 
-/mob/living/simple_animal/chick/holo/Life()
+/mob/living/simple_animal/chick/holo/Life(seconds_per_tick = SSMOBS_DT, times_fired)
 	..()
 	amount_grown = 0
 
@@ -215,7 +215,7 @@
 	else
 		..()
 
-/mob/living/simple_animal/chicken/Life()
+/mob/living/simple_animal/chicken/Life(seconds_per_tick = SSMOBS_DT, times_fired)
 	. =..()
 	if(!.)
 		return
@@ -313,7 +313,7 @@
 	else
 		..()
 
-/mob/living/simple_animal/hostile/retaliate/chicken/Life()
+/mob/living/simple_animal/hostile/retaliate/chicken/Life(seconds_per_tick = SSMOBS_DT, times_fired)
 	. =..()
 	if(!.)
 		return

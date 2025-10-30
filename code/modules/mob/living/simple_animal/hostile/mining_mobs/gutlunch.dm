@@ -110,7 +110,7 @@
 	resize = 0.45
 	update_transform()
 
-/mob/living/simple_animal/hostile/asteroid/gutlunch/grublunch/Life()
+/mob/living/simple_animal/hostile/asteroid/gutlunch/grublunch/Life(seconds_per_tick = SSMOBS_DT, times_fired)
 	..()
 	growth++
 	if(growth > 50) //originally used a timer for this but was more problem that it's worth.

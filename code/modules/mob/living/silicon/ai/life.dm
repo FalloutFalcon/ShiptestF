@@ -1,4 +1,4 @@
-/mob/living/silicon/ai/Life()
+/mob/living/silicon/ai/Life(seconds_per_tick = SSMOBS_DT, times_fired)
 	if (stat == DEAD)
 		return
 	else //I'm not removing that shitton of tabs, unneeded as they are. -- Urist

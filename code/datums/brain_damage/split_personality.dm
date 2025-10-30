@@ -117,7 +117,7 @@
 		trauma = _trauma
 	return ..()
 
-/mob/living/split_personality/Life()
+/mob/living/split_personality/Life(seconds_per_tick = SSMOBS_DT, times_fired)
 	if(QDELETED(body))
 		qdel(src) //in case trauma deletion doesn't already do it
 
